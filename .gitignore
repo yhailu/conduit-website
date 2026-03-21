@@ -1,12 +1,39 @@
 # Environment variables
 backend/.env
+.env
 
 # Python
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 backend/venv/
 backend/.venv/
+venv/
+.venv/
 
 # OpenClaw
 .openclaw/
+AGENTS.md
+AGENTS-BACKEND.md
+AGENTS-FRONTEND.md
+BOOTSTRAP.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

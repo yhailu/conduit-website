@@ -17,11 +17,17 @@ STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 app = Flask(__name__, static_folder=STATIC_DIR, static_url_path='')
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
 
-CORS(app, supports_credentials=True, origins=[
+ALLOWED_ORIGINS = [
     'http://localhost:5000',
     'http://127.0.0.1:5000',
-    'https://orchestraflow-website.onrender.com',  # Update with your actual Render URL
-])
+]
+# Add production origin from env (e.g. https://conduit-website.onrender.com)
+if os.getenv('RENDER_EXTERNAL_URL'):
+    ALLOWED_ORIGINS.append(os.getenv('RENDER_EXTERNAL_URL'))
+if os.getenv('CORS_ORIGIN'):
+    ALLOWED_ORIGINS.append(os.getenv('CORS_ORIGIN'))
+
+CORS(app, supports_credentials=True, origins=ALLOWED_ORIGINS)
 
 SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_ANON_KEY = os.getenv('SUPABASE_ANON_KEY')
