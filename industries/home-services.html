@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Services AI Solutions | ORCHESTRAFLOW</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cpath d='M8 44 Q16 44 22 36 Q28 28 32 28 Q36 28 42 36 Q48 44 56 44' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M8 36 Q16 36 22 28 Q28 20 32 20 Q36 20 42 28 Q48 36 56 36' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round' fill='none' opacity='0.6'/%3E%3Cpath d='M8 28 Q16 28 22 20 Q28 12 32 12 Q36 12 42 20 Q48 28 56 28' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round' fill='none' opacity='0.3'/%3E%3Ccircle cx='32' cy='28' r='3' fill='%233b82f6'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
 
     nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; max-width: 1400px; margin: 0 auto; }
     .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
-    .logo-mark { width: 32px; height: 32px; }
+    .logo-mark { width: 36px; height: 36px; }
     .logo-mark svg { width: 100%; height: 100%; }
     .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -37,8 +37,6 @@
     .btn { display: inline-block; padding: 0.65rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
     .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; }
     .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(59,130,246,0.3); }
-    .btn-ghost { color: var(--text-secondary); border: 1px solid var(--border); background: transparent; }
-    .btn-ghost:hover { color: var(--text); border-color: var(--border-hover); }
     .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
 
     /* Hero */
@@ -131,23 +129,32 @@
   <a href="../index.html" class="logo">
     <div class="logo-mark">
       <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 44 Q16 44 22 36 Q28 28 32 28 Q36 28 42 36 Q48 44 56 44" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-        <path d="M8 36 Q16 36 22 28 Q28 20 32 20 Q36 20 42 28 Q48 36 56 36" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <path d="M8 28 Q16 28 22 20 Q28 12 32 12 Q36 12 42 20 Q48 28 56 28" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.3"/>
-        <circle cx="32" cy="28" r="3" fill="#3b82f6"/>
+        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
       </svg>
     </div>
     <span class="logo-text">orchestraflow</span>
   </a>
   <ul class="nav-links">
     <li><a href="../index.html#features">Features</a></li>
-    <li><a href="../index.html#demo">Demo</a></li>
-    <li><a href="index.html" class="active">Industries</a></li>
+    <li><a href="index.html">Industries</a></li>
+    <li><a href="../index.html#about">About</a></li>
     <li><a href="../blog/index.html">Blog</a></li>
   </ul>
   <div class="nav-cta">
-    <a href="../login.html" class="btn btn-ghost">Log In</a>
-    <a href="../signup.html" class="btn btn-primary">Sign Up</a>
+    <a href="../consultation.html" class="btn btn-primary">Request Consultation</a>
   </div>
 </nav>
 
@@ -282,7 +289,7 @@
 <section class="cta-section fade-in">
   <h2>Ready to Grow Your Service Business?</h2>
   <p>Join home service businesses using OrchestraFlow to book more jobs and delight more customers.</p>
-  <a href="../signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
+  <a href="../consultation.html" class="btn btn-primary btn-lg">Get Started Free</a>
 </section>
 
 <footer>
@@ -290,10 +297,20 @@
     <a href="../index.html" class="logo">
       <div class="logo-mark">
         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 44 Q16 44 22 36 Q28 28 32 28 Q36 28 42 36 Q48 44 56 44" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-          <path d="M8 36 Q16 36 22 28 Q28 20 32 20 Q36 20 42 28 Q48 36 56 36" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.6"/>
-          <path d="M8 28 Q16 28 22 20 Q28 12 32 12 Q36 12 42 20 Q48 28 56 28" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.3"/>
-          <circle cx="32" cy="28" r="3" fill="#3b82f6"/>
+          <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+          <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+          <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+          <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+          <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+          <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
         </svg>
       </div>
       <span class="logo-text">orchestraflow</span>

@@ -37,86 +37,7 @@
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
     }
 
-    /* LIGHT THEME */
-    [data-theme="light"] {
-      --bg: #ffffff;
-      --bg-elevated: #f8fafc;
-      --bg-card: #f1f5f9;
-      --bg-subtle: #f9fafb;
-      --border: rgba(0, 0, 0, 0.08);
-      --border-hover: rgba(0, 0, 0, 0.15);
-      --text: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #94a3b8;
-      --accent: #2563eb;
-      --accent-light: #3b82f6;
-      --accent-dark: #1d4ed8;
-      --accent-subtle: rgba(37, 99, 235, 0.1);
-      --success: #16a34a;
-      --success-subtle: rgba(22, 163, 74, 0.1);
-      --green: #16a34a;
-      --green-bg: rgba(22, 163, 74, 0.1);
-      --purple: #9333ea;
-      --purple-bg: rgba(147, 51, 234, 0.1);
-      --orange: #ea580c;
-      --orange-bg: rgba(234, 88, 12, 0.1);
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
-    }
-    [data-theme="light"] nav {
-      background: rgba(255,255,255,0.85);
-    }
-    [data-theme="light"] .hero {
-      background: linear-gradient(180deg, rgba(37,99,235,0.04) 0%, transparent 60%);
-    }
-    [data-theme="light"] .hero-logo-glow {
-      background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
-    }
-    [data-theme="light"] .hero-logo-svg line,
-    [data-theme="light"] .hero-logo-svg circle {
-      stroke: #2563eb;
-      fill: #2563eb;
-    }
 
-    /* THEME TOGGLE */
-    .theme-toggle {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      width: 44px;
-      height: 24px;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      padding: 2px;
-    }
-    .theme-toggle::before {
-      content: '🌙';
-      font-size: 0.7rem;
-      position: absolute;
-      left: 4px;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: all 0.3s;
-    }
-    [data-theme="light"] .theme-toggle::before {
-      content: '☀️';
-    }
-    .theme-toggle-knob {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent);
-      transition: all 0.3s;
-      margin-left: auto;
-    }
-    [data-theme="light"] .theme-toggle-knob {
-      margin-left: 0;
-      margin-right: auto;
-    }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -240,33 +161,33 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh;
+      min-height: auto;
       display: flex;
       flex-direction: column;
-      padding: 8rem 2rem 4rem;
+      padding: 5rem 2rem 3rem;
       background: radial-gradient(ellipse at top center, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
     }
     .hero-content {
-      max-width: 900px;
+      max-width: 760px;
       margin: 0 auto;
       text-align: center;
-      padding-top: 2rem;
+      padding-top: 1rem;
     }
 
     /* HERO ANIMATED LOGO */
     .hero-logo-animation {
       position: relative;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 3rem;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
     }
     .hero-logo-svg {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 64px;
-      height: 64px;
+      width: 48px;
+      height: 48px;
       z-index: 2;
     }
     .logo-path-1 {
@@ -308,8 +229,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
+      width: 56px;
+      height: 56px;
       background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
       border-radius: 50%;
       animation: glowBreath 3s ease-in-out infinite;
@@ -337,31 +258,31 @@
       border-radius: 50%;
       animation: ringExpand 3s ease-out infinite;
     }
-    .ring-1 { width: 60px; height: 60px; animation-delay: 0s; }
-    .ring-2 { width: 60px; height: 60px; animation-delay: 1s; }
-    .ring-3 { width: 60px; height: 60px; animation-delay: 2s; }
+    .ring-1 { width: 44px; height: 44px; animation-delay: 0s; }
+    .ring-2 { width: 44px; height: 44px; animation-delay: 1s; }
+    .ring-3 { width: 44px; height: 44px; animation-delay: 2s; }
     @keyframes ringExpand {
-      0% { width: 60px; height: 60px; opacity: 0.6; }
-      100% { width: 140px; height: 140px; opacity: 0; }
+      0% { width: 44px; height: 44px; opacity: 0.6; }
+      100% { width: 100px; height: 100px; opacity: 0; }
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
     }
     .hero h1 .bold { color: var(--text); }
     .hero h1 .light { color: var(--text-muted); font-weight: 500; }
     .hero-subtitle {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
-      max-width: 580px;
-      margin: 0 auto 2.5rem;
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
       line-height: 1.7;
     }
-    .hero-cta { margin-bottom: 4rem; }
+    .hero-cta { margin-bottom: 2rem; }
 
     /* DEMO SECTION */
     .demo-section {
@@ -1627,15 +1548,12 @@
   </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
-    <li><a href="#demo">Demo</a></li>
     <li><a href="industries/index.html">Industries</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="blog/index.html">Blog</a></li>
   </ul>
   <div class="nav-cta" style="display:flex; align-items:center; gap:1rem;">
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-      <div class="theme-toggle-knob"></div>
-    </button>
+
     <a href="consultation.html" class="btn btn-primary">Request Consultation</a>
   </div>
 
@@ -2327,7 +2245,6 @@
       <a href="#about">About</a>
       <a href="#features">Features</a>
       <a href="industries/index.html">Industries</a>
-      <a href="#demo">Demo</a>
       <a href="blog/index.html">Blog</a>
       <a href="#">Contact</a>
     </div>
@@ -2344,25 +2261,6 @@
 </div>
 
 <script>
-  // ============================================
-  // THEME TOGGLE
-  // ============================================
-  function toggleTheme() {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme');
-    const next = current === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  }
-
-  // Load saved theme on page load
-  (function() {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  })();
-
   // ============================================
   // AUTH & DATA — calls Python backend API
   // ============================================

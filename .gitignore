@@ -1,6 +1,10 @@
 # Environment variables
 backend/.env
+outreach/scripts/.env
 .env
+
+# Outreach
+outreach/
 
 # Python
 __pycache__/
