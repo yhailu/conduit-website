@@ -2,6 +2,7 @@ import os
 import csv
 import io
 import smtplib
+import threading
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from functools import wraps
@@ -376,7 +377,7 @@ def send_notification_email(consultation):
     msg.attach(MIMEText(html_body, 'html'))
 
     try:
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
             server.starttls()
             server.login(SMTP_USER, SMTP_PASSWORD)
             server.send_message(msg)
@@ -424,8 +425,8 @@ def book_consultation():
         app.logger.error(f"Failed to save consultation: {e}")
         return jsonify({'error': 'Failed to save your request. Please try again.'}), 500
 
-    # 2. Send email notification (best-effort — don't fail the request if email fails)
-    send_notification_email(consultation)
+    # 2. Send email notification in background thread (don't block the response)
+    threading.Thread(target=send_notification_email, args=(consultation,), daemon=True).start()
 
     return jsonify({'message': 'Consultation request received! We\'ll contact you within 2 hours.'})
 
