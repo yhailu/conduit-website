@@ -1,0 +1,2705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORCHESTRAFLOW | AI Agents for Business</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-elevated: #12121a;
+      --bg-card: #1a1a24;
+      --bg-subtle: #0f0f14;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --text: #f8fafc;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-dark: #2563eb;
+      --accent-subtle: rgba(59, 130, 246, 0.15);
+      --success: #22c55e;
+      --success-subtle: rgba(34, 197, 94, 0.15);
+      --green: #22c55e;
+      --green-bg: rgba(34, 197, 94, 0.15);
+      --purple: #a855f7;
+      --purple-bg: rgba(168, 85, 247, 0.15);
+      --orange: #f97316;
+      --orange-bg: rgba(249, 115, 22, 0.15);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    /* LIGHT THEME */
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --bg-elevated: #f8fafc;
+      --bg-card: #f1f5f9;
+      --bg-subtle: #f9fafb;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(0, 0, 0, 0.15);
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --accent: #2563eb;
+      --accent-light: #3b82f6;
+      --accent-dark: #1d4ed8;
+      --accent-subtle: rgba(37, 99, 235, 0.1);
+      --success: #16a34a;
+      --success-subtle: rgba(22, 163, 74, 0.1);
+      --green: #16a34a;
+      --green-bg: rgba(22, 163, 74, 0.1);
+      --purple: #9333ea;
+      --purple-bg: rgba(147, 51, 234, 0.1);
+      --orange: #ea580c;
+      --orange-bg: rgba(234, 88, 12, 0.1);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    [data-theme="light"] nav {
+      background: rgba(255,255,255,0.85);
+    }
+    [data-theme="light"] .hero {
+      background: linear-gradient(180deg, rgba(37,99,235,0.04) 0%, transparent 60%);
+    }
+    [data-theme="light"] .hero-logo-glow {
+      background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+    }
+    [data-theme="light"] .hero-logo-svg line,
+    [data-theme="light"] .hero-logo-svg circle {
+      stroke: #2563eb;
+      fill: #2563eb;
+    }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      width: 44px;
+      height: 24px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      padding: 2px;
+    }
+    .theme-toggle::before {
+      content: '🌙';
+      font-size: 0.7rem;
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.3s;
+    }
+    [data-theme="light"] .theme-toggle::before {
+      content: '☀️';
+    }
+    .theme-toggle-knob {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      transition: all 0.3s;
+      margin-left: auto;
+    }
+    [data-theme="light"] .theme-toggle-knob {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* LOGO */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-mark { width: 36px; height: 36px; }
+    .logo-mark svg { width: 100%; height: 100%; }
+    .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
+
+    .btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-ghost { background: transparent; color: var(--text-secondary); }
+    .btn-ghost:hover { color: var(--text); background: var(--bg-elevated); }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-dark); }
+
+    /* EMAIL CAPTURE */
+    .email-capture {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .email-capture input[type="email"] {
+      flex: 1;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--bg-elevated);
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+    .email-capture input[type="email"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-subtle);
+    }
+    .email-capture input[type="email"]::placeholder {
+      color: var(--text-muted);
+    }
+    .email-capture button {
+      padding: 1rem 1.75rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .email-capture button:hover {
+      background: var(--accent-dark);
+    }
+    .email-capture-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    .email-success {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      background: var(--success-subtle);
+      border-radius: 10px;
+      color: var(--success);
+      font-weight: 600;
+    }
+    .email-success.show { display: flex; }
+    .email-capture.hidden { display: none; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 8rem 2rem 4rem;
+      background: radial-gradient(ellipse at top center, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    }
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 2rem;
+    }
+
+    /* HERO ANIMATED LOGO */
+    .hero-logo-animation {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 3rem;
+    }
+    .hero-logo-svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      z-index: 2;
+    }
+    .logo-path-1 {
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: drawPath 2s ease-out forwards, glowPulse 3s ease-in-out infinite 2s;
+    }
+    .logo-path-2 {
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: drawPath 2s ease-out 0.3s forwards;
+    }
+    .logo-center {
+      transform-origin: center;
+      animation: centerPop 0.5s ease-out 1.5s forwards, centerPulse 2s ease-in-out infinite 2s;
+      opacity: 0;
+      transform: scale(0);
+    }
+    @keyframes drawPath {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes centerPop {
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+    @keyframes centerPulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); }
+      50% { transform: scale(1.1); filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.9)); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5)); }
+      50% { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8)); }
+    }
+    .hero-logo-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: glowBreath 3s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes glowBreath {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+    }
+    .hero-logo-rings {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 50%;
+      animation: ringExpand 3s ease-out infinite;
+    }
+    .ring-1 { width: 60px; height: 60px; animation-delay: 0s; }
+    .ring-2 { width: 60px; height: 60px; animation-delay: 1s; }
+    .ring-3 { width: 60px; height: 60px; animation-delay: 2s; }
+    @keyframes ringExpand {
+      0% { width: 60px; height: 60px; opacity: 0.6; }
+      100% { width: 140px; height: 140px; opacity: 0; }
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 .bold { color: var(--text); }
+    .hero h1 .light { color: var(--text-muted); font-weight: 500; }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-cta { margin-bottom: 4rem; }
+
+    /* DEMO SECTION */
+    .demo-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding: 0 2rem;
+    }
+    .demo-container {
+      background: var(--bg-elevated);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .demo-progress {
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+    }
+    .demo-progress-bar {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s linear;
+    }
+    .demo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.2);
+    }
+    .demo-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .demo-title-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+    .demo-title h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .demo-title > div > span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-bg);
+      padding: 0.4rem 0.75rem;
+      border-radius: 100px;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: livePulse 2s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .demo-content {
+      display: grid;
+      grid-template-columns: 280px 1fr 280px;
+      min-height: 500px;
+    }
+
+    /* Phone */
+    .phone-section {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-right: 1px solid var(--border);
+    }
+    .phone-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .phone {
+      width: 220px;
+      height: 420px;
+      background: #000;
+      border-radius: 32px;
+      padding: 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .phone-inner {
+      width: 100%;
+      height: 100%;
+      background: #111;
+      border-radius: 26px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .phone-notch {
+      width: 80px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto;
+    }
+    .whatsapp-header {
+      background: #075e54;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .whatsapp-back { color: white; font-size: 1rem; }
+    .whatsapp-avatar {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+    }
+    .whatsapp-name { flex: 1; }
+    .whatsapp-name h4 { font-size: 0.85rem; color: white; font-weight: 600; }
+    .whatsapp-name p { font-size: 0.65rem; color: rgba(255,255,255,0.7); }
+    .whatsapp-chat {
+      flex: 1;
+      background: #0b141a;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+    .message {
+      max-width: 85%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease-out;
+    }
+    .message.incoming {
+      background: #202c33;
+      color: white;
+      align-self: flex-start;
+      border-top-left-radius: 0;
+    }
+    .message.outgoing {
+      background: #005c4b;
+      color: white;
+      align-self: flex-end;
+      border-top-right-radius: 0;
+    }
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .message-time {
+      font-size: 0.55rem;
+      color: rgba(255,255,255,0.5);
+      text-align: right;
+      margin-top: 0.25rem;
+    }
+    .message-audio {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .audio-wave {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .audio-bar {
+      width: 3px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 2px;
+      animation: audioWave 0.5s ease-in-out infinite alternate;
+    }
+    .audio-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+    .audio-bar:nth-child(2) { height: 14px; animation-delay: 0.1s; }
+    .audio-bar:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+    .audio-bar:nth-child(4) { height: 16px; animation-delay: 0.3s; }
+    .audio-bar:nth-child(5) { height: 8px; animation-delay: 0.4s; }
+    .audio-bar:nth-child(6) { height: 12px; animation-delay: 0.5s; }
+    @keyframes audioWave { to { height: 6px; } }
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 0.6rem 0.75rem;
+      background: #202c33;
+      border-radius: 8px;
+      align-self: flex-start;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .typing-indicator.show { opacity: 1; }
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      animation: typingBounce 1.4s ease-in-out infinite;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-4px); }
+    }
+
+    /* Pipeline */
+    .demo-pipeline-section {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .demo-pipeline-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .demo-pipeline-steps {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .demo-pipeline-step {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      border: 1px solid transparent;
+      opacity: 0.4;
+      transition: all 0.5s ease;
+    }
+    .demo-pipeline-step.active {
+      opacity: 1;
+      border-color: var(--accent);
+      background: var(--accent-subtle);
+    }
+    .demo-pipeline-step.completed {
+      opacity: 1;
+      border-color: var(--green);
+      background: var(--green-bg);
+    }
+    .demo-step-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-card);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .demo-pipeline-step.completed .demo-step-icon {
+      background: var(--green);
+    }
+    .demo-pipeline-step.completed .demo-step-icon::after {
+      content: '✓';
+      position: absolute;
+      color: white;
+      font-weight: bold;
+    }
+    .demo-step-content h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+    }
+    .demo-step-content p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .demo-step-status {
+      margin-left: auto;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+    .demo-status-waiting {
+      background: rgba(100, 116, 139, 0.2);
+      color: var(--text-muted);
+    }
+    .demo-status-processing {
+      background: var(--accent-subtle);
+      color: var(--accent-light);
+    }
+    .demo-status-done {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    /* CRM */
+    .crm-section {
+      padding: 2rem;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .crm-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .crm-card {
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.5s ease;
+    }
+    .crm-card.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .crm-header {
+      padding: 1rem;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .crm-avatar {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+    .crm-header-info h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+    }
+    .crm-header-info p {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.8);
+    }
+    .crm-body { padding: 1rem; }
+    .crm-field { margin-bottom: 0.75rem; }
+    .crm-field label {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .crm-field span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .crm-priority {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--orange-bg);
+      color: var(--orange);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .crm-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .crm-tag {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--purple-bg);
+      color: var(--purple);
+      border-radius: 4px;
+    }
+    .demo-stats-row {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .demo-stat-card {
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      padding: 0.75rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+    }
+    .demo-stat-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .demo-stat-card .value {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+    .demo-stat-card .label {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+    .replay-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      font-family: inherit;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+      transition: all 0.2s ease;
+    }
+    .replay-btn:hover {
+      background: var(--accent-dark);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* STATS */
+    .stats-section {
+      padding: 5rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+    }
+    .stat-label { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+    /* ABOUT SECTION */
+    .about-section {
+      padding: 6rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .about-content {
+      text-align: center;
+    }
+    .about-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--accent-subtle);
+      border-radius: 100px;
+    }
+    .about-content h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+    .about-text {
+      text-align: left;
+    }
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .about-text p:nth-child(2) {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* BLOG SECTION */
+    .blog-section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .blog-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .blog-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .blog-card-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-card-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
+    .blog-card-content {
+      padding: 1.5rem;
+    }
+    .blog-card-category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .blog-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .blog-card-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .blog-card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .blog-load-more {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1100px) and (min-width: 901px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* FEATURES */
+    .features-section {
+      padding: 6rem 2rem;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-title { 
+      font-size: clamp(2rem, 4vw, 3rem); 
+      font-weight: 800; 
+      letter-spacing: -0.03em; 
+    }
+    .section-title .bold { color: var(--text); }
+    .section-title .light { color: var(--text-muted); font-weight: 500; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .feature-card {
+      background: var(--bg);
+      padding: 2.5rem;
+      transition: background 0.3s ease;
+    }
+    .feature-card:hover { background: var(--bg-subtle); }
+    .feature-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+    .feature-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* CTA */
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      background: radial-gradient(ellipse at bottom center, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+    }
+    .cta-content { max-width: 700px; margin: 0 auto; }
+    .cta-content h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .cta-content h2 .bold { color: var(--text); }
+    .cta-content h2 .light { color: var(--text-muted); font-weight: 500; }
+    .cta-content > p {
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ADMIN PANEL */
+    .admin-panel {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      max-width: 400px;
+      max-height: 400px;
+      overflow: auto;
+      z-index: 1000;
+    }
+    .admin-panel.show { display: block; }
+    .admin-panel h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .admin-panel .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .admin-panel .email-list { font-size: 0.85rem; color: var(--text-secondary); }
+    .admin-panel .email-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+    .admin-panel .email-count { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .admin-panel .export-btn {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .admin-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      z-index: 999;
+    }
+
+    /* TRUST BAR */
+    .trust-bar {
+      padding: 2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .trust-bar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .trust-item .trust-icon {
+      font-size: 1.2rem;
+    }
+    .trust-item strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+    .trust-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    /* LIVE STATS */
+    .live-stats-section {
+      padding: 5rem 2rem;
+      background: var(--bg);
+    }
+    .live-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .live-stat-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .live-stat-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .live-stat-number {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .live-stat-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* MULTI-CHANNEL */
+    .channels-section {
+      padding: 6rem 2rem;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .channel-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+    }
+    .channel-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .channel-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .channel-card-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .channel-card-title .channel-emoji {
+      font-size: 1.5rem;
+    }
+    .channel-card-title h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .channel-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-bg);
+      padding: 0.3rem 0.6rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .channel-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .channel-features li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .channel-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    /* INDUSTRY SOLUTIONS */
+    .industry-section {
+      padding: 6rem 2rem;
+      background: var(--bg);
+    }
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .industry-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+    .industry-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .industry-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .industry-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .industry-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .industry-usecases {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .industry-usecases li {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .industry-usecases li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* SOLUTIONS / USE CASES */
+    .solutions-section {
+      padding: 6rem 2rem;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .solution-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .solution-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px var(--accent-subtle);
+    }
+    .solution-stat {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .solution-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .solution-card p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      padding: 6rem 2rem;
+      background: var(--bg);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+    .testimonial-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .testimonial-metric {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-subtle);
+      color: var(--accent-light);
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      align-self: flex-start;
+    }
+    .testimonial-quote {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex: 1;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .testimonial-author-info h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .testimonial-author-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* TIERED CTA */
+    .tiered-cta-section {
+      padding: 6rem 2rem;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .tiered-cta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .tiered-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tiered-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .tiered-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-subtle);
+      position: relative;
+    }
+    .tiered-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tiered-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .tiered-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .tiered-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .tiered-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-light);
+    }
+    .tiered-btn.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .tiered-btn.primary:hover {
+      background: var(--accent-dark);
+    }
+
+    @media (max-width: 900px) {
+      .live-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .industry-grid { grid-template-columns: 1fr; }
+      .solutions-grid { grid-template-columns: 1fr; }
+      .tiered-cta-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .trust-bar-inner { gap: 1.5rem; }
+      .trust-divider { display: none; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .email-capture { flex-direction: column; }
+      .demo-content { grid-template-columns: 1fr; }
+      .phone-section, .crm-section { border: none; border-bottom: 1px solid var(--border); }
+      .features-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+      </svg>
+    </div>
+    <span class="logo-text">orchestraflow</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="industries/index.html">Industries</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="blog/index.html">Blog</a></li>
+  </ul>
+  <div class="nav-cta" style="display:flex; align-items:center; gap:1rem;">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <div class="theme-toggle-knob"></div>
+    </button>
+    <a href="consultation.html" class="btn btn-primary">Request Consultation</a>
+  </div>
+
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-logo-animation">
+      <div class="hero-logo-glow"></div>
+      <svg class="hero-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line class="logo-path-1" x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line class="logo-path-1" x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line class="logo-path-1" x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line class="logo-path-1" x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle class="logo-center" cx="32" cy="32" r="4" fill="#3b82f6"/>
+        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+        <line class="logo-path-2" x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line class="logo-path-2" x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line class="logo-path-2" x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line class="logo-path-2" x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+      </svg>
+      <div class="hero-logo-rings">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+      </div>
+    </div>
+    <!-- Platform badge -->
+    <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.4rem 1rem; border-radius:50px; background:var(--accent-subtle); border:1px solid rgba(59,130,246,0.2); margin-bottom:1.5rem;">
+      <span style="font-size:0.75rem; font-weight:700; color:var(--accent-light); letter-spacing:0.05em; text-transform:uppercase;">AI Workforce Platform 2.0</span>
+    </div>
+
+    <h1>
+      <span class="bold">AI Workforce</span><br>
+      <span class="light">That Actually</span> <span class="bold">Works</span>
+    </h1>
+    <p class="hero-subtitle">Deploy your AI workforce in 5 days. 75% cost reduction. Zero maintenance headaches.</p>
+    
+    <!-- Dual CTA buttons -->
+    <div class="hero-cta" style="display:flex; gap:1rem; justify-content:center; align-items:center; margin-top:2rem; flex-wrap:wrap;">
+      <a href="consultation.html" class="btn btn-primary" style="font-size:1.05rem; padding:0.85rem 2rem; box-shadow:0 4px 20px rgba(59,130,246,0.3);">Book Free Consultation →</a>
+      <a href="#demo" class="btn btn-ghost" style="font-size:1.05rem; padding:0.85rem 2rem;">Watch Demo</a>
+    </div>
+
+    <!-- Compact trust badges inline -->
+    <div style="display:flex; justify-content:center; gap:1.5rem; margin-top:1.5rem; flex-wrap:wrap; align-items:center;">
+      <span style="font-size:0.8rem; color:var(--text-muted); display:flex; align-items:center; gap:0.3rem;">🏢 <strong style="color:var(--text-secondary);">5,000+</strong> businesses automated</span>
+      <span style="font-size:0.8rem; color:var(--text-muted); display:flex; align-items:center; gap:0.3rem;">🛡️ SOC 2 & HIPAA compliant</span>
+      <span style="font-size:0.8rem; color:var(--text-muted); display:flex; align-items:center; gap:0.3rem;">⭐ <strong style="color:var(--text-secondary);">4.9/5</strong> (2,800+ reviews)</span>
+    </div>
+
+    <!-- Feature pills -->
+    <div style="display:flex; justify-content:center; gap:0.8rem; margin-top:1.5rem; flex-wrap:wrap;">
+      <span style="padding:0.4rem 0.9rem; border-radius:8px; background:var(--bg-elevated); border:1px solid var(--border); font-size:0.8rem; color:var(--text-secondary);">✓ Fully managed AI workforce</span>
+      <span style="padding:0.4rem 0.9rem; border-radius:8px; background:var(--bg-elevated); border:1px solid var(--border); font-size:0.8rem; color:var(--text-secondary);">✓ Enterprise-grade security</span>
+      <span style="padding:0.4rem 0.9rem; border-radius:8px; background:var(--bg-elevated); border:1px solid var(--border); font-size:0.8rem; color:var(--text-secondary);">✓ Launch in days, not months</span>
+    </div>
+
+    <!-- Live status indicator -->
+    <div style="display:flex; justify-content:center; align-items:center; gap:0.5rem; margin-top:2rem;">
+      <span style="width:8px; height:8px; border-radius:50%; background:#22c55e; display:inline-block; animation:pulse 2s infinite;"></span>
+      <span style="font-size:0.8rem; color:var(--text-muted);">Trusted by <strong style="color:var(--text-secondary);">5,000+</strong> businesses globally</span>
+    </div>
+  </div>
+
+  <!-- TRUST BAR (kept for backward compat but hidden since we moved trust inline) -->
+  <div class="trust-bar" style="display:none;">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <span class="trust-icon">🏢</span>
+        <span><strong>5,000+</strong> businesses automated</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <span class="trust-icon">🛡️</span>
+        <span><strong>SOC 2</strong> & <strong>HIPAA</strong> compliant</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <span class="trust-icon">⭐</span>
+        <span><strong>4.9/5</strong> (2,800+ reviews)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMO -->
+  <div class="demo-section" id="demo">
+    <div class="demo-container">
+      <div class="demo-progress">
+        <div class="demo-progress-bar" id="progress-bar"></div>
+      </div>
+      
+      <div class="demo-header">
+        <div class="demo-title">
+          <div class="demo-title-icon">⚡</div>
+          <div>
+            <h3>AI Agent Demo</h3>
+            <span>See how OrchestraFlow handles leads automatically</span>
+          </div>
+        </div>
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          LIVE DEMO
+        </div>
+      </div>
+
+      <div class="demo-content">
+        <div class="phone-section">
+          <p class="phone-label">Incoming Lead</p>
+          <div class="phone">
+            <div class="phone-inner">
+              <div class="phone-notch"></div>
+              <div class="whatsapp-header">
+                <span class="whatsapp-back">←</span>
+                <div class="whatsapp-avatar">C</div>
+                <div class="whatsapp-name">
+                  <h4>OrchestraFlow AI</h4>
+                  <p>online</p>
+                </div>
+              </div>
+              <div class="whatsapp-chat">
+                <div class="message incoming" id="msg1">
+                  <div class="message-audio">
+                    <span>🎤</span>
+                    <div class="audio-wave">
+                      <div class="audio-bar"></div>
+                      <div class="audio-bar"></div>
+                      <div class="audio-bar"></div>
+                      <div class="audio-bar"></div>
+                      <div class="audio-bar"></div>
+                      <div class="audio-bar"></div>
+                    </div>
+                    <span style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">0:45</span>
+                  </div>
+                  <div class="message-time">2:34 AM</div>
+                </div>
+                
+                <div class="message incoming" id="msg2">
+                  I need a lawyer urgently. Just got arrested for DUI in Melbourne CBD. Please call me back ASAP.
+                  <div class="message-time">2:34 AM</div>
+                </div>
+
+                <div class="typing-indicator" id="typing">
+                  <div class="typing-dot"></div>
+                  <div class="typing-dot"></div>
+                  <div class="typing-dot"></div>
+                </div>
+
+                <div class="message outgoing" id="msg3">
+                  Hi, thank you for reaching out. I understand this is urgent. A DUI charge requires immediate attention. Our team specializes in criminal defense.
+                  <div class="message-time">2:34 AM</div>
+                </div>
+
+                <div class="message outgoing" id="msg4">
+                  I've flagged your case as high-priority. A senior partner will call you within 10 minutes.
+                  <div class="message-time">2:34 AM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-pipeline-section">
+          <p class="demo-pipeline-label">AI Agent Pipeline</p>
+          <div class="demo-pipeline-steps">
+            <div class="demo-pipeline-step" id="step1">
+              <div class="demo-step-icon">📩</div>
+              <div class="demo-step-content">
+                <h4>Message Received</h4>
+                <p>WhatsApp voice + text captured</p>
+              </div>
+              <span class="demo-step-status demo-status-waiting">Waiting</span>
+            </div>
+            <div class="demo-pipeline-step" id="step2">
+              <div class="demo-step-icon">🎧</div>
+              <div class="demo-step-content">
+                <h4>Audio Transcribed</h4>
+                <p>Voice message → text in 2 seconds</p>
+              </div>
+              <span class="demo-step-status demo-status-waiting">Waiting</span>
+            </div>
+            <div class="demo-pipeline-step" id="step3">
+              <div class="demo-step-icon">🔍</div>
+              <div class="demo-step-content">
+                <h4>Lead Qualified</h4>
+                <p>AI scoring: urgency, case type, value</p>
+              </div>
+              <span class="demo-step-status demo-status-waiting">Waiting</span>
+            </div>
+            <div class="demo-pipeline-step" id="step4">
+              <div class="demo-step-icon">💾</div>
+              <div class="demo-step-content">
+                <h4>CRM Updated</h4>
+                <p>Salesforce record created automatically</p>
+              </div>
+              <span class="demo-step-status demo-status-waiting">Waiting</span>
+            </div>
+            <div class="demo-pipeline-step" id="step5">
+              <div class="demo-step-icon">💬</div>
+              <div class="demo-step-content">
+                <h4>Response Sent</h4>
+                <p>Personalized reply in under 30 seconds</p>
+              </div>
+              <span class="demo-step-status demo-status-waiting">Waiting</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="crm-section">
+          <p class="crm-label">Salesforce CRM</p>
+          <div class="crm-card" id="crm-card">
+            <div class="crm-header">
+              <div class="crm-avatar">JD</div>
+              <div class="crm-header-info">
+                <h4>New Lead Created</h4>
+                <p>Just now • Auto-generated</p>
+              </div>
+            </div>
+            <div class="crm-body">
+              <div class="crm-field">
+                <label>Priority</label>
+                <span class="crm-priority">🔥 High Priority</span>
+              </div>
+              <div class="crm-field">
+                <label>Case Type</label>
+                <span>DUI / Criminal Defense</span>
+              </div>
+              <div class="crm-field">
+                <label>Location</label>
+                <span>Melbourne CBD, VIC</span>
+              </div>
+              <div class="crm-field">
+                <label>Source</label>
+                <span>WhatsApp • 2:34 AM</span>
+              </div>
+              <div class="crm-field">
+                <label>Tags</label>
+                <div class="crm-tags">
+                  <span class="crm-tag">Urgent</span>
+                  <span class="crm-tag">After-Hours</span>
+                  <span class="crm-tag">DUI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="demo-stats-row">
+            <div class="demo-stat-card" id="stat1">
+              <div class="value">&lt; 30s</div>
+              <div class="label">Response Time</div>
+            </div>
+            <div class="demo-stat-card" id="stat2">
+              <div class="value">100%</div>
+              <div class="label">Lead Captured</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="replay-btn" id="replay-btn" onclick="runDemo()" style="display: flex;">
+        ▶ Play Demo
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="about-content">
+    <div class="about-badge">Our Mission</div>
+    <h2>AI agents built for the businesses that need them most</h2>
+    <div class="about-text">
+      <p>Small and medium-sized businesses are the backbone of the economy—but they're often the last to benefit from breakthrough technology. Enterprise companies have armies of engineers and million-dollar budgets. You have a team of ten wearing twelve hats.</p>
+      <p>That's exactly why we built OrchestraFlow.</p>
+      <p>We create custom AI agents that handle the repetitive, time-consuming work that keeps you from focusing on what matters: growing your business and serving your customers. Whether it's responding to leads at 2am, qualifying prospects while you sleep, or keeping your CRM updated without lifting a finger—our agents work around the clock so you don't have to.</p>
+      <p>No complex integrations. No six-month implementations. No enterprise sales pitch. Just intelligent automation that fits the way you already work, deployed in weeks, not quarters.</p>
+    </div>
+  </div>
+</section>
+
+<section class="features-section" id="features">
+  <div class="section-header">
+    <h2 class="section-title"><span class="light">Everything you need for</span> <span class="bold">autonomous</span> <span class="light">operations</span></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <p class="feature-label">Lead Capture</p>
+      <h3>24/7 Response</h3>
+      <p>Instant engagement with every lead, any channel, any time zone. Never miss an opportunity.</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-label">Qualification</p>
+      <h3>Smart Scoring</h3>
+      <p>AI-powered lead qualification that identifies high-value prospects automatically.</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-label">Engagement</p>
+      <h3>Personalized Outreach</h3>
+      <p>Context-aware messaging that feels human, powered by your data.</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-label">Integration</p>
+      <h3>Connected Systems</h3>
+      <p>Native sync with Salesforce, HubSpot, Slack, and 200+ tools.</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-label">Automation</p>
+      <h3>End-to-End Workflows</h3>
+      <p>From first touch to closed deal, every step runs on autopilot.</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-label">Analytics</p>
+      <h3>Real-time Insights</h3>
+      <p>Track performance, measure ROI, and optimize continuously.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE STATS COUNTER -->
+<section class="live-stats-section" id="stats">
+  <div class="section-header">
+    <h2 class="section-title"><span class="light">Trusted by businesses</span> <span class="bold">worldwide</span></h2>
+  </div>
+  <div class="live-stats-grid">
+    <div class="live-stat-card">
+      <div class="live-stat-number">10,000+</div>
+      <div class="live-stat-label">Active Businesses</div>
+    </div>
+    <div class="live-stat-card">
+      <div class="live-stat-number">5M+</div>
+      <div class="live-stat-label">Conversations Handled</div>
+    </div>
+    <div class="live-stat-card">
+      <div class="live-stat-number">98%</div>
+      <div class="live-stat-label">Customer Satisfaction</div>
+    </div>
+    <div class="live-stat-card">
+      <div class="live-stat-number">24/7</div>
+      <div class="live-stat-label">Autonomous Operation</div>
+    </div>
+  </div>
+</section>
+
+<!-- MULTI-CHANNEL SHOWCASE -->
+<section class="channels-section" id="channels">
+  <div class="section-header">
+    <h2 class="section-title"><span class="light">One AI agent,</span> <span class="bold">every channel</span></h2>
+    <p class="section-subtitle" style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">Meet your customers wherever they are—with a unified, intelligent experience</p>
+  </div>
+  <div class="channels-grid">
+    <div class="channel-card">
+      <div class="channel-card-header">
+        <div class="channel-card-title">
+          <span class="channel-emoji">💬</span>
+          <h3>WhatsApp</h3>
+        </div>
+        <span class="channel-badge">Available</span>
+      </div>
+      <ul class="channel-features">
+        <li>2B+ users worldwide reach</li>
+        <li>Voice message transcription</li>
+        <li>Rich media & document sharing</li>
+        <li>Business API integration</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-header">
+        <div class="channel-card-title">
+          <span class="channel-emoji">📞</span>
+          <h3>Phone Calls</h3>
+        </div>
+        <span class="channel-badge">Available</span>
+      </div>
+      <ul class="channel-features">
+        <li>Natural voice conversations</li>
+        <li>Real-time call transcription</li>
+        <li>Intelligent call routing</li>
+        <li>Voicemail handling & follow-up</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-header">
+        <div class="channel-card-title">
+          <span class="channel-emoji">📱</span>
+          <h3>SMS</h3>
+        </div>
+        <span class="channel-badge">Available</span>
+      </div>
+      <ul class="channel-features">
+        <li>Two-way text messaging</li>
+        <li>Automated follow-up sequences</li>
+        <li>Appointment confirmations</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-header">
+        <div class="channel-card-title">
+          <span class="channel-emoji">✉️</span>
+          <h3>Email</h3>
+        </div>
+        <span class="channel-badge">Available</span>
+      </div>
+      <ul class="channel-features">
+        <li>Intelligent email triage</li>
+        <li>Automated responses & drafts</li>
+        <li>Thread context awareness</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-header">
+        <div class="channel-card-title">
+          <span class="channel-emoji">🌐</span>
+          <h3>Web Chat</h3>
+        </div>
+        <span class="channel-badge">Available</span>
+      </div>
+      <ul class="channel-features">
+        <li>Embeddable chat widget</li>
+        <li>Visitor intent detection</li>
+        <li>Seamless human handoff</li>
+        <li>Custom branding support</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-header">
+        <div class="channel-card-title">
+          <span class="channel-emoji">💼</span>
+          <h3>Slack</h3>
+        </div>
+        <span class="channel-badge">Available</span>
+      </div>
+      <ul class="channel-features">
+        <li>Internal team automation</li>
+        <li>Channel-based workflows</li>
+        <li>Slash command support</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-header">
+        <div class="channel-card-title">
+          <span class="channel-emoji">🟦</span>
+          <h3>Microsoft Teams</h3>
+        </div>
+        <span class="channel-badge">Available</span>
+      </div>
+      <ul class="channel-features">
+        <li>Teams app integration</li>
+        <li>Meeting scheduling assistance</li>
+        <li>Enterprise SSO compatible</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY SOLUTIONS -->
+<section class="industry-section" id="industries">
+  <div class="section-header">
+    <h2 class="section-title"><span class="light">Built for</span> <span class="bold">your industry</span></h2>
+    <p class="section-subtitle" style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">Purpose-built AI agents tailored to your sector's unique needs</p>
+  </div>
+  <div class="industry-grid">
+    <div class="industry-card">
+      <div class="industry-icon">🏥</div>
+      <h3>Healthcare</h3>
+      <p>HIPAA-compliant AI agents for patient communication and care coordination.</p>
+      <ul class="industry-usecases">
+        <li>Patient intake & scheduling</li>
+        <li>Appointment reminders & follow-ups</li>
+        <li>Insurance verification</li>
+      </ul>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">🏠</div>
+      <h3>Real Estate</h3>
+      <p>Capture and qualify property inquiries 24/7, even on weekends and holidays.</p>
+      <ul class="industry-usecases">
+        <li>Lead qualification & showing scheduling</li>
+        <li>Property matching & recommendations</li>
+        <li>Open house follow-ups</li>
+      </ul>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">💰</div>
+      <h3>Financial Services</h3>
+      <p>Secure, compliant AI agents for client communication and onboarding.</p>
+      <ul class="industry-usecases">
+        <li>Client onboarding automation</li>
+        <li>Portfolio update notifications</li>
+        <li>Compliance-aware responses</li>
+      </ul>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">💻</div>
+      <h3>SaaS & Digital</h3>
+      <p>Scale customer success and reduce churn with always-on support agents.</p>
+      <ul class="industry-usecases">
+        <li>Trial-to-paid conversion</li>
+        <li>Feature adoption nudges</li>
+        <li>Churn prevention outreach</li>
+      </ul>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">🎓</div>
+      <h3>Education</h3>
+      <p>Streamline enrollment and student support with intelligent automation.</p>
+      <ul class="industry-usecases">
+        <li>Admissions inquiry handling</li>
+        <li>Course registration assistance</li>
+        <li>Student support triage</li>
+      </ul>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">💅</div>
+      <h3>Beauty & Wellness</h3>
+      <p>Fill your calendar and reduce no-shows with automated booking agents.</p>
+      <ul class="industry-usecases">
+        <li>Online booking & confirmations</li>
+        <li>Waitlist management</li>
+        <li>Review & feedback collection</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS / USE CASES -->
+<section class="solutions-section" id="solutions">
+  <div class="section-header">
+    <h2 class="section-title"><span class="light">AI agents that drive</span> <span class="bold">real results</span></h2>
+  </div>
+  <div class="solutions-grid">
+    <div class="solution-card">
+      <div class="solution-stat">300% more conversions</div>
+      <h3>AI Lead Capture</h3>
+      <p>Engage every inbound lead instantly across all channels. Qualify, score, and route prospects automatically—so your sales team only talks to the hottest leads.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-stat">85% fewer no-shows</div>
+      <h3>AI Appointment Manager</h3>
+      <p>Automate scheduling, confirmations, reminders, and rescheduling. Sync with your calendar in real time and eliminate the back-and-forth.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-stat">70% cost reduction</div>
+      <h3>AI Helpdesk</h3>
+      <p>Resolve common support tickets autonomously with context-aware responses. Escalate complex issues seamlessly to your human team when needed.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-stat">10x faster answers</div>
+      <h3>AI Knowledge Access</h3>
+      <p>Turn your docs, SOPs, and knowledge base into an intelligent assistant. Employees and customers get accurate answers in seconds, not hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-header">
+    <h2 class="section-title"><span class="light">What our customers</span> <span class="bold">are saying</span></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-metric">📈 87% faster response time</div>
+      <p class="testimonial-quote">"We went from losing after-hours leads to capturing every single one. OrchestraFlow's AI agent responds in under 30 seconds—our conversion rate has nearly tripled since we started."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">SK</div>
+        <div class="testimonial-author-info">
+          <h4>Sarah Kim</h4>
+          <p>VP of Sales, Meridian Legal Group</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-metric">💰 $2.4M in recovered revenue</div>
+      <p class="testimonial-quote">"The AI agent paid for itself in the first month. It handles 80% of our patient inquiries autonomously and our staff can finally focus on in-person care instead of answering phones."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">DR</div>
+        <div class="testimonial-author-info">
+          <h4>Dr. Marcus Rivera</h4>
+          <p>Medical Director, Coastal Health Partners</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-metric">📊 42% increase in bookings</div>
+      <p class="testimonial-quote">"I was skeptical about AI for real estate, but OrchestraFlow changed my mind completely. It qualifies buyers at 2 AM and books showings before my competitors even wake up."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">JT</div>
+        <div class="testimonial-author-info">
+          <h4>James Thornton</h4>
+          <p>Broker, Pinnacle Realty Group</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-metric">⏱️ 60% less time on support</div>
+      <p class="testimonial-quote">"We scaled from 500 to 5,000 customers without adding a single support hire. The AI handles onboarding questions, troubleshooting, and even upsells—it's like having a team of 10."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">AP</div>
+        <div class="testimonial-author-info">
+          <h4>Anika Patel</h4>
+          <p>CEO, CloudSync Technologies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERED CTA -->
+<section class="tiered-cta-section" id="pricing-cta">
+  <div class="section-header">
+    <h2 class="section-title"><span class="light">Ready to get started?</span> <span class="bold">Pick your path</span></h2>
+    <p class="section-subtitle" style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">From startups to enterprises, we have a plan that fits</p>
+  </div>
+  <div class="tiered-cta-grid">
+    <div class="tiered-card">
+      <h3>Small Business</h3>
+      <p>Perfect for teams of 1–20. Get an AI agent up and running in days, not months. Simple setup, powerful results.</p>
+      <a href="#cta" class="tiered-btn">Get Started</a>
+    </div>
+    <div class="tiered-card featured">
+      <h3>Mid-Market</h3>
+      <p>For growing teams that need multi-channel coverage, CRM integrations, and advanced workflows. Our most popular plan.</p>
+      <a href="#cta" class="tiered-btn primary">Talk to Sales</a>
+    </div>
+    <div class="tiered-card">
+      <h3>Enterprise</h3>
+      <p>Custom AI agents, dedicated support, SLA guarantees, and on-premise deployment options for large organizations.</p>
+      <a href="#cta" class="tiered-btn">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="blog-section" id="blog">
+  <div class="section-header">
+    <div class="about-badge">Insights</div>
+    <h2 class="section-title"><span class="light">Learn how AI is</span> <span class="bold">transforming</span> <span class="light">business</span></h2>
+    <p class="section-subtitle">Deep dives into automation, strategy, and the future of work</p>
+  </div>
+  
+  <div class="blog-grid" id="blog-grid">
+    <!-- Blog posts will be loaded here -->
+  </div>
+  
+  <div class="blog-load-more">
+    <button class="btn btn-ghost" onclick="loadMorePosts()">Load More Articles</button>
+    <a href="blog/index.html" class="btn btn-primary" style="margin-left: 1rem;">View All Articles →</a>
+  </div>
+</section>
+
+<section class="cta-section" id="cta">
+  <div class="cta-content">
+    <h2><span class="light">Ready to</span> <span class="bold">automate?</span></h2>
+    <p>Book a free 60-minute strategy session and discover how AI can transform your business.</p>
+    
+    <div style="margin-top: 1.5rem;">
+      <a href="consultation.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 0.9rem 2.5rem;">Request Consultation →</a>
+    </div>
+    <p class="email-capture-note">100% free • Expert guidance • No obligation</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+          <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+          <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+          <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+          <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+          <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+        </svg>
+      </div>
+      <span class="logo-text">orchestraflow</span>
+    </a>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="industries/index.html">Industries</a>
+      <a href="#demo">Demo</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 OrchestraFlow AI, Inc.</div>
+  </div>
+</footer>
+
+<button class="admin-toggle" onclick="toggleAdminPanel()">📧</button>
+<div class="admin-panel" id="admin-panel">
+  <h4>Collected Emails <button class="close-btn" onclick="toggleAdminPanel()">×</button></h4>
+  <p class="email-count" id="email-count">0 emails collected</p>
+  <div class="email-list" id="email-list"></div>
+  <button class="export-btn" onclick="exportEmails()">Export as CSV</button>
+</div>
+
+<script>
+  // ============================================
+  // THEME TOGGLE
+  // ============================================
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+
+  // Load saved theme on page load
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+
+  // ============================================
+  // AUTH & DATA — calls Python backend API
+  // ============================================
+
+  // Check auth state on load
+  async function checkAuthState() {
+    try {
+      const res = await fetch('/api/auth/me', { credentials: 'include' });
+      const data = await res.json();
+      updateNavForUser(data.user);
+    } catch (e) { /* ignore */ }
+  }
+
+  function updateNavForUser(user) {
+    const guest = document.getElementById('nav-cta-guest');
+    const userEl = document.getElementById('nav-cta-user');
+    const userName = document.getElementById('nav-user-name');
+    if (!guest || !userEl) return;
+    if (user) {
+      const name = user.full_name || user.email;
+      userName.textContent = name;
+      guest.style.display = 'none';
+      userEl.style.display = 'flex';
+    } else {
+      guest.style.display = '';
+      userEl.style.display = 'none';
+    }
+  }
+
+  async function handleLogout() {
+    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    window.location.reload();
+  }
+
+  checkAuthState();
+
+  // Email capture function
+  async function captureEmail(source) {
+    const input = document.getElementById(`${source}-email-input`);
+    const form = document.getElementById(`${source}-email-form`);
+    const success = document.getElementById(`${source}-email-success`);
+    const button = form.querySelector('button');
+    const email = input.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      input.style.borderColor = '#ef4444';
+      input.focus();
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = 'Signing up...';
+
+    try {
+      const res = await fetch('/api/email-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, source, signed_up_at: new Date().toISOString() })
+      });
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Failed');
+      }
+
+      form.classList.add('hidden');
+      success.classList.add('show');
+      updateAdminPanel();
+      console.log(`Email captured: ${email} (source: ${source})`);
+
+    } catch (error) {
+      console.error('Error saving email:', error);
+      button.disabled = false;
+      button.textContent = 'Sign Up';
+      input.style.borderColor = '#ef4444';
+      alert('Something went wrong. Please try again.');
+    }
+  }
+
+  function toggleAdminPanel() {
+    document.getElementById('admin-panel').classList.toggle('show');
+    updateAdminPanel();
+  }
+
+  async function updateAdminPanel() {
+    const countEl = document.getElementById('email-count');
+    const listEl = document.getElementById('email-list');
+
+    listEl.innerHTML = '<p style="color: var(--text-muted);">Loading...</p>';
+
+    try {
+      const res = await fetch('/api/admin/emails', { credentials: 'include' });
+      const data = await res.json();
+      const emails = data.emails || [];
+
+      countEl.textContent = `${emails.length} email${emails.length !== 1 ? 's' : ''} collected`;
+
+      if (emails.length === 0) {
+        listEl.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">No emails yet</p>';
+      } else {
+        listEl.innerHTML = emails.map(e => `
+          <div class="email-item">
+            <span>${e.email}</span>
+            <span style="font-size: 0.7rem; color: var(--text-muted);">${new Date(e.signed_up_at || e.timestamp).toLocaleDateString()}</span>
+          </div>
+        `).join('');
+      }
+    } catch (error) {
+      console.error('Error fetching emails:', error);
+      listEl.innerHTML = '<p style="color: #ef4444;">Error loading emails.</p>';
+    }
+  }
+
+  function exportEmails() {
+    window.location.href = '/api/admin/emails/export';
+  }
+
+  // ==========================================
+  // DEMO ANIMATION
+  // ==========================================
+  function activateStep(id) {
+    const step = document.getElementById(id);
+    if (!step) return;
+    step.classList.add('active');
+    const status = step.querySelector('.demo-step-status');
+    if (status) {
+      status.textContent = 'Processing';
+      status.className = 'demo-step-status demo-status-processing';
+    }
+  }
+
+  function completeStep(id) {
+    const step = document.getElementById(id);
+    if (!step) return;
+    step.classList.remove('active');
+    step.classList.add('completed');
+    const status = step.querySelector('.demo-step-status');
+    if (status) {
+      status.textContent = 'Done';
+      status.className = 'demo-step-status demo-status-done';
+    }
+  }
+
+  function updateProgress(percent) {
+    const bar = document.getElementById('progress-bar');
+    if (bar) bar.style.width = percent + '%';
+  }
+
+  let demoTimeouts = [];
+  const DEMO_DURATION = 10000;
+
+  const demoTimeline = [
+    { time: 0, action: () => updateProgress(0) },
+    { time: 500, action: () => {
+      const msg1 = document.getElementById('msg1');
+      if (msg1) msg1.classList.add('show');
+      activateStep('step1');
+    }},
+    { time: 1500, action: () => {
+      const msg2 = document.getElementById('msg2');
+      if (msg2) msg2.classList.add('show');
+      completeStep('step1');
+      activateStep('step2');
+    }},
+    { time: 2500, action: () => {
+      completeStep('step2');
+      activateStep('step3');
+    }},
+    { time: 3500, action: () => {
+      completeStep('step3');
+      activateStep('step4');
+      const crmCard = document.getElementById('crm-card');
+      if (crmCard) crmCard.classList.add('show');
+    }},
+    { time: 4500, action: () => {
+      completeStep('step4');
+      activateStep('step5');
+      const typing = document.getElementById('typing');
+      if (typing) typing.classList.add('show');
+    }},
+    { time: 5500, action: () => {
+      const typing = document.getElementById('typing');
+      const msg3 = document.getElementById('msg3');
+      if (typing) typing.classList.remove('show');
+      if (msg3) msg3.classList.add('show');
+    }},
+    { time: 6500, action: () => {
+      const msg4 = document.getElementById('msg4');
+      if (msg4) msg4.classList.add('show');
+      completeStep('step5');
+    }},
+    { time: 7500, action: () => {
+      const stat1 = document.getElementById('stat1');
+      if (stat1) stat1.classList.add('show');
+    }},
+    { time: 8000, action: () => {
+      const stat2 = document.getElementById('stat2');
+      if (stat2) stat2.classList.add('show');
+    }},
+    { time: 10000, action: () => {
+      const btn = document.getElementById('replay-btn');
+      if (btn) {
+        btn.innerHTML = '↻ Watch Again';
+        btn.style.display = 'flex';
+      }
+    }}
+  ];
+
+  function resetDemo() {
+    demoTimeouts.forEach(t => clearTimeout(t));
+    demoTimeouts = [];
+
+    document.querySelectorAll('.message').forEach(m => m.classList.remove('show'));
+    const typingEl = document.getElementById('typing');
+    if (typingEl) typingEl.classList.remove('show');
+
+    document.querySelectorAll('.demo-pipeline-step').forEach(s => {
+      s.classList.remove('active', 'completed');
+      const status = s.querySelector('.demo-step-status');
+      if (status) {
+        status.textContent = 'Waiting';
+        status.className = 'demo-step-status demo-status-waiting';
+      }
+    });
+
+    const crmCard = document.getElementById('crm-card');
+    const stat1 = document.getElementById('stat1');
+    const stat2 = document.getElementById('stat2');
+    if (crmCard) crmCard.classList.remove('show');
+    if (stat1) stat1.classList.remove('show');
+    if (stat2) stat2.classList.remove('show');
+
+    updateProgress(0);
+  }
+
+  function runDemo() {
+    const btn = document.getElementById('replay-btn');
+    if (btn) btn.style.display = 'none';
+    
+    resetDemo();
+
+    let startTime = Date.now();
+    const progressInterval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const percent = Math.min((elapsed / DEMO_DURATION) * 100, 100);
+      updateProgress(percent);
+      if (percent >= 100) clearInterval(progressInterval);
+    }, 50);
+
+    demoTimeline.forEach(item => {
+      const t = setTimeout(item.action, item.time);
+      demoTimeouts.push(t);
+    });
+  }
+
+  // Auto-start demo on page load
+  window.addEventListener('load', function() {
+    setTimeout(runDemo, 1500);
+    loadBlogPosts();
+  });
+
+  // ==========================================
+  // BLOG POSTS DATA
+  // ==========================================
+  const blogPosts = [
+    { id: 1, slug: "why-smbs-need-ai-agents-now", title: "Why Small Businesses Need AI Agents Now—Not Later", category: "Strategy", emoji: "🚀", excerpt: "The automation gap between enterprises and SMBs is widening. Here's why waiting is costing you more than you think.", date: "Mar 15, 2026", readTime: "8 min" },
+    { id: 2, slug: "anatomy-of-ai-agent", title: "The Anatomy of an AI Agent: What's Actually Under the Hood", category: "Technology", emoji: "🔧", excerpt: "LLMs, RAG, function calling, memory systems—demystifying the technology that powers modern AI agents.", date: "Mar 12, 2026", readTime: "12 min" },
+    { id: 3, slug: "lead-response-time-study", title: "The 5-Minute Rule: Why Lead Response Time Is Everything", category: "Sales", emoji: "⏱️", excerpt: "Studies show responding within 5 minutes increases conversion by 400%. Here's how AI makes instant response possible.", date: "Mar 10, 2026", readTime: "7 min" },
+    { id: 4, slug: "ai-vs-chatbots", title: "AI Agents vs. Chatbots: Understanding the Critical Difference", category: "Technology", emoji: "🤖", excerpt: "Your FAQ bot isn't an AI agent. Here's what separates rule-based chatbots from truly intelligent automation.", date: "Mar 8, 2026", readTime: "9 min" },
+    { id: 5, slug: "calculating-ai-roi", title: "Calculating the Real ROI of AI Automation", category: "Strategy", emoji: "📊", excerpt: "Beyond the hype: a practical framework for measuring what AI agents actually return to your business.", date: "Mar 5, 2026", readTime: "11 min" },
+    { id: 6, slug: "ai-for-law-firms", title: "AI Agents for Law Firms: Transforming Client Intake", category: "Industry", emoji: "⚖️", excerpt: "How criminal defense, personal injury, and family law practices are capturing more clients with 24/7 AI.", date: "Mar 3, 2026", readTime: "10 min" },
+    { id: 7, slug: "24-7-lead-capture", title: "The 24/7 Advantage: Never Miss Another Lead", category: "Sales", emoji: "🌙", excerpt: "Your competitors close at 6pm. Your AI agent doesn't. How after-hours automation changes the game.", date: "Feb 28, 2026", readTime: "6 min" },
+    { id: 8, slug: "ai-medical-practices", title: "AI in Medical Practices: Patient Communication Reimagined", category: "Industry", emoji: "🏥", excerpt: "From appointment reminders to post-visit follow-ups, how healthcare is embracing intelligent automation.", date: "Feb 25, 2026", readTime: "9 min" },
+    { id: 9, slug: "crm-automation-guide", title: "The Complete Guide to CRM Automation with AI", category: "Operations", emoji: "💾", excerpt: "Your CRM is only as good as your data. Here's how AI agents keep it accurate without manual entry.", date: "Feb 22, 2026", readTime: "13 min" },
+    { id: 10, slug: "voice-ai-transcription", title: "Voice AI: Turning Every Call Into Actionable Data", category: "Technology", emoji: "🎤", excerpt: "Voicemails, calls, voice notes—how AI transcription captures what text-only systems miss.", date: "Feb 20, 2026", readTime: "8 min" },
+    { id: 11, slug: "whatsapp-business-ai", title: "WhatsApp Business + AI: The Global Communication Standard", category: "Channels", emoji: "💬", excerpt: "With 2 billion users, WhatsApp is where your customers are. Here's how to automate it intelligently.", date: "Feb 18, 2026", readTime: "7 min" },
+    { id: 12, slug: "lead-qualification-ai", title: "AI Lead Qualification: Scoring Prospects in Seconds", category: "Sales", emoji: "🎯", excerpt: "Not all leads are equal. How AI evaluates urgency, intent, and value faster than any human could.", date: "Feb 15, 2026", readTime: "10 min" },
+    { id: 13, slug: "ai-real-estate", title: "AI Agents for Real Estate: From Inquiry to Showing", category: "Industry", emoji: "🏠", excerpt: "Property inquiries spike at night and on weekends. Smart agents are using AI to capture them all.", date: "Feb 12, 2026", readTime: "9 min" },
+    { id: 14, slug: "implementation-timeline", title: "From Zero to AI: A Realistic Implementation Timeline", category: "Operations", emoji: "📅", excerpt: "Most AI implementations fail due to unrealistic expectations. Here's what a successful rollout actually looks like.", date: "Feb 10, 2026", readTime: "11 min" },
+    { id: 15, slug: "ai-home-services", title: "AI for Home Services: Plumbers, HVAC, and Beyond", category: "Industry", emoji: "🔨", excerpt: "Emergency calls don't wait for business hours. How service businesses are staying responsive around the clock.", date: "Feb 8, 2026", readTime: "8 min" },
+    { id: 16, slug: "human-ai-handoff", title: "The Art of Human-AI Handoff: When Automation Steps Aside", category: "Operations", emoji: "🤝", excerpt: "The best AI knows its limits. Designing seamless escalation paths for complex situations.", date: "Feb 5, 2026", readTime: "10 min" },
+    { id: 17, slug: "ai-insurance-agencies", title: "AI Agents for Insurance: Quotes, Claims, and Renewals", category: "Industry", emoji: "📋", excerpt: "Insurance is built on responsiveness. How agencies are using AI to outpace the competition.", date: "Feb 3, 2026", readTime: "9 min" },
+    { id: 18, slug: "data-privacy-ai", title: "Data Privacy and AI: What Business Owners Need to Know", category: "Compliance", emoji: "🔒", excerpt: "GDPR, CCPA, HIPAA—navigating compliance when AI handles customer communications.", date: "Jan 30, 2026", readTime: "12 min" },
+    { id: 19, slug: "appointment-scheduling-ai", title: "Intelligent Appointment Scheduling: Beyond the Calendar Link", category: "Operations", emoji: "📆", excerpt: "AI doesn't just find open slots—it considers context, priority, and optimal timing.", date: "Jan 28, 2026", readTime: "7 min" },
+    { id: 20, slug: "ai-follow-up-sequences", title: "AI-Powered Follow-Up: The End of Leads Going Cold", category: "Sales", emoji: "🔄", excerpt: "80% of sales require 5+ follow-ups. How AI ensures no opportunity slips through the cracks.", date: "Jan 25, 2026", readTime: "8 min" },
+    { id: 21, slug: "building-vs-buying-ai", title: "Build vs. Buy: Making the Right AI Investment Decision", category: "Strategy", emoji: "⚡", excerpt: "Custom development or off-the-shelf solution? A framework for choosing the right path.", date: "Jan 22, 2026", readTime: "11 min" },
+    { id: 22, slug: "ai-recruiting-staffing", title: "AI in Recruiting: Screening Candidates at Scale", category: "Industry", emoji: "👥", excerpt: "From resume parsing to initial outreach, how staffing firms are automating top-of-funnel.", date: "Jan 20, 2026", readTime: "9 min" },
+    { id: 23, slug: "common-ai-mistakes", title: "7 AI Implementation Mistakes (And How to Avoid Them)", category: "Strategy", emoji: "⚠️", excerpt: "We've seen these patterns repeatedly. Learn from others' failures before making your own.", date: "Jan 18, 2026", readTime: "10 min" },
+    { id: 24, slug: "ai-customer-retention", title: "AI for Customer Retention: Proactive, Not Reactive", category: "Operations", emoji: "💎", excerpt: "Acquiring customers costs 5x more than keeping them. How AI identifies churn before it happens.", date: "Jan 15, 2026", readTime: "8 min" },
+    { id: 25, slug: "multi-channel-ai", title: "Multi-Channel AI: One Brain, Every Platform", category: "Technology", emoji: "🌐", excerpt: "Email, SMS, WhatsApp, voice—how modern AI agents maintain context across all touchpoints.", date: "Jan 12, 2026", readTime: "9 min" },
+    { id: 26, slug: "ai-team-adoption", title: "Getting Your Team On Board: Change Management for AI", category: "Operations", emoji: "👨‍💼", excerpt: "Technology doesn't fail—adoption does. Strategies for bringing your team along on the AI journey.", date: "Jan 10, 2026", readTime: "11 min" },
+    { id: 27, slug: "measuring-ai-success", title: "Beyond Automation: Measuring What Actually Matters", category: "Strategy", emoji: "📈", excerpt: "Tasks automated is vanity. Revenue generated is sanity. Defining the right KPIs for AI.", date: "Jan 8, 2026", readTime: "10 min" },
+    { id: 28, slug: "future-of-work-ai", title: "The Future of Work: AI as Colleague, Not Replacement", category: "Thought Leadership", emoji: "🔮", excerpt: "AI won't take your job—but it will transform it. A realistic look at human-AI collaboration.", date: "Jan 5, 2026", readTime: "12 min" },
+    { id: 29, slug: "ai-ethics-business", title: "AI Ethics for Business: Doing Right While Doing Well", category: "Thought Leadership", emoji: "⚖️", excerpt: "Transparency, bias, accountability—navigating the ethical dimensions of business automation.", date: "Jan 3, 2026", readTime: "10 min" },
+    { id: 30, slug: "scaling-with-ai", title: "Scaling Without Hiring: The AI-First Growth Playbook", category: "Strategy", emoji: "📐", excerpt: "How businesses are 10x-ing output without 10x-ing headcount. The new math of growth.", date: "Jan 1, 2026", readTime: "13 min" }
+  ];
+
+  let postsShown = 6;
+
+  function loadBlogPosts() {
+    const grid = document.getElementById('blog-grid');
+    grid.innerHTML = '';
+    
+    const postsToShow = blogPosts.slice(0, postsShown);
+    postsToShow.forEach(post => {
+      const card = document.createElement('a');
+      card.href = `blog/${post.slug}.html`;
+      card.className = 'blog-card';
+      card.innerHTML = `
+        <div class="blog-card-image">${post.emoji}</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">${post.category}</div>
+          <h3 class="blog-card-title">${post.title}</h3>
+          <p class="blog-card-excerpt">${post.excerpt}</p>
+          <div class="blog-card-meta">
+            <span>📅 ${post.date}</span>
+            <span>⏱️ ${post.readTime}</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Hide load more button if all posts shown
+    const loadMoreBtn = document.querySelector('.blog-load-more');
+    if (postsShown >= blogPosts.length) {
+      loadMoreBtn.style.display = 'none';
+    }
+  }
+
+  function loadMorePosts() {
+    postsShown += 6;
+    loadBlogPosts();
+  }
+</script>
+
+</body>
+</html>

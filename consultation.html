@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free AI Consultation | ORCHESTRAFLOW</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f; --bg-elevated: #12121a; --bg-card: #1a1a24;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+      --text: #f8fafc; --text-secondary: #a1a1aa; --text-muted: #71717a;
+      --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
+      --accent-subtle: rgba(59,130,246,0.15);
+      --success: #22c55e; --error: #ef4444;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+    a { color:var(--accent-light); text-decoration:none; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; background:rgba(10,10,15,0.85); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    .logo { display:flex; align-items:center; gap:0.6rem; text-decoration:none; color:var(--text); }
+    .logo-mark { width:36px; height:36px; }
+    .logo-mark svg { width:100%; height:100%; }
+    .logo-text { font-weight:700; font-size:1.25rem; letter-spacing:-0.02em; }
+    .nav-links { list-style:none; display:flex; gap:2rem; }
+    .nav-links a { color:var(--text-secondary); font-size:0.9rem; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-cta { display:flex; gap:0.75rem; align-items:center; }
+    .btn { padding:0.55rem 1.3rem; border-radius:8px; font-weight:600; font-size:0.9rem; cursor:pointer; border:none; transition:all 0.2s; text-decoration:none; display:inline-block; }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-primary:hover { background:var(--accent-dark); transform:translateY(-1px); }
+    .btn-ghost { background:transparent; color:var(--text-secondary); border:1px solid var(--border); }
+    .btn-ghost:hover { border-color:var(--border-hover); color:var(--text); }
+
+    /* HERO */
+    .consult-hero { padding:8rem 2rem 4rem; text-align:center; background:linear-gradient(180deg, rgba(59,130,246,0.06) 0%, transparent 60%); }
+    .consult-hero .badge { display:inline-block; padding:0.4rem 1rem; border-radius:50px; background:var(--accent-subtle); color:var(--accent-light); font-size:0.8rem; font-weight:600; margin-bottom:1.5rem; letter-spacing:0.03em; }
+    .consult-hero h1 { font-size:3.2rem; font-weight:800; line-height:1.1; margin-bottom:1rem; letter-spacing:-0.03em; }
+    .consult-hero h1 .accent { color:var(--accent-light); }
+    .consult-hero .subtitle { font-size:1.2rem; color:var(--text-secondary); margin-bottom:2.5rem; }
+
+    /* STATS BAR */
+    .stats-bar { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .stat-item { text-align:center; }
+    .stat-item .stat-number { font-size:2rem; font-weight:800; color:var(--accent-light); }
+    .stat-item .stat-label { font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; }
+
+    /* WHAT YOU GET */
+    .what-you-get { padding:5rem 2rem; background:var(--bg); }
+    .section-title { text-align:center; font-size:2rem; font-weight:800; margin-bottom:0.5rem; letter-spacing:-0.02em; }
+    .section-sub { text-align:center; color:var(--text-secondary); margin-bottom:3rem; font-size:1rem; }
+    .get-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; max-width:1100px; margin:0 auto; }
+    .get-card { background:var(--bg-elevated); border:1px solid var(--border); border-radius:16px; padding:2rem 1.5rem; text-align:center; transition:border-color 0.3s, transform 0.3s; }
+    .get-card:hover { border-color:var(--accent); transform:translateY(-4px); }
+    .get-card .icon { font-size:2.5rem; margin-bottom:1rem; }
+    .get-card h3 { font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; }
+    .get-card .duration { display:inline-block; padding:0.2rem 0.6rem; border-radius:50px; background:var(--accent-subtle); color:var(--accent-light); font-size:0.75rem; font-weight:600; margin-bottom:0.8rem; }
+    .get-card p { font-size:0.85rem; color:var(--text-secondary); line-height:1.5; }
+
+    /* FORM SECTION */
+    .form-section { padding:5rem 2rem; background:linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%); }
+    .form-wrapper { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+    .form-info h2 { font-size:2rem; font-weight:800; margin-bottom:1rem; letter-spacing:-0.02em; }
+    .form-info p { color:var(--text-secondary); margin-bottom:2rem; line-height:1.7; }
+    .form-badges { display:flex; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
+    .form-badge { display:flex; align-items:center; gap:0.4rem; padding:0.4rem 0.8rem; border-radius:8px; background:var(--accent-subtle); color:var(--accent-light); font-size:0.8rem; font-weight:600; }
+    .book-direct { margin-top:2rem; padding:1.5rem; border-radius:12px; background:var(--bg-card); border:1px solid var(--border); }
+    .book-direct h4 { font-size:0.9rem; margin-bottom:0.5rem; }
+    .book-direct p { font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem; }
+
+    .consult-form { background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:2.5rem; }
+    .consult-form h3 { font-size:1.3rem; font-weight:700; margin-bottom:1.5rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+    .form-group { margin-bottom:1rem; }
+    .form-group.full { grid-column:1/-1; }
+    .form-group label { display:block; font-size:0.8rem; font-weight:600; color:var(--text-secondary); margin-bottom:0.4rem; text-transform:uppercase; letter-spacing:0.05em; }
+    .form-group input, .form-group select, .form-group textarea {
+      width:100%; padding:0.75rem 1rem; border-radius:10px; border:1px solid var(--border);
+      background:var(--bg-elevated); color:var(--text); font-family:inherit; font-size:0.9rem;
+      transition:border-color 0.2s; outline:none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--accent); }
+    .form-group textarea { min-height:100px; resize:vertical; }
+    .form-group select { appearance:none; cursor:pointer; }
+    .submit-btn { width:100%; padding:1rem; border:none; border-radius:12px; background:var(--accent); color:#fff; font-size:1.05rem; font-weight:700; cursor:pointer; transition:all 0.2s; margin-top:0.5rem; }
+    .submit-btn:hover { background:var(--accent-dark); transform:translateY(-2px); box-shadow:0 8px 30px rgba(59,130,246,0.3); }
+
+    /* HOW IT WORKS */
+    .how-it-works { padding:5rem 2rem; background:var(--bg); }
+    .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; max-width:1100px; margin:0 auto; }
+    .step { text-align:center; position:relative; }
+    .step-number { font-size:3rem; font-weight:800; color:var(--accent); opacity:0.3; margin-bottom:0.5rem; }
+    .step h3 { font-size:1.1rem; font-weight:700; margin-bottom:0.5rem; }
+    .step p { font-size:0.85rem; color:var(--text-secondary); line-height:1.5; }
+    .step::after { content:'→'; position:absolute; right:-1.2rem; top:2.5rem; font-size:1.5rem; color:var(--accent); opacity:0.3; }
+    .step:last-child::after { display:none; }
+
+    /* TESTIMONIALS */
+    .consult-testimonials { padding:5rem 2rem; background:var(--bg-elevated); }
+    .testimonial-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1100px; margin:0 auto; }
+    .testimonial-card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:2rem; }
+    .testimonial-card .quote { font-size:0.95rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.5rem; font-style:italic; }
+    .testimonial-card .author { display:flex; align-items:center; gap:0.8rem; }
+    .testimonial-card .avatar { width:40px; height:40px; border-radius:50%; background:var(--accent-subtle); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent-light); font-size:0.85rem; }
+    .testimonial-card .author-info .name { font-weight:600; font-size:0.9rem; }
+    .testimonial-card .author-info .role { font-size:0.8rem; color:var(--text-muted); }
+    .testimonial-card .metric { margin-top:1rem; padding:0.5rem 0.8rem; border-radius:8px; background:var(--accent-subtle); color:var(--accent-light); font-size:0.8rem; font-weight:600; display:inline-block; }
+
+    /* FINAL CTA */
+    .final-cta { padding:5rem 2rem; text-align:center; background:linear-gradient(180deg, var(--bg) 0%, rgba(59,130,246,0.06) 100%); }
+    .final-cta h2 { font-size:2.2rem; font-weight:800; margin-bottom:1rem; letter-spacing:-0.02em; }
+    .final-cta p { color:var(--text-secondary); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto; }
+    .final-cta .guarantees { display:flex; justify-content:center; gap:2rem; margin-top:1.5rem; flex-wrap:wrap; }
+    .final-cta .guarantee { font-size:0.85rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem; }
+    .final-cta .guarantee .check { color:var(--success); }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:3rem 2rem 2rem; background:var(--bg); }
+    .footer-content { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; }
+    .footer-links { display:flex; gap:2rem; }
+    .footer-links a { color:var(--text-muted); font-size:0.85rem; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text); }
+    .footer-copy { color:var(--text-muted); font-size:0.8rem; width:100%; text-align:center; margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border); }
+
+    /* RESPONSIVE */
+    @media (max-width:900px) {
+      .get-grid, .steps-grid { grid-template-columns:repeat(2,1fr); }
+      .form-wrapper { grid-template-columns:1fr; }
+      .testimonial-grid { grid-template-columns:1fr; }
+      .step::after { display:none; }
+      .consult-hero h1 { font-size:2.2rem; }
+      .stats-bar { gap:1.5rem; }
+    }
+    @media (max-width:600px) {
+      .get-grid, .steps-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .stats-bar { gap:1rem; }
+      .stat-item .stat-number { font-size:1.5rem; }
+      .nav-links { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+      </svg>
+    </div>
+    <span class="logo-text">orchestraflow</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#demo">Demo</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="blog/index.html">Blog</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#consultation-form" class="btn btn-primary">Request Consultation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="consult-hero">
+  <span class="badge">🎯 Free Strategy Session</span>
+  <h1>Unlock Your<br><span class="accent">AI Potential</span></h1>
+  <p class="subtitle">60-minute strategy session • Completely free • Built for your business</p>
+  
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">340%</div>
+      <div class="stat-label">Average ROI</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">2 weeks</div>
+      <div class="stat-label">Time to Results</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4.9/5</div>
+      <div class="stat-label">Client Rating</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Companies Served</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL GET -->
+<section class="what-you-get">
+  <h2 class="section-title">What You'll Get</h2>
+  <p class="section-sub">A structured 60-minute session designed to maximize value</p>
+  
+  <div class="get-grid">
+    <div class="get-card">
+      <div class="icon">🎯</div>
+      <h3>Custom AI Strategy</h3>
+      <span class="duration">20 min</span>
+      <p>Tailored automation roadmap designed for your specific business challenges and goals.</p>
+    </div>
+    <div class="get-card">
+      <div class="icon">📊</div>
+      <h3>ROI Analysis</h3>
+      <span class="duration">15 min</span>
+      <p>Detailed cost-benefit analysis with projected savings and implementation timeline.</p>
+    </div>
+    <div class="get-card">
+      <div class="icon">🚀</div>
+      <h3>Live Demo</h3>
+      <span class="duration">15 min</span>
+      <p>See AI agents in action solving real problems similar to yours.</p>
+    </div>
+    <div class="get-card">
+      <div class="icon">📋</div>
+      <h3>Implementation Plan</h3>
+      <span class="duration">10 min</span>
+      <p>Step-by-step deployment strategy with risk mitigation and clear milestones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION FORM -->
+<section class="form-section" id="consultation-form">
+  <div class="form-wrapper">
+    <div class="form-info">
+      <h2>Get Your Free<br>Strategy Session</h2>
+      <p>Fill out the form and our team will contact you within 2 hours to schedule your personalized consultation. No sales pitch — just actionable insights for your business.</p>
+      
+      <div class="form-badges">
+        <span class="form-badge">✓ 100% Free</span>
+        <span class="form-badge">⏱ 60 minutes</span>
+        <span class="form-badge">🔒 No obligation</span>
+      </div>
+      
+      <div class="book-direct">
+        <h4>⚡ Prefer to book instantly?</h4>
+        <p>Skip the form and book directly on our calendar.</p>
+        <a href="#" class="btn btn-ghost" style="width:100%; text-align:center;">Book on Calendar →</a>
+      </div>
+    </div>
+    
+    <form class="consult-form" id="consultation-form-el" onsubmit="handleConsultation(event)">
+      <h3>Request Your Consultation</h3>
+      <div id="form-error" style="display:none; padding:0.75rem 1rem; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); border-radius:10px; color:#ef4444; font-size:0.85rem; font-weight:500; text-align:center; margin-bottom:1rem;"></div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Work Email</label>
+          <input type="email" id="email" name="email" placeholder="john@company.com" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" name="company" placeholder="Acme Inc." required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="size">Company Size</label>
+          <select id="size" name="size" required>
+            <option value="" disabled selected>Select size</option>
+            <option value="1-10">1–10 employees</option>
+            <option value="11-50">11–50 employees</option>
+            <option value="51-200">51–200 employees</option>
+            <option value="201-500">201–500 employees</option>
+            <option value="500+">500+ employees</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="industry">Industry</label>
+          <select id="industry" name="industry" required>
+            <option value="" disabled selected>Select industry</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="real-estate">Real Estate</option>
+            <option value="financial">Financial Services</option>
+            <option value="saas">SaaS & Technology</option>
+            <option value="education">Education</option>
+            <option value="beauty">Beauty & Wellness</option>
+            <option value="retail">Retail & E-commerce</option>
+            <option value="legal">Legal</option>
+            <option value="insurance">Insurance</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group full">
+        <label for="message">What challenges are you looking to solve?</label>
+        <textarea id="message" name="message" placeholder="Tell us about your current pain points, goals, and what you'd like to automate..."></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn">Book My Free Consultation →</button>
+    </form>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <h2 class="section-title">How Your Consultation Works</h2>
+  <p class="section-sub">A structured process designed to deliver maximum value in 60 minutes</p>
+  
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3>Discovery</h3>
+      <p>We learn about your business, workflows, and the challenges you're facing today.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3>Analysis</h3>
+      <p>Our experts identify automation opportunities and calculate potential ROI.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3>Strategy</h3>
+      <p>We design a custom AI automation roadmap tailored to your specific needs.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <h3>Action Plan</h3>
+      <p>You leave with a detailed implementation plan, timeline, and ROI projections.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="consult-testimonials">
+  <h2 class="section-title">What Leaders Say About Their Consultation</h2>
+  <p class="section-sub">Real results from real businesses</p>
+  
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="quote">"This consultation revealed $2M in potential savings we didn't know existed. The most valuable hour I've spent this year."</div>
+      <div class="author">
+        <div class="avatar">SC</div>
+        <div class="author-info">
+          <div class="name">Sarah Chen</div>
+          <div class="role">COO, TechFlow Solutions</div>
+        </div>
+      </div>
+      <div class="metric">💰 $2M in identified savings</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote">"Clear ROI projections and an actionable implementation plan. We started seeing cost reductions within 30 days of our call."</div>
+      <div class="author">
+        <div class="avatar">MR</div>
+        <div class="author-info">
+          <div class="name">Marcus Rodriguez</div>
+          <div class="role">VP Operations, HealthWise Clinics</div>
+        </div>
+      </div>
+      <div class="metric">⚡ Results in 30 days</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote">"I expected a sales pitch but got genuine strategic advice instead. The roadmap they built was exactly what our board needed to approve the project."</div>
+      <div class="author">
+        <div class="avatar">EW</div>
+        <div class="author-info">
+          <div class="name">Emily Watson</div>
+          <div class="role">CTO, Luxury Realty Group</div>
+        </div>
+      </div>
+      <div class="metric">✅ Board-approved in 1 week</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>Ready to Unlock Your AI Potential?</h2>
+  <p>Don't let your competitors get ahead. Book your free consultation today and discover the opportunities waiting in your business.</p>
+  <a href="#consultation-form" class="btn btn-primary" style="font-size:1.1rem; padding:0.9rem 2.5rem;">Book My Free Consultation →</a>
+  <div class="guarantees">
+    <span class="guarantee"><span class="check">✓</span> 100% Free Guarantee</span>
+    <span class="guarantee"><span class="check">✓</span> 2-hour response time</span>
+    <span class="guarantee"><span class="check">✓</span> Expert guidance</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+          <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+          <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+          <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+          <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+          <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+          <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+          <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+        </svg>
+      </div>
+      <span class="logo-text">orchestraflow</span>
+    </a>
+    <div class="footer-links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#about">About</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="index.html#industries">Industries</a>
+    </div>
+    <div class="footer-copy">© 2025 OrchestraFlow. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Success overlay (hidden by default) -->
+<div id="success-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(10,10,15,0.95); display:none; align-items:center; justify-content:center;">
+  <div style="text-align:center; max-width:480px; padding:3rem 2rem;">
+    <div style="font-size:4rem; margin-bottom:1rem;">🎉</div>
+    <h2 style="font-size:1.8rem; font-weight:800; margin-bottom:0.75rem; color:#f8fafc;">You're All Set!</h2>
+    <p style="color:#a1a1aa; font-size:1rem; line-height:1.6; margin-bottom:2rem;">Your consultation request has been submitted. Our team will reach out within <strong style="color:#60a5fa;">2 hours</strong> to schedule your free 60-minute strategy session.</p>
+    <a href="index.html" class="btn btn-primary" style="font-size:1rem; padding:0.8rem 2rem;">← Back to Home</a>
+  </div>
+</div>
+
+<script>
+  async function handleConsultation(e) {
+    e.preventDefault();
+
+    const errorEl = document.getElementById('form-error');
+    errorEl.style.display = 'none';
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const company = document.getElementById('company').value.trim();
+    const size = document.getElementById('size').value;
+    const industry = document.getElementById('industry').value;
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !company) {
+      errorEl.textContent = 'Please fill in all required fields.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const btn = document.querySelector('.submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    try {
+      const res = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          company,
+          company_size: size,
+          industry,
+          message
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        errorEl.textContent = data.error || 'Something went wrong. Please try again.';
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Book My Free Consultation →';
+        return;
+      }
+
+      // Show success overlay
+      const overlay = document.getElementById('success-overlay');
+      overlay.style.display = 'flex';
+
+    } catch (err) {
+      errorEl.textContent = 'Something went wrong. Please try again.';
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Book My Free Consultation →';
+    }
+  }
+</script>
+
+</body>
+</html>

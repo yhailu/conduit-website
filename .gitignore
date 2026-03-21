@@ -1,0 +1,12 @@
+# Environment variables
+backend/.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+backend/venv/
+backend/.venv/
+
+# OpenClaw
+.openclaw/

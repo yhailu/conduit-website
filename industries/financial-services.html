@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Services AI Solutions | ORCHESTRAFLOW</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cpath d='M8 44 Q16 44 22 36 Q28 28 32 28 Q36 28 42 36 Q48 44 56 44' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M8 36 Q16 36 22 28 Q28 20 32 20 Q36 20 42 28 Q48 36 56 36' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round' fill='none' opacity='0.6'/%3E%3Cpath d='M8 28 Q16 28 22 20 Q28 12 32 12 Q36 12 42 20 Q48 28 56 28' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round' fill='none' opacity='0.3'/%3E%3Ccircle cx='32' cy='28' r='3' fill='%233b82f6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f; --bg-elevated: #12121a; --bg-card: #1a1a24; --bg-subtle: #0f0f14;
+      --border: rgba(255, 255, 255, 0.08); --border-hover: rgba(255, 255, 255, 0.15);
+      --text: #f8fafc; --text-secondary: #a1a1aa; --text-muted: #71717a;
+      --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
+      --accent-subtle: rgba(59, 130, 246, 0.15);
+      --success: #22c55e; --green: #22c55e; --green-bg: rgba(34, 197, 94, 0.15);
+      --purple: #a855f7; --purple-bg: rgba(168, 85, 247, 0.15);
+      --orange: #f97316; --orange-bg: rgba(249, 115, 22, 0.15);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; max-width: 1400px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
+    .logo-mark { width: 32px; height: 32px; }
+    .logo-mark svg { width: 100%; height: 100%; }
+    .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
+
+    .btn { display: inline-block; padding: 0.65rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(59,130,246,0.3); }
+    .btn-ghost { color: var(--text-secondary); border: 1px solid var(--border); background: transparent; }
+    .btn-ghost:hover { color: var(--text); border-color: var(--border-hover); }
+    .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
+
+    /* Hero */
+    .hero { display: flex; align-items: center; gap: 4rem; max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
+    .hero-content { flex: 1; }
+    .hero-badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 100px; background: var(--green-bg); color: var(--green); font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(34,197,94,0.2); }
+    .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
+    .hero h1 span { background: linear-gradient(135deg, var(--accent-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; }
+
+    /* Chat Demo */
+    .chat-demo { flex: 1; max-width: 400px; }
+    .chat-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); }
+    .chat-header { background: var(--bg-elevated); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); }
+    .chat-status { width: 8px; height: 8px; background: var(--green); border-radius: 50%; }
+    .chat-title { font-size: 0.85rem; font-weight: 600; }
+    .chat-badge { margin-left: auto; padding: 0.2rem 0.6rem; border-radius: 100px; background: var(--green-bg); color: var(--green); font-size: 0.65rem; font-weight: 700; }
+    .chat-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; min-height: 280px; }
+    .msg { max-width: 80%; padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.5; }
+    .msg-in { background: var(--bg-elevated); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .msg-out { background: var(--accent-dark); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .msg-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .msg-time.right { text-align: right; }
+
+    /* Sections */
+    .section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+    .section-title { font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; }
+    .section-sub { text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* Feature Grid */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
+    .feature-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* App Grid */
+    .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .app-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
+    .app-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .app-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .app-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+    .app-card ul { list-style: none; }
+    .app-card li { font-size: 0.82rem; color: var(--text-muted); padding: 0.15rem 0; }
+    .app-card li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+
+    /* Testimonials */
+    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
+    .testimonial-quote { font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; }
+    .testimonial-quote::before { content: "\201C"; font-size: 2rem; color: var(--accent); line-height: 0; vertical-align: -0.5rem; margin-right: 0.25rem; }
+    .testimonial-author { font-weight: 700; font-size: 0.9rem; }
+    .testimonial-role { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* CTA */
+    .cta-section { background: var(--bg-elevated); border-top: 1px solid var(--border); padding: 5rem 2rem; text-align: center; }
+    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .cta-section p { color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); }
+    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hero { flex-direction: column; padding-top: 4rem; gap: 2rem; }
+      .hero h1 { font-size: 2rem; }
+      .chat-demo { max-width: 100%; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .app-grid { grid-template-columns: 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 44 Q16 44 22 36 Q28 28 32 28 Q36 28 42 36 Q48 44 56 44" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M8 36 Q16 36 22 28 Q28 20 32 20 Q36 20 42 28 Q48 36 56 36" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <path d="M8 28 Q16 28 22 20 Q28 12 32 12 Q36 12 42 20 Q48 28 56 28" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.3"/>
+        <circle cx="32" cy="28" r="3" fill="#3b82f6"/>
+      </svg>
+    </div>
+    <span class="logo-text">orchestraflow</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#features">Features</a></li>
+    <li><a href="../index.html#demo">Demo</a></li>
+    <li><a href="index.html" class="active">Industries</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="../login.html" class="btn btn-ghost">Log In</a>
+    <a href="../signup.html" class="btn btn-primary">Sign Up</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">💰 Financial Services</div>
+    <h1>Secure AI for <span>Financial Services</span></h1>
+    <p>Compliant client communication, automated onboarding, and intelligent financial guidance. Built for banks, insurers, and wealth managers who demand enterprise-grade security.</p>
+  </div>
+  <div class="chat-demo">
+    <div class="chat-widget">
+      <div class="chat-header">
+        <div class="chat-status"></div>
+        <div class="chat-title">OrchestraFlow Finance Assistant</div>
+        <div class="chat-badge">SOC 2 Compliant</div>
+      </div>
+      <div class="chat-body">
+        <div class="msg msg-in">Hi, I'm interested in learning about home loan options. What do you offer?</div>
+        <div class="msg-time">2:15 PM</div>
+        <div class="msg msg-out">Great question! We offer several mortgage options including fixed-rate, adjustable-rate, and FHA loans. To help find the best fit, could you share your approximate credit score range and target purchase price?</div>
+        <div class="msg-time right">2:15 PM</div>
+        <div class="msg msg-in">Credit score is around 740, looking at homes in the $450K range.</div>
+        <div class="msg-time">2:16 PM</div>
+        <div class="msg msg-out">Excellent! With a 740 score, you'd qualify for our best rates. Currently our 30-year fixed is at 5.875%. I can pre-qualify you in about 5 minutes — shall I walk you through it?</div>
+        <div class="msg-time right">2:16 PM</div>
+        <div class="msg msg-in">Yes, let's do it!</div>
+        <div class="msg-time">2:16 PM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <h2 class="section-title">Industry-Specific Features</h2>
+  <p class="section-sub">Purpose-built capabilities for financial organizations of every size.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>Regulatory Compliance</h3>
+      <p>SOC 2, PCI-DSS, and FINRA compliance built into every interaction with full audit trails.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h3>Client Onboarding</h3>
+      <p>Automated KYC verification, document collection, and account setup that reduces onboarding time by 70%.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Portfolio Updates</h3>
+      <p>Proactive notifications about market changes, portfolio performance, and investment opportunities.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚨</div>
+      <h3>Fraud Detection Alerts</h3>
+      <p>Real-time suspicious activity detection with instant client notification and account protection workflows.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Document Processing</h3>
+      <p>Intelligent extraction and classification of financial documents, applications, and statements.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💡</div>
+      <h3>Investment Guidance</h3>
+      <p>AI-powered financial education and personalized product recommendations based on client profiles.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-in" style="background: var(--bg-elevated); max-width: 100%; padding: 5rem 2rem;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 class="section-title">Industry Applications</h2>
+    <p class="section-sub">See how financial organizations are using OrchestraFlow.</p>
+    <div class="app-grid">
+      <div class="app-card">
+        <h3>🏦 Banks & Credit Unions</h3>
+        <p>Streamline account services and loan processing.</p>
+        <ul>
+          <li>Reduce loan processing time by 50%</li>
+          <li>24/7 account support</li>
+          <li>Automated pre-qualification</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <h3>🛡️ Insurance Companies</h3>
+        <p>Automate claims intake and policy management.</p>
+        <ul>
+          <li>Faster claims processing</li>
+          <li>Automated policy renewals</li>
+          <li>Real-time coverage verification</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <h3>📈 Wealth Management</h3>
+        <p>Personalized client communication at scale.</p>
+        <ul>
+          <li>Automated portfolio reporting</li>
+          <li>Client meeting preparation</li>
+          <li>Regulatory compliance tracking</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <h3>🚀 Fintech Startups</h3>
+        <p>Scale customer support without scaling headcount.</p>
+        <ul>
+          <li>Instant user onboarding</li>
+          <li>In-app support automation</li>
+          <li>Usage-based engagement triggers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <h2 class="section-title">What Financial Leaders Say</h2>
+  <p class="section-sub">Real results from real financial organizations.</p>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-quote">OrchestraFlow's compliance features gave us confidence to automate client communication. We've reduced onboarding time from 5 days to 4 hours while maintaining full regulatory compliance.</p>
+      <div class="testimonial-author">David Park</div>
+      <div class="testimonial-role">CTO, Meridian Financial Group</div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote">The AI handles 80% of routine account inquiries now. Our advisors spend their time on what matters — building relationships and providing strategic guidance.</p>
+      <div class="testimonial-author">Lisa Nakamura</div>
+      <div class="testimonial-role">VP Operations, Pacific Wealth Advisors</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section fade-in">
+  <h2>Ready to Modernize Financial Services?</h2>
+  <p>Join leading financial institutions using OrchestraFlow to deliver secure, compliant client experiences.</p>
+  <a href="../signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 44 Q16 44 22 36 Q28 28 32 28 Q36 28 42 36 Q48 44 56 44" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <path d="M8 36 Q16 36 22 28 Q28 20 32 20 Q36 20 42 28 Q48 36 56 36" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+          <path d="M8 28 Q16 28 22 20 Q28 12 32 12 Q36 12 42 20 Q48 28 56 28" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.3"/>
+          <circle cx="32" cy="28" r="3" fill="#3b82f6"/>
+        </svg>
+      </div>
+      <span class="logo-text">orchestraflow</span>
+    </a>
+    <div class="footer-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#features">Features</a>
+      <a href="index.html">Industries</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 OrchestraFlow AI, Inc.</div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

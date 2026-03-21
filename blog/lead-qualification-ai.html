@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Lead Qualification: Scoring Prospects in Seconds | OrchestraFlow Blog</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>:root{--bg:#0a0a0f;--bg-elevated:#12121a;--bg-card:#1a1a24;--border:rgba(255,255,255,0.08);--text:#f8fafc;--text-secondary:#a1a1aa;--text-muted:#71717a;--accent:#3b82f6;--accent-subtle:rgba(59,130,246,0.15)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 3rem;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none;color:var(--text)}.logo svg{width:36px;height:36px}.logo span{font-weight:700;font-size:1.25rem}.back-link{color:var(--text-secondary);text-decoration:none;font-size:0.9rem}.article-hero{padding:8rem 2rem 4rem;text-align:center;background:radial-gradient(ellipse at top center,rgba(59,130,246,0.1) 0%,transparent 50%)}.article-hero-inner{max-width:800px;margin:0 auto}.article-category{display:inline-block;font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1.5rem;padding:0.5rem 1rem;background:var(--accent-subtle);border-radius:100px}.article-hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem}.article-meta{display:flex;justify-content:center;gap:2rem;color:var(--text-muted);font-size:0.9rem}.article-image{width:100%;max-width:1000px;margin:0 auto;padding:0 2rem}.article-image-inner{width:100%;height:400px;background:linear-gradient(135deg,var(--accent-subtle) 0%,var(--bg-card) 100%);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:6rem;border:1px solid var(--border)}.article-content{max-width:700px;margin:0 auto;padding:4rem 2rem}.article-content p{font-size:1.125rem;line-height:1.9;color:var(--text-secondary);margin-bottom:1.75rem}.article-content h2{font-size:1.75rem;font-weight:700;margin:3rem 0 1.5rem;color:var(--text)}.article-content h3{font-size:1.35rem;font-weight:600;margin:2.5rem 0 1rem;color:var(--text)}.article-content ul{margin:1.5rem 0;padding-left:1.5rem;color:var(--text-secondary)}.article-content li{margin-bottom:0.75rem;font-size:1.125rem;line-height:1.8}.article-content strong{color:var(--text);font-weight:600}.article-content blockquote{border-left:3px solid var(--accent);padding-left:1.5rem;margin:2rem 0;font-style:italic;color:var(--text);font-size:1.25rem}.inline-image{width:100%;margin:2.5rem 0;border-radius:12px;background:linear-gradient(135deg,var(--bg-card) 0%,var(--bg-elevated) 100%);height:300px;display:flex;align-items:center;justify-content:center;font-size:4rem;border:1px solid var(--border)}footer{padding:3rem;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:0.9rem}</style>
+</head>
+<body>
+<nav><a href="../index.html" class="logo"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+      </svg><span>orchestraflow</span></a><a href="index.html" class="back-link">← Back to Blog</a></nav>
+<article>
+  <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Sales</span><h1>AI Lead Qualification: Scoring Prospects in Seconds</h1><div class="article-meta"><span>📅 February 15, 2026</span><span>⏱️ 10 min read</span></div></div></header>
+  <div class="article-image"><div class="article-image-inner">🎯</div></div>
+  <div class="article-content">
+    <p>Not all leads are created equal. Some are ready to buy today. Others are just browsing. Some have budget and authority. Others are researchers with neither.</p>
+    <p>The art of sales has always included lead qualification—separating wheat from chaff, focusing energy where it matters. AI transforms this from an art into a science.</p>
+
+    <h2>The Traditional Qualification Problem</h2>
+    <p>Manual lead qualification suffers from several issues:</p>
+    <ul>
+      <li><strong>Inconsistency:</strong> Different reps qualify differently</li>
+      <li><strong>Time consumption:</strong> Qualifying takes time away from selling</li>
+      <li><strong>Delayed action:</strong> Hot leads cool while waiting for qualification</li>
+      <li><strong>Missed signals:</strong> Subtle buying indicators go unnoticed</li>
+      <li><strong>Bias:</strong> Reps favor leads that "feel" right</li>
+    </ul>
+    <p>AI addresses every one of these issues.</p>
+
+    <h2>How AI Qualification Works</h2>
+    <p>AI agents qualify leads through conversation—naturally, without feeling like an interrogation:</p>
+
+    <h3>Intent Analysis</h3>
+    <p>Understanding not just what someone says, but what they mean. "Just looking" said casually vs. said after asking detailed questions have very different implications.</p>
+
+    <h3>Urgency Detection</h3>
+    <p>Timeline indicators: "We need this by Q2" vs. "Sometime this year" represent completely different urgency levels.</p>
+
+    <div class="inline-image">⚡</div>
+
+    <h3>Authority Signals</h3>
+    <p>"I'll need to run this by my boss" vs. "I make these decisions" changes how you should engage.</p>
+
+    <h3>Budget Indicators</h3>
+    <p>Price sensitivity, questions about payment terms, comparisons to current spending—all reveal budget reality.</p>
+
+    <h3>Fit Assessment</h3>
+    <p>Does this prospect actually match your ideal customer profile? AI can check company size, industry, use case fit instantly.</p>
+
+    <h2>The BANT Framework, Automated</h2>
+    <p>Traditional BANT (Budget, Authority, Need, Timeline) qualification works—but it's slow when done manually. AI captures BANT signals conversationally:</p>
+    <ul>
+      <li><strong>Budget:</strong> Extracted from questions about pricing, payment, ROI expectations</li>
+      <li><strong>Authority:</strong> Inferred from language about decision processes</li>
+      <li><strong>Need:</strong> Understood from problem descriptions and use cases</li>
+      <li><strong>Timeline:</strong> Captured from deadline mentions and urgency signals</li>
+    </ul>
+    <p>All populated automatically, no forms required.</p>
+
+    <h2>Lead Scoring in Practice</h2>
+    <p>AI assigns scores based on qualification data:</p>
+    <ul>
+      <li><strong>90-100:</strong> Hot lead, ready for immediate sales engagement</li>
+      <li><strong>70-89:</strong> Warm lead, nurture with high priority</li>
+      <li><strong>50-69:</strong> Potential, needs more development</li>
+      <li><strong>Below 50:</strong> Not qualified, automated nurture only</li>
+    </ul>
+    <p>Your sales team sees only the scores that deserve their attention.</p>
+
+    <blockquote>"We reduced unqualified calls by 60%. Our reps spend their time on leads that actually convert."</blockquote>
+
+    <h2>Dynamic Re-Qualification</h2>
+    <p>Qualification isn't a one-time event. AI continuously updates scores based on:</p>
+    <ul>
+      <li>New interactions and engagement</li>
+      <li>Website behavior patterns</li>
+      <li>Email open and click activity</li>
+      <li>Return visit frequency</li>
+      <li>Content consumption</li>
+    </ul>
+    <p>A lead that was cold six months ago might be hot today. AI notices.</p>
+
+    <h2>Routing Based on Qualification</h2>
+    <p>Different lead scores warrant different treatment:</p>
+    <ul>
+      <li><strong>Hot leads:</strong> Immediate notification to sales, highest priority</li>
+      <li><strong>Warm leads:</strong> Queued for next-business-day follow-up</li>
+      <li><strong>Developing leads:</strong> Automated nurture sequences</li>
+      <li><strong>Unqualified:</strong> Resource links, newsletter subscription</li>
+    </ul>
+    <p>No lead falls through cracks. Every lead gets appropriate attention.</p>
+
+    <h2>Implementation Considerations</h2>
+    <p>To implement AI qualification effectively:</p>
+    <ol>
+      <li><strong>Define your criteria:</strong> What makes a lead qualified for your business?</li>
+      <li><strong>Weight the factors:</strong> Budget might matter more than timeline for some businesses</li>
+      <li><strong>Set thresholds:</strong> What scores trigger what actions?</li>
+      <li><strong>Train your team:</strong> Help sales understand and trust the scores</li>
+      <li><strong>Iterate:</strong> Refine based on actual conversion data</li>
+    </ol>
+
+    <h2>The ROI of Better Qualification</h2>
+    <p>Effective lead qualification impacts everything:</p>
+    <ul>
+      <li>Sales time focused on convertible opportunities</li>
+      <li>Higher close rates from better-qualified pipeline</li>
+      <li>Shorter sales cycles with qualified buyers</li>
+      <li>Lower customer acquisition costs</li>
+      <li>More accurate revenue forecasting</li>
+    </ul>
+    <p>The question isn't whether to implement AI qualification. It's how quickly you can get it running.</p>
+  </div>
+</article>
+<footer><p>© 2026 OrchestraFlow AI, Inc. All rights reserved.</p></footer>
+</body>
+</html>

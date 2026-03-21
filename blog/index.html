@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | ORCHESTRAFLOW - AI Agents for Business</title>
+  <meta name="description" content="Insights, strategies, and deep dives into AI automation, business transformation, and the future of work.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-elevated: #12121a;
+      --bg-card: #1a1a24;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --text: #f8fafc;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-dark: #2563eb;
+      --accent-subtle: rgba(59, 130, 246, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-mark { width: 36px; height: 36px; }
+    .logo-mark svg { width: 100%; height: 100%; }
+    .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { 
+      color: var(--text-secondary); 
+      text-decoration: none; 
+      font-size: 0.9rem; 
+      font-weight: 500; 
+      transition: color 0.2s; 
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
+    .btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-dark); }
+
+    /* HERO */
+    .hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-subtle);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 .light { font-weight: 400; color: var(--text-secondary); }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--accent-light), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    /* FILTER */
+    .filter-section {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: inherit;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .search-box {
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--bg-elevated);
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-subtle);
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    /* FEATURED POST */
+    .featured-section {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .featured-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .featured-image {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      min-height: 400px;
+    }
+
+    .featured-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-category {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent-subtle);
+      color: var(--accent-light);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .featured-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .featured-excerpt {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .featured-meta {
+      display: flex;
+      gap: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .featured-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 1.5rem;
+      transition: gap 0.2s ease;
+    }
+
+    .featured-card:hover .read-more {
+      gap: 0.75rem;
+    }
+
+    /* BLOG GRID */
+    .blog-grid-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .blog-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-card-image {
+      height: 200px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-card-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, rgba(10, 10, 15, 0.3) 100%);
+    }
+
+    .blog-card-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card-category {
+      display: inline-flex;
+      background: var(--accent-subtle);
+      color: var(--accent-light);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+
+    .blog-card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .blog-card-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      flex: 1;
+      line-height: 1.6;
+    }
+
+    .blog-card-meta {
+      display: flex;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .blog-card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* NO RESULTS */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+    }
+
+    .no-results-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .no-results h3 {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    /* NEWSLETTER CTA */
+    .newsletter-section {
+      background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.05));
+      padding: 5rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .newsletter-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-content p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .email-capture {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .email-capture input[type="email"] {
+      flex: 1;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--bg-elevated);
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    .email-capture input[type="email"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-subtle);
+    }
+
+    .email-capture button {
+      padding: 1rem 1.75rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .email-capture button:hover {
+      background: var(--accent-dark);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+      
+      .featured-image {
+        min-height: 250px;
+        font-size: 5rem;
+      }
+      
+      .featured-content {
+        padding: 2rem;
+      }
+      
+      .featured-title {
+        font-size: 1.5rem;
+      }
+      
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .email-capture {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+      </svg>
+    </div>
+    <span class="logo-text">orchestraflow</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#features">Features</a></li>
+    <li><a href="../index.html#demo">Demo</a></li>
+    <li><a href="../industries/index.html">Industries</a></li>
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="index.html" class="active">Blog</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="../consultation.html" class="btn btn-primary">Request Consultation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">
+    <span>📚</span>
+    <span>Insights & Resources</span>
+  </div>
+  <h1>
+    <span class="light">The</span> <span class="gradient">ORCHESTRAFLOW</span> <span class="light">Blog</span>
+  </h1>
+  <p>Deep dives into AI automation, business transformation strategies, and the future of intelligent work.</p>
+</section>
+
+<section class="filter-section">
+  <div class="filter-row" id="category-filters">
+    <button class="filter-btn active" data-category="all">All Posts</button>
+    <button class="filter-btn" data-category="Strategy">Strategy</button>
+    <button class="filter-btn" data-category="Technology">Technology</button>
+    <button class="filter-btn" data-category="Sales">Sales</button>
+    <button class="filter-btn" data-category="Industry">Industry</button>
+    <button class="filter-btn" data-category="Operations">Operations</button>
+  </div>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="Search articles...">
+  </div>
+</section>
+
+<section class="featured-section" id="featured-section">
+  <div class="section-label">Featured Article</div>
+  <a href="why-smbs-need-ai-agents-now.html" class="featured-card" id="featured-card">
+    <div class="featured-image">🚀</div>
+    <div class="featured-content">
+      <span class="featured-category">Strategy</span>
+      <h2 class="featured-title">Why Small Businesses Need AI Agents Now—Not Later</h2>
+      <p class="featured-excerpt">The automation gap between enterprises and SMBs is widening. Here's why waiting is costing you more than you think, and how to get started today.</p>
+      <div class="featured-meta">
+        <span>📅 Mar 15, 2026</span>
+        <span>⏱️ 8 min read</span>
+      </div>
+      <span class="read-more">Read Article →</span>
+    </div>
+  </a>
+</section>
+
+<section class="blog-grid-section">
+  <div class="section-label">All Articles</div>
+  <div class="blog-grid" id="blog-grid"></div>
+  <div class="no-results" id="no-results" style="display: none;">
+    <div class="no-results-icon">🔍</div>
+    <h3>No articles found</h3>
+    <p>Try adjusting your search or filter criteria</p>
+  </div>
+</section>
+
+<section class="newsletter-section">
+  <div class="newsletter-content">
+    <h2>Stay ahead of the curve</h2>
+    <p>Get the latest insights on AI automation delivered to your inbox. No spam, just valuable content.</p>
+    <div class="email-capture">
+      <input type="email" placeholder="Enter your email" id="newsletter-email">
+      <button onclick="subscribeNewsletter()">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
+        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
+        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
+        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
+        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+      </svg>
+      </div>
+      <span class="logo-text">orchestraflow</span>
+    </a>
+    <div class="footer-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#features">Features</a>
+      <a href="../industries/index.html">Industries</a>
+      <a href="../index.html#demo">Demo</a>
+      <a href="index.html">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 OrchestraFlow AI, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  // Blog posts data
+  const blogPosts = [
+    { id: 1, slug: "why-smbs-need-ai-agents-now", title: "Why Small Businesses Need AI Agents Now—Not Later", category: "Strategy", emoji: "🚀", excerpt: "The automation gap between enterprises and SMBs is widening. Here's why waiting is costing you more than you think.", date: "Mar 15, 2026", readTime: "8 min" },
+    { id: 2, slug: "anatomy-of-ai-agent", title: "The Anatomy of an AI Agent: What's Actually Under the Hood", category: "Technology", emoji: "🔧", excerpt: "LLMs, RAG, function calling, memory systems—demystifying the technology that powers modern AI agents.", date: "Mar 12, 2026", readTime: "12 min" },
+    { id: 3, slug: "lead-response-time-study", title: "The 5-Minute Rule: Why Lead Response Time Is Everything", category: "Sales", emoji: "⏱️", excerpt: "Studies show responding within 5 minutes increases conversion by 400%. Here's how AI makes instant response possible.", date: "Mar 10, 2026", readTime: "7 min" },
+    { id: 4, slug: "ai-vs-chatbots", title: "AI Agents vs. Chatbots: Understanding the Critical Difference", category: "Technology", emoji: "🤖", excerpt: "Your FAQ bot isn't an AI agent. Here's what separates rule-based chatbots from truly intelligent automation.", date: "Mar 8, 2026", readTime: "9 min" },
+    { id: 5, slug: "calculating-ai-roi", title: "Calculating the Real ROI of AI Automation", category: "Strategy", emoji: "📊", excerpt: "Beyond the hype: a practical framework for measuring what AI agents actually return to your business.", date: "Mar 5, 2026", readTime: "11 min" },
+    { id: 6, slug: "ai-for-law-firms", title: "AI Agents for Law Firms: Transforming Client Intake", category: "Industry", emoji: "⚖️", excerpt: "How criminal defense, personal injury, and family law practices are capturing more clients with 24/7 AI.", date: "Mar 3, 2026", readTime: "10 min" },
+    { id: 7, slug: "24-7-lead-capture", title: "The 24/7 Advantage: Never Miss Another Lead", category: "Sales", emoji: "🌙", excerpt: "Your competitors close at 6pm. Your AI agent doesn't. How after-hours automation changes the game.", date: "Feb 28, 2026", readTime: "6 min" },
+    { id: 8, slug: "ai-medical-practices", title: "AI in Medical Practices: Patient Communication Reimagined", category: "Industry", emoji: "🏥", excerpt: "From appointment reminders to post-visit follow-ups, how healthcare is embracing intelligent automation.", date: "Feb 25, 2026", readTime: "9 min" },
+    { id: 9, slug: "crm-automation-guide", title: "The Complete Guide to CRM Automation with AI", category: "Operations", emoji: "💾", excerpt: "Your CRM is only as good as your data. Here's how AI agents keep it accurate without manual entry.", date: "Feb 22, 2026", readTime: "13 min" },
+    { id: 10, slug: "voice-ai-transcription", title: "Voice AI: Turning Every Call Into Actionable Data", category: "Technology", emoji: "🎤", excerpt: "Voicemails, calls, voice notes—how AI transcription captures what text-only systems miss.", date: "Feb 20, 2026", readTime: "8 min" },
+    { id: 11, slug: "whatsapp-business-ai", title: "WhatsApp Business + AI: The Global Communication Standard", category: "Channels", emoji: "💬", excerpt: "With 2 billion users, WhatsApp is where your customers are. Here's how to automate it intelligently.", date: "Feb 18, 2026", readTime: "7 min" },
+    { id: 12, slug: "lead-qualification-ai", title: "AI Lead Qualification: Scoring Prospects in Seconds", category: "Sales", emoji: "🎯", excerpt: "Not all leads are equal. How AI evaluates urgency, intent, and value faster than any human could.", date: "Feb 15, 2026", readTime: "10 min" },
+    { id: 13, slug: "ai-real-estate", title: "AI Agents for Real Estate: From Inquiry to Showing", category: "Industry", emoji: "🏠", excerpt: "Property inquiries spike at night and on weekends. Smart agents are using AI to capture them all.", date: "Feb 12, 2026", readTime: "9 min" },
+    { id: 14, slug: "implementation-timeline", title: "From Zero to AI: A Realistic Implementation Timeline", category: "Operations", emoji: "📅", excerpt: "Most AI implementations fail due to unrealistic expectations. Here's what a successful rollout actually looks like.", date: "Feb 10, 2026", readTime: "11 min" },
+    { id: 15, slug: "ai-home-services", title: "AI for Home Services: Plumbers, HVAC, and Beyond", category: "Industry", emoji: "🔨", excerpt: "Emergency calls don't wait for business hours. How service businesses are staying responsive around the clock.", date: "Feb 8, 2026", readTime: "8 min" },
+    { id: 16, slug: "human-ai-handoff", title: "The Art of Human-AI Handoff: When Automation Steps Aside", category: "Operations", emoji: "🤝", excerpt: "The best AI knows its limits. Designing seamless escalation paths for complex situations.", date: "Feb 5, 2026", readTime: "10 min" },
+    { id: 17, slug: "ai-insurance-agencies", title: "AI Agents for Insurance: Quotes, Claims, and Renewals", category: "Industry", emoji: "📋", excerpt: "Insurance is built on responsiveness. How agencies are using AI to outpace the competition.", date: "Feb 3, 2026", readTime: "9 min" },
+    { id: 18, slug: "data-privacy-ai", title: "Data Privacy and AI: What Business Owners Need to Know", category: "Compliance", emoji: "🔒", excerpt: "GDPR, CCPA, HIPAA—navigating compliance when AI handles customer communications.", date: "Jan 30, 2026", readTime: "12 min" },
+    { id: 19, slug: "appointment-scheduling-ai", title: "Intelligent Appointment Scheduling: Beyond the Calendar Link", category: "Operations", emoji: "📆", excerpt: "AI doesn't just find open slots—it considers context, priority, and optimal timing.", date: "Jan 28, 2026", readTime: "7 min" },
+    { id: 20, slug: "ai-follow-up-sequences", title: "AI-Powered Follow-Up: The End of Leads Going Cold", category: "Sales", emoji: "🔄", excerpt: "80% of sales require 5+ follow-ups. How AI ensures no opportunity slips through the cracks.", date: "Jan 25, 2026", readTime: "8 min" },
+    { id: 21, slug: "building-vs-buying-ai", title: "Build vs. Buy: Making the Right AI Investment Decision", category: "Strategy", emoji: "⚡", excerpt: "Custom development or off-the-shelf solution? A framework for choosing the right path.", date: "Jan 22, 2026", readTime: "11 min" },
+    { id: 22, slug: "ai-recruiting-staffing", title: "AI in Recruiting: Screening Candidates at Scale", category: "Industry", emoji: "👥", excerpt: "From resume parsing to initial outreach, how staffing firms are automating top-of-funnel.", date: "Jan 20, 2026", readTime: "9 min" },
+    { id: 23, slug: "common-ai-mistakes", title: "7 AI Implementation Mistakes (And How to Avoid Them)", category: "Strategy", emoji: "⚠️", excerpt: "We've seen these patterns repeatedly. Learn from others' failures before making your own.", date: "Jan 18, 2026", readTime: "10 min" },
+    { id: 24, slug: "ai-customer-retention", title: "AI for Customer Retention: Proactive, Not Reactive", category: "Operations", emoji: "💎", excerpt: "Acquiring customers costs 5x more than keeping them. How AI identifies churn before it happens.", date: "Jan 15, 2026", readTime: "8 min" },
+    { id: 25, slug: "multi-channel-ai", title: "Multi-Channel AI: One Brain, Every Platform", category: "Technology", emoji: "🌐", excerpt: "Email, SMS, WhatsApp, voice—how modern AI agents maintain context across all touchpoints.", date: "Jan 12, 2026", readTime: "9 min" },
+    { id: 26, slug: "ai-team-adoption", title: "Getting Your Team On Board: Change Management for AI", category: "Operations", emoji: "👨‍💼", excerpt: "Technology doesn't fail—adoption does. Strategies for bringing your team along on the AI journey.", date: "Jan 10, 2026", readTime: "11 min" },
+    { id: 27, slug: "measuring-ai-success", title: "Beyond Automation: Measuring What Actually Matters", category: "Strategy", emoji: "📈", excerpt: "Tasks automated is vanity. Revenue generated is sanity. Defining the right KPIs for AI.", date: "Jan 8, 2026", readTime: "10 min" },
+    { id: 28, slug: "future-of-work-ai", title: "The Future of Work: AI as Colleague, Not Replacement", category: "Thought Leadership", emoji: "🔮", excerpt: "AI won't take your job—but it will transform it. A realistic look at human-AI collaboration.", date: "Jan 5, 2026", readTime: "12 min" },
+    { id: 29, slug: "ai-ethics-business", title: "AI Ethics for Business: Doing Right While Doing Well", category: "Thought Leadership", emoji: "⚖️", excerpt: "Transparency, bias, accountability—navigating the ethical dimensions of business automation.", date: "Jan 3, 2026", readTime: "10 min" },
+    { id: 30, slug: "scaling-with-ai", title: "Scaling Without Hiring: The AI-First Growth Playbook", category: "Strategy", emoji: "📐", excerpt: "How businesses are 10x-ing output without 10x-ing headcount. The new math of growth.", date: "Jan 1, 2026", readTime: "13 min" }
+  ];
+
+  // State
+  let currentCategory = 'all';
+  let searchQuery = '';
+
+  // Filter posts
+  function filterPosts() {
+    let filtered = blogPosts;
+
+    // Skip first post (featured)
+    filtered = filtered.slice(1);
+
+    // Category filter
+    if (currentCategory !== 'all') {
+      filtered = filtered.filter(post => post.category === currentCategory);
+    }
+
+    // Search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(post => 
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.category.toLowerCase().includes(query)
+      );
+    }
+
+    return filtered;
+  }
+
+  // Render posts
+  function renderPosts() {
+    const grid = document.getElementById('blog-grid');
+    const noResults = document.getElementById('no-results');
+    const posts = filterPosts();
+
+    if (posts.length === 0) {
+      grid.style.display = 'none';
+      noResults.style.display = 'block';
+      return;
+    }
+
+    grid.style.display = 'grid';
+    noResults.style.display = 'none';
+
+    grid.innerHTML = posts.map(post => `
+      <a href="${post.slug}.html" class="blog-card">
+        <div class="blog-card-image">${post.emoji}</div>
+        <div class="blog-card-content">
+          <span class="blog-card-category">${post.category}</span>
+          <h3 class="blog-card-title">${post.title}</h3>
+          <p class="blog-card-excerpt">${post.excerpt}</p>
+          <div class="blog-card-meta">
+            <span>📅 ${post.date}</span>
+            <span>⏱️ ${post.readTime}</span>
+          </div>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  // Category filter handlers
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.dataset.category;
+      renderPosts();
+    });
+  });
+
+  // Search handler
+  document.getElementById('search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    renderPosts();
+  });
+
+  // Newsletter subscription
+  function subscribeNewsletter() {
+    const email = document.getElementById('newsletter-email').value;
+    if (email) {
+      alert('Thanks for subscribing! Check your inbox for confirmation.');
+      document.getElementById('newsletter-email').value = '';
+    }
+  }
+
+  // Initial render
+  renderPosts();
+</script>
+
+</body>
+</html>
