@@ -3,18 +3,8 @@
    Injects nav, footer, theme toggle into all pages
    ================================================ */
 
-// Detect path depth for relative links
-const depth = (function() {
-  const path = window.location.pathname;
-  const parts = path.split('/').filter(p => p && !p.endsWith('.html'));
-  // Check if we're in a subdirectory
-  if (path.includes('/solutions/') || path.includes('/industries/') || path.includes('/platform/') || path.includes('/company/') || path.includes('/blog/')) {
-    return '../';
-  }
-  return './';
-})();
-
-const P = depth; // short alias
+// Use absolute paths for all nav/footer links (clean URLs)
+const P = '/';
 
 const LOGO_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
   <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
@@ -42,37 +32,37 @@ function injectNav() {
   if (!el) return;
   el.outerHTML = `
   <nav class="site-nav" id="site-nav">
-    <a href="${P}index.html" class="nav-logo">
+    <a href="/" class="nav-logo">
       <div class="nav-logo-icon">${LOGO_SVG}</div>
       <span class="nav-logo-text">orchestraflow</span>
     </a>
     <ul class="nav-menu">
-      <li class="nav-dropdown"><a href="${P}solutions/index.html">Solutions</a>
+      <li class="nav-dropdown"><a href="/solutions">Solutions</a>
         <div class="nav-dropdown-menu">
-          <a href="${P}solutions/ai-lead-capture.html">AI Lead Capture</a>
-          <a href="${P}solutions/ai-appointment-manager.html">AI Appointment Manager</a>
-          <a href="${P}solutions/ai-helpdesk.html">AI Helpdesk</a>
-          <a href="${P}solutions/ai-knowledge-access.html">AI Knowledge Access</a>
-          <a href="${P}solutions/ai-recruitment.html">AI Recruitment</a>
-          <a href="${P}solutions/ai-workforce-intelligence.html">AI Workforce Intelligence</a>
+          <a href="/solutions/ai-lead-capture">AI Lead Capture</a>
+          <a href="/solutions/ai-appointment-manager">AI Appointment Manager</a>
+          <a href="/solutions/ai-helpdesk">AI Helpdesk</a>
+          <a href="/solutions/ai-knowledge-access">AI Knowledge Access</a>
+          <a href="/solutions/ai-recruitment">AI Recruitment</a>
+          <a href="/solutions/ai-workforce-intelligence">AI Workforce Intelligence</a>
         </div>
       </li>
-      <li class="nav-dropdown"><a href="${P}industries/index.html">Industries</a>
+      <li class="nav-dropdown"><a href="/industries">Industries</a>
         <div class="nav-dropdown-menu">
-          <a href="${P}industries/healthcare.html">Healthcare</a>
-          <a href="${P}industries/real-estate.html">Real Estate</a>
-          <a href="${P}industries/financial-services.html">Financial Services</a>
-          <a href="${P}industries/saas-digital.html">SaaS & Digital</a>
-          <a href="${P}industries/education.html">Education</a>
-          <a href="${P}industries/beauty-wellness.html">Beauty & Wellness</a>
+          <a href="/industries/healthcare">Healthcare</a>
+          <a href="/industries/real-estate">Real Estate</a>
+          <a href="/industries/financial-services">Financial Services</a>
+          <a href="/industries/saas-digital">SaaS & Digital</a>
+          <a href="/industries/education">Education</a>
+          <a href="/industries/beauty-wellness">Beauty & Wellness</a>
         </div>
       </li>
-      <li><a href="${P}platform/index.html">Platform</a></li>
-      <li><a href="${P}company/about.html">Company</a></li>
-      <li><a href="${P}blog/index.html">Blog</a></li>
+      <li><a href="/platform">Platform</a></li>
+      <li><a href="/company/about">Company</a></li>
+      <li><a href="/blog">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="${P}consultation.html" class="btn btn-primary">Request Consultation</a>
+      <a href="/consultation" class="btn btn-primary">Request Consultation</a>
     </div>
   </nav>`;
 }
@@ -85,7 +75,7 @@ function injectFooter() {
   <footer class="site-footer" id="site-footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="${P}index.html" class="nav-logo">
+        <a href="/" class="nav-logo">
           <div class="nav-logo-icon">${LOGO_SVG}</div>
           <span class="nav-logo-text">orchestraflow</span>
         </a>
@@ -93,29 +83,29 @@ function injectFooter() {
       </div>
       <div class="footer-col">
         <h4>Solutions</h4>
-        <a href="${P}solutions/ai-lead-capture.html">AI Lead Capture</a>
-        <a href="${P}solutions/ai-appointment-manager.html">Appointment Manager</a>
-        <a href="${P}solutions/ai-helpdesk.html">AI Helpdesk</a>
-        <a href="${P}solutions/ai-knowledge-access.html">Knowledge Access</a>
-        <a href="${P}solutions/ai-recruitment.html">AI Recruitment</a>
-        <a href="${P}solutions/ai-workforce-intelligence.html">Workforce Intelligence</a>
+        <a href="/solutions/ai-lead-capture">AI Lead Capture</a>
+        <a href="/solutions/ai-appointment-manager">Appointment Manager</a>
+        <a href="/solutions/ai-helpdesk">AI Helpdesk</a>
+        <a href="/solutions/ai-knowledge-access">Knowledge Access</a>
+        <a href="/solutions/ai-recruitment">AI Recruitment</a>
+        <a href="/solutions/ai-workforce-intelligence">Workforce Intelligence</a>
       </div>
       <div class="footer-col">
         <h4>Industries</h4>
-        <a href="${P}industries/healthcare.html">Healthcare</a>
-        <a href="${P}industries/real-estate.html">Real Estate</a>
-        <a href="${P}industries/financial-services.html">Financial Services</a>
-        <a href="${P}industries/saas-digital.html">SaaS & Digital</a>
-        <a href="${P}industries/education.html">Education</a>
-        <a href="${P}industries/beauty-wellness.html">Beauty & Wellness</a>
+        <a href="/industries/healthcare">Healthcare</a>
+        <a href="/industries/real-estate">Real Estate</a>
+        <a href="/industries/financial-services">Financial Services</a>
+        <a href="/industries/saas-digital">SaaS & Digital</a>
+        <a href="/industries/education">Education</a>
+        <a href="/industries/beauty-wellness">Beauty & Wellness</a>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
-        <a href="${P}company/about.html">About</a>
-        <a href="${P}company/careers.html">Careers</a>
-        <a href="${P}platform/index.html">Platform</a>
-        <a href="${P}blog/index.html">Blog</a>
-        <a href="${P}consultation.html">Free Consultation</a>
+        <a href="/company/about">About</a>
+        <a href="/company/careers">Careers</a>
+        <a href="/platform">Platform</a>
+        <a href="/blog">Blog</a>
+        <a href="/consultation">Free Consultation</a>
       </div>
     </div>
     <div class="footer-newsletter">
