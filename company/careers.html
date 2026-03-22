@@ -21,7 +21,18 @@
     .job-tag-dept { background: var(--blue-bg); color: var(--blue); }
     .job-tag-loc { background: var(--green-bg); color: var(--green); }
     .job-tag-type { background: var(--purple-bg); color: var(--purple); }
-    .job-arrow { color: var(--accent-light); font-size: 1.2rem; font-weight: 700; margin-left: 20px; }
+    .job-arrow { color: var(--accent-light); font-size: 1.2rem; font-weight: 700; margin-left: 20px; transition: transform 0.3s; }
+    .job-card.open .job-arrow { transform: rotate(90deg); }
+    .job-details { display: none; padding: 0 28px 24px; border-top: 1px solid var(--border); margin-top: 16px; }
+    .job-card.open .job-details { display: block; }
+    .job-details h4 { font-size: 0.95rem; font-weight: 700; margin: 16px 0 8px; color: var(--text); }
+    .job-details p, .job-details li { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+    .job-details ul { padding-left: 20px; margin-bottom: 12px; }
+    .job-details li { margin-bottom: 4px; }
+    .job-filled-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; background: var(--red-bg, rgba(239,68,68,0.1)); color: var(--red, #ef4444); margin-left: 8px; }
+    .job-card.filled { opacity: 0.6; }
+    .job-card.filled .job-title { text-decoration: line-through; }
+    .job-apply-btn { margin-top: 16px; }
 
     .culture-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .culture-content h3 { font-size: 1.5rem; margin-bottom: 16px; }
@@ -132,85 +143,225 @@
     </div>
 
     <div class="jobs-list fade-in">
-      <a href="#" class="card job-card">
-        <div class="job-info">
-          <div class="job-title">Senior Full-Stack Engineer</div>
-          <div class="job-meta">
-            <span class="job-tag job-tag-dept">Engineering</span>
-            <span class="job-tag job-tag-loc">🌍 Remote</span>
-            <span class="job-tag job-tag-type">Full-time</span>
-          </div>
-        </div>
-        <div class="job-arrow">→</div>
-      </a>
 
-      <a href="#" class="card job-card">
-        <div class="job-info">
-          <div class="job-title">Machine Learning Engineer</div>
-          <div class="job-meta">
-            <span class="job-tag job-tag-dept">Engineering</span>
-            <span class="job-tag job-tag-loc">🌍 Remote</span>
-            <span class="job-tag job-tag-type">Full-time</span>
+      <div class="card job-card" onclick="toggleJob(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <div class="job-info">
+            <div class="job-title">Senior Full-Stack Engineer</div>
+            <div class="job-meta">
+              <span class="job-tag job-tag-dept">Engineering</span>
+              <span class="job-tag job-tag-loc">🌍 Remote</span>
+              <span class="job-tag job-tag-type">Full-time</span>
+            </div>
           </div>
+          <div class="job-arrow">→</div>
         </div>
-        <div class="job-arrow">→</div>
-      </a>
+        <div class="job-details">
+          <h4>About the Role</h4>
+          <p>We're looking for a Senior Full-Stack Engineer to build and scale our AI workforce platform. You'll own features end-to-end — from database schema to pixel-perfect UI — working closely with our ML and product teams.</p>
+          <h4>What You'll Do</h4>
+          <ul>
+            <li>Design and build core platform features using React, Node.js, and Python</li>
+            <li>Architect scalable APIs that handle millions of AI agent interactions</li>
+            <li>Collaborate with ML engineers to integrate AI models into production workflows</li>
+            <li>Mentor junior engineers and contribute to technical strategy</li>
+            <li>Ship fast with high quality — we deploy multiple times per day</li>
+          </ul>
+          <h4>What We're Looking For</h4>
+          <ul>
+            <li>5+ years of full-stack experience with modern frameworks</li>
+            <li>Strong backend skills (Python, Node.js, PostgreSQL)</li>
+            <li>Experience building and scaling SaaS products</li>
+            <li>Comfortable with ambiguity and fast iteration</li>
+          </ul>
+          <h4>Compensation</h4>
+          <p>$160K–$200K base + equity + benefits</p>
+          <a href="mailto:careers@orchestraflow.com?subject=Application: Senior Full-Stack Engineer" class="btn btn-primary job-apply-btn">Apply Now →</a>
+        </div>
+      </div>
 
-      <a href="#" class="card job-card">
-        <div class="job-info">
-          <div class="job-title">Product Designer</div>
-          <div class="job-meta">
-            <span class="job-tag job-tag-dept">Design</span>
-            <span class="job-tag job-tag-loc">🌍 Remote</span>
-            <span class="job-tag job-tag-type">Full-time</span>
+      <div class="card job-card" onclick="toggleJob(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <div class="job-info">
+            <div class="job-title">Machine Learning Engineer</div>
+            <div class="job-meta">
+              <span class="job-tag job-tag-dept">Engineering</span>
+              <span class="job-tag job-tag-loc">🌍 Remote</span>
+              <span class="job-tag job-tag-type">Full-time</span>
+            </div>
           </div>
+          <div class="job-arrow">→</div>
         </div>
-        <div class="job-arrow">→</div>
-      </a>
+        <div class="job-details">
+          <h4>About the Role</h4>
+          <p>Join our ML team to build the AI models that power OrchestraFlow's intelligent agents. You'll work on NLP, conversation understanding, intent classification, and agent orchestration at scale.</p>
+          <h4>What You'll Do</h4>
+          <ul>
+            <li>Train, fine-tune, and deploy LLMs for business-specific use cases</li>
+            <li>Build evaluation frameworks to measure agent quality and accuracy</li>
+            <li>Develop RAG pipelines for knowledge access and document understanding</li>
+            <li>Optimize model inference for low-latency, high-throughput production serving</li>
+            <li>Research and prototype new AI capabilities</li>
+          </ul>
+          <h4>What We're Looking For</h4>
+          <ul>
+            <li>3+ years of ML engineering experience, preferably in NLP</li>
+            <li>Hands-on experience with transformer models and fine-tuning</li>
+            <li>Strong Python skills and familiarity with PyTorch or JAX</li>
+            <li>Experience deploying models to production at scale</li>
+          </ul>
+          <h4>Compensation</h4>
+          <p>$170K–$220K base + equity + benefits</p>
+          <a href="mailto:careers@orchestraflow.com?subject=Application: Machine Learning Engineer" class="btn btn-primary job-apply-btn">Apply Now →</a>
+        </div>
+      </div>
 
-      <a href="#" class="card job-card">
-        <div class="job-info">
-          <div class="job-title">Account Executive</div>
-          <div class="job-meta">
-            <span class="job-tag job-tag-dept">Sales</span>
-            <span class="job-tag job-tag-loc">🌍 Remote</span>
-            <span class="job-tag job-tag-type">Full-time</span>
+      <div class="card job-card" onclick="toggleJob(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <div class="job-info">
+            <div class="job-title">Product Designer</div>
+            <div class="job-meta">
+              <span class="job-tag job-tag-dept">Design</span>
+              <span class="job-tag job-tag-loc">🌍 Remote</span>
+              <span class="job-tag job-tag-type">Full-time</span>
+            </div>
           </div>
+          <div class="job-arrow">→</div>
         </div>
-        <div class="job-arrow">→</div>
-      </a>
+        <div class="job-details">
+          <h4>About the Role</h4>
+          <p>We need a Product Designer who can make complex AI workflows feel simple and delightful. You'll own the end-to-end design process for our platform — from user research to high-fidelity prototypes to shipped product.</p>
+          <h4>What You'll Do</h4>
+          <ul>
+            <li>Lead design for core platform features (agent builder, analytics dashboard, integrations)</li>
+            <li>Conduct user research and usability testing with enterprise customers</li>
+            <li>Create design systems, component libraries, and interaction patterns</li>
+            <li>Partner closely with engineering to ensure design quality in production</li>
+          </ul>
+          <h4>What We're Looking For</h4>
+          <ul>
+            <li>4+ years of product design experience, ideally in B2B SaaS</li>
+            <li>Strong portfolio showing complex workflow and dashboard design</li>
+            <li>Proficiency in Figma and prototyping tools</li>
+            <li>Experience with design systems at scale</li>
+          </ul>
+          <h4>Compensation</h4>
+          <p>$140K–$180K base + equity + benefits</p>
+          <a href="mailto:careers@orchestraflow.com?subject=Application: Product Designer" class="btn btn-primary job-apply-btn">Apply Now →</a>
+        </div>
+      </div>
 
-      <a href="#" class="card job-card">
-        <div class="job-info">
-          <div class="job-title">Customer Success Manager</div>
-          <div class="job-meta">
-            <span class="job-tag job-tag-dept">Customer Success</span>
-            <span class="job-tag job-tag-loc">🌍 Remote</span>
-            <span class="job-tag job-tag-type">Full-time</span>
+      <div class="card job-card" onclick="toggleJob(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <div class="job-info">
+            <div class="job-title">Account Executive</div>
+            <div class="job-meta">
+              <span class="job-tag job-tag-dept">Sales</span>
+              <span class="job-tag job-tag-loc">🌍 Remote</span>
+              <span class="job-tag job-tag-type">Full-time</span>
+            </div>
           </div>
+          <div class="job-arrow">→</div>
         </div>
-        <div class="job-arrow">→</div>
-      </a>
+        <div class="job-details">
+          <h4>About the Role</h4>
+          <p>Drive revenue growth by selling OrchestraFlow's AI workforce platform to mid-market and enterprise companies. You'll run the full sales cycle — from discovery to close — and help shape our go-to-market strategy.</p>
+          <h4>What You'll Do</h4>
+          <ul>
+            <li>Own a pipeline of 50+ accounts and drive them through the sales funnel</li>
+            <li>Run consultative discovery calls to understand business challenges</li>
+            <li>Deliver tailored demos and ROI analyses for prospects</li>
+            <li>Negotiate contracts and close deals in the $30K–$200K ARR range</li>
+            <li>Collaborate with marketing and product on messaging and positioning</li>
+          </ul>
+          <h4>What We're Looking For</h4>
+          <ul>
+            <li>3+ years of B2B SaaS sales experience</li>
+            <li>Track record of exceeding quota</li>
+            <li>Experience selling to VP/C-level stakeholders</li>
+            <li>Strong communicator who can explain technical concepts simply</li>
+          </ul>
+          <h4>Compensation</h4>
+          <p>$90K–$120K base + uncapped commission (OTE $180K–$250K) + equity</p>
+          <a href="mailto:careers@orchestraflow.com?subject=Application: Account Executive" class="btn btn-primary job-apply-btn">Apply Now →</a>
+        </div>
+      </div>
 
-      <a href="#" class="card job-card">
-        <div class="job-info">
-          <div class="job-title">DevOps Engineer</div>
-          <div class="job-meta">
-            <span class="job-tag job-tag-dept">Engineering</span>
-            <span class="job-tag job-tag-loc">🌍 Remote</span>
-            <span class="job-tag job-tag-type">Full-time</span>
+      <div class="card job-card" onclick="toggleJob(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <div class="job-info">
+            <div class="job-title">Customer Success Manager</div>
+            <div class="job-meta">
+              <span class="job-tag job-tag-dept">Customer Success</span>
+              <span class="job-tag job-tag-loc">🌍 Remote</span>
+              <span class="job-tag job-tag-type">Full-time</span>
+            </div>
           </div>
+          <div class="job-arrow">→</div>
         </div>
-        <div class="job-arrow">→</div>
-      </a>
+        <div class="job-details">
+          <h4>About the Role</h4>
+          <p>Be the trusted advisor for our most important customers. You'll ensure they get maximum value from OrchestraFlow, driving adoption, retention, and expansion across a portfolio of 30–40 accounts.</p>
+          <h4>What You'll Do</h4>
+          <ul>
+            <li>Own the post-sale customer journey from onboarding through renewal</li>
+            <li>Conduct quarterly business reviews with executive stakeholders</li>
+            <li>Identify expansion opportunities and collaborate with sales on upsells</li>
+            <li>Advocate for customer needs internally with product and engineering</li>
+            <li>Build playbooks and processes to scale customer success</li>
+          </ul>
+          <h4>What We're Looking For</h4>
+          <ul>
+            <li>3+ years in customer success or account management at a B2B SaaS company</li>
+            <li>Experience managing enterprise accounts ($50K+ ARR)</li>
+            <li>Data-driven approach to measuring customer health and outcomes</li>
+            <li>Excellent communication and relationship-building skills</li>
+          </ul>
+          <h4>Compensation</h4>
+          <p>$100K–$140K base + bonus + equity + benefits</p>
+          <a href="mailto:careers@orchestraflow.com?subject=Application: Customer Success Manager" class="btn btn-primary job-apply-btn">Apply Now →</a>
+        </div>
+      </div>
+
+      <div class="card job-card" onclick="toggleJob(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <div class="job-info">
+            <div class="job-title">DevOps Engineer</div>
+            <div class="job-meta">
+              <span class="job-tag job-tag-dept">Engineering</span>
+              <span class="job-tag job-tag-loc">🌍 Remote</span>
+              <span class="job-tag job-tag-type">Full-time</span>
+            </div>
+          </div>
+          <div class="job-arrow">→</div>
+        </div>
+        <div class="job-details">
+          <h4>About the Role</h4>
+          <p>Build and maintain the infrastructure that powers thousands of AI agents running 24/7. You'll own our cloud infrastructure, CI/CD pipelines, monitoring, and security posture across AWS and GCP.</p>
+          <h4>What You'll Do</h4>
+          <ul>
+            <li>Design and manage Kubernetes clusters for AI model serving</li>
+            <li>Build CI/CD pipelines that enable multiple deploys per day</li>
+            <li>Implement observability (metrics, logging, tracing) across all services</li>
+            <li>Maintain SOC 2 and HIPAA compliance for infrastructure</li>
+            <li>Optimize costs and performance across cloud providers</li>
+          </ul>
+          <h4>What We're Looking For</h4>
+          <ul>
+            <li>4+ years of DevOps/SRE/Platform engineering experience</li>
+            <li>Deep experience with AWS or GCP, Kubernetes, and Terraform</li>
+            <li>Strong understanding of security best practices and compliance</li>
+            <li>Experience with high-availability, distributed systems</li>
+          </ul>
+          <h4>Compensation</h4>
+          <p>$150K–$190K base + equity + benefits</p>
+          <a href="mailto:careers@orchestraflow.com?subject=Application: DevOps Engineer" class="btn btn-primary job-apply-btn">Apply Now →</a>
+        </div>
+      </div>
+
     </div>
 
-    <div class="open-app-banner fade-in">
-      <div style="font-size: 2rem; margin-bottom: 16px;">📬</div>
-      <h3>Don't See Your Role?</h3>
-      <p>We're always looking for exceptional people. Send us your resume anyway — we'd love to hear from you.</p>
-      <a href="mailto:careers@orchestraflow.com" class="btn btn-primary">Send Your Resume →</a>
-    </div>
+
   </div>
 </section>
 
@@ -231,5 +382,49 @@
 <footer id="site-footer"></footer>
 
 <script src="../js/shared.js"></script>
+<script>
+function toggleJob(card) {
+  // Don't toggle if clicking the apply button
+  if (event.target.closest('.job-apply-btn')) return;
+  
+  const wasOpen = card.classList.contains('open');
+  
+  // Close all other cards
+  document.querySelectorAll('.job-card.open').forEach(c => c.classList.remove('open'));
+  
+  if (!wasOpen) {
+    card.classList.add('open');
+    
+    // Mark as filled after opening
+    if (!card.classList.contains('filled')) {
+      card.classList.add('filled');
+      // Add filled badge to the title
+      const title = card.querySelector('.job-title');
+      if (title && !title.querySelector('.job-filled-badge')) {
+        title.insertAdjacentHTML('beforeend', ' <span class="job-filled-badge">Position Filled</span>');
+      }
+      // Save to localStorage
+      const jobTitle = title.textContent.replace(' Position Filled', '').trim();
+      const filled = JSON.parse(localStorage.getItem('of_filled_jobs') || '[]');
+      if (!filled.includes(jobTitle)) {
+        filled.push(jobTitle);
+        localStorage.setItem('of_filled_jobs', JSON.stringify(filled));
+      }
+    }
+  }
+}
+
+// Restore filled state on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const filled = JSON.parse(localStorage.getItem('of_filled_jobs') || '[]');
+  document.querySelectorAll('.job-card').forEach(card => {
+    const title = card.querySelector('.job-title');
+    if (title && filled.includes(title.textContent.trim())) {
+      card.classList.add('filled');
+      title.insertAdjacentHTML('beforeend', ' <span class="job-filled-badge">Position Filled</span>');
+    }
+  });
+});
+</script>
 </body>
 </html>
