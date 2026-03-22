@@ -36,6 +36,7 @@ function injectNav() {
           <a href="/solutions/ai-knowledge-access">AI Knowledge Access</a>
           <a href="/solutions/ai-recruitment">AI Recruitment</a>
           <a href="/solutions/ai-workforce-intelligence">AI Workforce Intelligence</a>
+          <a href="/solutions/web-development">Web Development</a>
         </div>
       </li>
       <li class="nav-dropdown"><a href="/industries">Industries</a>
@@ -91,6 +92,7 @@ function injectFooter() {
         <a href="/solutions/ai-knowledge-access">Knowledge Access</a>
         <a href="/solutions/ai-recruitment">AI Recruitment</a>
         <a href="/solutions/ai-workforce-intelligence">Workforce Intelligence</a>
+        <a href="/solutions/web-development">Web Development</a>
       </div>
       <div class="footer-col">
         <h4>Industries</h4>

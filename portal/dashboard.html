@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Demo — OrchestraFlow Client Portal</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .dashboard { padding: 80px 24px 40px; min-height: 100vh; }
+    .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .dash-header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+    .dash-header h1 span { color: #3b82f6; }
+    .dash-actions { display: flex; gap: 12px; }
+
+    .dash-layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+
+    /* Preview Panel */
+    .preview-panel {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .preview-toolbar {
+      display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+      background: var(--bg-elevated); border-bottom: 1px solid var(--border);
+    }
+    .preview-dots { display: flex; gap: 6px; }
+    .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .preview-url {
+      flex: 1; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; color: var(--text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .preview-iframe-wrap { width: 100%; height: 600px; background: #fff; }
+    .preview-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
+    .preview-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px; color: var(--text-muted);
+    }
+    .preview-placeholder-icon { font-size: 3rem; opacity: 0.5; }
+
+    /* Sidebar */
+    .dash-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .sidebar-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 24px; 
+    }
+    .sidebar-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+    /* Original Site */
+    .original-site-preview {
+      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px; margin-bottom: 16px; text-align: center;
+    }
+    .original-site-mock {
+      background: #e8e4dc; border-radius: 6px; height: 100px; display: flex;
+      align-items: center; justify-content: center; margin-bottom: 8px;
+      font-size: 0.7rem; color: #888; font-style: italic;
+    }
+    .original-url { font-size: 0.75rem; color: var(--text-muted); word-break: break-all; }
+    .original-url a { color: #3b82f6; }
+
+    /* Improvements List */
+    .improvements-list { list-style: none; }
+    .improvements-list li {
+      display: flex; align-items: flex-start; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--text-secondary);
+    }
+    .improvements-list li:last-child { border-bottom: none; }
+    .improvement-icon { color: #3b82f6; font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* Metrics */
+    .metrics-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .metric-item {
+      background: var(--bg-elevated); border-radius: 10px; padding: 14px; text-align: center;
+    }
+    .metric-item .value { font-size: 1.3rem; font-weight: 800; color: #3b82f6; }
+    .metric-item .label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* Request Build */
+    .request-build-form textarea {
+      width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 10px;
+      font-size: 0.85rem; font-family: inherit; background: var(--bg-elevated); color: var(--text);
+      resize: vertical; min-height: 80px; margin-bottom: 12px;
+    }
+    .request-build-form textarea:focus { outline: none; border-color: #3b82f6; }
+    .request-build-form textarea::placeholder { color: var(--text-muted); }
+    .request-build-btn {
+      width: 100%; padding: 12px; background: #3b82f6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 600; font-family: inherit; cursor: pointer;
+      transition: all 0.2s; font-size: 0.9rem;
+    }
+    .request-build-btn:hover { background: #2563eb; }
+
+    /* Loading */
+    .dash-loading { text-align: center; padding: 80px 24px; color: var(--text-muted); }
+    .dash-loading-spinner {
+      width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: #3b82f6;
+      border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Success */
+    .request-success { text-align: center; padding: 16px; display: none; }
+    .request-success .icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .request-success p { font-size: 0.85rem; color: var(--text-secondary); }
+
+    @media (max-width: 1024px) {
+      .dash-layout { grid-template-columns: 1fr; }
+      .preview-iframe-wrap { height: 400px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Loading State -->
+<div class="dashboard container" id="dash-loading">
+  <div class="dash-loading">
+    <div class="dash-loading-spinner"></div>
+    <p>Loading your demo...</p>
+  </div>
+</div>
+
+<!-- Dashboard Content (hidden until loaded) -->
+<div class="dashboard container" id="dash-content" style="display:none;">
+  <div class="dash-header">
+    <h1>Welcome, <span id="dash-business-name">—</span></h1>
+    <div class="dash-actions">
+      <a href="/solutions/web-development" class="btn btn-ghost">← Back</a>
+      <button class="btn btn-ghost" onclick="handleLogout()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="dash-layout">
+    <!-- Main Preview -->
+    <div class="preview-panel">
+      <div class="preview-toolbar">
+        <div class="preview-dots">
+          <div class="preview-dot" style="background:#ef4444;"></div>
+          <div class="preview-dot" style="background:#f59e0b;"></div>
+          <div class="preview-dot" style="background:#22c55e;"></div>
+        </div>
+        <div class="preview-url" id="preview-url">https://demo.orchestraflow.ai/your-site</div>
+      </div>
+      <div class="preview-iframe-wrap" id="preview-wrap">
+        <div class="preview-placeholder" id="preview-placeholder">
+          <div class="preview-placeholder-icon">🌐</div>
+          <p>Your redesigned website preview will appear here</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="dash-sidebar">
+      <!-- Original Site -->
+      <div class="sidebar-card">
+        <h3>📸 Original Site</h3>
+        <div class="original-site-preview">
+          <div class="original-site-mock" id="original-mock">Original website preview</div>
+          <div class="original-url">
+            <a id="original-url-link" href="#" target="_blank" rel="noopener">View original →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Improvements -->
+      <div class="sidebar-card">
+        <h3>✨ Key Improvements</h3>
+        <ul class="improvements-list" id="improvements-list">
+          <li><span class="improvement-icon">✓</span> Loading improvements...</li>
+        </ul>
+      </div>
+
+      <!-- Performance Metrics -->
+      <div class="sidebar-card">
+        <h3>📊 Performance</h3>
+        <div class="metrics-list" id="metrics-list">
+          <div class="metric-item"><div class="value" id="metric-load-time">—</div><div class="label">Load Time</div></div>
+          <div class="metric-item"><div class="value" id="metric-mobile">—</div><div class="label">Mobile Score</div></div>
+          <div class="metric-item"><div class="value" id="metric-seo">—</div><div class="label">SEO Score</div></div>
+          <div class="metric-item"><div class="value" id="metric-accessibility">—</div><div class="label">Accessibility</div></div>
+        </div>
+      </div>
+
+      <!-- Request Full Build -->
+      <div class="sidebar-card">
+        <h3>🚀 Ready to Go Live?</h3>
+        <div class="request-build-form" id="request-form">
+          <textarea id="build-message" placeholder="Any specific requests or questions? (optional)"></textarea>
+          <button class="request-build-btn" onclick="requestBuild()">Request Full Build →</button>
+        </div>
+        <div class="request-success" id="request-success">
+          <div class="icon">🎉</div>
+          <p><strong>Request sent!</strong> Our team will reach out within 24 hours to discuss your project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+<script>
+  // Check auth and load demo data
+  async function init() {
+    try {
+      const meRes = await fetch('/api/portal/me', { credentials: 'include' });
+      if (!meRes.ok) { window.location.href = '/portal/login'; return; }
+
+      const demoRes = await fetch('/api/portal/demo', { credentials: 'include' });
+      if (!demoRes.ok) { window.location.href = '/portal/login'; return; }
+      const demo = await demoRes.json();
+
+      // Populate dashboard
+      document.getElementById('dash-business-name').textContent = demo.business_name || 'Your Business';
+
+      // Preview
+      if (demo.demo_url) {
+        document.getElementById('preview-url').textContent = demo.demo_url;
+        document.getElementById('preview-placeholder').remove();
+        const iframe = document.createElement('iframe');
+        iframe.src = demo.demo_url;
+        iframe.title = 'Website Demo Preview';
+        document.getElementById('preview-wrap').appendChild(iframe);
+      }
+
+      // Original site
+      if (demo.original_url) {
+        document.getElementById('original-url-link').href = demo.original_url;
+        document.getElementById('original-url-link').textContent = demo.original_url.replace(/^https?:\/\//, '');
+      }
+
+      // Improvements
+      const improvements = demo.improvements || [];
+      if (improvements.length > 0) {
+        document.getElementById('improvements-list').innerHTML = improvements
+          .map(imp => `<li><span class="improvement-icon">✓</span> ${imp}</li>`)
+          .join('');
+      }
+
+      // Metrics
+      const metrics = demo.metrics || {};
+      if (metrics.load_time) document.getElementById('metric-load-time').textContent = metrics.load_time;
+      if (metrics.mobile_score) document.getElementById('metric-mobile').textContent = metrics.mobile_score;
+      if (metrics.seo_score) document.getElementById('metric-seo').textContent = metrics.seo_score;
+      if (metrics.accessibility) document.getElementById('metric-accessibility').textContent = metrics.accessibility;
+
+      // Show content
+      document.getElementById('dash-loading').style.display = 'none';
+      document.getElementById('dash-content').style.display = 'block';
+
+    } catch (err) {
+      window.location.href = '/portal/login';
+    }
+  }
+
+  async function requestBuild() {
+    const message = document.getElementById('build-message').value.trim();
+    try {
+      await fetch('/api/portal/request-build', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ message })
+      });
+      document.getElementById('request-form').style.display = 'none';
+      document.getElementById('request-success').style.display = 'block';
+    } catch (err) {
+      alert('Something went wrong. Please try again.');
+    }
+  }
+
+  async function handleLogout() {
+    await fetch('/api/portal/logout', { method: 'POST', credentials: 'include' });
+    window.location.href = '/portal/login';
+  }
+
+  init();
+</script>
+</body>
+</html>

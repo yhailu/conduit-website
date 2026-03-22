@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from flask import Flask, request, jsonify, redirect, session, send_from_directory, Response
 from flask_cors import CORS
 from supabase import create_client, Client
+from werkzeug.security import check_password_hash, generate_password_hash
 
 load_dotenv()
 
@@ -650,6 +651,143 @@ def newsletter_campaigns():
     try:
         res = supabase.table('newsletter_campaigns').select('*').order('created_at', desc=True).limit(20).execute()
         return jsonify({'campaigns': res.data or []})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# Portal endpoints (Web Development client demos)
+# ---------------------------------------------------------------------------
+
+@app.route('/api/portal/login', methods=['POST'])
+def portal_login():
+    data = request.get_json(silent=True) or {}
+    email = data.get('email', '').strip().lower()
+    password = data.get('password', '')
+
+    if not email or not password:
+        return jsonify({'error': 'Email and password are required.'}), 400
+
+    try:
+        res = supabase.table('portal_clients').select('*').eq('email', email).execute()
+        clients = res.data or []
+
+        if not clients:
+            return jsonify({'error': 'Invalid email or password.'}), 401
+
+        client = clients[0]
+        if not check_password_hash(client['password_hash'], password):
+            return jsonify({'error': 'Invalid email or password.'}), 401
+
+        session['portal_client_id'] = client['id']
+        session['portal_email'] = client['email']
+
+        return jsonify({
+            'message': 'Login successful.',
+            'client': {
+                'id': client['id'],
+                'email': client['email'],
+                'business_name': client['business_name'],
+            }
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/portal/me', methods=['GET'])
+def portal_me():
+    client_id = session.get('portal_client_id')
+    if not client_id:
+        return jsonify({'error': 'Not authenticated.'}), 401
+
+    try:
+        res = supabase.table('portal_clients').select('id, email, business_name').eq('id', client_id).execute()
+        clients = res.data or []
+        if not clients:
+            session.pop('portal_client_id', None)
+            session.pop('portal_email', None)
+            return jsonify({'error': 'Client not found.'}), 401
+
+        return jsonify({'client': clients[0]})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/portal/logout', methods=['POST'])
+def portal_logout():
+    session.pop('portal_client_id', None)
+    session.pop('portal_email', None)
+    return jsonify({'message': 'Logged out.'})
+
+
+@app.route('/api/portal/demo', methods=['GET'])
+def portal_demo():
+    client_id = session.get('portal_client_id')
+    if not client_id:
+        return jsonify({'error': 'Not authenticated.'}), 401
+
+    try:
+        res = supabase.table('portal_clients').select(
+            'business_name, original_url, demo_url, improvements, metrics'
+        ).eq('id', client_id).execute()
+        clients = res.data or []
+
+        if not clients:
+            return jsonify({'error': 'Demo not found.'}), 404
+
+        return jsonify(clients[0])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/portal/request-build', methods=['POST'])
+def portal_request_build():
+    client_id = session.get('portal_client_id')
+    if not client_id:
+        return jsonify({'error': 'Not authenticated.'}), 401
+
+    data = request.get_json(silent=True) or {}
+    message = data.get('message', '').strip()
+
+    try:
+        supabase.table('build_requests').insert({
+            'client_id': client_id,
+            'message': message or None,
+        }).execute()
+        return jsonify({'message': 'Build request submitted.'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# Web Development lead capture
+# ---------------------------------------------------------------------------
+
+@app.route('/api/webdev/leads', methods=['POST'])
+def webdev_leads():
+    data = request.get_json(silent=True) or {}
+    email = data.get('email', '').strip()
+
+    if not email:
+        return jsonify({'error': 'Email is required.'}), 400
+
+    try:
+        row = {'email': email}
+        if data.get('business_name'):
+            row['business_name'] = data['business_name'].strip()
+        if data.get('website_url'):
+            row['website_url'] = data['website_url'].strip()
+        if data.get('phone'):
+            row['phone'] = data['phone'].strip()
+        if data.get('source'):
+            row['source'] = data['source']
+        if data.get('city'):
+            row['city'] = data['city'].strip()
+        if data.get('state'):
+            row['state'] = data['state'].strip()
+
+        supabase.table('webdev_leads').insert(row).execute()
+        return jsonify({'message': 'Lead captured.'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
