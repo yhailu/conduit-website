@@ -1,0 +1,13 @@
+<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background for social media profile -->
+  <rect width="400" height="400" rx="80" fill="#0a0a0f"/>
+  <!-- Wand -->
+  <line x1="88" y1="312" x2="262" y2="138" stroke="#10b981" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="262" cy="138" r="18" fill="#10b981"/>
+  <!-- Main sparkle -->
+  <path d="M300 75 L312 50 L325 75 L350 88 L325 100 L312 125 L300 100 L275 88Z" fill="#10b981" opacity="0.7"/>
+  <!-- Small sparkle -->
+  <circle cx="225" cy="88" r="10" fill="#10b981" opacity="0.4"/>
+  <!-- Tiny sparkle -->
+  <circle cx="330" cy="175" r="8" fill="#10b981" opacity="0.3"/>
+</svg>
