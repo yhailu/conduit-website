@@ -15,7 +15,7 @@ from supabase import create_client, Client
 load_dotenv()
 
 STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
-app = Flask(__name__, static_folder=STATIC_DIR, static_url_path='')
+app = Flask(__name__, static_folder=None)  # disable built-in static; we handle it ourselves
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
 
 ALLOWED_ORIGINS = [
@@ -67,13 +67,11 @@ def get_authenticated_client():
 
 @app.route('/')
 def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(STATIC_DIR, 'index.html')
 
 
 @app.route('/<path:path>')
 def serve_static(path):
-    static = app.static_folder
-
     # 1. Redirect /foo.html → /foo (strip .html from URL bar)
     if path.endswith('.html'):
         clean = path[:-5]  # remove .html
@@ -82,19 +80,19 @@ def serve_static(path):
         return redirect(f'/{clean}', code=301)
 
     # 2. Exact file match (css, js, images, etc.)
-    full = os.path.join(static, path)
+    full = os.path.join(STATIC_DIR, path)
     if os.path.isfile(full):
-        return send_from_directory(static, path)
+        return send_from_directory(STATIC_DIR, path)
 
     # 3. Try path/index.html (e.g. /blog → blog/index.html)
     index_path = os.path.join(path, 'index.html')
-    if os.path.isfile(os.path.join(static, index_path)):
-        return send_from_directory(static, index_path)
+    if os.path.isfile(os.path.join(STATIC_DIR, index_path)):
+        return send_from_directory(STATIC_DIR, index_path)
 
     # 4. Try path.html (e.g. /consultation → consultation.html)
     html_path = path + '.html'
-    if os.path.isfile(os.path.join(static, html_path)):
-        return send_from_directory(static, html_path)
+    if os.path.isfile(os.path.join(STATIC_DIR, html_path)):
+        return send_from_directory(STATIC_DIR, html_path)
 
     # 5. 404
     return 'Not Found', 404
