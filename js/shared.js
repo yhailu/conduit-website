@@ -7,11 +7,11 @@
 const P = '/';
 
 const LOGO_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="6" y="38" width="14" height="14" rx="4" fill="#10b981" opacity="0.4"/>
-  <rect x="25" y="26" width="14" height="14" rx="4" fill="#10b981" opacity="0.65"/>
-  <rect x="44" y="14" width="14" height="14" rx="4" fill="#10b981"/>
-  <line x1="20" y1="42" x2="25" y2="36" stroke="#10b981" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-  <line x1="39" y1="30" x2="44" y2="24" stroke="#10b981" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <line x1="14" y1="50" x2="42" y2="22" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="42" cy="22" r="3" fill="#10b981"/>
+  <path d="M48 12 L50 8 L52 12 L56 14 L52 16 L50 20 L48 16 L44 14Z" fill="#10b981" opacity="0.6"/>
+  <path d="M54 26 L55 23 L56 26 L59 27 L56 28 L55 31 L54 28 L51 27Z" fill="#10b981" opacity="0.35" transform="scale(0.7) translate(22,10)"/>
+  <circle cx="36" cy="14" r="1.5" fill="#10b981" opacity="0.4"/>
 </svg>`;
 
 // ---- THEME (light only) ----
