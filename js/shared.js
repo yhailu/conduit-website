@@ -55,7 +55,18 @@ function injectNav() {
     <div class="nav-actions">
       <a href="/consultation" class="btn btn-primary">Request Consultation</a>
     </div>
-  </nav>`;
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="/solutions" onclick="closeMobileMenu()">Solutions</a>
+    <a href="/industries" onclick="closeMobileMenu()">Industries</a>
+    <a href="/platform" onclick="closeMobileMenu()">Platform</a>
+    <a href="/company/about" onclick="closeMobileMenu()">Company</a>
+    <a href="/blog" onclick="closeMobileMenu()">Blog</a>
+    <a href="/consultation" class="btn btn-primary mobile-cta" onclick="closeMobileMenu()">Request Consultation</a>
+  </div>`;
 }
 
 // ---- FOOTER ----
@@ -184,6 +195,16 @@ async function handleNewsletter(e) {
 
   btn.textContent = origText;
   btn.disabled = false;
+}
+
+// ---- MOBILE MENU ----
+function toggleMobileMenu() {
+  const menu = document.getElementById('nav-mobile-menu');
+  if (menu) menu.classList.toggle('open');
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('nav-mobile-menu');
+  if (menu) menu.classList.remove('open');
 }
 
 // ---- INIT ----
