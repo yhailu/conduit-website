@@ -7,20 +7,11 @@
 const P = '/';
 
 const LOGO_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-  <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-  <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-  <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-  <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-  <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-  <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-  <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-  <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-  <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-  <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-  <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-  <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-  <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
+  <rect x="6" y="38" width="14" height="14" rx="4" fill="#10b981" opacity="0.4"/>
+  <rect x="25" y="26" width="14" height="14" rx="4" fill="#10b981" opacity="0.65"/>
+  <rect x="44" y="14" width="14" height="14" rx="4" fill="#10b981"/>
+  <line x1="20" y1="42" x2="25" y2="36" stroke="#10b981" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <line x1="39" y1="30" x2="44" y2="24" stroke="#10b981" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
 </svg>`;
 
 // ---- THEME (light only) ----
