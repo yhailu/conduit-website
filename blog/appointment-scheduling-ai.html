@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -98,7 +100,7 @@
 <nav id="site-nav"></nav>
 <article>
   <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Operations</span><h1>Intelligent Appointment Scheduling: Beyond the Calendar Link</h1><div class="article-meta"><span>📅 January 28, 2026</span><span>⏱️ 7 min read</span></div></div></header>
-  <div class="article-image"><div class="article-image-inner">📆</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1000&h=500&fit=crop" alt="Appointment scheduling" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>Calendly changed the game. Suddenly, scheduling didn't require endless email back-and-forth. Just send a link, let them pick a time, done.</p>
     <p>But calendar links have limits. They're passive—waiting for someone to click. They're context-blind—showing availability without considering priority. And they're impersonal—a link instead of a conversation.</p>
@@ -123,7 +125,7 @@
       <li><strong>Buffer intelligence:</strong> Accounts for travel time, prep time, recovery time</li>
     </ul>
 
-    <div class="inline-image">⏰</div>
+    <div class="inline-image"><img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=720&h=300&fit=crop" alt="Calendar scheduling" style="width:100%;height:100%;object-fit:cover;"></div>
 
     <h2>Practical Examples</h2>
     <p><strong>Sales:</strong> Hot lead comes in at 4pm. AI immediately offers tomorrow morning slots, knowing that speed matters more than a distant appointment.</p>

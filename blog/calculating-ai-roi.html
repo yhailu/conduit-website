@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -107,7 +109,7 @@
       </div>
     </div>
   </header>
-  <div class="article-image"><div class="article-image-inner">📊</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&h=500&fit=crop" alt="Data analytics dashboard" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>AI vendors love to throw around impressive ROI numbers. "500% return!" "Pays for itself in 30 days!" But how do you actually calculate whether AI automation will deliver value for <em>your</em> specific business?</p>
     
@@ -164,7 +166,31 @@
 
     <p>Note: This doesn't mean you fire people. It means your existing team can focus on high-value activities instead of repetitive tasks. The value is in redeployment, not headcount reduction.</p>
 
-    <div class="inline-image">💰</div>
+    <div style="background:#1a1a2e;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:32px 0;">
+<svg viewBox="0 0 560 290" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <text x="280" y="24" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="15" font-weight="700">Monthly AI ROI Breakdown</text>
+  <line x1="80" y1="228" x2="520" y2="228" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="80" y1="78" x2="520" y2="78" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="80" y1="128" x2="520" y2="128" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="80" y1="178" x2="520" y2="178" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <rect x="100" y="68" width="80" height="160" fill="#10b981" rx="4"/>
+  <text x="140" y="60" text-anchor="middle" fill="#10b981" font-family="Inter,sans-serif" font-size="11" font-weight="700">$24,000</text>
+  <text x="140" y="248" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Revenue</text>
+  <text x="140" y="260" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Increase</text>
+  <rect x="210" y="192" width="80" height="36" fill="#3b82f6" rx="4"/>
+  <text x="250" y="184" text-anchor="middle" fill="#3b82f6" font-family="Inter,sans-serif" font-size="11" font-weight="700">$5,320</text>
+  <text x="250" y="248" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Cost</text>
+  <text x="250" y="260" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Savings</text>
+  <rect x="320" y="211" width="80" height="17" fill="#ef4444" rx="4"/>
+  <text x="360" y="203" text-anchor="middle" fill="#ef4444" font-family="Inter,sans-serif" font-size="11" font-weight="700">-$2,500</text>
+  <text x="360" y="248" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">AI Agent</text>
+  <text x="360" y="260" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Cost</text>
+  <rect x="430" y="49" width="80" height="179" fill="#f59e0b" rx="4"/>
+  <text x="470" y="41" text-anchor="middle" fill="#f59e0b" font-family="Inter,sans-serif" font-size="11" font-weight="700">$26,820</text>
+  <text x="470" y="248" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Net</text>
+  <text x="470" y="260" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Monthly Benefit</text>
+</svg>
+</div>
 
     <h2>Calculating Capacity Expansion</h2>
     

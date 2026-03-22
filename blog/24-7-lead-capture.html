@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -98,7 +100,7 @@
 <nav id="site-nav"></nav>
 <article>
   <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Sales</span><h1>The 24/7 Advantage: Never Miss Another Lead</h1><div class="article-meta"><span>📅 February 28, 2026</span><span>⏱️ 6 min read</span></div></div></header>
-  <div class="article-image"><div class="article-image-inner">🌙</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?w=1000&h=500&fit=crop" alt="24/7 phone communication" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>Your competitors close at 6pm. Their phones go to voicemail. Their chat widgets show "We'll be back Monday." But your potential customers don't stop having problems at 6pm.</p>
     <p>The business that responds first wins. It's that simple. And when your competitors are sleeping, that's your opportunity.</p>
@@ -116,7 +118,7 @@
     <h2>The Psychology of After-Hours Inquiries</h2>
     <p>People reaching out at 11pm aren't casually browsing. They have a problem keeping them awake. They're motivated. They're ready to act.</p>
     <p>These are often your highest-intent leads. And they're the ones most likely to call the next provider if you don't respond.</p>
-    <div class="inline-image">⏰</div>
+    <div class="inline-image"><img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=720&h=300&fit=crop" alt="Time and scheduling" style="width:100%;height:100%;object-fit:cover;"></div>
     
     <h2>What "24/7 Response" Actually Means</h2>
     <p>24/7 response doesn't mean you need to work around the clock. It means having systems that work when you don't.</p>

@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -98,7 +100,7 @@
 <nav id="site-nav"></nav>
 <article>
   <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Sales</span><h1>AI Lead Qualification: Scoring Prospects in Seconds</h1><div class="article-meta"><span>📅 February 15, 2026</span><span>⏱️ 10 min read</span></div></div></header>
-  <div class="article-image"><div class="article-image-inner">🎯</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&h=500&fit=crop" alt="Lead qualification analytics" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>Not all leads are created equal. Some are ready to buy today. Others are just browsing. Some have budget and authority. Others are researchers with neither.</p>
     <p>The art of sales has always included lead qualification—separating wheat from chaff, focusing energy where it matters. AI transforms this from an art into a science.</p>
@@ -123,7 +125,19 @@
     <h3>Urgency Detection</h3>
     <p>Timeline indicators: "We need this by Q2" vs. "Sometime this year" represent completely different urgency levels.</p>
 
-    <div class="inline-image">⚡</div>
+    <div style="background:#1a1a2e;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:32px 0;">
+<svg viewBox="0 0 560 270" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <text x="280" y="24" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="15" font-weight="700">AI Lead Qualification Funnel</text>
+  <rect x="60" y="44" width="440" height="44" fill="#3b82f6" rx="4"/>
+  <text x="280" y="71" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">100 Total Leads</text>
+  <rect x="140" y="98" width="280" height="44" fill="#10b981" rx="4"/>
+  <text x="280" y="125" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">60 Instantly Qualified (60%)</text>
+  <rect x="195" y="152" width="170" height="44" fill="#8b5cf6" rx="4"/>
+  <text x="280" y="179" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="13" font-weight="700">32 Highly Interested (32%)</text>
+  <rect x="230" y="206" width="100" height="44" fill="#f59e0b" rx="4"/>
+  <text x="280" y="233" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="12" font-weight="700">15 Converted (15%)</text>
+</svg>
+</div>
 
     <h3>Authority Signals</h3>
     <p>"I'll need to run this by my boss" vs. "I make these decisions" changes how you should engage.</p>

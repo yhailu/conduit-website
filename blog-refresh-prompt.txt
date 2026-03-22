@@ -1,0 +1,97 @@
+You are updating the OrchestraFlow website blog posts in the blog/ directory.
+
+TASK: Replace all emoji-based images with real Unsplash images and add SVG data visualization charts/graphs inline in the blog posts.
+
+There are 30 blog HTML files plus blog/index.html. Process ALL of them.
+
+CURRENT STATE:
+- Each blog post has a hero image using emoji in a div with class "article-image-inner" containing just an emoji like a rocket, wrench, etc.
+- Inline images also use emoji in divs with class "inline-image"
+- The blog index (blog/index.html) renders cards with emoji in blog-card-image divs
+- The index uses a JS blogPosts array with an "emoji" field per post
+
+REQUIREMENTS:
+
+1. HERO IMAGES: Replace each blog post's article-image-inner emoji with a real img tag using relevant Unsplash images.
+   Use format: https://images.unsplash.com/photo-XXXXX?w=1000&h=500&fit=crop
+   Style the img: width:100%; height:100%; object-fit:cover; border-radius:inherit;
+
+2. INLINE IMAGES: Replace inline-image emoji divs with either:
+   a) Relevant Unsplash images (same format), OR
+   b) SVG charts/graphs when the context is about data/stats/metrics/ROI
+
+3. SVG CHARTS: Create inline SVG data visualizations where blog content discusses statistics, ROI, comparisons, or metrics.
+   - Clean, modern design with site colors: #10b981 (green accent), #3b82f6 (blue), #0a0a0f (dark bg), #1a1a2e (card bg), #e2e8f0 (text)
+   - Responsive with viewBox, width=100%
+   - Types: bar charts, line graphs, pie charts, comparison charts as appropriate
+   - Include labels and data relevant to the blog post content
+   - Wrap in a styled div: background:#1a1a2e; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:24px; margin:32px 0;
+
+4. BLOG INDEX (blog/index.html):
+   - Update blogPosts JS array: change "emoji" field to "image" with Unsplash thumbnail URLs (w=680&h=400&fit=crop)
+   - Update the featured-image section to use an img tag instead of emoji
+   - Update renderPosts() to render img tags in blog-card-image divs instead of emoji text
+   - Update CSS for .blog-card-image and .featured-image to handle img tags (img fills container with object-fit:cover)
+
+5. CSS UPDATES in each file:
+   - .article-image-inner: remove font-size, add overflow:hidden. Add: .article-image-inner img { width:100%; height:100%; object-fit:cover; }
+   - .inline-image: remove font-size, add overflow:hidden. Add: .inline-image img { width:100%; height:100%; object-fit:cover; }
+
+UNSPLASH PHOTO IDS TO USE (all real and valid):
+- AI/Tech/General: photo-1677442136019-21780ecad995, photo-1620712943543-bcc4688e7485, photo-1531746790095-e5cb57f6786e
+- Business/Office: photo-1552664730-d307ca884978, photo-1553877522-43269d4ea984, photo-1600880292203-757bb62b4baf
+- Phone/Communication: photo-1556745757-8d76bdb6984b, photo-1523966211575-eb4a01e7dd51, photo-1486312338219-ce68d2c6f44d
+- Medical/Dental: photo-1629909613654-28e377c37b09, photo-1588776814546-1ffcf47267a5, photo-1576091160399-112ba8d25d1d
+- Real Estate: photo-1560518883-ce09059eeffa, photo-1560184897-ae75f418493e, photo-1582407947304-fd86f028f716
+- Legal: photo-1589829545856-d10d557cf95f, photo-1505664194779-8beaceb93744, photo-1436450412740-6b988f486c6b
+- Home Services/HVAC: photo-1621905252507-b35492cc74b4, photo-1504328345606-18bbc8c9d7d1, photo-1558618666-fcd25c85f82e
+- Data/Analytics: photo-1551288049-bebda4e38f71, photo-1460925895917-afdab827c52f, photo-1504868584819-f8e8b4b6d7e3
+- Growth/Success: photo-1533750349088-cd871a92f312, photo-1552581234-26160f608093
+- Insurance: photo-1450101499163-c8848e968252, photo-1554224155-6726b3ff858f
+- Recruiting: photo-1521791136064-7986c2920216, photo-1573497019940-1c28c88b4f3e
+- Voice/Audio: photo-1478737270239-2f02b77fc618, photo-1590602847861-f357a9332bbc
+- WhatsApp/Mobile: photo-1611532736597-de2d4265fba3, photo-1512941937669-90a1b58e7e9c
+- Scheduling/Calendar: photo-1506784983877-45594efa4cbe, photo-1484480974693-6ca0a78fb36b
+- CRM/Database: photo-1558494949-ef010cbdcc31, photo-1544383835-bda2bc66a55d
+- Security/Privacy: photo-1563013544-824ae1b704d3, photo-1555949963-ff9fe0c870eb
+- Scaling: photo-1454165804606-c3d57bc86b40
+- Ethics: photo-1532187863486-abf9dbad1b69, photo-1531537571171-a707bf2683da
+- Future/Innovation: photo-1485827404703-89b55fcc595e, photo-1518770660439-4636190af475
+- Teamwork: photo-1522071820081-009f0129c71c, photo-1600880292089-90a7e086ee0c
+
+MAPPING (blog file -> hero image to use):
+- why-smbs-need-ai-agents-now.html -> photo-1677442136019-21780ecad995 (AI tech)
+- anatomy-of-ai-agent.html -> photo-1531746790095-e5cb57f6786e (tech)
+- lead-response-time-study.html -> photo-1556745757-8d76bdb6984b (phone)
+- ai-vs-chatbots.html -> photo-1620712943543-bcc4688e7485 (AI)
+- calculating-ai-roi.html -> photo-1551288049-bebda4e38f71 (data)
+- ai-for-law-firms.html -> photo-1589829545856-d10d557cf95f (legal)
+- 24-7-lead-capture.html -> photo-1523966211575-eb4a01e7dd51 (phone)
+- ai-medical-practices.html -> photo-1629909613654-28e377c37b09 (medical)
+- crm-automation-guide.html -> photo-1558494949-ef010cbdcc31 (CRM)
+- voice-ai-transcription.html -> photo-1478737270239-2f02b77fc618 (voice)
+- whatsapp-business-ai.html -> photo-1611532736597-de2d4265fba3 (mobile)
+- lead-qualification-ai.html -> photo-1460925895917-afdab827c52f (data)
+- ai-real-estate.html -> photo-1560518883-ce09059eeffa (real estate)
+- implementation-timeline.html -> photo-1506784983877-45594efa4cbe (calendar)
+- ai-home-services.html -> photo-1621905252507-b35492cc74b4 (home services)
+- human-ai-handoff.html -> photo-1522071820081-009f0129c71c (teamwork)
+- ai-insurance-agencies.html -> photo-1450101499163-c8848e968252 (insurance)
+- data-privacy-ai.html -> photo-1563013544-824ae1b704d3 (security)
+- appointment-scheduling-ai.html -> photo-1484480974693-6ca0a78fb36b (calendar)
+- ai-follow-up-sequences.html -> photo-1552664730-d307ca884978 (business)
+- building-vs-buying-ai.html -> photo-1553877522-43269d4ea984 (business)
+- ai-recruiting-staffing.html -> photo-1521791136064-7986c2920216 (recruiting)
+- common-ai-mistakes.html -> photo-1504868584819-f8e8b4b6d7e3 (data)
+- ai-customer-retention.html -> photo-1533750349088-cd871a92f312 (growth)
+- multi-channel-ai.html -> photo-1486312338219-ce68d2c6f44d (communication)
+- ai-team-adoption.html -> photo-1600880292089-90a7e086ee0c (teamwork)
+- measuring-ai-success.html -> photo-1552581234-26160f608093 (growth)
+- future-of-work-ai.html -> photo-1485827404703-89b55fcc595e (future)
+- ai-ethics-business.html -> photo-1532187863486-abf9dbad1b69 (ethics)
+- scaling-with-ai.html -> photo-1454165804606-c3d57bc86b40 (scaling)
+
+Process ALL 30 blog files and the index. Do not skip any file. Work through them systematically one at a time.
+
+When completely finished with ALL files, run this exact command:
+openclaw system event --text "Done: Refreshed all 30 blog posts with real Unsplash images and inline SVG charts/graphs. Updated blog index to use image thumbnails instead of emoji." --mode now

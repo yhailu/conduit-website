@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -98,7 +100,7 @@
 <nav id="site-nav"></nav>
 <article>
   <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Operations</span><h1>AI for Customer Retention: Proactive, Not Reactive</h1><div class="article-meta"><span>📅 January 15, 2026</span><span>⏱️ 8 min read</span></div></div></header>
-  <div class="article-image"><div class="article-image-inner">💎</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1000&h=500&fit=crop" alt="Customer retention growth" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>You've heard the statistic: acquiring a new customer costs 5-7x more than retaining an existing one. Yet most businesses invest heavily in acquisition and barely think about retention until customers are already walking out the door.</p>
     <p>AI enables a different approach—proactive retention that identifies and addresses churn risk before it becomes churn reality.</p>
@@ -123,7 +125,29 @@
       <li><strong>Human escalation:</strong> Flag high-value at-risk accounts for personal touch</li>
     </ul>
 
-    <div class="inline-image">📊</div>
+    <div style="background:#1a1a2e;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:32px 0;">
+<svg viewBox="0 0 560 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <text x="280" y="24" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="15" font-weight="700">Customer Retention Rate Over 12 Months</text>
+  <line x1="80" y1="228" x2="520" y2="228" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="80" y1="48" x2="80" y2="228" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="80" y1="78" x2="520" y2="78" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="80" y1="128" x2="520" y2="128" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="80" y1="178" x2="520" y2="178" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <text x="72" y="232" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">0%</text>
+  <text x="72" y="182" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">25%</text>
+  <text x="72" y="132" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">50%</text>
+  <text x="72" y="82" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">75%</text>
+  <text x="72" y="52" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">100%</text>
+  <polyline points="110,59 190,62 270,65 350,68 430,69 510,71" fill="none" stroke="#10b981" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="110,59 190,78 270,100 350,122 430,145 510,164" fill="none" stroke="#ef4444" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="110" y="244" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Month 1</text>
+  <text x="510" y="244" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Month 12</text>
+  <rect x="130" y="266" width="14" height="4" fill="#10b981" rx="2"/>
+  <text x="150" y="272" fill="#94a3b8" font-family="Inter,sans-serif" font-size="11">With AI (93% avg retention)</text>
+  <rect x="330" y="266" width="14" height="4" fill="#ef4444" rx="2"/>
+  <text x="350" y="272" fill="#94a3b8" font-family="Inter,sans-serif" font-size="11">Without AI (79% avg retention)</text>
+</svg>
+</div>
 
     <h2>The Retention Conversation</h2>
     <p>AI handles retention conversations naturally:</p>

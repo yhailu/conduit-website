@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -98,7 +100,7 @@
 <nav id="site-nav"></nav>
 <article>
   <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Industry</span><h1>AI in Medical Practices: Patient Communication Reimagined</h1><div class="article-meta"><span>📅 February 25, 2026</span><span>⏱️ 9 min read</span></div></div></header>
-  <div class="article-image"><div class="article-image-inner">🏥</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1000&h=500&fit=crop" alt="Medical practice" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>Healthcare is built on relationships. The trust between patient and provider, the comfort of knowing someone is there when you need them. Yet the administrative reality of modern medicine often undermines these very relationships.</p>
     <p>Patients wait on hold. Appointment requests go unanswered. Follow-up calls fall through the cracks. The human connection that should define healthcare gets buried under operational chaos.</p>
@@ -134,7 +136,7 @@
       <li>Wellness check reminders</li>
     </ul>
     
-    <div class="inline-image">📋</div>
+    <div class="inline-image"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=720&h=300&fit=crop" alt="Medical documentation" style="width:100%;height:100%;object-fit:cover;"></div>
     
     <h2>HIPAA and Compliance Considerations</h2>
     <p>Any AI system handling patient information must be HIPAA-compliant. This means:</p>

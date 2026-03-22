@@ -62,7 +62,7 @@ def get_authenticated_client():
 
 
 # ---------------------------------------------------------------------------
-# Static file serving
+# Static file serving — clean URLs
 # ---------------------------------------------------------------------------
 
 @app.route('/')
@@ -72,7 +72,32 @@ def serve_index():
 
 @app.route('/<path:path>')
 def serve_static(path):
-    return send_from_directory(app.static_folder, path)
+    static = app.static_folder
+
+    # 1. Redirect /foo.html → /foo (strip .html from URL bar)
+    if path.endswith('.html'):
+        clean = path[:-5]  # remove .html
+        if clean.endswith('/index'):
+            clean = clean[:-6]  # /blog/index → /blog
+        return redirect(f'/{clean}', code=301)
+
+    # 2. Exact file match (css, js, images, etc.)
+    full = os.path.join(static, path)
+    if os.path.isfile(full):
+        return send_from_directory(static, path)
+
+    # 3. Try path/index.html (e.g. /blog → blog/index.html)
+    index_path = os.path.join(path, 'index.html')
+    if os.path.isfile(os.path.join(static, index_path)):
+        return send_from_directory(static, index_path)
+
+    # 4. Try path.html (e.g. /consultation → consultation.html)
+    html_path = path + '.html'
+    if os.path.isfile(os.path.join(static, html_path)):
+        return send_from_directory(static, html_path)
+
+    # 5. 404
+    return 'Not Found', 404
 
 
 # ---------------------------------------------------------------------------
@@ -201,7 +226,7 @@ def forgot_password():
 
     try:
         supabase.auth.reset_password_for_email(email, {
-            'redirect_to': request.host_url.rstrip('/') + '/login.html'
+            'redirect_to': request.host_url.rstrip('/') + '/login'
         })
         return jsonify({'message': 'Password reset email sent! Check your inbox.'})
     except Exception as e:
@@ -232,7 +257,7 @@ def auth_callback():
     if access_token:
         session['access_token'] = access_token
         session['refresh_token'] = refresh_token or ''
-        return redirect('/index.html')
+        return redirect('/')
 
     # Supabase sometimes puts tokens in the URL fragment (#access_token=...).
     # We serve a small page that reads the fragment and posts it back.
@@ -252,9 +277,9 @@ def auth_callback():
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',
           body: JSON.stringify({ access_token, refresh_token })
-        }).then(() => window.location.href = '/index.html');
+        }).then(() => window.location.href = '/');
       } else {
-        window.location.href = '/login.html';
+        window.location.href = '/login';
       }
     </script>
     </body>

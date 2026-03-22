@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -98,7 +100,7 @@
 <nav id="site-nav"></nav>
 <article>
   <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Strategy</span><h1>7 AI Implementation Mistakes (And How to Avoid Them)</h1><div class="article-meta"><span>📅 January 18, 2026</span><span>⏱️ 10 min read</span></div></div></header>
-  <div class="article-image"><div class="article-image-inner">⚠️</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1000&h=500&fit=crop" alt="AI implementation challenges" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>We've seen dozens of AI implementations. Some succeed brilliantly. Others fail painfully. The difference usually isn't the technology—it's the approach.</p>
     <p>Here are the seven mistakes we see most often, and how to avoid them.</p>
@@ -111,7 +113,27 @@
     <p>Trying to automate everything at once. "Let's do lead response AND support AND scheduling AND..."</p>
     <p><strong>The fix:</strong> Start with one high-impact use case. Perfect it. Then expand. Success breeds success.</p>
 
-    <div class="inline-image">🎯</div>
+    <div style="background:#1a1a2e;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:32px 0;">
+<svg viewBox="0 0 560 260" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <text x="280" y="24" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="15" font-weight="700">Most Common AI Implementation Failures</text>
+  <line x1="190" y1="38" x2="190" y2="242" stroke="#2d3748" stroke-width="1"/>
+  <rect x="190" y="46" width="280" height="28" fill="#ef4444" rx="3"/>
+  <text x="184" y="65" text-anchor="end" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="11">Unrealistic Expectations</text>
+  <text x="478" y="65" fill="#ef4444" font-family="Inter,sans-serif" font-size="12" font-weight="700">45%</text>
+  <rect x="190" y="84" width="200" height="28" fill="#f59e0b" rx="3"/>
+  <text x="184" y="103" text-anchor="end" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="11">Poor Data Quality</text>
+  <text x="398" y="103" fill="#f59e0b" font-family="Inter,sans-serif" font-size="12" font-weight="700">32%</text>
+  <rect x="190" y="122" width="176" height="28" fill="#3b82f6" rx="3"/>
+  <text x="184" y="141" text-anchor="end" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="11">No Adoption Plan</text>
+  <text x="374" y="141" fill="#3b82f6" font-family="Inter,sans-serif" font-size="12" font-weight="700">28%</text>
+  <rect x="190" y="160" width="120" height="28" fill="#10b981" rx="3"/>
+  <text x="184" y="179" text-anchor="end" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="11">Bad Integration</text>
+  <text x="318" y="179" fill="#10b981" font-family="Inter,sans-serif" font-size="12" font-weight="700">19%</text>
+  <rect x="190" y="198" width="101" height="28" fill="#8b5cf6" rx="3"/>
+  <text x="184" y="217" text-anchor="end" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="11">Wrong Use Case</text>
+  <text x="299" y="217" fill="#8b5cf6" font-family="Inter,sans-serif" font-size="12" font-weight="700">16%</text>
+</svg>
+</div>
 
     <h2>Mistake #3: Ignoring Change Management</h2>
     <p>Deploying AI without preparing the team. People feel threatened, resist the change, and sabotage adoption.</p>

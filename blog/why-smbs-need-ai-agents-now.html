@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -112,7 +114,7 @@
   </header>
 
   <div class="article-image">
-    <div class="article-image-inner">🚀</div>
+    <div class="article-image-inner"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1000&h=500&fit=crop" alt="AI technology" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
   </div>
 
   <div class="article-content">
@@ -126,7 +128,28 @@
     
     <p>Small businesses don't have that luxury. You're competing against these well-resourced giants while managing a team of ten people who are each wearing multiple hats. Your marketing manager is also your content creator, your office manager, and occasionally your customer service rep.</p>
 
-    <div class="inline-image">📊</div>
+    <div style="background:#1a1a2e;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:32px 0;">
+<svg viewBox="0 0 560 290" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <text x="280" y="24" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="15" font-weight="700">AI Adoption Rate by Business Size (2026)</text>
+  <line x1="80" y1="228" x2="520" y2="228" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="80" y1="78" x2="520" y2="78" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="80" y1="128" x2="520" y2="128" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="80" y1="178" x2="520" y2="178" stroke="#2d3748" stroke-width="1" stroke-dasharray="4"/>
+  <text x="72" y="232" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">0%</text>
+  <text x="72" y="182" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">25%</text>
+  <text x="72" y="132" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">50%</text>
+  <text x="72" y="82" text-anchor="end" fill="#64748b" font-family="Inter,sans-serif" font-size="11">75%</text>
+  <rect x="130" y="187" width="90" height="41" fill="#10b981" rx="4"/>
+  <text x="175" y="179" text-anchor="middle" fill="#10b981" font-family="Inter,sans-serif" font-size="17" font-weight="700">23%</text>
+  <text x="175" y="250" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="12">Small Business</text>
+  <rect x="235" y="131" width="90" height="97" fill="#3b82f6" rx="4"/>
+  <text x="280" y="123" text-anchor="middle" fill="#3b82f6" font-family="Inter,sans-serif" font-size="17" font-weight="700">54%</text>
+  <text x="280" y="250" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="12">Mid-Market</text>
+  <rect x="340" y="87" width="90" height="141" fill="#8b5cf6" rx="4"/>
+  <text x="385" y="79" text-anchor="middle" fill="#8b5cf6" font-family="Inter,sans-serif" font-size="17" font-weight="700">78%</text>
+  <text x="385" y="250" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="12">Enterprise</text>
+</svg>
+</div>
 
     <p>Here's what makes this moment different: the technology has finally caught up to the need. AI agents today can be deployed in weeks, not months. They can handle the repetitive, time-consuming work that keeps your team from focusing on growth. And they cost a fraction of what enterprise solutions did just three years ago.</p>
 
@@ -175,7 +198,7 @@
     
     <p>This isn't science fiction. These capabilities exist today, and they're accessible to businesses of any size.</p>
 
-    <div class="inline-image">🤖</div>
+    <div class="inline-image"><img src="https://images.unsplash.com/photo-1531746790095-e5cb57f6786e?w=720&h=300&fit=crop" alt="AI technology" style="width:100%;height:100%;object-fit:cover;"></div>
 
     <h2>The Implementation Reality</h2>
     
@@ -248,15 +271,15 @@
 <section class="related-posts">
   <h3>Related Articles</h3>
   <div class="related-grid">
-    <a href="calculating-ai-roi.html" class="related-card">
+    <a href="calculating-ai-roi" class="related-card">
       <h4>Calculating the Real ROI of AI Automation</h4>
       <p>A practical framework for measuring what AI agents actually return.</p>
     </a>
-    <a href="implementation-timeline.html" class="related-card">
+    <a href="implementation-timeline" class="related-card">
       <h4>From Zero to AI: A Realistic Timeline</h4>
       <p>What a successful AI rollout actually looks like.</p>
     </a>
-    <a href="common-ai-mistakes.html" class="related-card">
+    <a href="common-ai-mistakes" class="related-card">
       <h4>7 AI Implementation Mistakes to Avoid</h4>
       <p>Learn from others' failures before making your own.</p>
     </a>

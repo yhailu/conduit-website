@@ -31,8 +31,9 @@
       width: 100%; height: 400px;
       background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-card) 100%);
       border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .article-image-inner img { width:100%; height:100%; object-fit:cover; }
 
     .article-content { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
     .article-content p { font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 24px; }
@@ -57,8 +58,9 @@
       width: 100%; margin: 32px 0; border-radius: var(--radius);
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
       height: 300px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
     }
+    .inline-image img { width:100%; height:100%; object-fit:cover; }
 
     .article-footer {
       max-width: 720px; margin: 0 auto; padding: 24px 24px 48px;
@@ -98,7 +100,7 @@
 <nav id="site-nav"></nav>
 <article>
   <header class="article-hero"><div class="article-hero-inner"><span class="article-category">Operations</span><h1>The Art of Human-AI Handoff: When Automation Steps Aside</h1><div class="article-meta"><span>📅 February 5, 2026</span><span>⏱️ 10 min read</span></div></div></header>
-  <div class="article-image"><div class="article-image-inner">🤝</div></div>
+  <div class="article-image"><div class="article-image-inner"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&h=500&fit=crop" alt="Human and AI teamwork" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div></div>
   <div class="article-content">
     <p>The goal of AI automation isnt to eliminate human involvement—its to ensure human involvement happens where it matters most.</p>
     <p>The best AI systems know their limits. They handle routine cases brilliantly and hand off complex situations seamlessly. Getting this handoff right is often the difference between AI that helps and AI that frustrates.</p>
@@ -122,7 +124,7 @@
       <li><strong>Clear expectations:</strong> Customer knows what happens next</li>
     </ul>
 
-    <div class="inline-image">🔄</div>
+    <div class="inline-image"><img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=720&h=300&fit=crop" alt="Team collaboration" style="width:100%;height:100%;object-fit:cover;"></div>
 
     <h2>The Information Package</h2>
     <p>When escalating, AI should provide:</p>
