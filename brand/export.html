@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OrchestraFlow — Logo Export</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Inter, -apple-system, sans-serif; background:#f8fafb; padding:2rem; color:#0f172a; }
+  h1 { margin-bottom:.5rem; }
+  .sub { color:#64748b; margin-bottom:2rem; }
+  .section { margin-bottom:3rem; }
+  .section h2 { font-size:1.2rem; margin-bottom:1rem; }
+  .row { display:flex; gap:1.5rem; flex-wrap:wrap; align-items:flex-start; margin-bottom:1rem; }
+  .item { text-align:center; }
+  .item canvas { border:1px solid #e2e8f0; border-radius:8px; margin-bottom:8px; }
+  .item .label { font-size:.75rem; color:#64748b; margin-bottom:4px; }
+  .item a { display:inline-block; padding:6px 14px; background:#10b981; color:#fff; border-radius:6px; font-size:.8rem; font-weight:600; text-decoration:none; cursor:pointer; }
+  .item a:hover { background:#059669; }
+  .dark canvas { background:#0a0a0f; }
+  .light canvas { background:#ffffff; }
+  .note { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:1rem; font-size:.85rem; color:#166534; margin-top:2rem; }
+</style>
+</head>
+<body>
+
+<h1>🎨 OrchestraFlow Logo Export</h1>
+<p class="sub">Click "Download PNG" to save each version. Right-click canvas to copy image.</p>
+
+<div class="section">
+<h2>🟩 Icon Only (for profile pics, favicons, app icons)</h2>
+<p style="color:#64748b; font-size:.85rem; margin-bottom:1rem;">Best for: Twitter/X, Discord, Slack, app store icons</p>
+<div class="row">
+  <div class="item light"><div class="label">512×512 Light</div><canvas id="icon-light-512" width="512" height="512"></canvas><br><a onclick="dl('icon-light-512','orchestraflow-icon-light-512.png')">Download PNG</a></div>
+  <div class="item dark"><div class="label">512×512 Dark</div><canvas id="icon-dark-512" width="512" height="512"></canvas><br><a onclick="dl('icon-dark-512','orchestraflow-icon-dark-512.png')">Download PNG</a></div>
+  <div class="item light"><div class="label">256×256 Light</div><canvas id="icon-light-256" width="256" height="256"></canvas><br><a onclick="dl('icon-light-256','orchestraflow-icon-light-256.png')">Download PNG</a></div>
+  <div class="item dark"><div class="label">256×256 Dark</div><canvas id="icon-dark-256" width="256" height="256"></canvas><br><a onclick="dl('icon-dark-256','orchestraflow-icon-dark-256.png')">Download PNG</a></div>
+  <div class="item light"><div class="label">128×128 Light</div><canvas id="icon-light-128" width="128" height="128"></canvas><br><a onclick="dl('icon-light-128','orchestraflow-icon-light-128.png')">Download PNG</a></div>
+  <div class="item dark"><div class="label">128×128 Dark</div><canvas id="icon-dark-128" width="128" height="128"></canvas><br><a onclick="dl('icon-dark-128','orchestraflow-icon-dark-128.png')">Download PNG</a></div>
+</div>
+</div>
+
+<div class="section">
+<h2>📐 Icon + Wordmark (for headers, cover photos, email signatures)</h2>
+<p style="color:#64748b; font-size:.85rem; margin-bottom:1rem;">Best for: LinkedIn banner, Twitter header, email footer, website</p>
+<div class="row">
+  <div class="item light"><div class="label">800×200 Light</div><canvas id="full-light-800" width="800" height="200"></canvas><br><a onclick="dl('full-light-800','orchestraflow-full-light-800.png')">Download PNG</a></div>
+  <div class="item dark"><div class="label">800×200 Dark</div><canvas id="full-dark-800" width="800" height="200"></canvas><br><a onclick="dl('full-dark-800','orchestraflow-full-dark-800.png')">Download PNG</a></div>
+</div>
+<div class="row">
+  <div class="item light"><div class="label">400×100 Light</div><canvas id="full-light-400" width="400" height="100"></canvas><br><a onclick="dl('full-light-400','orchestraflow-full-light-400.png')">Download PNG</a></div>
+  <div class="item dark"><div class="label">400×100 Dark</div><canvas id="full-dark-400" width="400" height="100"></canvas><br><a onclick="dl('full-dark-400','orchestraflow-full-dark-400.png')">Download PNG</a></div>
+</div>
+</div>
+
+<div class="note">
+<strong>My recommendation:</strong> Use the <strong>icon only</strong> (no text) for profile pictures and app icons — it's cleaner at small sizes and more recognizable. Use the <strong>icon + wordmark</strong> for cover photos, email signatures, and anywhere the brand name needs to be visible. The dark background version pops more on social media feeds.
+</div>
+
+<script>
+function drawIcon(canvasId, size, dark) {
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext('2d');
+  const s = size / 64;
+
+  if (dark) {
+    ctx.fillStyle = '#0a0a0f';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, size, size, size * 0.12);
+    ctx.fill();
+  } else {
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, size, size, size * 0.12);
+    ctx.fill();
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Step 1 (bottom-left, faded)
+  ctx.globalAlpha = 0.4;
+  ctx.fillStyle = '#10b981';
+  ctx.beginPath();
+  ctx.roundRect(6*s, 38*s, 14*s, 14*s, 4*s);
+  ctx.fill();
+
+  // Step 2 (middle)
+  ctx.globalAlpha = 0.65;
+  ctx.beginPath();
+  ctx.roundRect(25*s, 26*s, 14*s, 14*s, 4*s);
+  ctx.fill();
+
+  // Step 3 (top-right, solid)
+  ctx.globalAlpha = 1;
+  ctx.beginPath();
+  ctx.roundRect(44*s, 14*s, 14*s, 14*s, 4*s);
+  ctx.fill();
+
+  // Connecting lines
+  ctx.globalAlpha = 0.4;
+  ctx.strokeStyle = '#10b981';
+  ctx.lineWidth = 2*s;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(20*s, 42*s);
+  ctx.lineTo(25*s, 36*s);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(39*s, 30*s);
+  ctx.lineTo(44*s, 24*s);
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+}
+
+function drawFull(canvasId, w, h, dark) {
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext('2d');
+  const iconSize = h * 0.7;
+  const s = iconSize / 64;
+  const iconY = (h - iconSize) / 2;
+  const iconX = h * 0.2;
+
+  if (dark) {
+    ctx.fillStyle = '#0a0a0f';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, w, h, h * 0.1);
+    ctx.fill();
+  } else {
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, w, h, h * 0.1);
+    ctx.fill();
+  }
+
+  ctx.save();
+  ctx.translate(iconX, iconY);
+
+  ctx.globalAlpha = 0.4;
+  ctx.fillStyle = '#10b981';
+  ctx.beginPath();
+  ctx.roundRect(6*s, 38*s, 14*s, 14*s, 4*s);
+  ctx.fill();
+
+  ctx.globalAlpha = 0.65;
+  ctx.beginPath();
+  ctx.roundRect(25*s, 26*s, 14*s, 14*s, 4*s);
+  ctx.fill();
+
+  ctx.globalAlpha = 1;
+  ctx.beginPath();
+  ctx.roundRect(44*s, 14*s, 14*s, 14*s, 4*s);
+  ctx.fill();
+
+  ctx.globalAlpha = 0.4;
+  ctx.strokeStyle = '#10b981';
+  ctx.lineWidth = 2*s;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(20*s, 42*s); ctx.lineTo(25*s, 36*s);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(39*s, 30*s); ctx.lineTo(44*s, 24*s);
+  ctx.stroke();
+  ctx.restore();
+
+  // Text
+  ctx.globalAlpha = 1;
+  const fontSize = h * 0.28;
+  ctx.font = `800 ${fontSize}px Inter, -apple-system, sans-serif`;
+  ctx.fillStyle = dark ? '#f0f0f5' : '#0f172a';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('orchestraflow', iconX + iconSize + h*0.15, h/2 + 2);
+}
+
+// Render all
+drawIcon('icon-light-512', 512, false);
+drawIcon('icon-dark-512', 512, true);
+drawIcon('icon-light-256', 256, false);
+drawIcon('icon-dark-256', 256, true);
+drawIcon('icon-light-128', 128, false);
+drawIcon('icon-dark-128', 128, true);
+
+drawFull('full-light-800', 800, 200, false);
+drawFull('full-dark-800', 800, 200, true);
+drawFull('full-light-400', 400, 100, false);
+drawFull('full-dark-400', 400, 100, true);
+
+function dl(id, filename) {
+  const c = document.getElementById(id);
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = c.toDataURL('image/png');
+  link.click();
+}
+</script>
+</body>
+</html>
