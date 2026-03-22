@@ -3,335 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Services AI Solutions | ORCHESTRAFLOW</title>
+  <title>Home Services AI Solutions — OrchestraFlow</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Crect x='6' y='38' width='14' height='14' rx='4' fill='%2310b981' opacity='0.4'/%3E%3Crect x='25' y='26' width='14' height='14' rx='4' fill='%2310b981' opacity='0.65'/%3E%3Crect x='44' y='14' width='14' height='14' rx='4' fill='%2310b981'/%3E%3Cline x1='20' y1='42' x2='25' y2='36' stroke='%2310b981' stroke-width='2' stroke-linecap='round' opacity='0.4'/%3E%3Cline x1='39' y1='30' x2='44' y2='24' stroke='%2310b981' stroke-width='2' stroke-linecap='round' opacity='0.4'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared.css">
   <style>
-    :root {
-      --bg: #0a0a0f; --bg-elevated: #12121a; --bg-card: #1a1a24; --bg-subtle: #0f0f14;
-      --border: rgba(255, 255, 255, 0.08); --border-hover: rgba(255, 255, 255, 0.15);
-      --text: #f8fafc; --text-secondary: #a1a1aa; --text-muted: #71717a;
-      --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
-      --accent-subtle: rgba(59, 130, 246, 0.15);
-      --success: #22c55e; --green: #22c55e; --green-bg: rgba(34, 197, 94, 0.15);
-      --purple: #a855f7; --purple-bg: rgba(168, 85, 247, 0.15);
-      --orange: #f97316; --orange-bg: rgba(249, 115, 22, 0.15);
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
-    .logo-mark { width: 36px; height: 36px; }
-    .logo-mark svg { width: 100%; height: 100%; }
-    .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
-
-    .btn { display: inline-block; padding: 0.65rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
-    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(59,130,246,0.3); }
-    .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
-
-    /* Hero */
-    .hero { display: flex; align-items: center; gap: 4rem; max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
-    .hero-content { flex: 1; }
-    .hero-badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 100px; background: var(--orange-bg); color: var(--orange); font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(249,115,22,0.2); }
-    .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
-    .hero h1 span { background: linear-gradient(135deg, var(--accent-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; }
-
-    /* Chat Demo */
-    .chat-demo { flex: 1; max-width: 400px; }
-    .chat-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); }
-    .chat-header { background: var(--bg-elevated); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); }
-    .chat-status { width: 8px; height: 8px; background: var(--green); border-radius: 50%; }
-    .chat-title { font-size: 0.85rem; font-weight: 600; }
-    .chat-badge { margin-left: auto; padding: 0.2rem 0.6rem; border-radius: 100px; background: var(--orange-bg); color: var(--orange); font-size: 0.65rem; font-weight: 700; }
-    .chat-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; min-height: 280px; }
-    .msg { max-width: 80%; padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.5; }
-    .msg-in { background: var(--bg-elevated); align-self: flex-start; border-bottom-left-radius: 4px; }
-    .msg-out { background: var(--accent-dark); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .msg-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem; }
-    .msg-time.right { text-align: right; }
-
-    /* Sections */
-    .section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
-    .section-title { font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; }
-    .section-sub { text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-    /* Feature Grid */
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
-    .feature-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .feature-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
-    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .feature-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
-
-    /* App Grid */
-    .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-    .app-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
-    .app-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .app-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .app-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
-    .app-card ul { list-style: none; }
-    .app-card li { font-size: 0.82rem; color: var(--text-muted); padding: 0.15rem 0; }
-    .app-card li::before { content: "✓ "; color: var(--green); font-weight: 700; }
-
-    /* Testimonials */
-    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
-    .testimonial-quote { font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; }
-    .testimonial-quote::before { content: "\201C"; font-size: 2rem; color: var(--accent); line-height: 0; vertical-align: -0.5rem; margin-right: 0.25rem; }
+    .testimonial { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; max-width: 700px; margin: 0 auto; }
+    .testimonial blockquote { font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); font-style: italic; margin-bottom: 16px; }
+    .testimonial blockquote::before { content: "\201C"; font-size: 2.5rem; color: var(--accent-light); line-height: 0; vertical-align: -0.6rem; margin-right: 4px; }
     .testimonial-author { font-weight: 700; font-size: 0.9rem; }
     .testimonial-role { font-size: 0.8rem; color: var(--text-muted); }
-
-    /* CTA */
-    .cta-section { background: var(--bg-elevated); border-top: 1px solid var(--border); padding: 5rem 2rem; text-align: center; }
-    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .cta-section p { color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-
-    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
-
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .hero { flex-direction: column; padding-top: 4rem; gap: 2rem; }
-      .hero h1 { font-size: 2rem; }
-      .chat-demo { max-width: 100%; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .app-grid { grid-template-columns: 1fr; }
-      .testimonial-grid { grid-template-columns: 1fr; }
-      .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-    }
-    @media (max-width: 1024px) and (min-width: 769px) {
-      .feature-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+    .trust-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 20px; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-      </svg>
-    </div>
-    <span class="logo-text">orchestraflow</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="/#features">Features</a></li>
-    <li><a href="./">Industries</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/blog">Blog</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a href="/consultation" class="btn btn-primary">Request Consultation</a>
-  </div>
-</nav>
+  <nav id="site-nav"></nav>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">🔧 Home Services</div>
-    <h1>AI for <span>Home Service Businesses</span></h1>
-    <p>Smart dispatching, instant scheduling, and customer communication that keeps your crews busy and your customers happy. Built for HVAC, plumbing, electrical, and more.</p>
-  </div>
-  <div class="chat-demo">
-    <div class="chat-widget">
-      <div class="chat-header">
-        <div class="chat-status"></div>
-        <div class="chat-title">OrchestraFlow Service Assistant</div>
-        <div class="chat-badge">Emergency Ready</div>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-badge">🏠 Home & Field Services</div>
+      <h1>AI That Keeps Your <span class="accent">Crews Moving</span></h1>
+      <p>Automate dispatch, booking, and customer communication so your techs stay in the field — not on the phone.</p>
+      <div class="hero-buttons">
+        <a href="/consultation" class="btn btn-primary btn-lg">Request Consultation →</a>
+        <a href="/solutions" class="btn btn-ghost btn-lg">View Solutions</a>
       </div>
-      <div class="chat-body">
-        <div class="msg msg-in">My water heater is leaking badly and there's water all over the basement floor! I need help ASAP.</div>
-        <div class="msg-time">8:12 PM</div>
-        <div class="msg msg-out">I understand this is urgent — a leaking water heater needs immediate attention. First, can you turn off the water supply valve near the heater? What's your address so I can dispatch our emergency crew?</div>
-        <div class="msg-time right">8:12 PM</div>
-        <div class="msg msg-in">I turned it off. I'm at 742 Maple Drive, Springfield.</div>
-        <div class="msg-time">8:13 PM</div>
-        <div class="msg msg-out">Great thinking shutting off the valve. I'm dispatching our emergency plumber now — they'll be at 742 Maple Drive within 45 minutes. You'll get a text with their name and live ETA. Is there anything else I can help with?</div>
-        <div class="msg-time right">8:13 PM</div>
-        <div class="msg msg-in">That's amazing, thank you so much!</div>
-        <div class="msg-time">8:14 PM</div>
+      <p class="trust-note">Trusted by plumbers, electricians, HVAC companies & more</p>
+    </div>
+  </section>
+
+  <!-- Agent Demo -->
+  <section class="section">
+    <div class="container">
+      <div class="agent-demo fade-in">
+        <div class="agent-widget">
+          <div class="agent-header">
+            <div class="agent-avatar">🔧</div>
+            <div class="agent-info"><h4>Dispatch Agent</h4><span class="agent-live"><span class="agent-dot"></span>Live</span></div>
+          </div>
+          <div class="agent-chat">
+            <div class="agent-msg agent-user msg-1">My AC stopped working and it's 95 degrees</div>
+            <div class="agent-msg agent-bot msg-2">I'm sorry to hear that! I have a certified HVAC tech available <strong>today at 2pm</strong>. He's 15 minutes from your location. Want me to book him?</div>
+            <div class="agent-msg agent-user msg-3">Yes please, ASAP</div>
+            <div class="agent-msg agent-bot msg-4">Done! ✅ Tech Mike is confirmed for 2pm. You'll get a text when he's on his way with a live ETA tracker.</div>
+          </div>
+          <div class="agent-metrics">
+            <div class="agent-metric"><span class="metric-num">35%</span><span class="metric-label">↑ Bookings</span></div>
+            <div class="agent-metric"><span class="metric-num">&lt;30s</span><span class="metric-label">Response</span></div>
+            <div class="agent-metric"><span class="metric-num">24/7</span><span class="metric-label">Available</span></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section fade-in">
-  <h2 class="section-title">Industry-Specific Features</h2>
-  <p class="section-sub">Purpose-built capabilities for home service businesses of every trade.</p>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🚛</div>
-      <h3>Smart Dispatching</h3>
-      <p>AI-powered job assignment based on technician location, skills, and availability. Minimize drive time, maximize jobs.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📅</div>
-      <h3>Appointment Scheduling</h3>
-      <p>Let customers book and reschedule appointments 24/7. Automatic confirmation and reminder texts.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">💲</div>
-      <h3>Quote Generation</h3>
-      <p>Instant preliminary estimates based on job type and scope. Reduce quote turnaround from days to minutes.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⭐</div>
-      <h3>Customer Follow-up</h3>
-      <p>Automated post-service check-ins, satisfaction surveys, and maintenance reminders that drive repeat business.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🌟</div>
-      <h3>Review Management</h3>
-      <p>Prompt happy customers to leave reviews at the right moment. Monitor and respond to feedback across platforms.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🚨</div>
-      <h3>Emergency Routing</h3>
-      <p>Priority routing for urgent requests with automatic escalation and real-time customer updates on technician arrival.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section fade-in" style="background: var(--bg-elevated); max-width: 100%; padding: 5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 class="section-title">Industry Applications</h2>
-    <p class="section-sub">See how home service businesses are using OrchestraFlow across trades.</p>
-    <div class="app-grid">
-      <div class="app-card">
-        <h3>❄️ HVAC Companies</h3>
-        <p>Keep customers comfortable year-round.</p>
-        <ul>
-          <li>Seasonal maintenance reminders</li>
-          <li>Emergency prioritization</li>
-          <li>Warranty tracking automation</li>
-        </ul>
+  <!-- Features -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">⚡ Capabilities</div>
+        <h2 class="section-title">How AI Transforms <span class="muted">Home Services</span></h2>
+        <p class="section-subtitle">From the first call to the follow-up review, automate every customer touchpoint.</p>
       </div>
-      <div class="app-card">
-        <h3>🔧 Plumbing Services</h3>
-        <p>Respond faster to water emergencies.</p>
-        <ul>
-          <li>Emergency triage and dispatch</li>
-          <li>Parts inventory checking</li>
-          <li>Service agreement management</li>
-        </ul>
-      </div>
-      <div class="app-card">
-        <h3>⚡ Electrical Contractors</h3>
-        <p>Manage residential and commercial work efficiently.</p>
-        <ul>
-          <li>Permit tracking assistance</li>
-          <li>Safety inspection scheduling</li>
-          <li>Multi-property management</li>
-        </ul>
-      </div>
-      <div class="app-card">
-        <h3>🧹 Cleaning Services</h3>
-        <p>Scale recurring service operations.</p>
-        <ul>
-          <li>Recurring booking management</li>
-          <li>Staff schedule optimization</li>
-          <li>Supply inventory alerts</li>
-        </ul>
+      <div class="grid-2 fade-in">
+        <div class="card"><div class="card-icon" style="background:var(--green-bg); color:var(--green);">📞</div><div class="card-title">24/7 Call Handling</div><div class="card-desc">Never miss a service call. AI answers, qualifies the job, and books the right tech — even at 2am on a Sunday.</div></div>
+        <div class="card"><div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">📋</div><div class="card-title">Smart Dispatch</div><div class="card-desc">Auto-assign jobs based on tech location, skill set, and availability. Optimize routes to fit more jobs per day.</div></div>
+        <div class="card"><div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">💬</div><div class="card-title">Customer Updates</div><div class="card-desc">Automated ETA texts, appointment reminders, and post-service follow-ups. Keep customers informed without manual effort.</div></div>
+        <div class="card"><div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">⭐</div><div class="card-title">Review Collection</div><div class="card-desc">Automatically request reviews after completed jobs. Route happy customers to Google, handle concerns privately.</div></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section fade-in">
-  <h2 class="section-title">What Service Business Leaders Say</h2>
-  <p class="section-sub">Real results from real home service businesses.</p>
-  <div class="testimonial-grid">
-    <div class="testimonial-card">
-      <p class="testimonial-quote">Before OrchestraFlow, we missed about 30% of after-hours calls. Now every call gets answered instantly, emergencies get dispatched immediately, and routine calls get scheduled for the next day. Revenue is up 25%.</p>
-      <div class="testimonial-author">Mike Rodriguez</div>
-      <div class="testimonial-role">Owner, AllStar Plumbing</div>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-quote">The automated follow-up system alone has been worth it. Our Google reviews went from 3.8 to 4.7 stars in six months because the AI asks for reviews right when customers are happiest.</p>
-      <div class="testimonial-author">Jennifer Walsh</div>
-      <div class="testimonial-role">GM, ComfortZone HVAC</div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-section fade-in">
-  <h2>Ready to Grow Your Service Business?</h2>
-  <p>Join home service businesses using OrchestraFlow to book more jobs and delight more customers.</p>
-  <a href="/consultation" class="btn btn-primary btn-lg">Get Started Free</a>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <a href="/" class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-          <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-          <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-          <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-        </svg>
+  <!-- Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-bar fade-in">
+        <div class="stat-item"><div class="stat-num">35%</div><div class="stat-label">More Bookings</div></div>
+        <div class="stat-item"><div class="stat-num">50%</div><div class="stat-label">Fewer Missed Calls</div></div>
+        <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Availability</div></div>
+        <div class="stat-item"><div class="stat-num">4.8★</div><div class="stat-label">Avg Review Score</div></div>
       </div>
-      <span class="logo-text">orchestraflow</span>
-    </a>
-    <div class="footer-links">
-      <a href="/#about">About</a>
-      <a href="/#features">Features</a>
-      <a href="./">Industries</a>
-      <a href="/blog">Blog</a>
-      <a href="#">Contact</a>
     </div>
-    <div class="footer-copy">© 2026 OrchestraFlow AI, Inc.</div>
-  </div>
-</footer>
+  </section>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+  <!-- Use Cases -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎯 Use Cases</div>
+        <h2 class="section-title">Built for <span class="muted">Field Service Teams</span></h2>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card"><div class="card-title">🔧 Emergency Dispatch</div><div class="card-desc">AI triages urgency, finds the nearest available tech, and books same-day service automatically.</div></div>
+        <div class="card"><div class="card-title">📅 Appointment Booking</div><div class="card-desc">Customers book online or by phone 24/7. AI handles scheduling, confirmations, and rescheduling.</div></div>
+        <div class="card"><div class="card-title">💰 Quote Follow-Up</div><div class="card-desc">Automatically follow up on pending quotes with personalized messages to close more jobs.</div></div>
+        <div class="card"><div class="card-title">📊 Job Tracking</div><div class="card-desc">Real-time updates for customers on tech arrival, job status, and completion — no phone calls needed.</div></div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Testimonial -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">What <span class="muted">Contractors Say</span></h2>
+      </div>
+      <div class="testimonial fade-in">
+        <blockquote>We used to miss 40% of after-hours calls. Now every call gets answered and booked automatically. Our revenue jumped 28% in the first quarter.</blockquote>
+        <div class="testimonial-author">Jake Morrison</div>
+        <div class="testimonial-role">Owner, Morrison Plumbing & HVAC</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Book More Jobs?</h2>
+      <p>See how AI can keep your phones answered and your techs busy.</p>
+      <a href="/consultation" class="btn btn-primary btn-lg">Request Consultation →</a>
+      <div class="cta-guarantees">
+        <span class="cta-guarantee"><span class="check">✓</span> 2-week setup</span>
+        <span class="cta-guarantee"><span class="check">✓</span> Works with your dispatch software</span>
+        <span class="cta-guarantee"><span class="check">✓</span> No long-term contracts</span>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <script src="../js/shared.js"></script>
 </body>
 </html>
