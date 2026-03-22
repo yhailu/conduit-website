@@ -3,335 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Education AI Solutions | ORCHESTRAFLOW</title>
+  <title>Education AI Solutions — OrchestraFlow</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared.css">
   <style>
-    :root {
-      --bg: #0a0a0f; --bg-elevated: #12121a; --bg-card: #1a1a24; --bg-subtle: #0f0f14;
-      --border: rgba(255, 255, 255, 0.08); --border-hover: rgba(255, 255, 255, 0.15);
-      --text: #f8fafc; --text-secondary: #a1a1aa; --text-muted: #71717a;
-      --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
-      --accent-subtle: rgba(59, 130, 246, 0.15);
-      --success: #22c55e; --green: #22c55e; --green-bg: rgba(34, 197, 94, 0.15);
-      --purple: #a855f7; --purple-bg: rgba(168, 85, 247, 0.15);
-      --orange: #f97316; --orange-bg: rgba(249, 115, 22, 0.15);
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
-    .logo-mark { width: 36px; height: 36px; }
-    .logo-mark svg { width: 100%; height: 100%; }
-    .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
-
-    .btn { display: inline-block; padding: 0.65rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
-    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(59,130,246,0.3); }
-    .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
-
-    /* Hero */
-    .hero { display: flex; align-items: center; gap: 4rem; max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
-    .hero-content { flex: 1; }
-    .hero-badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 100px; background: var(--green-bg); color: var(--green); font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(34,197,94,0.2); }
-    .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
-    .hero h1 span { background: linear-gradient(135deg, var(--accent-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; }
-
-    /* Chat Demo */
-    .chat-demo { flex: 1; max-width: 400px; }
-    .chat-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); }
-    .chat-header { background: var(--bg-elevated); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); }
-    .chat-status { width: 8px; height: 8px; background: var(--green); border-radius: 50%; }
-    .chat-title { font-size: 0.85rem; font-weight: 600; }
-    .chat-badge { margin-left: auto; padding: 0.2rem 0.6rem; border-radius: 100px; background: var(--green-bg); color: var(--green); font-size: 0.65rem; font-weight: 700; }
-    .chat-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; min-height: 280px; }
-    .msg { max-width: 80%; padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.5; }
-    .msg-in { background: var(--bg-elevated); align-self: flex-start; border-bottom-left-radius: 4px; }
-    .msg-out { background: var(--accent-dark); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .msg-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem; }
-    .msg-time.right { text-align: right; }
-
-    /* Sections */
-    .section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
-    .section-title { font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; }
-    .section-sub { text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-    /* Feature Grid */
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
-    .feature-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .feature-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
-    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .feature-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
-
-    /* App Grid */
-    .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-    .app-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
-    .app-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .app-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .app-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
-    .app-card ul { list-style: none; }
-    .app-card li { font-size: 0.82rem; color: var(--text-muted); padding: 0.15rem 0; }
-    .app-card li::before { content: "✓ "; color: var(--green); font-weight: 700; }
-
-    /* Testimonials */
-    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
-    .testimonial-quote { font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; }
-    .testimonial-quote::before { content: "\201C"; font-size: 2rem; color: var(--accent); line-height: 0; vertical-align: -0.5rem; margin-right: 0.25rem; }
+    .testimonial { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; max-width: 700px; margin: 0 auto; }
+    .testimonial blockquote { font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); font-style: italic; margin-bottom: 16px; }
+    .testimonial blockquote::before { content: "\201C"; font-size: 2.5rem; color: var(--accent-light); line-height: 0; vertical-align: -0.6rem; margin-right: 4px; }
     .testimonial-author { font-weight: 700; font-size: 0.9rem; }
     .testimonial-role { font-size: 0.8rem; color: var(--text-muted); }
-
-    /* CTA */
-    .cta-section { background: var(--bg-elevated); border-top: 1px solid var(--border); padding: 5rem 2rem; text-align: center; }
-    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .cta-section p { color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-
-    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
-
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .hero { flex-direction: column; padding-top: 4rem; gap: 2rem; }
-      .hero h1 { font-size: 2rem; }
-      .chat-demo { max-width: 100%; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .app-grid { grid-template-columns: 1fr; }
-      .testimonial-grid { grid-template-columns: 1fr; }
-      .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-    }
-    @media (max-width: 1024px) and (min-width: 769px) {
-      .feature-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+    .trust-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 20px; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-      </svg>
-    </div>
-    <span class="logo-text">orchestraflow</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="../index.html#features">Features</a></li>
-    <li><a href="index.html">Industries</a></li>
-    <li><a href="../index.html#about">About</a></li>
-    <li><a href="../blog/index.html">Blog</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a href="../consultation.html" class="btn btn-primary">Request Consultation</a>
-  </div>
-</nav>
+  <!-- Nav -->
+  <nav id="site-nav"></nav>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">🎓 Education</div>
-    <h1>AI-Powered <span>Student Success</span></h1>
-    <p>From enrollment to graduation, automate student communication, streamline admissions, and deliver personalized academic support around the clock.</p>
-  </div>
-  <div class="chat-demo">
-    <div class="chat-widget">
-      <div class="chat-header">
-        <div class="chat-status"></div>
-        <div class="chat-title">OrchestraFlow Edu Assistant</div>
-        <div class="chat-badge">24/7 Support</div>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-badge">🎓 Education & EdTech</div>
+      <h1>AI That Empowers <span class="accent">Student Success</span></h1>
+      <p>Streamline enrollment, support students around the clock, automate administrative tasks, and deliver personalized learning experiences at scale.</p>
+      <div class="hero-buttons">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Transform Your Institution</a>
+        <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
       </div>
-      <div class="chat-body">
-        <div class="msg msg-in">Hi! I'm interested in applying for the Fall 2026 semester. When's the deadline?</div>
-        <div class="msg-time">8:47 PM</div>
-        <div class="msg msg-out">Welcome! The Fall 2026 application deadline is March 1st for early decision and May 15th for regular admission. You'll need your transcripts, a personal statement, and two letters of recommendation.</div>
-        <div class="msg-time right">8:47 PM</div>
-        <div class="msg msg-in">Great! Is there a minimum GPA requirement?</div>
-        <div class="msg-time">8:48 PM</div>
-        <div class="msg msg-out">We recommend a 3.0 GPA, but we review applications holistically. Would you like me to help you start your application right now? I can walk you through each step!</div>
-        <div class="msg-time right">8:48 PM</div>
-        <div class="msg msg-in">Yes, that would be amazing!</div>
-        <div class="msg-time">8:48 PM</div>
+      <p class="trust-note">🎓 FERPA compliant · LMS integrated · Multi-language support · Accessible (WCAG 2.1)</p>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">🎓</div>
+          <div class="agent-info">
+            <h4>Student Support Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">What are the prerequisites for the Data Science program?</div>
+          <div class="agent-msg agent-bot msg-2">For the MS in Data Science, you need: <strong>Calculus I &amp; II</strong>, Linear Algebra, and one programming course (Python preferred). Your transcript shows you have Calc I — you'd need <strong>2 more courses</strong>.</div>
+          <div class="agent-msg agent-user msg-3">Can I take them this summer?</div>
+          <div class="agent-msg agent-bot msg-4">Yes! Summer enrollment opens April 1. I've added you to the notification list and sent the bridge course catalog to your email. ✅</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">35% ↑</span><span class="metric-label">Enrollment</span></div>
+          <div class="agent-metric"><span class="metric-num">80%</span><span class="metric-label">Automated</span></div>
+          <div class="agent-metric"><span class="metric-num">24/7</span><span class="metric-label">Support</span></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+    </div>
+  </section>
 
-<section class="section fade-in">
-  <h2 class="section-title">Industry-Specific Features</h2>
-  <p class="section-sub">Purpose-built capabilities for educational institutions of every size.</p>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="feature-icon">📝</div>
-      <h3>Enrollment Automation</h3>
-      <p>Guide prospective students through applications, document submission, and enrollment steps automatically.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🌙</div>
-      <h3>Student Support 24/7</h3>
-      <p>Instant answers about financial aid, campus resources, course schedules, and academic policies.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📚</div>
-      <h3>Course Recommendations</h3>
-      <p>Personalized course suggestions based on degree requirements, interests, and academic history.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <h3>Administrative Relief</h3>
-      <p>Automate repetitive staff tasks: transcript requests, form processing, and FAQ handling.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">👨‍👩‍👧</div>
-      <h3>Parent Communication</h3>
-      <p>Keep families informed about important dates, academic progress, and campus events.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📊</div>
-      <h3>Learning Analytics</h3>
-      <p>Track engagement patterns, identify at-risk students early, and trigger proactive interventions.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section fade-in" style="background: var(--bg-elevated); max-width: 100%; padding: 5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 class="section-title">Industry Applications</h2>
-    <p class="section-sub">See how educational institutions are using OrchestraFlow.</p>
-    <div class="app-grid">
-      <div class="app-card">
-        <h3>🏛️ Universities</h3>
-        <p>Scale student services across large campuses.</p>
-        <ul>
-          <li>50% reduction in admissions call volume</li>
-          <li>Automated financial aid guidance</li>
-          <li>Multi-department coordination</li>
-        </ul>
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">✨ Capabilities</div>
+        <h2 class="section-title">How AI Transforms <span class="muted">Education</span></h2>
+        <p class="section-subtitle">From admissions to alumni engagement — AI supports every stage of the student journey.</p>
       </div>
-      <div class="app-card">
-        <h3>🏫 K-12 Schools</h3>
-        <p>Streamline parent-teacher-admin communication.</p>
-        <ul>
-          <li>Attendance notification automation</li>
-          <li>Parent conference scheduling</li>
-          <li>Emergency communication system</li>
-        </ul>
-      </div>
-      <div class="app-card">
-        <h3>💻 Online Learning Platforms</h3>
-        <p>Support learners across time zones.</p>
-        <ul>
-          <li>Instant course navigation help</li>
-          <li>Progress tracking and nudges</li>
-          <li>Completion rate improvement</li>
-        </ul>
-      </div>
-      <div class="app-card">
-        <h3>🏢 Training Organizations</h3>
-        <p>Manage corporate and professional development programs.</p>
-        <ul>
-          <li>Automated certification tracking</li>
-          <li>Course enrollment workflows</li>
-          <li>Compliance training reminders</li>
-        </ul>
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <div class="card-icon" style="background: var(--orange-bg);">📚</div>
+          <div class="card-title">24/7 Student Support</div>
+          <div class="card-desc">AI answers student questions about courses, deadlines, financial aid, campus resources, and academic requirements — instantly, in any language, at any hour. No more waiting for office hours.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--blue-bg);">📝</div>
+          <div class="card-title">Enrollment Acceleration</div>
+          <div class="card-desc">Guide prospective students through the application process, answer admissions questions, schedule campus tours, send deadline reminders, and nurture leads from inquiry to enrollment.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--green-bg);">🧭</div>
+          <div class="card-title">Personalized Learning Guidance</div>
+          <div class="card-desc">AI recommends courses, study resources, and academic pathways based on each student's goals, performance, and interests — creating truly personalized education experiences.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--purple-bg);">⚙️</div>
+          <div class="card-title">Administrative Automation</div>
+          <div class="card-desc">Automate transcript requests, schedule changes, event registrations, and routine inquiries. Free up staff time for the human connections that matter most in education.</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section fade-in">
-  <h2 class="section-title">What Education Leaders Say</h2>
-  <p class="section-sub">Real results from real educational institutions.</p>
-  <div class="testimonial-grid">
-    <div class="testimonial-card">
-      <p class="testimonial-quote">Our admissions team was drowning in inquiries. OrchestraFlow now handles initial outreach for 65% of prospective students, and our enrollment rate actually went up.</p>
-      <div class="testimonial-author">Dr. Rachel Torres</div>
-      <div class="testimonial-role">VP of Enrollment, Westfield University</div>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-quote">Students get instant answers at 2 AM during finals week instead of waiting for office hours. It's been a game-changer for student satisfaction.</p>
-      <div class="testimonial-author">James Liu</div>
-      <div class="testimonial-role">Director of Student Services, Lakeview Community College</div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-section fade-in">
-  <h2>Ready to Transform Student Communication?</h2>
-  <p>Join forward-thinking institutions using OrchestraFlow to deliver better student experiences.</p>
-  <a href="../consultation.html" class="btn btn-primary btn-lg">Get Started Free</a>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <a href="../index.html" class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-          <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-          <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-          <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-        </svg>
+  <!-- Stats -->
+  <section class="section section-alt">
+    <div class="container fade-in">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">35%</div>
+          <div class="stat-label">More Enrollments</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">80%</div>
+          <div class="stat-label">Query Automation</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Student Support</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50%</div>
+          <div class="stat-label">Less Admin Work</div>
+        </div>
       </div>
-      <span class="logo-text">orchestraflow</span>
-    </a>
-    <div class="footer-links">
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#features">Features</a>
-      <a href="index.html">Industries</a>
-      <a href="../blog/index.html">Blog</a>
-      <a href="#">Contact</a>
     </div>
-    <div class="footer-copy">© 2026 OrchestraFlow AI, Inc.</div>
-  </div>
-</footer>
+  </section>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+  <!-- Use Cases -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎯 Use Cases</div>
+        <h2 class="section-title">Education <span class="muted">Workflows</span></h2>
+        <p class="section-subtitle">From first inquiry to graduation — AI supports the complete student lifecycle.</p>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <div class="card-icon" style="background: var(--orange-bg);">🏫</div>
+          <div class="card-title">Admissions & Recruitment</div>
+          <div class="card-desc">AI engages prospective students instantly — answering program questions, checking eligibility, scheduling tours, sending application reminders, and nurturing leads through the enrollment funnel.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--blue-bg);">📖</div>
+          <div class="card-title">Course Recommendations</div>
+          <div class="card-desc">Based on academic history, career goals, and degree requirements, AI suggests optimal course selections, identifies prerequisites, and helps students plan their path to graduation efficiently.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--green-bg);">🎒</div>
+          <div class="card-title">Student Services</div>
+          <div class="card-desc">Handle transcript requests, registration changes, financial aid questions, library inquiries, and campus event sign-ups — all automated with instant responses and seamless handoff when needed.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--purple-bg);">👨‍👩‍👧</div>
+          <div class="card-title">Parent Communications</div>
+          <div class="card-desc">Keep families informed with automated updates on important dates, tuition deadlines, student progress reports, and event invitations — maintaining engagement without overwhelming your staff.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Testimonial -->
+  <section class="section section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <div class="section-badge">💬 Client Story</div>
+      </div>
+      <div class="testimonial">
+        <blockquote>Our admissions team was drowning in repetitive inquiries. OrchestraFlow now handles 80% of prospective student questions automatically, and our enrollment rate is up 35%. The students love getting instant answers at 2 AM during finals week.</blockquote>
+        <div class="testimonial-author">Dr. Angela Torres</div>
+        <div class="testimonial-role">Dean of Student Affairs, Pacific Ridge University — Seattle, WA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container fade-in">
+      <h2>Ready to Transform Student Experiences?</h2>
+      <p>Join forward-thinking institutions using AI to improve outcomes while reducing administrative burden.</p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Schedule a Demo</a>
+        <a href="index.html" class="btn btn-ghost btn-lg">View All Industries</a>
+      </div>
+      <div class="cta-guarantees">
+        <span class="cta-guarantee"><span class="check">✓</span> FERPA compliant</span>
+        <span class="cta-guarantee"><span class="check">✓</span> LMS integration</span>
+        <span class="cta-guarantee"><span class="check">✓</span> Pilot program available</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
 </body>
 </html>

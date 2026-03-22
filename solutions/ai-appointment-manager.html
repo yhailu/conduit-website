@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Appointment Manager — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .feature-card { text-align: center; padding: 32px 20px; }
+    .feature-card .card-icon { margin: 0 auto 16px; }
+    .use-case-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    .use-case-item { display: flex; align-items: flex-start; gap: 12px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .use-case-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .use-case-title { font-weight: 700; margin-bottom: 4px; }
+    .use-case-desc { font-size: 0.85rem; color: var(--text-secondary); }
+    @media (max-width: 1024px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .feature-grid, .use-case-list { grid-template-columns: 1fr; } }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">📅 AI Appointment Manager</div>
+    <h1>Smart Scheduling.<br><span class="accent">60% Fewer No-Shows.</span></h1>
+    <p>Your AI agent handles the entire booking lifecycle — from finding the right slot to sending reminders — across every timezone and calendar.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="../consultation.html" class="btn btn-primary btn-lg">Automate Scheduling →</a>
+      <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
+    </div>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">📅</div>
+          <div class="agent-info">
+            <h4>Scheduling Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">I need to reschedule my Tuesday appointment</div>
+          <div class="agent-msg agent-bot msg-2">I see your Tuesday 10am with Dr. Kim. Available slots: <strong>Wed 2pm</strong>, <strong>Thu 9am</strong>, or <strong>Fri 11am</strong>. Which works best?</div>
+          <div class="agent-msg agent-user msg-3">Thursday 9am please</div>
+          <div class="agent-msg agent-bot msg-4">Rescheduled! ✅ Dr. Kim confirmed for Thu 9am. I've sent calendar updates to both of you and a reminder for 1 hour before.</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">94%</span><span class="metric-label">Book Rate</span></div>
+          <div class="agent-metric"><span class="metric-num">1,284</span><span class="metric-label">Bookings</span></div>
+          <div class="agent-metric"><span class="metric-num">0</span><span class="metric-label">Conflicts</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section">
+  <div class="container">
+    <div class="stats-bar fade-in">
+      <div class="stat-item">
+        <div class="stat-num">1,284</div>
+        <div class="stat-label">Bookings / day</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">94%</div>
+        <div class="stat-label">Book rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">60%</div>
+        <div class="stat-label">Fewer no-shows</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Calendar integrations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section section-alt" id="features">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">⚡ Key Features</div>
+      <h2 class="section-title">Scheduling on <span class="muted">Autopilot</span></h2>
+      <p class="section-subtitle">Intelligent appointment management that eliminates double-bookings, no-shows, and timezone confusion.</p>
+    </div>
+
+    <div class="feature-grid fade-in">
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">🔄</div>
+        <div class="card-title">Calendar Sync</div>
+        <div class="card-desc">Real-time sync with Google Calendar, Outlook, Apple Calendar, and 12+ platforms. Always up to date.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--green-bg); color:var(--green);">⚖️</div>
+        <div class="card-title">Conflict Resolution</div>
+        <div class="card-desc">AI detects scheduling conflicts and automatically suggests the best alternative times for all parties.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">🔔</div>
+        <div class="card-title">Smart Reminders</div>
+        <div class="card-desc">Multi-channel reminders via SMS, email, and WhatsApp. Adaptive timing based on appointment type.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">🌍</div>
+        <div class="card-title">Timezone Handling</div>
+        <div class="card-desc">Automatic timezone detection and conversion. No more "wait, is that your time or mine?" confusion.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">💡 Use Cases</div>
+      <h2 class="section-title">Perfect for <span class="muted">Appointment-Driven Teams</span></h2>
+    </div>
+
+    <div class="use-case-list fade-in">
+      <div class="use-case-item">
+        <div class="use-case-icon">🏥</div>
+        <div>
+          <div class="use-case-title">Medical Practices</div>
+          <div class="use-case-desc">Patients book, reschedule, and get reminders without calling in. Reduce front-desk workload by 70%.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">💈</div>
+        <div>
+          <div class="use-case-title">Salons &amp; Spas</div>
+          <div class="use-case-desc">Clients book their preferred stylist, time, and service via chat. No more phone tag or missed bookings.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">💼</div>
+        <div>
+          <div class="use-case-title">Sales Teams</div>
+          <div class="use-case-desc">Prospects self-book demos directly from your website. AI routes to the right rep based on territory and product.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🎓</div>
+        <div>
+          <div class="use-case-title">Consulting Firms</div>
+          <div class="use-case-desc">Clients book advisory sessions with the right consultant. Smart load balancing across your team.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section section-alt">
+  <div class="container" style="max-width:700px; text-align:center;">
+    <div class="fade-in">
+      <div style="font-size:2rem; margin-bottom:20px;">💬</div>
+      <blockquote style="font-size:1.2rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+        "We went from 35% no-show rates to under 12%. The AI reminders are perfectly timed, and patients love being able to reschedule via text."
+      </blockquote>
+      <div style="font-weight:700; color:var(--text);">Dr. Rachel Kim</div>
+      <div style="font-size:0.85rem; color:var(--text-muted);">Practice Manager, ClearView Dental</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Fill Your Calendar. Cut No-Shows.</h2>
+    <p>See how AI Appointment Manager can transform your scheduling workflow.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free consultation</span>
+      <span class="cta-guarantee"><span class="check">✓</span> 12+ calendar integrations</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Deploy in 48 hours</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

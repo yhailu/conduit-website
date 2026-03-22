@@ -8,38 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
   <style>
-    :root {
-      --bg: #0a0a0f; --bg-elevated: #12121a; --bg-card: #1a1a24;
-      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
-      --text: #f8fafc; --text-secondary: #a1a1aa; --text-muted: #71717a;
-      --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
-      --accent-subtle: rgba(59,130,246,0.15);
-      --success: #22c55e; --error: #ef4444;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
-    a { color:var(--accent-light); text-decoration:none; }
-
-    /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; background:rgba(10,10,15,0.85); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
-    .logo { display:flex; align-items:center; gap:0.6rem; text-decoration:none; color:var(--text); }
-    .logo-mark { width:36px; height:36px; }
-    .logo-mark svg { width:100%; height:100%; }
-    .logo-text { font-weight:700; font-size:1.25rem; letter-spacing:-0.02em; }
-    .nav-links { list-style:none; display:flex; gap:2rem; }
-    .nav-links a { color:var(--text-secondary); font-size:0.9rem; font-weight:500; transition:color 0.2s; }
-    .nav-links a:hover { color:var(--text); }
-    .nav-cta { display:flex; gap:0.75rem; align-items:center; }
-    .btn { padding:0.55rem 1.3rem; border-radius:8px; font-weight:600; font-size:0.9rem; cursor:pointer; border:none; transition:all 0.2s; text-decoration:none; display:inline-block; }
-    .btn-primary { background:var(--accent); color:#fff; }
-    .btn-primary:hover { background:var(--accent-dark); transform:translateY(-1px); }
-    .btn-ghost { background:transparent; color:var(--text-secondary); border:1px solid var(--border); }
-    .btn-ghost:hover { border-color:var(--border-hover); color:var(--text); }
+    /* Consultation page-specific styles only — shared.css handles base */
 
     /* HERO */
-    .consult-hero { padding:8rem 2rem 4rem; text-align:center; background:linear-gradient(180deg, rgba(59,130,246,0.06) 0%, transparent 60%); }
+    .consult-hero { padding:8rem 2rem 4rem; text-align:center; background:linear-gradient(180deg, rgba(16,185,129,0.04) 0%, transparent 60%); }
     .consult-hero .badge { display:inline-block; padding:0.4rem 1rem; border-radius:50px; background:var(--accent-subtle); color:var(--accent-light); font-size:0.8rem; font-weight:600; margin-bottom:1.5rem; letter-spacing:0.03em; }
     .consult-hero h1 { font-size:3.2rem; font-weight:800; line-height:1.1; margin-bottom:1rem; letter-spacing:-0.03em; }
     .consult-hero h1 .accent { color:var(--accent-light); }
@@ -89,7 +63,7 @@
     .form-group textarea { min-height:100px; resize:vertical; }
     .form-group select { appearance:none; cursor:pointer; }
     .submit-btn { width:100%; padding:1rem; border:none; border-radius:12px; background:var(--accent); color:#fff; font-size:1.05rem; font-weight:700; cursor:pointer; transition:all 0.2s; margin-top:0.5rem; }
-    .submit-btn:hover { background:var(--accent-dark); transform:translateY(-2px); box-shadow:0 8px 30px rgba(59,130,246,0.3); }
+    .submit-btn:hover { background:var(--accent-dark); transform:translateY(-2px); box-shadow:0 8px 30px rgba(16,185,129,0.25); }
 
     /* HOW IT WORKS */
     .how-it-works { padding:5rem 2rem; background:var(--bg); }
@@ -113,20 +87,14 @@
     .testimonial-card .metric { margin-top:1rem; padding:0.5rem 0.8rem; border-radius:8px; background:var(--accent-subtle); color:var(--accent-light); font-size:0.8rem; font-weight:600; display:inline-block; }
 
     /* FINAL CTA */
-    .final-cta { padding:5rem 2rem; text-align:center; background:linear-gradient(180deg, var(--bg) 0%, rgba(59,130,246,0.06) 100%); }
+    .final-cta { padding:5rem 2rem; text-align:center; background:linear-gradient(180deg, var(--bg) 0%, rgba(16,185,129,0.04) 100%); }
     .final-cta h2 { font-size:2.2rem; font-weight:800; margin-bottom:1rem; letter-spacing:-0.02em; }
     .final-cta p { color:var(--text-secondary); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto; }
     .final-cta .guarantees { display:flex; justify-content:center; gap:2rem; margin-top:1.5rem; flex-wrap:wrap; }
     .final-cta .guarantee { font-size:0.85rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem; }
     .final-cta .guarantee .check { color:var(--success); }
 
-    /* FOOTER */
-    footer { border-top:1px solid var(--border); padding:3rem 2rem 2rem; background:var(--bg); }
-    .footer-content { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; }
-    .footer-links { display:flex; gap:2rem; }
-    .footer-links a { color:var(--text-muted); font-size:0.85rem; transition:color 0.2s; }
-    .footer-links a:hover { color:var(--text); }
-    .footer-copy { color:var(--text-muted); font-size:0.8rem; width:100%; text-align:center; margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border); }
+    /* Footer handled by shared.css */
 
     /* RESPONSIVE */
     @media (max-width:900px) {
@@ -149,38 +117,7 @@
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="index.html" class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-      </svg>
-    </div>
-    <span class="logo-text">orchestraflow</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html#features">Features</a></li>
-    <li><a href="industries/index.html">Industries</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="blog/index.html">Blog</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a href="#consultation-form" class="btn btn-primary">Request Consultation</a>
-  </div>
-</nav>
+<nav id="site-nav"></nav>
 
 <!-- HERO -->
 <section class="consult-hero">
@@ -190,19 +127,19 @@
   
   <div class="stats-bar">
     <div class="stat-item">
-      <div class="stat-number">340%</div>
+      <div class="stat-number">220%</div>
       <div class="stat-label">Average ROI</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">2 weeks</div>
+      <div class="stat-number">30 days</div>
       <div class="stat-label">Time to Results</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">4.9/5</div>
+      <div class="stat-number">4.8/5</div>
       <div class="stat-label">Client Rating</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">500+</div>
+      <div class="stat-number">200+</div>
       <div class="stat-label">Companies Served</div>
     </div>
   </div>
@@ -363,7 +300,7 @@
   
   <div class="testimonial-grid">
     <div class="testimonial-card">
-      <div class="quote">"This consultation revealed $2M in potential savings we didn't know existed. The most valuable hour I've spent this year."</div>
+      <div class="quote">"This consultation revealed $340K in potential savings we didn't know existed. The most valuable hour I've spent this year."</div>
       <div class="author">
         <div class="avatar">SC</div>
         <div class="author-info">
@@ -371,7 +308,7 @@
           <div class="role">COO, TechFlow Solutions</div>
         </div>
       </div>
-      <div class="metric">💰 $2M in identified savings</div>
+      <div class="metric">💰 $340K in identified savings</div>
     </div>
     <div class="testimonial-card">
       <div class="quote">"Clear ROI projections and an actionable implementation plan. We started seeing cost reductions within 30 days of our call."</div>
@@ -411,45 +348,14 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-content">
-    <a href="index.html" class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-          <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-          <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-          <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-        </svg>
-      </div>
-      <span class="logo-text">orchestraflow</span>
-    </a>
-    <div class="footer-links">
-      <a href="index.html#features">Features</a>
-      <a href="index.html#about">About</a>
-      <a href="blog/index.html">Blog</a>
-      <a href="index.html#industries">Industries</a>
-    </div>
-    <div class="footer-copy">© 2025 OrchestraFlow. All rights reserved.</div>
-  </div>
-</footer>
+<footer id="site-footer"></footer>
 
 <!-- Success overlay (hidden by default) -->
 <div id="success-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(10,10,15,0.95); display:none; align-items:center; justify-content:center;">
   <div style="text-align:center; max-width:480px; padding:3rem 2rem;">
     <div style="font-size:4rem; margin-bottom:1rem;">🎉</div>
-    <h2 style="font-size:1.8rem; font-weight:800; margin-bottom:0.75rem; color:#f8fafc;">You're All Set!</h2>
-    <p style="color:#a1a1aa; font-size:1rem; line-height:1.6; margin-bottom:2rem;">Your consultation request has been submitted. Our team will reach out within <strong style="color:#60a5fa;">2 hours</strong> to schedule your free 60-minute strategy session.</p>
+    <h2 style="font-size:1.8rem; font-weight:800; margin-bottom:0.75rem; color:var(--text);">You're All Set!</h2>
+    <p style="color:var(--text-secondary); font-size:1rem; line-height:1.6; margin-bottom:2rem;">Your consultation request has been submitted. Our team will reach out within <strong style="color:var(--accent-light);">2 hours</strong> to schedule your free 60-minute strategy session.</p>
     <a href="index.html" class="btn btn-primary" style="font-size:1rem; padding:0.8rem 2rem;">← Back to Home</a>
   </div>
 </div>
@@ -518,5 +424,6 @@
   }
 </script>
 
+<script src="js/shared.js"></script>
 </body>
 </html>

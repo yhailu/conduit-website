@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Helpdesk — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .feature-card { text-align: center; padding: 32px 20px; }
+    .feature-card .card-icon { margin: 0 auto 16px; }
+    .use-case-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    .use-case-item { display: flex; align-items: flex-start; gap: 12px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .use-case-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .use-case-title { font-weight: 700; margin-bottom: 4px; }
+    .use-case-desc { font-size: 0.85rem; color: var(--text-secondary); }
+    @media (max-width: 1024px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .feature-grid, .use-case-list { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">🛟 AI Helpdesk</div>
+    <h1>Support That Scales.<br><span class="accent">70% Cost Reduction.</span></h1>
+    <p>Resolve tickets instantly with AI-powered support. Smart escalation, multi-channel coverage, and a knowledge base that learns from every interaction.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="../consultation.html" class="btn btn-primary btn-lg">Transform Support →</a>
+      <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
+    </div>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">💬</div>
+          <div class="agent-info">
+            <h4>Support Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">My dashboard isn't loading, getting a timeout error</div>
+          <div class="agent-msg agent-bot msg-2">I've identified the issue — there's a temporary cache conflict in your region. I've cleared your session and pushed a fix. <strong>Try refreshing now.</strong></div>
+          <div class="agent-msg agent-user msg-3">That worked, thanks!</div>
+          <div class="agent-msg agent-bot msg-4">Great! I've also added monitoring to your account so we catch this proactively next time. Anything else?</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">91%</span><span class="metric-label">Resolved</span></div>
+          <div class="agent-metric"><span class="metric-num">5,672</span><span class="metric-label">Tickets</span></div>
+          <div class="agent-metric"><span class="metric-num">&lt;10s</span><span class="metric-label">Response</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section">
+  <div class="container">
+    <div class="stats-bar fade-in">
+      <div class="stat-item">
+        <div class="stat-num">5,672</div>
+        <div class="stat-label">Tickets resolved / day</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">91%</div>
+        <div class="stat-label">Resolution rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">&lt;10s</div>
+        <div class="stat-label">Avg. response time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Cost reduction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section section-alt" id="features">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">⚡ Key Features</div>
+      <h2 class="section-title">Support That <span class="muted">Never Sleeps</span></h2>
+      <p class="section-subtitle">Four pillars of AI-powered customer support that delights users and saves your team hours every day.</p>
+    </div>
+
+    <div class="feature-grid fade-in">
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">⚡</div>
+        <div class="card-title">Instant Resolution</div>
+        <div class="card-desc">AI understands intent, searches your knowledge base, and resolves common issues in under 10 seconds.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--green-bg); color:var(--green);">🎯</div>
+        <div class="card-title">Smart Escalation</div>
+        <div class="card-desc">Complex issues route to the right specialist with full context. No repeating the problem, no bouncing between agents.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">📱</div>
+        <div class="card-title">Multi-Channel</div>
+        <div class="card-desc">Unified support across email, chat, SMS, WhatsApp, and social media — all from a single AI brain.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">📚</div>
+        <div class="card-title">Knowledge Base</div>
+        <div class="card-desc">Self-learning documentation that improves with every interaction. Answers get more accurate over time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">💡 Use Cases</div>
+      <h2 class="section-title">Trusted by <span class="muted">High-Volume Teams</span></h2>
+    </div>
+
+    <div class="use-case-list fade-in">
+      <div class="use-case-item">
+        <div class="use-case-icon">💻</div>
+        <div>
+          <div class="use-case-title">SaaS Companies</div>
+          <div class="use-case-desc">Handle thousands of product questions instantly. Reduce tier-1 ticket volume by 80% and free your engineers.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🛒</div>
+        <div>
+          <div class="use-case-title">E-Commerce Support</div>
+          <div class="use-case-desc">Order tracking, returns, refunds — all automated. Customers get answers in seconds, not hours.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🏦</div>
+        <div>
+          <div class="use-case-title">Financial Services</div>
+          <div class="use-case-desc">Secure, compliant support for account inquiries. SOC 2 certified with full audit trails.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🏢</div>
+        <div>
+          <div class="use-case-title">Internal IT Help</div>
+          <div class="use-case-desc">Password resets, VPN issues, software requests — your AI IT agent handles 90% of employee tickets.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section section-alt">
+  <div class="container" style="max-width:700px; text-align:center;">
+    <div class="fade-in">
+      <div style="font-size:2rem; margin-bottom:20px;">💬</div>
+      <blockquote style="font-size:1.2rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+        "Our support team was drowning in 500+ tickets a day. OrchestraFlow's AI Helpdesk now resolves 91% automatically. Our CSAT score actually went up."
+      </blockquote>
+      <div style="font-weight:700; color:var(--text);">James Ortega</div>
+      <div style="font-size:0.85rem; color:var(--text-muted);">Director of Support, CloudBase.io</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Cut Costs. Delight Customers.</h2>
+    <p>See how AI Helpdesk can handle your ticket volume at a fraction of the cost.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free consultation</span>
+      <span class="cta-guarantee"><span class="check">✓</span> 91% resolution rate</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Deploy in 48 hours</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

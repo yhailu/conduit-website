@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Knowledge Access — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .feature-card { text-align: center; padding: 32px 20px; }
+    .feature-card .card-icon { margin: 0 auto 16px; }
+    .use-case-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    .use-case-item { display: flex; align-items: flex-start; gap: 12px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .use-case-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .use-case-title { font-weight: 700; margin-bottom: 4px; }
+    .use-case-desc { font-size: 0.85rem; color: var(--text-secondary); }
+    @media (max-width: 1024px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .feature-grid, .use-case-list { grid-template-columns: 1fr; } }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">🧠 AI Knowledge Access</div>
+    <h1>Ask Anything. Get Answers.<br><span class="accent">10x Faster.</span></h1>
+    <p>Your AI agent searches across every document, wiki, and database you have — and returns precise, context-aware answers in natural language.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="../consultation.html" class="btn btn-primary btn-lg">Unlock Your Knowledge →</a>
+      <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
+    </div>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">📚</div>
+          <div class="agent-info">
+            <h4>Knowledge Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">What's our refund policy for enterprise contracts?</div>
+          <div class="agent-msg agent-bot msg-2">Per your Enterprise Agreement (Section 4.2): Full refund within <strong>30 days</strong>, pro-rated after that. Enterprise clients also get a <strong>90-day satisfaction guarantee</strong>. Want me to pull the full clause?</div>
+          <div class="agent-msg agent-user msg-3">Send me the full document</div>
+          <div class="agent-msg agent-bot msg-4">Sent! ✅ I've emailed the Enterprise Agreement PDF with Section 4.2 highlighted. Also attached the refund request form.</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">95%</span><span class="metric-label">Accuracy</span></div>
+          <div class="agent-metric"><span class="metric-num">1,247</span><span class="metric-label">Queries</span></div>
+          <div class="agent-metric"><span class="metric-num">10x</span><span class="metric-label">Faster</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section">
+  <div class="container">
+    <div class="stats-bar fade-in">
+      <div class="stat-item">
+        <div class="stat-num">1,247</div>
+        <div class="stat-label">Queries answered / day</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">95%</div>
+        <div class="stat-label">Answer accuracy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10x</div>
+        <div class="stat-label">Faster than manual search</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Source integrations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section section-alt" id="features">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">⚡ Key Features</div>
+      <h2 class="section-title">Your Company's Brain, <span class="muted">Instantly Accessible</span></h2>
+      <p class="section-subtitle">Transform scattered information into instant, reliable answers for every team member.</p>
+    </div>
+
+    <div class="feature-grid fade-in">
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">🔍</div>
+        <div class="card-title">Document Search</div>
+        <div class="card-desc">Semantic search across PDFs, Google Docs, Notion, SharePoint, and hundreds of file formats. No tagging required.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--green-bg); color:var(--green);">📖</div>
+        <div class="card-title">Wiki Integration</div>
+        <div class="card-desc">Connects to Confluence, Notion, GitBook, and internal wikis. Your existing documentation, instantly searchable.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">🎯</div>
+        <div class="card-title">Context-Aware Answers</div>
+        <div class="card-desc">AI understands who's asking and why. Sales gets sales answers, engineering gets technical depth. Same question, right context.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">🔗</div>
+        <div class="card-title">Multi-Source</div>
+        <div class="card-desc">Aggregates answers from 500+ data sources. Databases, APIs, documents, Slack messages — all in one answer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">💡 Use Cases</div>
+      <h2 class="section-title">Knowledge at <span class="muted">Everyone's Fingertips</span></h2>
+    </div>
+
+    <div class="use-case-list fade-in">
+      <div class="use-case-item">
+        <div class="use-case-icon">🏢</div>
+        <div>
+          <div class="use-case-title">Employee Onboarding</div>
+          <div class="use-case-desc">New hires find answers instantly instead of hunting through 47 Notion pages. Time to productivity drops by 60%.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">⚖️</div>
+        <div>
+          <div class="use-case-title">Legal &amp; Compliance</div>
+          <div class="use-case-desc">Search policy documents, regulatory filings, and contracts instantly. Get cited answers, not guesses.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🔬</div>
+        <div>
+          <div class="use-case-title">R&amp;D Teams</div>
+          <div class="use-case-desc">Surface relevant research, past experiments, and technical documentation. No more reinventing the wheel.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">💼</div>
+        <div>
+          <div class="use-case-title">Sales Enablement</div>
+          <div class="use-case-desc">Reps find competitive intelligence, pricing, and case studies in seconds — during live calls.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section section-alt">
+  <div class="container" style="max-width:700px; text-align:center;">
+    <div class="fade-in">
+      <div style="font-size:2rem; margin-bottom:20px;">💬</div>
+      <blockquote style="font-size:1.2rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+        "Our engineers used to spend 4 hours a week searching for documentation. With OrchestraFlow's Knowledge Access, they get answers in seconds. It's saved us thousands of engineering hours."
+      </blockquote>
+      <div style="font-weight:700; color:var(--text);">Priya Patel</div>
+      <div style="font-size:0.85rem; color:var(--text-muted);">CTO, DataStream Analytics</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Stop Searching. Start Finding.</h2>
+    <p>See how AI Knowledge Access can unlock your organization's collective intelligence.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free consultation</span>
+      <span class="cta-guarantee"><span class="check">✓</span> 500+ source integrations</span>
+      <span class="cta-guarantee"><span class="check">✓</span> 95% answer accuracy</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

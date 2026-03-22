@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .story-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .story-content h3 { font-size: 1.6rem; margin-bottom: 16px; }
+    .story-content p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+    .story-visual { padding: 48px 32px; text-align: center; }
+    .story-visual-quote { font-size: 1.3rem; font-style: italic; line-height: 1.7; color: var(--text); }
+    .story-visual-attr { margin-top: 16px; font-size: 0.85rem; color: var(--text-muted); }
+
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .value-card { text-align: center; padding: 40px 20px; }
+    .value-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .value-card .card-title { font-size: 1.1rem; margin-bottom: 8px; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .stat-card { text-align: center; padding: 36px 20px; }
+    .stat-num { font-size: 2.4rem; font-weight: 800; color: var(--accent-light); }
+    .stat-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .team-card { text-align: center; padding: 36px 24px; }
+    .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--blue)); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 16px; }
+    .team-name { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .team-title { font-size: 0.85rem; color: var(--accent-light); font-weight: 600; margin-bottom: 12px; }
+    .team-bio { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .hiring-banner { text-align: center; padding: 48px 32px; border: 2px dashed var(--accent); border-radius: 16px; background: var(--card-bg); }
+    .hiring-banner h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .hiring-banner p { color: var(--text-secondary); margin-bottom: 24px; }
+
+    @media (max-width: 768px) {
+      .story-section { grid-template-columns: 1fr; }
+      .values-grid, .stats-grid, .team-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .values-grid, .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">🏢 About Us</div>
+    <h1>Building the Future<br><span class="accent">of Work</span></h1>
+    <p>We're on a mission to make AI accessible to every business — not just the ones with million-dollar tech budgets.</p>
+  </div>
+</section>
+
+<!-- Our Story -->
+<section class="section">
+  <div class="container">
+    <div class="story-section fade-in">
+      <div class="story-content">
+        <div class="section-badge" style="margin-bottom: 20px;">📖 Our Story</div>
+        <h3>Founded to bridge the gap between <span class="accent">AI hype</span> and real business results</h3>
+        <p>In 2022, our founders watched company after company pour millions into AI initiatives that never made it past the pilot stage. The problem wasn't the technology — it was the implementation. Enterprise AI was too complex, too expensive, and too slow to deploy.</p>
+        <p>OrchestraFlow was born from a simple idea: what if deploying AI agents was as easy as hiring a new team member? What if you could go from concept to production in days, not quarters?</p>
+        <p>Today, we've helped over 5,000 businesses do exactly that. Our platform turns the promise of AI into measurable business outcomes — without the PhD, the consulting engagement, or the six-figure implementation fee.</p>
+      </div>
+      <div class="card story-visual">
+        <div style="font-size: 3rem; margin-bottom: 20px;">💡</div>
+        <div class="story-visual-quote">"Every business deserves an AI workforce that actually works — not a science experiment that never ships."</div>
+        <div class="story-visual-attr">— OrchestraFlow founding principle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="stats-grid fade-in">
+      <div class="card stat-card">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Team Members</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-num">5,000+</div>
+        <div class="stat-label">Businesses Served</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-num">$50M+</div>
+        <div class="stat-label">Saved for Clients</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-num">Series A</div>
+        <div class="stat-label">Funded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">💎 Our Values</div>
+      <h2 class="section-title">What We <span class="muted">Stand For</span></h2>
+      <p class="section-subtitle">These aren't posters on a wall. They're how we make decisions every day.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="card value-card fade-in">
+        <div class="value-icon">🤝</div>
+        <div class="card-title">Customer First</div>
+        <div class="card-desc">Every decision starts with the customer. If it doesn't make their life better, we don't build it.</div>
+      </div>
+      <div class="card value-card fade-in">
+        <div class="value-icon">🔒</div>
+        <div class="card-title">Security Always</div>
+        <div class="card-desc">Trust is earned, not assumed. We build security into every layer — it's never an afterthought.</div>
+      </div>
+      <div class="card value-card fade-in">
+        <div class="value-icon">🚢</div>
+        <div class="card-title">Ship Fast</div>
+        <div class="card-desc">Perfect is the enemy of deployed. We iterate quickly, learn from real usage, and improve constantly.</div>
+      </div>
+      <div class="card value-card fade-in">
+        <div class="value-icon">🫶</div>
+        <div class="card-title">Stay Human</div>
+        <div class="card-desc">We're building AI to augment humans, not replace them. Empathy and kindness drive how we work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">👥 Leadership</div>
+      <h2 class="section-title">Meet the <span class="muted">Team</span></h2>
+      <p class="section-subtitle">Builders, operators, and problem-solvers who've scaled products at the world's best companies.</p>
+    </div>
+
+    <div class="team-grid fade-in">
+      <div class="card team-card">
+        <div class="team-avatar">👩‍💼</div>
+        <div class="team-name">Maya Rodriguez</div>
+        <div class="team-title">Co-Founder &amp; CEO</div>
+        <div class="team-bio">Former VP of Product at Stripe. 15 years building enterprise software. Stanford CS. Obsessed with making complex tech simple.</div>
+      </div>
+      <div class="card team-card">
+        <div class="team-avatar">👨‍💻</div>
+        <div class="team-name">James Chen</div>
+        <div class="team-title">Co-Founder &amp; CTO</div>
+        <div class="team-bio">Ex-Google AI research lead. Built ML systems serving billions of requests. MIT PhD in Machine Learning. Open source contributor.</div>
+      </div>
+      <div class="card team-card">
+        <div class="team-avatar">👩‍🔬</div>
+        <div class="team-name">Priya Sharma</div>
+        <div class="team-title">VP of Engineering</div>
+        <div class="team-bio">Previously engineering director at Datadog. Expert in distributed systems and platform reliability. Ships fast without breaking things.</div>
+      </div>
+      <div class="card team-card">
+        <div class="team-avatar">👨‍💼</div>
+        <div class="team-name">Marcus Thompson</div>
+        <div class="team-title">VP of Sales</div>
+        <div class="team-bio">Former enterprise sales leader at Salesforce and Twilio. Built GTM teams from zero to $100M ARR. Customer-obsessed closer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hiring Banner -->
+<section class="section">
+  <div class="container">
+    <div class="hiring-banner fade-in">
+      <div style="font-size: 2.4rem; margin-bottom: 16px;">🚀</div>
+      <h3>We're Hiring!</h3>
+      <p>Join a team that's transforming how businesses work. Remote-first, competitive comp, and real impact.</p>
+      <a href="../company/careers.html" class="btn btn-primary btn-lg">View Open Positions →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Work With Us?</h2>
+    <p>See how OrchestraFlow can transform your business operations with AI.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free consultation</span>
+      <span class="cta-guarantee"><span class="check">✓</span> No commitment</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Deploy in 5 days</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Recruitment Intelligence — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .feature-card { text-align: center; padding: 32px 20px; }
+    .feature-card .card-icon { margin: 0 auto 16px; }
+    .use-case-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    .use-case-item { display: flex; align-items: flex-start; gap: 12px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .use-case-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .use-case-title { font-weight: 700; margin-bottom: 4px; }
+    .use-case-desc { font-size: 0.85rem; color: var(--text-secondary); }
+    @media (max-width: 1024px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .feature-grid, .use-case-list { grid-template-columns: 1fr; } }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">👥 AI Recruitment Intelligence</div>
+    <h1>Hire Smarter.<br><span class="accent">60% Faster.</span></h1>
+    <p>Your AI agent parses job descriptions, matches candidates, scores fit, and hands off to recruiters with complete context — cutting time-to-hire by more than half.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="../consultation.html" class="btn btn-primary btn-lg">Accelerate Hiring →</a>
+      <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
+    </div>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">🔍</div>
+          <div class="agent-info">
+            <h4>Recruitment Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">I need a senior React developer in Austin, $150-180K</div>
+          <div class="agent-msg agent-bot msg-2">Found <strong>12 matching candidates</strong> in your ATS. Top 3 by fit score: <strong>Sarah L. (94%)</strong>, Marcus R. (91%), David K. (88%). All available and within budget. Want me to schedule screens?</div>
+          <div class="agent-msg agent-user msg-3">Schedule the top 3</div>
+          <div class="agent-msg agent-bot msg-4">Done! ✅ Three 30-min screens scheduled this week. Each candidate received a prep packet with your tech stack overview.</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">85%</span><span class="metric-label">Fit Score</span></div>
+          <div class="agent-metric"><span class="metric-num">3x</span><span class="metric-label">Candidates</span></div>
+          <div class="agent-metric"><span class="metric-num">60%</span><span class="metric-label">Faster</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section">
+  <div class="container">
+    <div class="stats-bar fade-in">
+      <div class="stat-item">
+        <div class="stat-num">60%</div>
+        <div class="stat-label">Faster time-to-hire</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3x</div>
+        <div class="stat-label">More candidates screened</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">85%</div>
+        <div class="stat-label">Fit accuracy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$50K</div>
+        <div class="stat-label">Saved per hire</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section section-alt" id="features">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">⚡ Key Features</div>
+      <h2 class="section-title">Recruitment, <span class="muted">Reinvented by AI</span></h2>
+      <p class="section-subtitle">From job posting to qualified shortlist in hours — not weeks. AI handles the heavy lifting so recruiters focus on relationships.</p>
+    </div>
+
+    <div class="feature-grid fade-in">
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">📝</div>
+        <div class="card-title">JD Parsing</div>
+        <div class="card-desc">AI extracts requirements, skills, and preferences from any job description. Standardized criteria in seconds.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--green-bg); color:var(--green);">🔍</div>
+        <div class="card-title">Candidate Matching</div>
+        <div class="card-desc">Semantic matching across resume databases, LinkedIn, and job boards. Surface hidden gems, not just keyword matches.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">📊</div>
+        <div class="card-title">Fit Scoring</div>
+        <div class="card-desc">Multi-dimensional scoring on skills, culture, growth potential, and role alignment. 85% accuracy on hire success prediction.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">🤝</div>
+        <div class="card-title">Recruiter Handoff</div>
+        <div class="card-desc">Shortlisted candidates delivered with full context — resume highlights, fit rationale, and suggested interview questions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">💡 Use Cases</div>
+      <h2 class="section-title">Built for <span class="muted">Scaling Teams</span></h2>
+    </div>
+
+    <div class="use-case-list fade-in">
+      <div class="use-case-item">
+        <div class="use-case-icon">🚀</div>
+        <div>
+          <div class="use-case-title">High-Growth Startups</div>
+          <div class="use-case-desc">Scaling from 50 to 500? AI screens thousands of applicants while your recruiter focuses on the top 5%.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🏢</div>
+        <div>
+          <div class="use-case-title">Enterprise HR</div>
+          <div class="use-case-desc">Manage hundreds of open roles simultaneously. Standardized scoring eliminates bias and speeds decisions.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🔧</div>
+        <div>
+          <div class="use-case-title">Technical Recruiting</div>
+          <div class="use-case-desc">AI understands tech stacks, frameworks, and experience levels. Match senior engineers precisely, not by keyword.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🌍</div>
+        <div>
+          <div class="use-case-title">Global Hiring</div>
+          <div class="use-case-desc">Multi-language resume parsing, timezone-aware scheduling, and compliance checks across 50+ countries.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section section-alt">
+  <div class="container" style="max-width:700px; text-align:center;">
+    <div class="fade-in">
+      <div style="font-size:2rem; margin-bottom:20px;">💬</div>
+      <blockquote style="font-size:1.2rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+        "We had 2,000 applicants for 15 roles. OrchestraFlow's AI shortlisted the top 50 in under an hour with 85% accuracy. It would have taken our team two weeks manually."
+      </blockquote>
+      <div style="font-weight:700; color:var(--text);">Lisa Nakamura</div>
+      <div style="font-size:0.85rem; color:var(--text-muted);">VP of People, Nexus Robotics</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Hire Faster. Hire Smarter.</h2>
+    <p>See how AI Recruitment Intelligence can transform your hiring pipeline.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free consultation</span>
+      <span class="cta-guarantee"><span class="check">✓</span> 60% faster time-to-hire</span>
+      <span class="cta-guarantee"><span class="check">✓</span> $50K saved per hire</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

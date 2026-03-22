@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauty & Wellness AI Solutions — OrchestraFlow</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .testimonial { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; max-width: 700px; margin: 0 auto; }
+    .testimonial blockquote { font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); font-style: italic; margin-bottom: 16px; }
+    .testimonial blockquote::before { content: "\201C"; font-size: 2.5rem; color: var(--accent-light); line-height: 0; vertical-align: -0.6rem; margin-right: 4px; }
+    .testimonial-author { font-weight: 700; font-size: 0.9rem; }
+    .testimonial-role { font-size: 0.8rem; color: var(--text-muted); }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+    .trust-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav id="site-nav"></nav>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-badge">💅 Beauty & Wellness</div>
+      <h1>Fill Your Books with <span class="accent">AI Booking</span></h1>
+      <p>Smart client booking, personalized service recommendations, automated follow-ups, and loyalty programs that keep clients coming back.</p>
+      <div class="hero-buttons">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Boost Your Bookings</a>
+        <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
+      </div>
+      <p class="trust-note">✨ Zero double-bookings · Instagram DM ready · Google/Yelp review prompts · 24/7 online booking</p>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">💅</div>
+          <div class="agent-info">
+            <h4>Booking Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">I want to book a balayage with Sarah next Saturday</div>
+          <div class="agent-msg agent-bot msg-2">Sarah has <strong>2 openings</strong> Saturday: <strong>10am</strong> or <strong>2pm</strong>. Balayage takes about 3 hours. Your last visit was 8 weeks ago — perfect timing for a refresh! Which time?</div>
+          <div class="agent-msg agent-user msg-3">2pm please</div>
+          <div class="agent-msg agent-bot msg-4">Booked! ✅ Balayage with Sarah, Sat 2pm. I've applied your <strong>loyalty discount (15% off)</strong>. Arrive 10 min early for a complimentary consultation.</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">42% ↑</span><span class="metric-label">Bookings</span></div>
+          <div class="agent-metric"><span class="metric-num">0</span><span class="metric-label">Double-Books</span></div>
+          <div class="agent-metric"><span class="metric-num">30% ↑</span><span class="metric-label">Repeat</span></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">✨ Capabilities</div>
+        <h2 class="section-title">How AI Transforms <span class="muted">Beauty & Wellness</span></h2>
+        <p class="section-subtitle">Your virtual receptionist that never takes a day off — booking clients, building loyalty, and growing your business.</p>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <div class="card-icon" style="background: var(--red-bg);">📅</div>
+          <div class="card-title">Smart Client Booking</div>
+          <div class="card-desc">Clients book, reschedule, and cancel appointments 24/7 via text, Instagram DM, or your website. AI manages provider schedules, service durations, and buffer times — eliminating double-bookings forever.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--purple-bg);">💎</div>
+          <div class="card-title">Personalized Recommendations</div>
+          <div class="card-desc">AI remembers each client's history — preferred stylist, color formula, skin type, product purchases — and suggests services, upgrades, and products tailored to their unique profile.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--green-bg);">💬</div>
+          <div class="card-title">Follow-Up Care</div>
+          <div class="card-desc">Automated post-treatment check-ins, aftercare instructions, product recommendations, and satisfaction surveys. Build deeper relationships while catching issues before they become negative reviews.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--orange-bg);">🏆</div>
+          <div class="card-title">Loyalty & Rewards</div>
+          <div class="card-desc">Automated loyalty program management — track points, send reward notifications, birthday offers, referral bonuses, and re-engagement campaigns for clients who haven't visited recently.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section-alt">
+    <div class="container fade-in">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">42%</div>
+          <div class="stat-label">More Bookings</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">30%</div>
+          <div class="stat-label">More Repeat Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Double-Bookings</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Online Booking</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎯 Use Cases</div>
+        <h2 class="section-title">Beauty & Wellness <span class="muted">Workflows</span></h2>
+        <p class="section-subtitle">From first appointment to loyal regular — AI creates the premium experience your clients deserve.</p>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <div class="card-icon" style="background: var(--red-bg);">✂️</div>
+          <div class="card-title">Service Booking</div>
+          <div class="card-desc">Clients text "I need a cut and color Saturday" and AI checks availability, suggests open slots with their preferred stylist, confirms the appointment, and sends a reminder — all in under 60 seconds.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--purple-bg);">💄</div>
+          <div class="card-title">Client Consultation</div>
+          <div class="card-desc">New client intake via chat — AI asks about hair type, skin concerns, allergies, and preferences before their first visit. The stylist gets a complete brief, creating a VIP experience from day one.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--green-bg);">🌿</div>
+          <div class="card-title">Post-Treatment Follow-Up</div>
+          <div class="card-desc">24 hours after a facial, AI checks in with aftercare tips. A week after color, it asks how they're liking it. Proactive care builds trust and catches issues before they become complaints.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--orange-bg);">⭐</div>
+          <div class="card-title">Loyalty & Referral Rewards</div>
+          <div class="card-desc">Automated point tracking, birthday specials, "we miss you" win-backs, and referral bonuses. AI sends the right offer at the right time — turning occasional visitors into loyal brand advocates.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="section section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <div class="section-badge">💬 Client Story</div>
+      </div>
+      <div class="testimonial">
+        <blockquote>We used to lose so many bookings to phone tag and missed DMs. Now OrchestraFlow books clients from Instagram and text 24/7 — our books are 42% fuller and we haven't had a single double-booking in 6 months. My team can focus on what they do best: making people feel beautiful.</blockquote>
+        <div class="testimonial-author">Jasmine Okafor</div>
+        <div class="testimonial-role">Owner, Glow Studio Salon & Spa — Miami, FL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container fade-in">
+      <h2>Ready to Fill Your Appointment Book?</h2>
+      <p>Join thousands of beauty and wellness professionals using AI to book more clients and build lasting loyalty.</p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Get Started Today</a>
+        <a href="index.html" class="btn btn-ghost btn-lg">View All Industries</a>
+      </div>
+      <div class="cta-guarantees">
+        <span class="cta-guarantee"><span class="check">✓</span> Zero double-bookings</span>
+        <span class="cta-guarantee"><span class="check">✓</span> Instagram DM ready</span>
+        <span class="cta-guarantee"><span class="check">✓</span> 14-day free trial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

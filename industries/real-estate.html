@@ -3,217 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real Estate AI Solutions | ORCHESTRAFLOW</title>
+  <title>Real Estate AI Solutions — OrchestraFlow</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared.css">
   <style>
-    :root {
-      --bg: #0a0a0f; --bg-elevated: #12121a; --bg-card: #1a1a24; --bg-subtle: #0f0f14;
-      --border: rgba(255, 255, 255, 0.08); --border-hover: rgba(255, 255, 255, 0.15);
-      --text: #f8fafc; --text-secondary: #a1a1aa; --text-muted: #71717a;
-      --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
-      --accent-subtle: rgba(59, 130, 246, 0.15);
-      --success: #22c55e; --green: #22c55e; --green-bg: rgba(34, 197, 94, 0.15);
-      --purple: #a855f7; --purple-bg: rgba(168, 85, 247, 0.15);
-      --orange: #f97316; --orange-bg: rgba(249, 115, 22, 0.15);
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
-    .logo-mark { width: 36px; height: 36px; } .logo-mark svg { width: 100%; height: 100%; }
-    .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
-    .btn { display: inline-block; padding: 0.65rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
-    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(59,130,246,0.3); }
-    .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
-    .hero { display: flex; align-items: center; gap: 4rem; max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
-    .hero-content { flex: 1; }
-    .hero-badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 100px; background: var(--orange-bg); color: var(--orange); font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(249,115,22,0.2); }
-    .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
-    .hero h1 span { background: linear-gradient(135deg, var(--accent-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; }
-    .chat-demo { flex: 1; max-width: 400px; }
-    .chat-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); }
-    .chat-header { background: var(--bg-elevated); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); }
-    .chat-status { width: 8px; height: 8px; background: var(--green); border-radius: 50%; }
-    .chat-title { font-size: 0.85rem; font-weight: 600; }
-    .chat-badge { margin-left: auto; padding: 0.2rem 0.6rem; border-radius: 100px; background: var(--accent-subtle); color: var(--accent-light); font-size: 0.65rem; font-weight: 700; }
-    .chat-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; min-height: 280px; }
-    .msg { max-width: 80%; padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.5; }
-    .msg-in { background: var(--bg-elevated); align-self: flex-start; border-bottom-left-radius: 4px; }
-    .msg-out { background: var(--accent-dark); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .msg-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem; }
-    .msg-time.right { text-align: right; }
-    .section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
-    .section-title { font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; }
-    .section-sub { text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
-    .feature-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .feature-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
-    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .feature-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
-    .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-    .app-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; }
-    .app-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .app-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .app-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
-    .app-card ul { list-style: none; } .app-card li { font-size: 0.82rem; color: var(--text-muted); padding: 0.15rem 0; }
-    .app-card li::before { content: "✓ "; color: var(--green); font-weight: 700; }
-    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
-    .testimonial-quote { font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; }
-    .testimonial-quote::before { content: "\201C"; font-size: 2rem; color: var(--accent); line-height: 0; vertical-align: -0.5rem; margin-right: 0.25rem; }
+    .testimonial { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; max-width: 700px; margin: 0 auto; }
+    .testimonial blockquote { font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); font-style: italic; margin-bottom: 16px; }
+    .testimonial blockquote::before { content: "\201C"; font-size: 2.5rem; color: var(--accent-light); line-height: 0; vertical-align: -0.6rem; margin-right: 4px; }
     .testimonial-author { font-weight: 700; font-size: 0.9rem; }
     .testimonial-role { font-size: 0.8rem; color: var(--text-muted); }
-    .cta-section { background: var(--bg-elevated); border-top: 1px solid var(--border); padding: 5rem 2rem; text-align: center; }
-    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .cta-section p { color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; } .hero { flex-direction: column; padding-top: 4rem; gap: 2rem; }
-      .hero h1 { font-size: 2rem; } .chat-demo { max-width: 100%; }
-      .feature-grid, .app-grid, .testimonial-grid { grid-template-columns: 1fr; }
-      .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-    }
-    @media (max-width: 1024px) and (min-width: 769px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+    .trust-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 20px; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="#3b82f6"/><circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/><line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/><circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/><circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/><circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/></svg></div>
-    <span class="logo-text">orchestraflow</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="../index.html#features">Features</a></li>
-    <li><a href="index.html">Industries</a></li>
-    <li><a href="../index.html#about">About</a></li>
-    <li><a href="../blog/index.html">Blog</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a href="../consultation.html" class="btn btn-primary">Request Consultation</a>
-  </div>
-</nav>
+  <!-- Nav -->
+  <nav id="site-nav"></nav>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">🏠 Real Estate</div>
-    <h1>Real Estate <span>Never Sleeps</span></h1>
-    <p>Capture every lead, schedule showings instantly, and close more deals with AI agents that work around the clock. Never miss a buyer inquiry again.</p>
-  </div>
-  <div class="chat-demo">
-    <div class="chat-widget">
-      <div class="chat-header">
-        <div class="chat-status"></div>
-        <div class="chat-title">OrchestraFlow Property Agent</div>
-        <div class="chat-badge">24/7 Active</div>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-badge">🏠 Real Estate & Property</div>
+      <h1>Close More Deals with <span class="accent">AI Agents</span></h1>
+      <p>Qualify leads instantly, match buyers to properties, schedule showings 24/7, and nurture prospects through every stage of the transaction.</p>
+      <div class="hero-buttons">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Start Closing More</a>
+        <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
       </div>
-      <div class="chat-body">
-        <div class="msg msg-in">Hi, I'm interested in the 3-bedroom listing on Oak Street. Is it still available?</div>
-        <div class="msg-time">11:47 PM</div>
-        <div class="msg msg-out">Great news — 142 Oak Street is still available! It's a 3BR/2BA, 1,850 sq ft, listed at $425,000. Would you like to schedule a showing?</div>
-        <div class="msg-time right">11:47 PM</div>
-        <div class="msg msg-in">Yes! Can I see it this weekend?</div>
-        <div class="msg-time">11:48 PM</div>
-        <div class="msg msg-out">I have Saturday at 10 AM or Sunday at 2 PM open. I also found 2 similar properties nearby you might love. Want me to include those in a tour?</div>
-        <div class="msg-time right">11:48 PM</div>
-        <div class="msg msg-in">Saturday 10 AM and yes, show me the others!</div>
-        <div class="msg-time">11:48 PM</div>
+      <p class="trust-note">⚡ Responds in &lt;30 seconds · MLS integrated · CRM synced · Works while you sleep</p>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">🏠</div>
+          <div class="agent-info">
+            <h4>Property Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">Looking for a 3BR under $500K in the Heights area</div>
+          <div class="agent-msg agent-bot msg-2">Found <strong>8 properties</strong> matching your criteria! Top pick: <strong>1847 Yale St</strong> — 3BR/2BA, $485K, recently renovated, walkable to shops. Want to schedule a showing?</div>
+          <div class="agent-msg agent-user msg-3">Can I see it Saturday?</div>
+          <div class="agent-msg agent-bot msg-4">Showing confirmed! ✅ Saturday 11am at 1847 Yale St. I'll also send you 3 comparable listings in the area.</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">65% ↑</span><span class="metric-label">Leads</span></div>
+          <div class="agent-metric"><span class="metric-num">3x</span><span class="metric-label">Faster</span></div>
+          <div class="agent-metric"><span class="metric-num">300%</span><span class="metric-label">ROI</span></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="section fade-in">
-  <h2 class="section-title">Industry-Specific Features</h2>
-  <p class="section-sub">Tools built specifically for real estate professionals who never want to miss a deal.</p>
-  <div class="feature-grid">
-    <div class="feature-card"><div class="feature-icon">📅</div><h3>Smart Scheduling</h3><p>Coordinate showings across multiple listings and agents automatically. Sync with MLS data and agent calendars in real time.</p></div>
-    <div class="feature-card"><div class="feature-icon">🎯</div><h3>Lead Qualification</h3><p>AI evaluates buyer readiness, budget, and timeline to prioritize hot leads and route them to the right agent instantly.</p></div>
-    <div class="feature-card"><div class="feature-icon">📝</div><h3>Transaction Management</h3><p>Track deals from offer to close with automated milestone updates, document collection, and deadline reminders.</p></div>
-    <div class="feature-card"><div class="feature-icon">🌙</div><h3>24/7 Availability</h3><p>Respond to late-night Zillow inquiries and weekend open house questions instantly — when most agents are unreachable.</p></div>
-    <div class="feature-card"><div class="feature-icon">🏢</div><h3>Property Management</h3><p>Handle tenant inquiries, maintenance requests, and lease renewals with automated workflows that save hours daily.</p></div>
-    <div class="feature-card"><div class="feature-icon">📊</div><h3>Market Analysis</h3><p>Provide instant CMA data, neighborhood insights, and pricing recommendations to impress prospects and win listings.</p></div>
-  </div>
-</section>
-
-<section class="section fade-in" style="background: var(--bg-elevated); max-width: 100%; padding: 5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 class="section-title">Industry Applications</h2>
-    <p class="section-sub">Real estate professionals across every segment trust OrchestraFlow.</p>
-    <div class="app-grid">
-      <div class="app-card"><h3>🏡 Residential Agents</h3><p>Solo agents and teams that want to compete with larger brokerages.</p><ul><li>Instant response to every portal lead</li><li>Automated follow-up drip campaigns</li><li>Showing feedback collection</li></ul></div>
-      <div class="app-card"><h3>🏙️ Commercial Real Estate</h3><p>Complex deal cycles with multiple stakeholders and longer timelines.</p><ul><li>Multi-party communication management</li><li>LOI and proposal tracking</li><li>Market report generation</li></ul></div>
-      <div class="app-card"><h3>🔑 Property Management</h3><p>Scale operations without scaling headcount across your portfolio.</p><ul><li>Tenant screening pre-qualification</li><li>Maintenance request routing</li><li>Lease renewal automation</li></ul></div>
-      <div class="app-card"><h3>🏗️ Brokerages</h3><p>Enterprise-level lead distribution and agent performance tools.</p><ul><li>Round-robin lead assignment</li><li>Agent performance analytics</li><li>Branded client experience</li></ul></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section fade-in">
-  <h2 class="section-title">What Real Estate Pros Say</h2>
-  <p class="section-sub">Agents and brokers share their OrchestraFlow success stories.</p>
-  <div class="testimonial-grid">
-    <div class="testimonial-card">
-      <p class="testimonial-quote">I closed 12 more deals last year because OrchestraFlow was capturing leads at 11 PM when I was sleeping. The AI qualified them so I woke up to hot prospects ready to tour.</p>
-      <div class="testimonial-author">Jessica Park</div>
-      <div class="testimonial-role">Top Producer, Coldwell Banker Elite</div>
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">✨ Capabilities</div>
+        <h2 class="section-title">How AI Transforms <span class="muted">Real Estate</span></h2>
+        <p class="section-subtitle">Never miss a lead again. AI agents that understand property, qualify buyers, and keep deals moving forward.</p>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <div class="card-icon" style="background: var(--blue-bg);">🎯</div>
+          <div class="card-title">Instant Lead Qualification</div>
+          <div class="card-desc">AI engages every incoming lead within seconds — asking about budget, timeline, pre-approval status, and preferences. Hot leads get routed to agents immediately; nurture sequences handle the rest.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--green-bg);">🏡</div>
+          <div class="card-title">Smart Property Matching</div>
+          <div class="card-desc">AI analyzes buyer preferences, search history, and stated criteria to recommend matching properties from your MLS feed. Sends curated listings with photos, pricing, and neighborhood insights.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--purple-bg);">📅</div>
+          <div class="card-title">Automated Showing Scheduling</div>
+          <div class="card-desc">Buyers request tours via text or chat and AI coordinates with agent calendars, sends confirmations, directions, and pre-showing property briefs. Handles reschedules without missing a beat.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--orange-bg);">📊</div>
+          <div class="card-title">Market Intelligence</div>
+          <div class="card-desc">Deliver automated CMA reports, neighborhood comparisons, and market trend updates to prospects. Position yourself as the knowledgeable expert while AI does the heavy lifting.</div>
+        </div>
+      </div>
     </div>
-    <div class="testimonial-card">
-      <p class="testimonial-quote">We rolled out OrchestraFlow across our 45-agent brokerage. Lead response time dropped from 4 hours to 30 seconds. Our conversion rate doubled in 6 months.</p>
-      <div class="testimonial-author">Robert Kim</div>
-      <div class="testimonial-role">Broker/Owner, Summit Realty Group</div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section-alt">
+    <div class="container fade-in">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">65%</div>
+          <div class="stat-label">More Qualified Leads</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3×</div>
+          <div class="stat-label">Faster Response Time</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Lead Availability</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">300%</div>
+          <div class="stat-label">Return on Investment</div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="cta-section fade-in">
-  <h2>Ready to Never Miss Another Lead?</h2>
-  <p>Join thousands of real estate professionals using OrchestraFlow to capture, qualify, and convert leads 24/7.</p>
-  <a href="../consultation.html" class="btn btn-primary btn-lg">Get Started Free</a>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <a href="../index.html" class="logo">
-      <div class="logo-mark"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="#3b82f6"/><circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/><line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/><circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/><circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/><circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/><circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/></svg></div>
-      <span class="logo-text">orchestraflow</span>
-    </a>
-    <div class="footer-links">
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#features">Features</a>
-      <a href="index.html">Industries</a>
-      <a href="../blog/index.html">Blog</a>
-      <a href="#">Contact</a>
+  <!-- Use Cases -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎯 Use Cases</div>
+        <h2 class="section-title">Real Estate <span class="muted">Workflows</span></h2>
+        <p class="section-subtitle">From first inquiry to closing day — AI keeps every deal on track.</p>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <div class="card-icon" style="background: var(--blue-bg);">🔍</div>
+          <div class="card-title">Buyer Qualification</div>
+          <div class="card-desc">Every website visitor and inquiry gets qualified instantly. AI asks the right questions — budget, timeline, financing status, must-haves — and scores leads so agents focus on the hottest prospects.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--green-bg);">🏠</div>
+          <div class="card-title">Property Tour Coordination</div>
+          <div class="card-desc">AI schedules tours across multiple properties, sends calendar invites, provides driving directions, and follows up afterward to gauge interest and next steps.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--purple-bg);">📈</div>
+          <div class="card-title">Market Reports & CMAs</div>
+          <div class="card-desc">Automated comparative market analyses for sellers, neighborhood trend reports for buyers, and investment opportunity alerts — delivered on schedule to keep clients engaged.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--orange-bg);">📋</div>
+          <div class="card-title">Transaction Support</div>
+          <div class="card-desc">From offer to close, AI sends deadline reminders, coordinates with lenders and inspectors, tracks milestones, and keeps all parties informed with status updates.</div>
+        </div>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 OrchestraFlow AI, Inc.</div>
-  </div>
-</footer>
+  </section>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+  <!-- Testimonial -->
+  <section class="section section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <div class="section-badge">💬 Client Story</div>
+      </div>
+      <div class="testimonial">
+        <blockquote>I went from missing 40% of my Zillow leads to responding to every single one in under 30 seconds. OrchestraFlow qualified and booked 12 showings in my first week — leads that would have gone cold without it. My GCI is up 35% this year.</blockquote>
+        <div class="testimonial-author">Marcus Rivera</div>
+        <div class="testimonial-role">Top Producer, Rivera Realty Group — Austin, TX</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container fade-in">
+      <h2>Ready to Never Miss a Lead Again?</h2>
+      <p>Join top-producing agents and brokerages using AI to capture, qualify, and convert more leads around the clock.</p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Get Started Today</a>
+        <a href="index.html" class="btn btn-ghost btn-lg">View All Industries</a>
+      </div>
+      <div class="cta-guarantees">
+        <span class="cta-guarantee"><span class="check">✓</span> MLS integration</span>
+        <span class="cta-guarantee"><span class="check">✓</span> CRM sync included</span>
+        <span class="cta-guarantee"><span class="check">✓</span> 14-day free trial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
 </body>
 </html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .benefit-card { text-align: center; padding: 40px 20px; }
+    .benefit-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .benefit-card .card-title { font-size: 1.1rem; margin-bottom: 8px; }
+
+    .jobs-list { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto; }
+    .job-card { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; transition: all 0.3s; cursor: pointer; text-decoration: none; color: var(--text); }
+    .job-card:hover { border-color: var(--accent); transform: translateX(4px); }
+    .job-info { flex: 1; }
+    .job-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .job-meta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .job-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; }
+    .job-tag-dept { background: var(--blue-bg); color: var(--blue); }
+    .job-tag-loc { background: var(--green-bg); color: var(--green); }
+    .job-tag-type { background: var(--purple-bg); color: var(--purple); }
+    .job-arrow { color: var(--accent-light); font-size: 1.2rem; font-weight: 700; margin-left: 20px; }
+
+    .culture-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .culture-content h3 { font-size: 1.5rem; margin-bottom: 16px; }
+    .culture-content p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+    .culture-highlights { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .culture-tag { padding: 8px 16px; border-radius: 10px; background: var(--card-bg); border: 1px solid var(--border); font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .culture-visual { padding: 48px 32px; text-align: center; }
+
+    .open-app-banner { text-align: center; padding: 48px 32px; border: 2px dashed var(--border); border-radius: 16px; background: var(--card-bg); margin-top: 48px; }
+    .open-app-banner h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .open-app-banner p { color: var(--text-secondary); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 768px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .culture-section { grid-template-columns: 1fr; }
+      .job-card { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .job-arrow { display: none; }
+    }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">💼 Careers</div>
+    <h1>Build What<br><span class="accent">Matters</span></h1>
+    <p>Join a team that's transforming how businesses work. We're solving hard problems, shipping fast, and having fun doing it.</p>
+    <a href="#positions" class="btn btn-primary btn-lg">View Open Positions →</a>
+  </div>
+</section>
+
+<!-- Why Work Here -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">✨ Why OrchestraFlow</div>
+      <h2 class="section-title">Why You'll <span class="muted">Love Working Here</span></h2>
+      <p class="section-subtitle">We believe great work comes from great environments. Here's what we offer.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="card benefit-card fade-in">
+        <div class="benefit-icon">🌍</div>
+        <div class="card-title">Remote-First</div>
+        <div class="card-desc">Work from anywhere in the world. We're a distributed team across 12 countries with async-first communication and flexible hours.</div>
+      </div>
+      <div class="card benefit-card fade-in">
+        <div class="benefit-icon">💰</div>
+        <div class="card-title">Competitive Comp</div>
+        <div class="card-desc">Top-of-market salary, meaningful equity, 401(k) matching, and comprehensive health/dental/vision coverage for you and your family.</div>
+      </div>
+      <div class="card benefit-card fade-in">
+        <div class="benefit-icon">📚</div>
+        <div class="card-title">Learning Budget</div>
+        <div class="card-desc">$3,000/year for conferences, courses, books, and certifications. We invest in your growth because your growth is our growth.</div>
+      </div>
+      <div class="card benefit-card fade-in">
+        <div class="benefit-icon">🚀</div>
+        <div class="card-title">Impact at Scale</div>
+        <div class="card-desc">Your work directly impacts thousands of businesses. Small team, big reach. Every engineer, designer, and seller moves the needle.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Culture -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="culture-section fade-in">
+      <div class="culture-content">
+        <div class="section-badge" style="margin-bottom: 20px;">🎭 Culture</div>
+        <h3>High trust, high autonomy, <span class="accent">high impact</span></h3>
+        <p>We hire exceptional people and give them the context, tools, and freedom to do their best work. No micromanagement, no unnecessary meetings, no bureaucracy.</p>
+        <p>Our team ships fast because we trust each other deeply. We celebrate failures that teach us something and wins that move us forward. We're serious about the work but don't take ourselves too seriously.</p>
+        <div class="culture-highlights">
+          <div class="culture-tag">🗓️ Flexible hours</div>
+          <div class="culture-tag">🏖️ Unlimited PTO</div>
+          <div class="culture-tag">🤝 Team offsites 2x/year</div>
+          <div class="culture-tag">📝 Write-first culture</div>
+          <div class="culture-tag">🎮 Friday game sessions</div>
+        </div>
+      </div>
+      <div class="card culture-visual">
+        <div style="font-size: 3rem; margin-bottom: 20px;">🎯</div>
+        <div style="font-size: 1.3rem; font-style: italic; line-height: 1.7; color: var(--text);">"Autonomy with alignment. Freedom with accountability. Speed with quality."</div>
+        <div style="margin-top: 16px; font-size: 0.85rem; color: var(--text-muted);">— How we work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Open Positions -->
+<section class="section" id="positions">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">📋 Open Roles</div>
+      <h2 class="section-title">Open <span class="muted">Positions</span></h2>
+      <p class="section-subtitle">Find your next chapter. All roles are remote-friendly unless otherwise noted.</p>
+    </div>
+
+    <div class="jobs-list fade-in">
+      <a href="#" class="card job-card">
+        <div class="job-info">
+          <div class="job-title">Senior Full-Stack Engineer</div>
+          <div class="job-meta">
+            <span class="job-tag job-tag-dept">Engineering</span>
+            <span class="job-tag job-tag-loc">🌍 Remote</span>
+            <span class="job-tag job-tag-type">Full-time</span>
+          </div>
+        </div>
+        <div class="job-arrow">→</div>
+      </a>
+
+      <a href="#" class="card job-card">
+        <div class="job-info">
+          <div class="job-title">Machine Learning Engineer</div>
+          <div class="job-meta">
+            <span class="job-tag job-tag-dept">Engineering</span>
+            <span class="job-tag job-tag-loc">🌍 Remote</span>
+            <span class="job-tag job-tag-type">Full-time</span>
+          </div>
+        </div>
+        <div class="job-arrow">→</div>
+      </a>
+
+      <a href="#" class="card job-card">
+        <div class="job-info">
+          <div class="job-title">Product Designer</div>
+          <div class="job-meta">
+            <span class="job-tag job-tag-dept">Design</span>
+            <span class="job-tag job-tag-loc">🌍 Remote</span>
+            <span class="job-tag job-tag-type">Full-time</span>
+          </div>
+        </div>
+        <div class="job-arrow">→</div>
+      </a>
+
+      <a href="#" class="card job-card">
+        <div class="job-info">
+          <div class="job-title">Account Executive</div>
+          <div class="job-meta">
+            <span class="job-tag job-tag-dept">Sales</span>
+            <span class="job-tag job-tag-loc">🌍 Remote</span>
+            <span class="job-tag job-tag-type">Full-time</span>
+          </div>
+        </div>
+        <div class="job-arrow">→</div>
+      </a>
+
+      <a href="#" class="card job-card">
+        <div class="job-info">
+          <div class="job-title">Customer Success Manager</div>
+          <div class="job-meta">
+            <span class="job-tag job-tag-dept">Customer Success</span>
+            <span class="job-tag job-tag-loc">🌍 Remote</span>
+            <span class="job-tag job-tag-type">Full-time</span>
+          </div>
+        </div>
+        <div class="job-arrow">→</div>
+      </a>
+
+      <a href="#" class="card job-card">
+        <div class="job-info">
+          <div class="job-title">DevOps Engineer</div>
+          <div class="job-meta">
+            <span class="job-tag job-tag-dept">Engineering</span>
+            <span class="job-tag job-tag-loc">🌍 Remote</span>
+            <span class="job-tag job-tag-type">Full-time</span>
+          </div>
+        </div>
+        <div class="job-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="open-app-banner fade-in">
+      <div style="font-size: 2rem; margin-bottom: 16px;">📬</div>
+      <h3>Don't See Your Role?</h3>
+      <p>We're always looking for exceptional people. Send us your resume anyway — we'd love to hear from you.</p>
+      <a href="mailto:careers@orchestraflow.com" class="btn btn-primary">Send Your Resume →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Build the Future of Work?</h2>
+    <p>Join 50+ talented people who are making AI accessible to every business.</p>
+    <a href="#positions" class="btn btn-primary btn-lg">View Open Positions →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Remote-first</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Competitive comp</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Real impact</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

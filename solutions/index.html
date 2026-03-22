@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .solution-card { text-decoration: none; color: var(--text); display: block; }
+    .solution-card .card { height: 100%; transition: all 0.3s; }
+    .solution-card:hover .card { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 12px 40px rgba(16,185,129,0.1); }
+    .solution-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .solution-card .card-title { font-size: 1.2rem; margin-bottom: 8px; }
+    .solution-card .card-desc { margin-bottom: 16px; }
+    .solution-stat { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 8px; background: var(--green-bg); color: var(--green); font-size: 0.8rem; font-weight: 700; }
+    .solution-arrow { display: flex; align-items: center; gap: 4px; color: var(--accent-light); font-size: 0.85rem; font-weight: 600; margin-top: 16px; }
+    .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .overview-card { text-align: center; padding: 32px 20px; }
+    .overview-num { font-size: 2.4rem; font-weight: 800; color: var(--accent-light); }
+    .overview-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+    @media (max-width: 768px) {
+      .solutions-grid, .overview-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1024px) {
+      .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+      .overview-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">🚀 AI Solutions</div>
+    <h1>Your AI Workforce,<br><span class="accent">Ready to Deploy</span></h1>
+    <p>Six purpose-built AI agents that handle the work your team shouldn't have to. From lead capture to workforce intelligence — deploy in days, not months.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="hub-bots fade-in">
+      <div class="hub-bot-card">
+        <div class="agent-avatar">🎯</div>
+        <h4>Lead Capture Agent</h4>
+        <p>Qualifies &amp; nurtures leads 24/7 with instant responses</p>
+        <span class="agent-live"><span class="agent-dot"></span>Live</span>
+      </div>
+      <div class="hub-bot-card">
+        <div class="agent-avatar">💬</div>
+        <h4>Support Agent</h4>
+        <p>Resolves 91% of tickets automatically in under 10 seconds</p>
+        <span class="agent-live"><span class="agent-dot"></span>Live</span>
+      </div>
+      <div class="hub-bot-card">
+        <div class="agent-avatar">📊</div>
+        <h4>Analytics Agent</h4>
+        <p>Real-time workforce insights with predictive forecasting</p>
+        <span class="agent-live"><span class="agent-dot"></span>Live</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Overview Stats -->
+<section class="section">
+  <div class="container">
+    <div class="overview-grid fade-in">
+      <div class="card overview-card">
+        <div class="overview-num">6</div>
+        <div class="overview-label">AI Solutions</div>
+      </div>
+      <div class="card overview-card">
+        <div class="overview-num">340%</div>
+        <div class="overview-label">Average ROI</div>
+      </div>
+      <div class="card overview-card">
+        <div class="overview-num">48hr</div>
+        <div class="overview-label">Avg. Deployment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solutions Grid -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">✨ Explore Solutions</div>
+      <h2 class="section-title">One Platform, <span class="muted">Six Superpowers</span></h2>
+      <p class="section-subtitle">Each AI agent is built for a specific business function. Pick one or deploy all six — they work even better together.</p>
+    </div>
+
+    <div class="solutions-grid">
+      <a href="ai-lead-capture.html" class="solution-card fade-in">
+        <div class="card">
+          <div class="solution-icon">🎯</div>
+          <div class="card-title">AI Lead Capture</div>
+          <div class="card-desc">Capture, qualify, and nurture leads 24/7. Instant responses, smart follow-ups, and seamless CRM integration.</div>
+          <div class="solution-stat">↑ 300% more conversions</div>
+          <div class="solution-arrow">Learn more →</div>
+        </div>
+      </a>
+
+      <a href="ai-appointment-manager.html" class="solution-card fade-in">
+        <div class="card">
+          <div class="solution-icon">📅</div>
+          <div class="card-title">AI Appointment Manager</div>
+          <div class="card-desc">Automated scheduling with calendar sync, conflict resolution, reminders, and timezone-aware booking.</div>
+          <div class="solution-stat">↓ 60% fewer no-shows</div>
+          <div class="solution-arrow">Learn more →</div>
+        </div>
+      </a>
+
+      <a href="ai-helpdesk.html" class="solution-card fade-in">
+        <div class="card">
+          <div class="solution-icon">🛟</div>
+          <div class="card-title">AI Helpdesk</div>
+          <div class="card-desc">Instant ticket resolution with smart escalation, multi-channel support, and self-learning knowledge base.</div>
+          <div class="solution-stat">↓ 70% cost reduction</div>
+          <div class="solution-arrow">Learn more →</div>
+        </div>
+      </a>
+
+      <a href="ai-knowledge-access.html" class="solution-card fade-in">
+        <div class="card">
+          <div class="solution-icon">🧠</div>
+          <div class="card-title">AI Knowledge Access</div>
+          <div class="card-desc">Instant answers from your entire knowledge base. Search documents, wikis, and databases with natural language.</div>
+          <div class="solution-stat">⚡ 10x faster answers</div>
+          <div class="solution-arrow">Learn more →</div>
+        </div>
+      </a>
+
+      <a href="ai-recruitment.html" class="solution-card fade-in">
+        <div class="card">
+          <div class="solution-icon">👥</div>
+          <div class="card-title">AI Recruitment</div>
+          <div class="card-desc">Parse job descriptions, match candidates, score fit, and hand off to recruiters with full context.</div>
+          <div class="solution-stat">⚡ 60% faster hiring</div>
+          <div class="solution-arrow">Learn more →</div>
+        </div>
+      </a>
+
+      <a href="ai-workforce-intelligence.html" class="solution-card fade-in">
+        <div class="card">
+          <div class="solution-icon">📊</div>
+          <div class="card-title">AI Workforce Intelligence</div>
+          <div class="card-desc">Capacity forecasting, resource optimization, real-time analytics, and profitability tracking in one dashboard.</div>
+          <div class="solution-stat">↑ 25% higher utilization</div>
+          <div class="solution-arrow">Learn more →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">⚙️ How It Works</div>
+      <h2 class="section-title">Deploy in <span class="muted">Three Steps</span></h2>
+    </div>
+
+    <div class="grid-3 fade-in">
+      <div class="card" style="text-align:center; padding:36px 24px;">
+        <div class="card-icon" style="background:var(--blue-bg); color:var(--blue); margin:0 auto 16px; font-size:1.6rem;">1</div>
+        <div class="card-title">Choose Your Agents</div>
+        <div class="card-desc">Pick the AI solutions that match your business needs. Start with one or deploy all six.</div>
+      </div>
+      <div class="card" style="text-align:center; padding:36px 24px;">
+        <div class="card-icon" style="background:var(--purple-bg); color:var(--purple); margin:0 auto 16px; font-size:1.6rem;">2</div>
+        <div class="card-title">Configure &amp; Connect</div>
+        <div class="card-desc">We integrate with your existing tools — CRM, calendar, helpdesk, HRIS — in hours, not weeks.</div>
+      </div>
+      <div class="card" style="text-align:center; padding:36px 24px;">
+        <div class="card-icon" style="background:var(--green-bg); color:var(--green); margin:0 auto 16px; font-size:1.6rem;">3</div>
+        <div class="card-title">Go Live</div>
+        <div class="card-desc">Your AI workforce starts operating immediately. Monitor performance from a single dashboard.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section section-alt">
+  <div class="container" style="max-width:700px; text-align:center;">
+    <div class="fade-in">
+      <div style="font-size:2rem; margin-bottom:20px;">💬</div>
+      <blockquote style="font-size:1.2rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+        "We deployed three OrchestraFlow agents in a single week. Within a month, our support costs dropped 65% and lead response time went from hours to seconds."
+      </blockquote>
+      <div style="font-weight:700; color:var(--text);">Sarah Chen</div>
+      <div style="font-size:0.85rem; color:var(--text-muted);">VP of Operations, TechScale Inc.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Build Your AI Workforce?</h2>
+    <p>Book a 30-minute consultation and see which solutions fit your business.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free consultation</span>
+      <span class="cta-guarantee"><span class="check">✓</span> No commitment</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Deploy in 48 hours</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

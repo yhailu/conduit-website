@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature-card { text-align: center; padding: 40px 24px; }
+    .feature-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .feature-card .card-title { font-size: 1.15rem; margin-bottom: 8px; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative; }
+    .steps-grid::before { content: ''; position: absolute; top: 48px; left: 20%; right: 20%; height: 2px; background: linear-gradient(90deg, var(--accent), var(--blue), var(--purple)); opacity: 0.3; z-index: 0; }
+    .step-card { text-align: center; position: relative; z-index: 1; padding: 36px 24px; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; }
+
+    .integrations-wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
+    .integration-badge { padding: 10px 20px; border-radius: 10px; background: var(--card-bg); border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem; color: var(--text); transition: all 0.3s; }
+    .integration-badge:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .stat-card { text-align: center; padding: 36px 20px; }
+    .stat-num { font-size: 2.4rem; font-weight: 800; color: var(--accent-light); }
+    .stat-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+
+    .security-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .security-card { text-align: center; padding: 36px 24px; }
+    .security-icon { font-size: 2rem; margin-bottom: 12px; }
+    .cert-badge { display: inline-block; padding: 6px 16px; border-radius: 8px; background: var(--green-bg); color: var(--green); font-size: 0.8rem; font-weight: 700; margin-top: 12px; }
+
+    @media (max-width: 768px) {
+      .features-grid, .steps-grid, .stats-grid, .security-grid { grid-template-columns: 1fr; }
+      .steps-grid::before { display: none; }
+    }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .security-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">⚡ Platform</div>
+    <h1>The Most Advanced<br><span class="accent">AI Workforce Platform</span></h1>
+    <p>Built for enterprise scale, designed for ease of use. Deploy intelligent AI agents across your organization in days — not months.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">See It In Action →</a>
+  </div>
+</section>
+
+<!-- Features Grid -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">🧩 Capabilities</div>
+      <h2 class="section-title">Everything You Need, <span class="muted">Nothing You Don't</span></h2>
+      <p class="section-subtitle">A complete platform for building, deploying, and managing your AI workforce at scale.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="card feature-card fade-in">
+        <div class="feature-icon">🚀</div>
+        <div class="card-title">5-Day Deployment</div>
+        <div class="card-desc">Go from zero to fully operational AI workforce in under a week. No lengthy implementation cycles or consulting engagements.</div>
+      </div>
+      <div class="card feature-card fade-in">
+        <div class="feature-icon">🔒</div>
+        <div class="card-title">Enterprise Security</div>
+        <div class="card-desc">SOC2 Type II, HIPAA, and GDPR compliant out of the box. Your data stays yours with end-to-end encryption and audit trails.</div>
+      </div>
+      <div class="card feature-card fade-in">
+        <div class="feature-icon">☁️</div>
+        <div class="card-title">Deploy Your Way</div>
+        <div class="card-desc">Cloud, hybrid, or fully on-premise — choose the deployment model that fits your security and infrastructure requirements.</div>
+      </div>
+      <div class="card feature-card fade-in">
+        <div class="feature-icon">🔗</div>
+        <div class="card-title">Universal Integrations</div>
+        <div class="card-desc">Connect to 1,000+ tools and platforms. From CRMs and helpdesks to ERPs and custom APIs — we plug into your stack.</div>
+      </div>
+      <div class="card feature-card fade-in">
+        <div class="feature-icon">🎨</div>
+        <div class="card-title">No-Code Configuration</div>
+        <div class="card-desc">Set up and customize AI agents without writing a single line of code. Intuitive visual builder for workflows and rules.</div>
+      </div>
+      <div class="card feature-card fade-in">
+        <div class="feature-icon">📊</div>
+        <div class="card-title">Real-Time Analytics</div>
+        <div class="card-desc">Live dashboards showing agent performance, cost savings, resolution rates, and ROI — all in one unified view.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">⚙️ How It Works</div>
+      <h2 class="section-title">Three Steps to Your <span class="muted">AI Workforce</span></h2>
+      <p class="section-subtitle">We've simplified enterprise AI deployment to three straightforward steps.</p>
+    </div>
+
+    <div class="steps-grid fade-in">
+      <div class="card step-card">
+        <div class="step-num" style="background:var(--blue-bg); color:var(--blue);">1</div>
+        <div class="card-title">Connect</div>
+        <div class="card-desc">Integrate your existing tools and data sources. Our universal connectors link to your CRM, helpdesk, calendar, HRIS, and more in minutes.</div>
+      </div>
+      <div class="card step-card">
+        <div class="step-num" style="background:var(--purple-bg); color:var(--purple);">2</div>
+        <div class="card-title">Configure</div>
+        <div class="card-desc">Set up your AI agents using our no-code builder. Define workflows, rules, escalation paths, and brand voice — all visually.</div>
+      </div>
+      <div class="card step-card">
+        <div class="step-num" style="background:var(--green-bg); color:var(--green);">3</div>
+        <div class="card-title">Deploy</div>
+        <div class="card-desc">Go live with confidence. Your AI workforce starts operating immediately with real-time monitoring and continuous optimization.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Integrations -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">🔗 Integrations</div>
+      <h2 class="section-title">Works With <span class="muted">Your Entire Stack</span></h2>
+      <p class="section-subtitle">1,000+ pre-built integrations. If you use it, we connect to it.</p>
+    </div>
+
+    <div class="integrations-wrap fade-in">
+      <div class="integration-badge">Salesforce</div>
+      <div class="integration-badge">HubSpot</div>
+      <div class="integration-badge">Slack</div>
+      <div class="integration-badge">Microsoft Teams</div>
+      <div class="integration-badge">Zendesk</div>
+      <div class="integration-badge">Intercom</div>
+      <div class="integration-badge">Jira</div>
+      <div class="integration-badge">ServiceNow</div>
+      <div class="integration-badge">Google Workspace</div>
+      <div class="integration-badge">Microsoft 365</div>
+      <div class="integration-badge">Workday</div>
+      <div class="integration-badge">SAP</div>
+      <div class="integration-badge">Shopify</div>
+      <div class="integration-badge">Stripe</div>
+      <div class="integration-badge">Twilio</div>
+      <div class="integration-badge">AWS</div>
+      <div class="integration-badge">Notion</div>
+      <div class="integration-badge">Confluence</div>
+      <div class="integration-badge">+ 980 more</div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="stats-grid fade-in">
+      <div class="card stat-card">
+        <div class="stat-num">1,000+</div>
+        <div class="stat-label">Integrations</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-num">5 Days</div>
+        <div class="stat-label">Avg. Deployment</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-num">99.9%</div>
+        <div class="stat-label">Uptime SLA</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-num">340%</div>
+        <div class="stat-label">Average ROI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Security -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">🛡️ Security &amp; Compliance</div>
+      <h2 class="section-title">Enterprise-Grade <span class="muted">Security You Can Trust</span></h2>
+      <p class="section-subtitle">We don't just meet compliance standards — we exceed them. Your data is protected at every layer.</p>
+    </div>
+
+    <div class="security-grid fade-in">
+      <div class="card security-card">
+        <div class="security-icon">🔐</div>
+        <div class="card-title">SOC 2 Type II</div>
+        <div class="card-desc">Independently audited controls for security, availability, processing integrity, confidentiality, and privacy.</div>
+        <div class="cert-badge">✓ Certified</div>
+      </div>
+      <div class="card security-card">
+        <div class="security-icon">🏥</div>
+        <div class="card-title">HIPAA Compliant</div>
+        <div class="card-desc">Full HIPAA compliance for healthcare organizations handling protected health information (PHI).</div>
+        <div class="cert-badge">✓ Certified</div>
+      </div>
+      <div class="card security-card">
+        <div class="security-icon">🇪🇺</div>
+        <div class="card-title">GDPR Ready</div>
+        <div class="card-desc">Complete GDPR compliance with data residency options, right to deletion, and consent management.</div>
+        <div class="cert-badge">✓ Certified</div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="margin-top: 40px; text-align: center;">
+      <div class="card" style="display: inline-block; padding: 24px 40px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; align-items: center;">
+          <div style="text-align: center;"><div style="font-weight: 700; color: var(--text);">End-to-End Encryption</div><div style="font-size: 0.8rem; color: var(--text-muted);">AES-256 at rest, TLS 1.3 in transit</div></div>
+          <div style="width:1px; height:40px; background:var(--border);"></div>
+          <div style="text-align: center;"><div style="font-weight: 700; color: var(--text);">Audit Logging</div><div style="font-size: 0.8rem; color: var(--text-muted);">Every action tracked &amp; exportable</div></div>
+          <div style="width:1px; height:40px; background:var(--border);"></div>
+          <div style="text-align: center;"><div style="font-weight: 700; color: var(--text);">Role-Based Access</div><div style="font-size: 0.8rem; color: var(--text-muted);">Granular permissions &amp; SSO</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to See the Platform in Action?</h2>
+    <p>Book a personalized demo and discover how OrchestraFlow can transform your operations.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request a Demo →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free demo</span>
+      <span class="cta-guarantee"><span class="check">✓</span> No commitment</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Live in 5 days</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

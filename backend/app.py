@@ -432,6 +432,186 @@ def book_consultation():
 
 
 # ---------------------------------------------------------------------------
+# Newsletter endpoints
+# ---------------------------------------------------------------------------
+
+@app.route('/api/newsletter/subscribe', methods=['POST'])
+def newsletter_subscribe():
+    data = request.get_json(silent=True) or {}
+    email = data.get('email', '').strip().lower()
+    source = data.get('source', 'website')
+
+    if not email:
+        return jsonify({'error': 'Email is required.'}), 400
+
+    try:
+        supabase.table('newsletter_subscribers').insert({
+            'email': email,
+            'source': source,
+            'is_active': True
+        }).execute()
+        return jsonify({'message': 'Subscribed successfully!'})
+    except Exception as e:
+        if '23505' in str(e):
+            # Already subscribed — reactivate if needed
+            try:
+                supabase.table('newsletter_subscribers').update({
+                    'is_active': True,
+                    'unsubscribed_at': None
+                }).eq('email', email).execute()
+            except Exception:
+                pass
+            return jsonify({'message': 'Welcome back! You\'re resubscribed.'})
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/newsletter/unsubscribe', methods=['POST'])
+def newsletter_unsubscribe():
+    data = request.get_json(silent=True) or {}
+    email = data.get('email', '').strip().lower()
+
+    if not email:
+        return jsonify({'error': 'Email is required.'}), 400
+
+    try:
+        supabase.table('newsletter_subscribers').update({
+            'is_active': False,
+            'unsubscribed_at': 'now()'
+        }).eq('email', email).execute()
+        return jsonify({'message': 'Unsubscribed successfully.'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/newsletter/subscribers', methods=['GET'])
+def newsletter_subscribers():
+    try:
+        res = supabase.table('newsletter_subscribers').select('*').eq('is_active', True).order('subscribed_at', desc=True).execute()
+        return jsonify({'subscribers': res.data or [], 'count': len(res.data or [])})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/newsletter/stats', methods=['GET'])
+def newsletter_stats():
+    try:
+        subs = supabase.table('newsletter_subscribers').select('id, is_active, subscribed_at').execute()
+        campaigns = supabase.table('newsletter_campaigns').select('id, status').execute()
+
+        all_subs = subs.data or []
+        active = [s for s in all_subs if s.get('is_active')]
+        sent_campaigns = [c for c in (campaigns.data or []) if c.get('status') == 'sent']
+
+        return jsonify({
+            'active_subscribers': len(active),
+            'total_subscribers': len(all_subs),
+            'campaigns_sent': len(sent_campaigns)
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/newsletter/send', methods=['POST'])
+def newsletter_send():
+    data = request.get_json(silent=True) or {}
+    subject = data.get('subject', '').strip()
+    body = data.get('body', '').strip()
+
+    if not subject or not body:
+        return jsonify({'error': 'Subject and body are required.'}), 400
+
+    # Get active subscribers
+    try:
+        res = supabase.table('newsletter_subscribers').select('email').eq('is_active', True).execute()
+        subscribers = [s['email'] for s in (res.data or [])]
+    except Exception as e:
+        return jsonify({'error': f'Failed to fetch subscribers: {e}'}), 500
+
+    if not subscribers:
+        return jsonify({'error': 'No active subscribers to send to.'}), 400
+
+    # Save campaign
+    try:
+        campaign = supabase.table('newsletter_campaigns').insert({
+            'subject': subject,
+            'body': body,
+            'recipient_count': len(subscribers),
+            'status': 'sending'
+        }).execute()
+        campaign_id = campaign.data[0]['id'] if campaign.data else None
+    except Exception as e:
+        return jsonify({'error': f'Failed to save campaign: {e}'}), 500
+
+    # Send emails in background
+    def send_campaign():
+        success_count = 0
+        for email in subscribers:
+            try:
+                msg = MIMEMultipart('alternative')
+                msg['Subject'] = subject
+                msg['From'] = SMTP_USER
+                msg['To'] = email
+
+                # Plain text version
+                msg.attach(MIMEText(body, 'plain'))
+
+                # HTML version
+                html = f"""
+                <div style="max-width:600px; margin:0 auto; font-family:Arial,sans-serif; color:#333;">
+                  <div style="padding:24px 0; border-bottom:2px solid #10b981; margin-bottom:24px;">
+                    <h1 style="font-size:1.3rem; margin:0; color:#0f172a;">orchestraflow</h1>
+                  </div>
+                  <h2 style="font-size:1.4rem; color:#0f172a; margin-bottom:16px;">{subject}</h2>
+                  <div style="font-size:1rem; line-height:1.7; color:#475569;">
+                    {body.replace(chr(10), '<br>')}
+                  </div>
+                  <div style="margin-top:32px; padding-top:16px; border-top:1px solid #e2e8f0; font-size:0.8rem; color:#94a3b8;">
+                    <p>You received this because you subscribed to OrchestraFlow updates.</p>
+                    <p><a href="#" style="color:#94a3b8;">Unsubscribe</a></p>
+                  </div>
+                </div>
+                """
+                msg.attach(MIMEText(html, 'html'))
+
+                with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
+                    server.starttls()
+                    server.login(SMTP_USER, SMTP_PASSWORD)
+                    server.send_message(msg)
+                success_count += 1
+            except Exception as e:
+                app.logger.error(f"Failed to send to {email}: {e}")
+
+        # Update campaign status
+        if campaign_id:
+            try:
+                status = 'sent' if success_count > 0 else 'failed'
+                supabase.table('newsletter_campaigns').update({
+                    'status': status,
+                    'sent_at': 'now()'
+                }).eq('id', campaign_id).execute()
+            except Exception:
+                pass
+
+        app.logger.info(f"Newsletter sent to {success_count}/{len(subscribers)} subscribers")
+
+    threading.Thread(target=send_campaign, daemon=True).start()
+
+    return jsonify({
+        'message': f'Newsletter queued for {len(subscribers)} subscribers!',
+        'recipient_count': len(subscribers)
+    })
+
+
+@app.route('/api/newsletter/campaigns', methods=['GET'])
+def newsletter_campaigns():
+    try:
+        res = supabase.table('newsletter_campaigns').select('*').order('created_at', desc=True).limit(20).execute()
+        return jsonify({'campaigns': res.data or []})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

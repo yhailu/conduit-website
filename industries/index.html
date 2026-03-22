@@ -3,281 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Industries | ORCHESTRAFLOW</title>
+  <title>Industries — OrchestraFlow</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='4' y1='10' x2='28' y2='30' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='4' y1='24' x2='28' y2='31' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='40' x2='28' y2='33' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='4' y1='54' x2='28' y2='34' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%233b82f6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%233b82f6' opacity='0.1'/%3E%3Cline x1='36' y1='30' x2='60' y2='10' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Cline x1='36' y1='31' x2='60' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='33' x2='60' y2='40' stroke='%233b82f6' stroke-width='1.5' opacity='0.4' stroke-linecap='round'/%3E%3Cline x1='36' y1='34' x2='60' y2='54' stroke='%233b82f6' stroke-width='1.5' opacity='0.3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='10' r='2' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='24' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='40' r='2' fill='%233b82f6' opacity='0.5'/%3E%3Ccircle cx='60' cy='54' r='2' fill='%233b82f6' opacity='0.4'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared.css">
   <style>
-    :root {
-      --bg: #0a0a0f; --bg-elevated: #12121a; --bg-card: #1a1a24; --bg-subtle: #0f0f14;
-      --border: rgba(255, 255, 255, 0.08); --border-hover: rgba(255, 255, 255, 0.15);
-      --text: #f8fafc; --text-secondary: #a1a1aa; --text-muted: #71717a;
-      --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
-      --accent-subtle: rgba(59, 130, 246, 0.15);
-      --success: #22c55e; --green: #22c55e; --green-bg: rgba(34, 197, 94, 0.15);
-      --purple: #a855f7; --purple-bg: rgba(168, 85, 247, 0.15);
-      --orange: #f97316; --orange-bg: rgba(249, 115, 22, 0.15);
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
-    .logo-mark { width: 36px; height: 36px; }
-    .logo-mark svg { width: 100%; height: 100%; }
-    .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
-
-    .btn { display: inline-block; padding: 0.65rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
-    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(59,130,246,0.3); }
-    .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
-
-    /* Hero */
-    .hero { text-align: center; padding: 8rem 2rem 4rem; max-width: 800px; margin: 0 auto; }
-    .hero-badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 100px; background: var(--accent-subtle); color: var(--accent-light); font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(59,130,246,0.2); }
-    .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
-    .hero h1 span { background: linear-gradient(135deg, var(--accent-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero p { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-
-    /* Stats */
-    .stats { display: flex; justify-content: center; gap: 3rem; padding: 2rem; max-width: 1000px; margin: 0 auto 3rem; flex-wrap: wrap; }
-    .stat { text-align: center; }
-    .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--accent-light); }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
-
-    /* Industry Grid */
-    .industries-section { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 5rem; }
-    .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .industry-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.3s; text-decoration: none; color: var(--text); display: block; }
-    .industry-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .industry-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .industry-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .industry-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; }
-    .industry-features { list-style: none; margin-bottom: 1.25rem; }
-    .industry-features li { font-size: 0.8rem; color: var(--text-muted); padding: 0.2rem 0; }
-    .industry-features li::before { content: "✓ "; color: var(--green); font-weight: 700; }
-    .learn-more { color: var(--accent-light); font-size: 0.85rem; font-weight: 600; }
-
-    /* CTA */
-    .cta-section { background: var(--bg-elevated); border-top: 1px solid var(--border); padding: 5rem 2rem; text-align: center; }
-    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .cta-section p { color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-
-    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
-
-    /* Animations */
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .hero h1 { font-size: 2rem; }
-      .industry-grid { grid-template-columns: 1fr; }
-      .stats { gap: 1.5rem; }
-      .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-    }
-    @media (max-width: 1024px) and (min-width: 769px) {
-      .industry-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    .industry-card { text-decoration: none; color: var(--text); }
+    .industry-card .card-icon { font-size: 2rem; width: 64px; height: 64px; border-radius: 16px; }
+    .industry-card .card-stat { background: var(--accent-subtle); color: var(--accent-light); }
+    .industry-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .industry-card .card-arrow { color: var(--accent-light); font-size: 0.85rem; margin-top: 16px; font-weight: 600; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-        <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-        <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-        <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-        <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-        <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-        <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-      </svg>
-    </div>
-    <span class="logo-text">orchestraflow</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="../index.html#features">Features</a></li>
-    <li><a href="index.html">Industries</a></li>
-    <li><a href="../index.html#about">About</a></li>
-    <li><a href="../blog/index.html">Blog</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a href="../consultation.html" class="btn btn-primary">Request Consultation</a>
-  </div>
-</nav>
+  <!-- Nav -->
+  <nav id="site-nav"></nav>
 
-<section class="hero">
-  <div class="hero-badge">🏢 Industry Solutions</div>
-  <h1>AI Solutions for <span>Every Industry</span></h1>
-  <p>Tailored AI agents designed for the unique challenges and workflows of your industry. Automate communication, capture leads, and delight customers — 24/7.</p>
-</section>
-
-<div class="stats fade-in">
-  <div class="stat">
-    <div class="stat-value">6+</div>
-    <div class="stat-label">Industries Served</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">95%</div>
-    <div class="stat-label">Customer Satisfaction</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">500%</div>
-    <div class="stat-label">Average ROI</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">24/7</div>
-    <div class="stat-label">Agent Availability</div>
-  </div>
-</div>
-
-<section class="industries-section">
-  <div class="industry-grid">
-
-    <a href="healthcare.html" class="industry-card fade-in">
-      <div class="industry-icon">🏥</div>
-      <h3>Healthcare</h3>
-      <p>HIPAA-compliant AI agents for patient communication, appointment scheduling, and care coordination.</p>
-      <ul class="industry-features">
-        <li>Appointment automation & reminders</li>
-        <li>Patient support around the clock</li>
-        <li>Insurance verification workflows</li>
-      </ul>
-      <span class="learn-more">Learn More →</span>
-    </a>
-
-    <a href="real-estate.html" class="industry-card fade-in">
-      <div class="industry-icon">🏠</div>
-      <h3>Real Estate</h3>
-      <p>Never miss a lead. AI agents that qualify prospects, schedule showings, and nurture buyer relationships.</p>
-      <ul class="industry-features">
-        <li>24/7 lead capture & qualification</li>
-        <li>Automated showing scheduling</li>
-        <li>Smart property recommendations</li>
-      </ul>
-      <span class="learn-more">Learn More →</span>
-    </a>
-
-    <a href="financial-services.html" class="industry-card fade-in">
-      <div class="industry-icon">💰</div>
-      <h3>Financial Services</h3>
-      <p>Secure, compliant AI for client onboarding, portfolio updates, and financial planning assistance.</p>
-      <ul class="industry-features">
-        <li>Regulatory compliance built-in</li>
-        <li>Streamlined client onboarding</li>
-        <li>Fraud detection & alerts</li>
-      </ul>
-      <span class="learn-more">Learn More →</span>
-    </a>
-
-    <a href="education.html" class="industry-card fade-in">
-      <div class="industry-icon">🎓</div>
-      <h3>Education</h3>
-      <p>AI-powered enrollment, student support, and learning guidance for institutions of all sizes.</p>
-      <ul class="industry-features">
-        <li>Enrollment automation</li>
-        <li>24/7 student support</li>
-        <li>Personalized course recommendations</li>
-      </ul>
-      <span class="learn-more">Learn More →</span>
-    </a>
-
-    <a href="legal.html" class="industry-card fade-in">
-      <div class="industry-icon">⚖️</div>
-      <h3>Legal</h3>
-      <p>Automate client intake, case status updates, and after-hours support for modern law firms.</p>
-      <ul class="industry-features">
-        <li>Client intake automation</li>
-        <li>Case status & document management</li>
-        <li>Conflict checking workflows</li>
-      </ul>
-      <span class="learn-more">Learn More →</span>
-    </a>
-
-    <a href="home-services.html" class="industry-card fade-in">
-      <div class="industry-icon">🔧</div>
-      <h3>Home Services</h3>
-      <p>Smart dispatching, scheduling, and customer communication for service businesses.</p>
-      <ul class="industry-features">
-        <li>Emergency routing & dispatching</li>
-        <li>Automated quote generation</li>
-        <li>Review management & follow-up</li>
-      </ul>
-      <span class="learn-more">Learn More →</span>
-    </a>
-
-  </div>
-</section>
-
-<section class="cta-section fade-in">
-  <h2>Don't See Your Industry?</h2>
-  <p>OrchestraFlow adapts to any business. Contact us to discuss a custom AI solution tailored to your needs.</p>
-  <a href="#" class="btn btn-primary btn-lg">Contact Us</a>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <a href="../index.html" class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="4" y1="10" x2="28" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="4" y1="24" x2="28" y2="31" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="40" x2="28" y2="33" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="4" y1="54" x2="28" y2="34" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="32" cy="32" r="4" fill="#3b82f6"/>
-          <circle cx="32" cy="32" r="7" fill="#3b82f6" opacity="0.1"/>
-          <line x1="36" y1="30" x2="60" y2="10" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <line x1="36" y1="31" x2="60" y2="24" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="33" x2="60" y2="40" stroke="#3b82f6" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-          <line x1="36" y1="34" x2="60" y2="54" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-          <circle cx="60" cy="10" r="2" fill="#3b82f6" opacity="0.4"/>
-          <circle cx="60" cy="24" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="40" r="2" fill="#3b82f6" opacity="0.5"/>
-          <circle cx="60" cy="54" r="2" fill="#3b82f6" opacity="0.4"/>
-        </svg>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-badge">🏢 Industries</div>
+      <h1>AI Solutions for <span class="accent">Every Industry</span></h1>
+      <p>Purpose-built AI agents trained for your industry's unique workflows, compliance requirements, and customer expectations.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; margin-top: 8px;">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Find Your Solution</a>
+        <a href="#industries" class="btn btn-ghost btn-lg">Explore Industries ↓</a>
       </div>
-      <span class="logo-text">orchestraflow</span>
-    </a>
-    <div class="footer-links">
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#features">Features</a>
-      <a href="index.html">Industries</a>
-      <a href="../blog/index.html">Blog</a>
-      <a href="#">Contact</a>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 20px;">✓ Industry-specific training &nbsp; ✓ Compliance built-in &nbsp; ✓ Custom workflows</p>
+    <div class="hub-bots fade-in">
+      <div class="hub-bot-card">
+        <div class="agent-avatar">🏥</div>
+        <h4>Patient Care Agent</h4>
+        <p>HIPAA-compliant scheduling &amp; care coordination</p>
+        <span class="agent-live"><span class="agent-dot"></span>Live</span>
+      </div>
+      <div class="hub-bot-card">
+        <div class="agent-avatar">🏦</div>
+        <h4>Financial Agent</h4>
+        <p>SOC2-certified onboarding &amp; compliance automation</p>
+        <span class="agent-live"><span class="agent-dot"></span>Live</span>
+      </div>
+      <div class="hub-bot-card">
+        <div class="agent-avatar">💅</div>
+        <h4>Booking Agent</h4>
+        <p>Zero double-bookings with smart client scheduling</p>
+        <span class="agent-live"><span class="agent-dot"></span>Live</span>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 OrchestraFlow AI, Inc.</div>
-  </div>
-</footer>
+    </div>
+  </section>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+  <!-- Industries Grid -->
+  <section id="industries" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎯 Specialized Solutions</div>
+        <h2 class="section-title">Built for Your <span class="muted">Industry</span></h2>
+        <p class="section-subtitle">Each solution comes pre-trained with industry knowledge, compliance frameworks, and best-practice workflows.</p>
+      </div>
+      <div class="grid-3 fade-in">
+        <a href="healthcare.html" class="card industry-card">
+          <div class="card-icon" style="background: var(--green-bg);">🏥</div>
+          <div class="card-title">Healthcare & Medical</div>
+          <div class="card-desc">HIPAA-compliant AI for patient engagement, appointment scheduling, and care coordination. Reduce no-shows by 60%.</div>
+          <div class="card-stat">40% more bookings</div>
+          <div class="card-arrow">Learn more →</div>
+        </a>
+        <a href="real-estate.html" class="card industry-card">
+          <div class="card-icon" style="background: var(--blue-bg);">🏠</div>
+          <div class="card-title">Real Estate & Property</div>
+          <div class="card-desc">Qualify leads instantly, match properties, schedule showings, and nurture buyers 24/7 with intelligent AI agents.</div>
+          <div class="card-stat">65% more qualified leads</div>
+          <div class="card-arrow">Learn more →</div>
+        </a>
+        <a href="financial-services.html" class="card industry-card">
+          <div class="card-icon" style="background: var(--purple-bg);">💰</div>
+          <div class="card-title">Financial Services</div>
+          <div class="card-desc">Secure, compliance-first AI for client onboarding, portfolio guidance, and fraud prevention with SOC2 certification.</div>
+          <div class="card-stat">100% compliance rate</div>
+          <div class="card-arrow">Learn more →</div>
+        </a>
+        <a href="saas-digital.html" class="card industry-card">
+          <div class="card-icon" style="background: var(--cyan-bg);">💻</div>
+          <div class="card-title">SaaS & Digital Teams</div>
+          <div class="card-desc">Automate onboarding, reduce churn, boost feature adoption, and scale support without scaling headcount.</div>
+          <div class="card-stat">45% less churn</div>
+          <div class="card-arrow">Learn more →</div>
+        </a>
+        <a href="education.html" class="card industry-card">
+          <div class="card-icon" style="background: var(--orange-bg);">🎓</div>
+          <div class="card-title">Education & EdTech</div>
+          <div class="card-desc">Streamline enrollment, support students 24/7, automate admin tasks, and personalize learning pathways.</div>
+          <div class="card-stat">35% more enrollments</div>
+          <div class="card-arrow">Learn more →</div>
+        </a>
+        <a href="beauty-wellness.html" class="card industry-card">
+          <div class="card-icon" style="background: var(--red-bg);">💅</div>
+          <div class="card-title">Beauty & Wellness</div>
+          <div class="card-desc">Smart booking, personalized recommendations, post-treatment follow-ups, and loyalty program automation.</div>
+          <div class="card-stat">42% more bookings</div>
+          <div class="card-arrow">Learn more →</div>
+        </a>
+      </div>
+    </div>
+  </section>
 
+  <!-- Stats -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">📊 Platform Impact</div>
+        <h2 class="section-title">Trusted Across <span class="muted">Industries</span></h2>
+      </div>
+      <div class="stats-bar fade-in">
+        <div class="stat-item">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Industries Served</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Businesses Transformed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2M+</div>
+          <div class="stat-label">Conversations Handled</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container fade-in">
+      <h2>Don't See Your Industry?</h2>
+      <p>Our AI platform adapts to any business. Let's discuss how OrchestraFlow can transform your specific workflows.</p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation</a>
+        <a href="../platform.html" class="btn btn-ghost btn-lg">View Platform</a>
+      </div>
+      <div class="cta-guarantees">
+        <span class="cta-guarantee"><span class="check">✓</span> Free strategy session</span>
+        <span class="cta-guarantee"><span class="check">✓</span> Custom AI roadmap</span>
+        <span class="cta-guarantee"><span class="check">✓</span> No commitment required</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
 </body>
 </html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Workforce Intelligence — OrchestraFlow</title>
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .feature-card { text-align: center; padding: 32px 20px; }
+    .feature-card .card-icon { margin: 0 auto 16px; }
+    .use-case-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    .use-case-item { display: flex; align-items: flex-start; gap: 12px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .use-case-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .use-case-title { font-weight: 700; margin-bottom: 4px; }
+    .use-case-desc { font-size: 0.85rem; color: var(--text-secondary); }
+    @media (max-width: 1024px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .feature-grid, .use-case-list { grid-template-columns: 1fr; } }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">📊 AI Workforce Intelligence</div>
+    <h1>See Your Workforce Clearly.<br><span class="accent">25% Higher Utilization.</span></h1>
+    <p>AI-powered analytics that forecast capacity, optimize resources, and track profitability in real time — so you make smarter workforce decisions every day.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="../consultation.html" class="btn btn-primary btn-lg">Optimize Your Workforce →</a>
+      <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
+    </div>
+    <div class="agent-demo fade-in">
+      <div class="agent-widget">
+        <div class="agent-header">
+          <div class="agent-avatar">📊</div>
+          <div class="agent-info">
+            <h4>Analytics Agent</h4>
+            <span class="agent-live"><span class="agent-dot"></span>Live</span>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="agent-msg agent-user msg-1">Show me this quarter's utilization report</div>
+          <div class="agent-msg agent-bot msg-2">Q1 utilization is at <strong>87%</strong> (up from 72% last quarter). Top performers: Engineering at 94%, Design at 91%. I've flagged <strong>3 capacity risks</strong> for April — want the detailed forecast?</div>
+          <div class="agent-msg agent-user msg-3">Yes, send the forecast</div>
+          <div class="agent-msg agent-bot msg-4">Sent to your inbox! ✅ Key insight: hiring 2 more engineers by March will prevent a <strong>$340K revenue gap</strong> in Q2.</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><span class="metric-num">25% ↑</span><span class="metric-label">Utilization</span></div>
+          <div class="agent-metric"><span class="metric-num">340%</span><span class="metric-label">ROI</span></div>
+          <div class="agent-metric"><span class="metric-num">Real-time</span><span class="metric-label">Data</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section">
+  <div class="container">
+    <div class="stats-bar fade-in">
+      <div class="stat-item">
+        <div class="stat-num">25%</div>
+        <div class="stat-label">Utilization gain</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">340%</div>
+        <div class="stat-label">ROI</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Real-time</div>
+        <div class="stat-label">Dashboards</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Predictive</div>
+        <div class="stat-label">Insights</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section section-alt" id="features">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">⚡ Key Features</div>
+      <h2 class="section-title">Intelligence That <span class="muted">Drives Decisions</span></h2>
+      <p class="section-subtitle">Four pillars of workforce intelligence that turn data into action and guesswork into strategy.</p>
+    </div>
+
+    <div class="feature-grid fade-in">
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">📈</div>
+        <div class="card-title">Capacity Forecasting</div>
+        <div class="card-desc">Predict workforce needs 90 days out. AI analyzes trends, seasonality, and pipeline to prevent over- or under-staffing.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--green-bg); color:var(--green);">⚙️</div>
+        <div class="card-title">Resource Optimization</div>
+        <div class="card-desc">Automatically match skills to projects. Maximize billable hours and eliminate bench time with smart allocation.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">📊</div>
+        <div class="card-title">Real-Time Analytics</div>
+        <div class="card-desc">Live dashboards showing utilization, availability, project health, and team performance — updated every minute.</div>
+      </div>
+      <div class="card feature-card">
+        <div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">💰</div>
+        <div class="card-title">Profitability Tracking</div>
+        <div class="card-desc">Track margins per project, team, and client in real time. Identify underperforming engagements before they drain profit.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-badge">💡 Use Cases</div>
+      <h2 class="section-title">Built for <span class="muted">Operations Leaders</span></h2>
+    </div>
+
+    <div class="use-case-list fade-in">
+      <div class="use-case-item">
+        <div class="use-case-icon">🏗️</div>
+        <div>
+          <div class="use-case-title">Professional Services</div>
+          <div class="use-case-desc">Match consultants to engagements by skill, availability, and client preference. Maximize utilization and margins.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">💻</div>
+        <div>
+          <div class="use-case-title">IT Staffing Firms</div>
+          <div class="use-case-desc">Forecast contractor demand, optimize bench management, and track placement profitability across all accounts.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🏥</div>
+        <div>
+          <div class="use-case-title">Healthcare Systems</div>
+          <div class="use-case-desc">Predict staffing needs across shifts and departments. Reduce overtime costs while maintaining care quality.</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">🏭</div>
+        <div>
+          <div class="use-case-title">Manufacturing</div>
+          <div class="use-case-desc">Optimize shift scheduling, cross-training assignments, and production line staffing based on demand forecasts.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section section-alt">
+  <div class="container" style="max-width:700px; text-align:center;">
+    <div class="fade-in">
+      <div style="font-size:2rem; margin-bottom:20px;">💬</div>
+      <blockquote style="font-size:1.2rem; font-style:italic; line-height:1.8; color:var(--text); margin-bottom:20px;">
+        "We were flying blind on utilization — guessing who was available, which projects were profitable. OrchestraFlow gave us real-time visibility and our margins improved 18% in the first quarter."
+      </blockquote>
+      <div style="font-weight:700; color:var(--text);">David Morales</div>
+      <div style="font-size:0.85rem; color:var(--text-muted);">COO, Apex Consulting Group</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Stop Guessing. Start Optimizing.</h2>
+    <p>See how AI Workforce Intelligence can maximize your team's utilization and profitability.</p>
+    <a href="../consultation.html" class="btn btn-primary btn-lg">Request Consultation →</a>
+    <div class="cta-guarantees">
+      <span class="cta-guarantee"><span class="check">✓</span> Free consultation</span>
+      <span class="cta-guarantee"><span class="check">✓</span> 340% average ROI</span>
+      <span class="cta-guarantee"><span class="check">✓</span> Real-time dashboards</span>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>
