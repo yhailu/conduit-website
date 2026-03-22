@@ -14,7 +14,7 @@ from supabase import create_client, Client
 
 load_dotenv()
 
-STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+STATIC_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 app = Flask(__name__, static_folder=None)  # disable built-in static; we handle it ourselves
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
 
@@ -70,6 +70,22 @@ def serve_index():
     return send_from_directory(STATIC_DIR, 'index.html')
 
 
+@app.route('/debug/static-info')
+def debug_static_info():
+    """Temporary debug endpoint — remove after confirming routing works."""
+    import glob
+    files = []
+    for f in glob.glob(os.path.join(STATIC_DIR, '**', '*.html'), recursive=True):
+        files.append(os.path.relpath(f, STATIC_DIR))
+    return jsonify({
+        'STATIC_DIR': STATIC_DIR,
+        'exists': os.path.isdir(STATIC_DIR),
+        'consultation_exists': os.path.isfile(os.path.join(STATIC_DIR, 'consultation.html')),
+        'blog_index_exists': os.path.isfile(os.path.join(STATIC_DIR, 'blog', 'index.html')),
+        'html_files': sorted(files)[:30],
+    })
+
+
 @app.route('/<path:path>')
 def serve_static(path):
     # 1. Redirect /foo.html → /foo (strip .html from URL bar)
@@ -95,7 +111,11 @@ def serve_static(path):
         return send_from_directory(STATIC_DIR, html_path)
 
     # 5. 404
-    return 'Not Found', 404
+    return jsonify({'error': 'Not Found', 'path': path, 'tried': [
+        os.path.join(STATIC_DIR, path),
+        os.path.join(STATIC_DIR, path, 'index.html'),
+        os.path.join(STATIC_DIR, path + '.html'),
+    ]}), 404
 
 
 # ---------------------------------------------------------------------------
