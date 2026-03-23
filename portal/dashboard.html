@@ -308,13 +308,14 @@
     const wrap = document.getElementById('preview-wrap');
 
     if (view === 'new') {
-      // Show iframe with demo
-      wrap.innerHTML = '';
-      const iframe = document.createElement('iframe');
-      iframe.src = '/api/portal/demo-page';
-      iframe.title = 'Website Demo Preview';
-      iframe.style.cssText = 'width:100%;height:100%;border:none;';
-      wrap.appendChild(iframe);
+      // Show screenshot of redesigned site
+      wrap.innerHTML = `
+        <div style="width:100%;height:100%;overflow:auto;background:#f1f5f9;display:flex;flex-direction:column;align-items:center;padding:24px;">
+          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">✨ Redesigned Website — <a href="#" onclick="openFullScreen();return false;" style="color:#3b82f6;">Open interactive version →</a></div>
+          <img src="/api/portal/demo-screenshot" alt="Redesigned website preview"
+            style="max-width:100%;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;cursor:pointer;"
+            onclick="openFullScreen()" />
+        </div>`;
     } else {
       // Show screenshot of original site
       wrap.innerHTML = `
@@ -349,14 +350,12 @@
       // Populate dashboard
       document.getElementById('dash-business-name').textContent = demo.business_name || 'Your Business';
 
-      // Preview — load demo through authenticated endpoint
+      // Preview — show screenshot, Full Screen opens interactive version
       if (demo.demo_url) {
         document.getElementById('preview-url').textContent = demo.business_name + ' — Redesigned Preview';
-        document.getElementById('preview-placeholder').remove();
-        const iframe = document.createElement('iframe');
-        iframe.src = '/api/portal/demo-page';
-        iframe.title = 'Website Demo Preview';
-        document.getElementById('preview-wrap').appendChild(iframe);
+        const placeholder = document.getElementById('preview-placeholder');
+        if (placeholder) placeholder.remove();
+        switchPreview('new');
       }
 
       // Original site

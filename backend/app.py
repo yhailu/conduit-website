@@ -791,6 +791,32 @@ def portal_demo_page():
         return str(e), 500
 
 
+@app.route('/api/portal/demo-screenshot', methods=['GET'])
+def portal_demo_screenshot():
+    """Serve a screenshot of the client's demo site."""
+    client_id = session.get('portal_client_id')
+    if not client_id:
+        return 'Unauthorized', 401
+
+    try:
+        res = supabase.table('portal_clients').select('demo_url').eq('id', client_id).execute()
+        clients = res.data or []
+        if not clients or not clients[0].get('demo_url'):
+            return 'Demo not found', 404
+
+        demo_name = clients[0]['demo_url']
+
+        # Serve stored screenshot (png or jpg)
+        for ext in ['png', 'jpg', 'jpeg']:
+            screenshot_file = demo_name + '.' + ext
+            if os.path.isfile(os.path.join(DEMOS_DIR, screenshot_file)):
+                return send_from_directory(DEMOS_DIR, screenshot_file)
+
+        return 'Screenshot not found', 404
+    except Exception as e:
+        return str(e), 500
+
+
 # ---------------------------------------------------------------------------
 # Web Development lead capture
 # ---------------------------------------------------------------------------
