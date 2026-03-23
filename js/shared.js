@@ -50,7 +50,14 @@ function injectNav() {
         </div>
       </li>
       <li><a href="/platform">Platform</a></li>
-      <li><a href="/company/about">Company</a></li>
+      <li class="nav-dropdown"><a href="/company/about">Company</a>
+        <div class="nav-dropdown-menu">
+          <a href="/company/about">About</a>
+          <a href="/company/case-studies">Case Studies</a>
+          <a href="/faq">FAQ</a>
+          <a href="/company/careers">Careers</a>
+        </div>
+      </li>
       <li><a href="/blog">Blog</a></li>
     </ul>
     <div class="nav-actions">
