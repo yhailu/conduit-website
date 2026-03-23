@@ -12,7 +12,6 @@ from flask import Flask, request, jsonify, redirect, session, send_from_director
 from flask_cors import CORS
 from supabase import create_client, Client
 from werkzeug.security import check_password_hash, generate_password_hash
-import hashlib, time
 
 load_dotenv()
 
@@ -23,8 +22,6 @@ app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
 ALLOWED_ORIGINS = [
     'http://localhost:5000',
     'http://127.0.0.1:5000',
-    'https://orchestraflow.ai',
-    'https://www.orchestraflow.ai',
 ]
 # Add production origin from env (e.g. https://conduit-website.onrender.com)
 if os.getenv('RENDER_EXTERNAL_URL'):
@@ -662,23 +659,6 @@ def newsletter_campaigns():
 # Portal endpoints (Web Development client demos)
 # ---------------------------------------------------------------------------
 
-# Simple token store: token -> client_id (in-memory, good enough for demo portal)
-_portal_tokens = {}
-
-def _make_token(client_id):
-    raw = f"{client_id}-{time.time()}-{os.urandom(16).hex()}"
-    token = hashlib.sha256(raw.encode()).hexdigest()
-    _portal_tokens[token] = client_id
-    return token
-
-def _get_client_id_from_request():
-    auth = request.headers.get('Authorization', '')
-    if auth.startswith('Bearer '):
-        token = auth[7:]
-        return _portal_tokens.get(token)
-    return None
-
-
 @app.route('/api/portal/login', methods=['POST'])
 def portal_login():
     data = request.get_json(silent=True) or {}
@@ -699,11 +679,11 @@ def portal_login():
         if not check_password_hash(client['password_hash'], password):
             return jsonify({'error': 'Invalid email or password.'}), 401
 
-        token = _make_token(client['id'])
+        session['portal_client_id'] = client['id']
+        session['portal_email'] = client['email']
 
         return jsonify({
             'message': 'Login successful.',
-            'token': token,
             'client': {
                 'id': client['id'],
                 'email': client['email'],
@@ -716,7 +696,7 @@ def portal_login():
 
 @app.route('/api/portal/me', methods=['GET'])
 def portal_me():
-    client_id = _get_client_id_from_request()
+    client_id = session.get('portal_client_id')
     if not client_id:
         return jsonify({'error': 'Not authenticated.'}), 401
 
@@ -724,6 +704,8 @@ def portal_me():
         res = supabase.table('portal_clients').select('id, email, business_name').eq('id', client_id).execute()
         clients = res.data or []
         if not clients:
+            session.pop('portal_client_id', None)
+            session.pop('portal_email', None)
             return jsonify({'error': 'Client not found.'}), 401
 
         return jsonify({'client': clients[0]})
@@ -733,15 +715,14 @@ def portal_me():
 
 @app.route('/api/portal/logout', methods=['POST'])
 def portal_logout():
-    auth = request.headers.get('Authorization', '')
-    if auth.startswith('Bearer '):
-        _portal_tokens.pop(auth[7:], None)
+    session.pop('portal_client_id', None)
+    session.pop('portal_email', None)
     return jsonify({'message': 'Logged out.'})
 
 
 @app.route('/api/portal/demo', methods=['GET'])
 def portal_demo():
-    client_id = _get_client_id_from_request()
+    client_id = session.get('portal_client_id')
     if not client_id:
         return jsonify({'error': 'Not authenticated.'}), 401
 
@@ -761,7 +742,7 @@ def portal_demo():
 
 @app.route('/api/portal/request-build', methods=['POST'])
 def portal_request_build():
-    client_id = _get_client_id_from_request()
+    client_id = session.get('portal_client_id')
     if not client_id:
         return jsonify({'error': 'Not authenticated.'}), 401
 
@@ -786,12 +767,9 @@ DEMOS_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file_
 
 @app.route('/api/portal/demo-page', methods=['GET'])
 def portal_demo_page():
-    """Serve the client's demo HTML file. Accepts token via Authorization header or ?token= query param."""
-    client_id = _get_client_id_from_request()
-    # Also accept token as query param (for iframe/new tab usage)
-    if not client_id:
-        token = request.args.get('token', '')
-        client_id = _portal_tokens.get(token)
+    """Serve the client's demo HTML file. Only accessible to the authenticated client
+    whose demo_url points to this route."""
+    client_id = session.get('portal_client_id')
     if not client_id:
         return 'Unauthorized', 401
 

@@ -131,7 +131,8 @@
         return;
       }
 
-      sessionStorage.setItem('portal_token', data.token);
+      console.log('Login successful, token/cookie should be set. Redirecting...');
+      console.log('Response headers:', [...res.headers.entries()]);
       window.location.href = '/portal/dashboard';
     } catch (err) {
       errorEl.textContent = 'Connection error. Please try again.';

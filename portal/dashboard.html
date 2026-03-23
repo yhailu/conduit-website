@@ -50,6 +50,48 @@
       animation: btnBounce 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite, btnPulseGlow 2s ease-in-out infinite;
       position: relative; overflow: hidden;
       transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .preview-open-btn:hover {
+      transform: scale(1.12) !important;
+      box-shadow: 0 6px 30px rgba(59,130,246,0.6), 0 0 60px rgba(6,182,212,0.3);
+    }
+    .preview-open-btn::after {
+      content: ''; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent 35%, rgba(255,255,255,0.35) 50%, transparent 65%);
+      animation: btnShine 2s ease-in-out infinite;
+    }
+    @keyframes btnBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      15% { transform: translateY(-8px) scale(1.08); }
+      30% { transform: translateY(2px) scale(0.97); }
+      45% { transform: translateY(-4px) scale(1.04); }
+      60% { transform: translateY(1px) scale(0.99); }
+      75% { transform: translateY(-2px) scale(1.02); }
+    }
+    @keyframes btnPulseGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(59,130,246,0.4), 0 0 20px rgba(6,182,212,0.1); }
+      50% { box-shadow: 0 0 25px rgba(59,130,246,0.7), 0 0 50px rgba(6,182,212,0.3), 0 0 80px rgba(59,130,246,0.1); }
+    }
+    @keyframes btnShine {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      40%, 100% { transform: translateX(100%) rotate(25deg); }
+    }
+    .preview-tabs { display: flex; gap: 4px; margin-left: 12px; }
+    .preview-tab {
+      padding: 5px 14px; border: 1px solid var(--border); border-radius: 6px;
+      font-size: 0.7rem; font-weight: 600; cursor: pointer; font-family: inherit;
+      background: transparent; color: var(--text-muted); transition: all 0.2s;
+    }
+    .preview-tab:hover { color: var(--text); border-color: var(--border-hover); }
+    .preview-tab.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+    .preview-open-btn {
+      padding: 10px 22px; background: linear-gradient(135deg, #3b82f6, #06b6d4); color: #fff;
+      border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 800;
+      cursor: pointer; font-family: inherit; margin-left: auto;
+      animation: btnBounce 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite, btnPulseGlow 2s ease-in-out infinite;
+      position: relative; overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s;
       letter-spacing: 0.02em;
     }
     .preview-open-btn:hover {
@@ -268,7 +310,7 @@
       // Show iframe with demo
       wrap.innerHTML = '';
       const iframe = document.createElement('iframe');
-      iframe.src = '/api/portal/demo-page?token=' + encodeURIComponent(portalToken);
+      iframe.src = '/api/portal/demo-page';
       iframe.title = 'Website Demo Preview';
       iframe.style.cssText = 'width:100%;height:100%;border:none;';
       wrap.appendChild(iframe);
@@ -285,23 +327,21 @@
 
   function openFullScreen() {
     if (currentView === 'new') {
-      window.open('/api/portal/demo-page?token=' + encodeURIComponent(portalToken), '_blank');
+      window.open('/api/portal/demo-page', '_blank');
     } else {
       window.open(originalUrl, '_blank');
     }
   }
 
-  const portalToken = sessionStorage.getItem('portal_token');
-  const authHeaders = { 'Authorization': 'Bearer ' + (portalToken || '') };
-
   async function init() {
-    if (!portalToken) { window.location.href = '/portal/login'; return; }
-
     try {
-      const meRes = await fetch('/api/portal/me', { headers: authHeaders });
-      if (!meRes.ok) { window.location.href = '/portal/login'; return; }
+      console.log('Dashboard: checking auth...');
+      console.log('Document cookies:', document.cookie);
+      const meRes = await fetch('/api/portal/me', { credentials: 'include' });
+      console.log('Dashboard /me status:', meRes.status);
+      if (!meRes.ok) { console.log('Auth failed, redirecting to login'); window.location.href = '/portal/login'; return; }
 
-      const demoRes = await fetch('/api/portal/demo', { headers: authHeaders });
+      const demoRes = await fetch('/api/portal/demo', { credentials: 'include' });
       if (!demoRes.ok) { window.location.href = '/portal/login'; return; }
       const demo = await demoRes.json();
 
@@ -313,9 +353,8 @@
         document.getElementById('preview-url').textContent = demo.business_name + ' — Redesigned Preview';
         document.getElementById('preview-placeholder').remove();
         const iframe = document.createElement('iframe');
-        iframe.src = '/api/portal/demo-page?token=' + encodeURIComponent(portalToken);
+        iframe.src = '/api/portal/demo-page';
         iframe.title = 'Website Demo Preview';
-        iframe.style.cssText = 'width:100%;height:100%;border:none;';
         document.getElementById('preview-wrap').appendChild(iframe);
       }
 
@@ -355,7 +394,8 @@
     try {
       await fetch('/api/portal/request-build', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', ...authHeaders },
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ message })
       });
       document.getElementById('request-form').style.display = 'none';
@@ -366,8 +406,7 @@
   }
 
   async function handleLogout() {
-    await fetch('/api/portal/logout', { method: 'POST', headers: authHeaders });
-    sessionStorage.removeItem('portal_token');
+    await fetch('/api/portal/logout', { method: 'POST', credentials: 'include' });
     window.location.href = '/portal/login';
   }
 
