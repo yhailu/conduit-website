@@ -54,13 +54,16 @@ ALTER TABLE portal_clients ENABLE ROW LEVEL SECURITY;
 ALTER TABLE build_requests ENABLE ROW LEVEL SECURITY;
 ALTER TABLE webdev_leads ENABLE ROW LEVEL SECURITY;
 
--- Portal clients: server-side only (no public access, managed via API)
-CREATE POLICY "Server access only" ON portal_clients
-  FOR ALL USING (false);
+-- Portal clients: allow reads (for login auth via anon key)
+CREATE POLICY "Allow read access" ON portal_clients
+  FOR SELECT USING (true);
 
--- Build requests: server-side only
-CREATE POLICY "Server access only" ON build_requests
-  FOR ALL USING (false);
+-- Build requests: allow reads and inserts
+CREATE POLICY "Allow read access" ON build_requests
+  FOR SELECT USING (true);
+
+CREATE POLICY "Allow inserts" ON build_requests
+  FOR INSERT WITH CHECK (true);
 
 -- Web dev leads: allow public inserts (landing page form)
 CREATE POLICY "Allow public inserts" ON webdev_leads
