@@ -229,6 +229,7 @@
           <div class="preview-dot" style="background:#f59e0b;"></div>
           <div class="preview-dot" style="background:#22c55e;"></div>
         </div>
+        <div class="preview-url" id="preview-url"></div>
         <div class="preview-tabs">
           <button class="preview-tab active" id="tab-new" onclick="switchPreview('new')">✨ New Design</button>
           <button class="preview-tab" id="tab-old" onclick="switchPreview('old')">📦 Original Site</button>
@@ -385,7 +386,10 @@
       document.getElementById('dash-content').style.display = 'block';
 
     } catch (err) {
-      window.location.href = '/portal/login';
+      console.error('Dashboard init error:', err);
+      if (err.message && err.message.includes('fetch')) {
+        window.location.href = '/portal/login';
+      }
     }
   }
 
