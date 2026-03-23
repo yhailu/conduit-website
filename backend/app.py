@@ -760,6 +760,38 @@ def portal_request_build():
 
 
 # ---------------------------------------------------------------------------
+# Portal demo file serving (authenticated, scoped to client)
+# ---------------------------------------------------------------------------
+
+DEMOS_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'portal', 'demos'))
+
+@app.route('/api/portal/demo-page', methods=['GET'])
+def portal_demo_page():
+    """Serve the client's demo HTML file. Only accessible to the authenticated client
+    whose demo_url points to this route."""
+    client_id = session.get('portal_client_id')
+    if not client_id:
+        return 'Unauthorized', 401
+
+    try:
+        res = supabase.table('portal_clients').select('demo_url').eq('id', client_id).execute()
+        clients = res.data or []
+        if not clients or not clients[0].get('demo_url'):
+            return 'Demo not found', 404
+
+        # demo_url stores the filename (e.g. "pipexpress")
+        demo_file = clients[0]['demo_url'] + '.html'
+        demo_path = os.path.join(DEMOS_DIR, demo_file)
+
+        if not os.path.isfile(demo_path):
+            return 'Demo not found', 404
+
+        return send_from_directory(DEMOS_DIR, demo_file)
+    except Exception as e:
+        return str(e), 500
+
+
+# ---------------------------------------------------------------------------
 # Web Development lead capture
 # ---------------------------------------------------------------------------
 

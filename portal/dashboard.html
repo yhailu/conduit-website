@@ -219,12 +219,12 @@
       // Populate dashboard
       document.getElementById('dash-business-name').textContent = demo.business_name || 'Your Business';
 
-      // Preview
+      // Preview — load demo through authenticated endpoint
       if (demo.demo_url) {
-        document.getElementById('preview-url').textContent = demo.demo_url;
+        document.getElementById('preview-url').textContent = demo.business_name + ' — Redesigned Preview';
         document.getElementById('preview-placeholder').remove();
         const iframe = document.createElement('iframe');
-        iframe.src = demo.demo_url;
+        iframe.src = '/api/portal/demo-page';
         iframe.title = 'Website Demo Preview';
         document.getElementById('preview-wrap').appendChild(iframe);
       }
