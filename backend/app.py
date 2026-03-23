@@ -19,8 +19,6 @@ load_dotenv()
 STATIC_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 app = Flask(__name__, static_folder=None)  # disable built-in static; we handle it ourselves
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['SESSION_COOKIE_SECURE'] = bool(os.getenv('DYNO') or os.getenv('RENDER_EXTERNAL_URL'))
 
 ALLOWED_ORIGINS = [
     'http://localhost:5000',
