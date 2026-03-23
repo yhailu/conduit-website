@@ -36,11 +36,32 @@
     .preview-iframe-wrap { width: 100%; height: 85vh; background: #fff; }
     .preview-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
     .preview-open-btn {
-      padding: 5px 12px; background: #3b82f6; color: #fff; border: none; border-radius: 6px;
-      font-size: 0.7rem; font-weight: 600; cursor: pointer; font-family: inherit;
-      transition: background 0.2s; margin-left: auto;
+      padding: 8px 18px; background: linear-gradient(135deg, #3b82f6, #06b6d4); color: #fff;
+      border: none; border-radius: 8px; font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; margin-left: auto;
+      animation: btnPulseGlow 2s ease-in-out infinite;
+      position: relative; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .preview-open-btn:hover { background: #2563eb; }
+    .preview-open-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(59,130,246,0.5);
+      animation: none;
+    }
+    .preview-open-btn::after {
+      content: ''; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
+      animation: btnShine 3s ease-in-out infinite;
+    }
+    @keyframes btnPulseGlow {
+      0%, 100% { box-shadow: 0 0 8px rgba(59,130,246,0.3); }
+      50% { box-shadow: 0 0 20px rgba(59,130,246,0.6), 0 0 40px rgba(6,182,212,0.2); }
+    }
+    @keyframes btnShine {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      30%, 100% { transform: translateX(100%) rotate(25deg); }
+    }
     .preview-placeholder {
       width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
       flex-direction: column; gap: 12px; color: var(--text-muted);
@@ -151,7 +172,7 @@
           <div class="preview-dot" style="background:#22c55e;"></div>
         </div>
         <div class="preview-url" id="preview-url">https://demo.orchestraflow.ai/your-site</div>
-        <button class="preview-open-btn" id="open-demo-btn" onclick="window.open('/api/portal/demo-page','_blank')">Open Full Screen ↗</button>
+        <button class="preview-open-btn" id="open-demo-btn" onclick="window.open('/api/portal/demo-page','_blank')">🖥️ Open Full Screen ↗</button>
       </div>
       <div class="preview-iframe-wrap" id="preview-wrap">
         <div class="preview-placeholder" id="preview-placeholder">
