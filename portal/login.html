@@ -131,6 +131,7 @@
         return;
       }
 
+      sessionStorage.setItem('portal_token', data.token);
       window.location.href = '/portal/dashboard';
     } catch (err) {
       errorEl.textContent = 'Connection error. Please try again.';
