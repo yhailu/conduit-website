@@ -35,6 +35,14 @@
     }
     .preview-iframe-wrap { width: 100%; height: 92vh; background: #fff; }
     .preview-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
+    .preview-tabs { display: flex; gap: 4px; margin-left: 12px; }
+    .preview-tab {
+      padding: 5px 14px; border: 1px solid var(--border); border-radius: 6px;
+      font-size: 0.7rem; font-weight: 600; cursor: pointer; font-family: inherit;
+      background: transparent; color: var(--text-muted); transition: all 0.2s;
+    }
+    .preview-tab:hover { color: var(--text); border-color: var(--border-hover); }
+    .preview-tab.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
     .preview-open-btn {
       padding: 10px 22px; background: linear-gradient(135deg, #3b82f6, #06b6d4); color: #fff;
       border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 800;
@@ -179,8 +187,11 @@
           <div class="preview-dot" style="background:#f59e0b;"></div>
           <div class="preview-dot" style="background:#22c55e;"></div>
         </div>
-        <div class="preview-url" id="preview-url">https://demo.orchestraflow.ai/your-site</div>
-        <button class="preview-open-btn" id="open-demo-btn" onclick="window.open('/api/portal/demo-page','_blank')">🖥️ Open Full Screen ↗</button>
+        <div class="preview-tabs">
+          <button class="preview-tab active" id="tab-new" onclick="switchPreview('new')">✨ New Design</button>
+          <button class="preview-tab" id="tab-old" onclick="switchPreview('old')">📦 Original Site</button>
+        </div>
+        <button class="preview-open-btn" id="open-demo-btn" onclick="openFullScreen()">🖥️ Open Full Screen ↗</button>
       </div>
       <div class="preview-iframe-wrap" id="preview-wrap">
         <div class="preview-placeholder" id="preview-placeholder">
@@ -243,6 +254,29 @@
 <script src="../js/shared.js"></script>
 <script>
   // Check auth and load demo data
+  let currentView = 'new';
+  let originalUrl = '';
+
+  function switchPreview(view) {
+    currentView = view;
+    document.getElementById('tab-new').classList.toggle('active', view === 'new');
+    document.getElementById('tab-old').classList.toggle('active', view === 'old');
+
+    const wrap = document.getElementById('preview-wrap');
+    const iframe = wrap.querySelector('iframe');
+    if (iframe) {
+      iframe.src = view === 'new' ? '/api/portal/demo-page' : originalUrl;
+    }
+  }
+
+  function openFullScreen() {
+    if (currentView === 'new') {
+      window.open('/api/portal/demo-page', '_blank');
+    } else {
+      window.open(originalUrl, '_blank');
+    }
+  }
+
   async function init() {
     try {
       const meRes = await fetch('/api/portal/me', { credentials: 'include' });
@@ -267,6 +301,7 @@
 
       // Original site
       if (demo.original_url) {
+        originalUrl = demo.original_url;
         document.getElementById('original-url-link').href = demo.original_url;
         document.getElementById('original-url-link').textContent = demo.original_url.replace(/^https?:\/\//, '');
       }
