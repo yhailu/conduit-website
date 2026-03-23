@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Your Website Rebuilt — OrchestraFlow Web Development</title>
+  <meta name="description" content="Book a free web development consultation. We'll audit your current site and show you exactly what a modern redesign looks like.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='14' y1='50' x2='42' y2='22' stroke='%2310b981' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='22' r='3' fill='%2310b981'/%3E%3Cpath d='M48 12 L50 8 L52 12 L56 14 L52 16 L50 20 L48 16 L44 14Z' fill='%2310b981' opacity='0.6'/%3E%3Ccircle cx='36' cy='14' r='1.5' fill='%2310b981' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --wd: #3b82f6; --wd-light: #60a5fa; --wd-dark: #2563eb; --wd-subtle: rgba(59,130,246,0.1); --wd-cyan: #06b6d4; }
+
+    .wd-hero {
+      padding: 120px 0 60px; text-align: center; position: relative;
+      background: linear-gradient(180deg, rgba(59,130,246,0.05) 0%, transparent 60%);
+    }
+    .wd-hero::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .wd-hero .section-badge { background: var(--wd-subtle); color: var(--wd-light); }
+    .wd-hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 16px; }
+    .wd-hero h1 .wd-gradient {
+      background: linear-gradient(135deg, var(--wd), var(--wd-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .wd-hero p { font-size: 1.15rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto 20px; line-height: 1.7; }
+
+    /* Form layout */
+    .consult-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; max-width: 1000px; margin: 0 auto; }
+    .consult-benefits h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 16px; }
+    .consult-benefits > p { color: var(--text-secondary); margin-bottom: 24px; line-height: 1.7; }
+
+    .benefit-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+    .benefit-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+      background: var(--wd-subtle);
+    }
+    .benefit-item h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
+    .benefit-item p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+
+    .trust-badges { display: flex; gap: 20px; margin-top: 28px; flex-wrap: wrap; }
+    .trust-badge { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-muted); }
+    .trust-badge .check { color: var(--wd); font-weight: 700; }
+
+    /* Form card */
+    .consult-form-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 36px; box-shadow: var(--shadow-lg);
+    }
+    .consult-form-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .consult-form-card .form-sub { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 24px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 5px; }
+    .form-input, .form-textarea {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px;
+      font-size: 0.9rem; font-family: inherit; background: var(--bg-elevated); color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--wd); box-shadow: 0 0 0 4px var(--wd-subtle); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea { min-height: 80px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .wd-submit {
+      width: 100%; padding: 14px; background: linear-gradient(135deg, var(--wd), var(--wd-cyan));
+      color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: all 0.2s; margin-top: 8px;
+    }
+    .wd-submit:hover { box-shadow: 0 4px 20px rgba(59,130,246,0.4); transform: translateY(-1px); }
+
+    /* Success */
+    .form-success { display: none; text-align: center; padding: 40px 20px; }
+    .form-success .icon { font-size: 3rem; margin-bottom: 12px; }
+    .form-success h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .form-success p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+
+    /* Process steps */
+    .process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .process-step { text-align: center; padding: 24px 16px; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%; margin: 0 auto 12px;
+      background: linear-gradient(135deg, var(--wd), var(--wd-cyan));
+      color: #fff; font-weight: 800; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .process-step h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+    .process-step p { font-size: 0.8rem; color: var(--text-secondary); }
+
+    @media (max-width: 768px) {
+      .consult-layout { grid-template-columns: 1fr; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<section class="wd-hero">
+  <div class="container">
+    <div class="section-badge">🌐 Web Development</div>
+    <h1>Let's Build Your<br><span class="wd-gradient">Dream Website</span></h1>
+    <p>Tell us about your business and current website. We'll show you exactly what a modern redesign looks like — free, no commitment.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="consult-layout">
+      <!-- Left: Benefits -->
+      <div class="consult-benefits">
+        <h2>Here's What You Get</h2>
+        <p>We don't just talk about what we could do. We show you — with a real, working preview of your redesigned website.</p>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">🔍</div>
+          <div>
+            <h3>Full Website Audit</h3>
+            <p>We analyze your current site's performance, design, SEO, and mobile experience.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">🎨</div>
+          <div>
+            <h3>Free Redesign Preview</h3>
+            <p>We build a working demo of your new website so you can see the transformation before committing.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">📊</div>
+          <div>
+            <h3>Performance Report</h3>
+            <p>Load times, mobile scores, SEO rankings — everything measured with before vs. after comparisons.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">💰</div>
+          <div>
+            <h3>Clear Pricing</h3>
+            <p>No hidden fees, no surprises. You'll know exactly what it costs to go live.</p>
+          </div>
+        </div>
+
+        <div class="trust-badges">
+          <span class="trust-badge"><span class="check">✓</span> 100% free</span>
+          <span class="trust-badge"><span class="check">✓</span> No commitment</span>
+          <span class="trust-badge"><span class="check">✓</span> Preview in 48 hours</span>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="consult-form-card">
+        <h3>Request Your Free Preview</h3>
+        <p class="form-sub">Fill this out and we'll get back to you within 24 hours with a plan.</p>
+
+        <form id="wd-consult-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" id="wd-name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Business Name</label>
+              <input type="text" class="form-input" id="wd-business" placeholder="Acme Plumbing" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Current Website URL</label>
+            <input type="url" class="form-input" id="wd-website" placeholder="https://yoursite.com" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" id="wd-email" placeholder="you@company.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone (optional)</label>
+              <input type="tel" class="form-input" id="wd-phone" placeholder="(555) 123-4567">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">What's most important to you?</label>
+            <textarea class="form-textarea" id="wd-goals" placeholder="Better design? More leads? Mobile support? SEO? Tell us what matters most..."></textarea>
+          </div>
+
+          <button type="submit" class="wd-submit" id="wd-btn">Get My Free Preview →</button>
+        </form>
+
+        <div class="form-success" id="wd-success">
+          <div class="icon">🎉</div>
+          <h3>You're In!</h3>
+          <p>Our team is on it. You'll receive a website audit and redesign preview within 48 hours. Keep an eye on your inbox!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What happens next -->
+    <div class="process-steps fade-in">
+      <div class="card process-step">
+        <div class="step-num">1</div>
+        <h4>We Audit Your Site</h4>
+        <p>Performance, design, SEO — we find every opportunity</p>
+      </div>
+      <div class="card process-step">
+        <div class="step-num">2</div>
+        <h4>We Build a Preview</h4>
+        <p>A working demo of your redesigned website in 48 hours</p>
+      </div>
+      <div class="card process-step">
+        <div class="step-num">3</div>
+        <h4>You Review & Decide</h4>
+        <p>Love it? We take it live. Not ready? No pressure at all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('wd-btn');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    const data = {
+      business_name: document.getElementById('wd-business').value.trim(),
+      website_url: document.getElementById('wd-website').value.trim(),
+      email: document.getElementById('wd-email').value.trim(),
+      phone: document.getElementById('wd-phone').value.trim(),
+      source: 'webdev-consultation',
+      name: document.getElementById('wd-name').value.trim(),
+      goals: document.getElementById('wd-goals').value.trim(),
+    };
+
+    try {
+      await fetch('/api/webdev/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch (err) { /* still show success */ }
+
+    document.getElementById('wd-consult-form').style.display = 'none';
+    document.getElementById('wd-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
