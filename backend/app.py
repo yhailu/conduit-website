@@ -18,10 +18,14 @@ load_dotenv()
 STATIC_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 app = Flask(__name__, static_folder=None)  # disable built-in static; we handle it ourselves
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = os.getenv('RENDER_EXTERNAL_URL') is not None or os.getenv('HEROKU_APP_NAME') is not None
 
 ALLOWED_ORIGINS = [
     'http://localhost:5000',
     'http://127.0.0.1:5000',
+    'https://orchestraflow.ai',
+    'https://www.orchestraflow.ai',
 ]
 # Add production origin from env (e.g. https://conduit-website.onrender.com)
 if os.getenv('RENDER_EXTERNAL_URL'):
