@@ -791,6 +791,36 @@ def portal_demo_page():
         return str(e), 500
 
 
+@app.route('/api/portal/demo-screenshot', methods=['GET'])
+def portal_demo_screenshot():
+    """Serve a screenshot of the client's demo. Uses a stored screenshot or thum.io."""
+    client_id = session.get('portal_client_id')
+    if not client_id:
+        return 'Unauthorized', 401
+
+    try:
+        res = supabase.table('portal_clients').select('demo_url').eq('id', client_id).execute()
+        clients = res.data or []
+        if not clients or not clients[0].get('demo_url'):
+            return 'Demo not found', 404
+
+        demo_name = clients[0]['demo_url']
+
+        # Check for a stored screenshot first
+        screenshot_path = os.path.join(DEMOS_DIR, demo_name + '.png')
+        if os.path.isfile(screenshot_path):
+            return send_from_directory(DEMOS_DIR, demo_name + '.png')
+
+        screenshot_jpg = os.path.join(DEMOS_DIR, demo_name + '.jpg')
+        if os.path.isfile(screenshot_jpg):
+            return send_from_directory(DEMOS_DIR, demo_name + '.jpg')
+
+        # Fallback: redirect to the actual demo page
+        return redirect('/api/portal/demo-page')
+    except Exception:
+        return redirect('/api/portal/demo-page')
+
+
 # ---------------------------------------------------------------------------
 # Web Development lead capture
 # ---------------------------------------------------------------------------
