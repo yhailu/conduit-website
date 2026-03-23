@@ -263,9 +263,23 @@
     document.getElementById('tab-old').classList.toggle('active', view === 'old');
 
     const wrap = document.getElementById('preview-wrap');
-    const iframe = wrap.querySelector('iframe');
-    if (iframe) {
-      iframe.src = view === 'new' ? '/api/portal/demo-page' : originalUrl;
+
+    if (view === 'new') {
+      // Show iframe with demo
+      wrap.innerHTML = '';
+      const iframe = document.createElement('iframe');
+      iframe.src = '/api/portal/demo-page';
+      iframe.title = 'Website Demo Preview';
+      iframe.style.cssText = 'width:100%;height:100%;border:none;';
+      wrap.appendChild(iframe);
+    } else {
+      // Show screenshot of original site
+      wrap.innerHTML = `
+        <div style="width:100%;height:100%;overflow:auto;background:#f1f5f9;display:flex;flex-direction:column;align-items:center;padding:24px;">
+          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">📸 Original Website Screenshot — <a href="${originalUrl}" target="_blank" rel="noopener" style="color:#3b82f6;">${originalUrl.replace(/^https?:\/\//, '')}</a></div>
+          <img src="https://image.thum.io/get/width/1280/${originalUrl}" alt="Original website screenshot"
+            style="max-width:100%;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;" />
+        </div>`;
     }
   }
 
