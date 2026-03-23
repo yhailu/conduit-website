@@ -91,6 +91,12 @@ def serve_static(path):
     if os.path.isfile(os.path.join(STATIC_DIR, path, 'index.html')):
         return send_from_directory(STATIC_DIR, index_path)
 
+    # 3b. Preview pages: /preview/TOKEN → preview/index.html
+    if path.startswith('preview/') and '.' not in path:
+        preview_page = os.path.join(STATIC_DIR, 'preview', 'index.html')
+        if os.path.isfile(preview_page):
+            return send_from_directory(os.path.join(STATIC_DIR, 'preview'), 'index.html')
+
     # 4. Try path.html (e.g. /consultation → consultation.html)
     html_path = path + '.html'
     if os.path.isfile(os.path.join(STATIC_DIR, html_path)):
@@ -832,6 +838,81 @@ def webdev_leads():
         return jsonify({'message': 'Lead captured.'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# Public preview (token-based, no login required)
+# ---------------------------------------------------------------------------
+
+@app.route('/api/preview/<token>', methods=['GET'])
+def preview_data(token):
+    """Return preview data for a public token link."""
+    try:
+        res = supabase.table('preview_links').select(
+            'business_name, original_url, demo_file, expires_at, views'
+        ).eq('token', token).execute()
+        links = res.data or []
+
+        if not links:
+            return jsonify({'error': 'Preview not found.'}), 404
+
+        link = links[0]
+
+        # Check expiration
+        if link.get('expires_at'):
+            from datetime import datetime, timezone
+            expires = datetime.fromisoformat(link['expires_at'].replace('Z', '+00:00'))
+            if datetime.now(timezone.utc) > expires:
+                return jsonify({'error': 'Preview expired.'}), 410
+
+        return jsonify({
+            'business_name': link['business_name'],
+            'original_url': link.get('original_url', ''),
+            'demo_file': link.get('demo_file', ''),
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/preview/<token>/demo', methods=['GET'])
+def preview_demo(token):
+    """Serve the demo HTML for a public preview link."""
+    try:
+        res = supabase.table('preview_links').select('demo_file, expires_at').eq('token', token).execute()
+        links = res.data or []
+
+        if not links:
+            return 'Not found', 404
+
+        link = links[0]
+
+        if link.get('expires_at'):
+            from datetime import datetime, timezone
+            expires = datetime.fromisoformat(link['expires_at'].replace('Z', '+00:00'))
+            if datetime.now(timezone.utc) > expires:
+                return 'Preview expired', 410
+
+        demo_file = link.get('demo_file', '') + '.html'
+        if not os.path.isfile(os.path.join(DEMOS_DIR, demo_file)):
+            return 'Demo not found', 404
+
+        return send_from_directory(DEMOS_DIR, demo_file)
+    except Exception as e:
+        return str(e), 500
+
+
+@app.route('/api/preview/<token>/view', methods=['POST'])
+def preview_track_view(token):
+    """Increment view count for a preview link."""
+    try:
+        res = supabase.table('preview_links').select('id, views').eq('token', token).execute()
+        links = res.data or []
+        if links:
+            views = (links[0].get('views') or 0) + 1
+            supabase.table('preview_links').update({'views': views}).eq('id', links[0]['id']).execute()
+        return jsonify({'ok': True})
+    except Exception:
+        return jsonify({'ok': True})
 
 
 # ---------------------------------------------------------------------------

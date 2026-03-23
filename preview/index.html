@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website, Reimagined — OrchestraFlow</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='14' y1='50' x2='42' y2='22' stroke='%2310b981' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='22' r='3' fill='%2310b981'/%3E%3Cpath d='M48 12 L50 8 L52 12 L56 14 L52 16 L50 20 L48 16 L44 14Z' fill='%2310b981' opacity='0.6'/%3E%3Ccircle cx='36' cy='14' r='1.5' fill='%2310b981' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* Top banner */
+    .preview-banner {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0 24px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .preview-banner-left { display: flex; align-items: center; gap: 16px; }
+    .preview-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .preview-logo svg { width: 28px; height: 28px; }
+    .preview-logo span { font-weight: 800; font-size: 0.95rem; color: #f0f0f5; letter-spacing: -0.02em; }
+    .preview-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.1); }
+    .preview-for { font-size: 0.85rem; color: #94a3b8; }
+    .preview-for strong { color: #f0f0f5; font-weight: 700; }
+    .preview-banner-right { display: flex; align-items: center; gap: 12px; }
+    .preview-tab-bar { display: flex; gap: 4px; background: rgba(255,255,255,0.05); padding: 3px; border-radius: 8px; }
+    .preview-tab {
+      padding: 6px 16px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; border: none; font-family: inherit; transition: all 0.2s;
+      background: transparent; color: #94a3b8;
+    }
+    .preview-tab.active { background: #10b981; color: #fff; }
+    .preview-tab:hover:not(.active) { color: #f0f0f5; }
+    .preview-cta {
+      padding: 8px 20px; background: #10b981; color: #fff; border: none; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 700; cursor: pointer; font-family: inherit;
+      transition: all 0.2s; text-decoration: none;
+      animation: ctaPulse 2s ease-in-out infinite;
+    }
+    .preview-cta:hover { background: #059669; transform: scale(1.05); animation: none; }
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+    }
+
+    /* Content area */
+    .preview-content { padding-top: 64px; height: 100vh; }
+    .preview-iframe { width: 100%; height: calc(100vh - 64px); border: none; }
+
+    /* Screenshot view */
+    .preview-screenshot {
+      width: 100%; height: calc(100vh - 64px); overflow: auto;
+      background: #f1f5f9; display: flex; flex-direction: column; align-items: center; padding: 32px 24px;
+    }
+    .preview-screenshot img {
+      max-width: 1280px; width: 100%; border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15); border: 1px solid #e2e8f0;
+    }
+    .preview-screenshot-label {
+      font-size: 0.8rem; color: #64748b; margin-bottom: 16px; font-weight: 600;
+    }
+
+    /* Bottom CTA bar */
+    .preview-bottom {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+      background: linear-gradient(180deg, transparent, rgba(15,23,42,0.95) 30%);
+      padding: 40px 24px 24px; text-align: center;
+      pointer-events: none;
+    }
+    .preview-bottom-inner { pointer-events: auto; }
+    .preview-bottom p { font-size: 0.9rem; color: #94a3b8; margin-bottom: 12px; }
+    .preview-bottom p strong { color: #f0f0f5; }
+    .preview-bottom-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; background: #10b981; color: #fff; border: none; border-radius: 12px;
+      font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+    }
+    .preview-bottom-cta:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(16,185,129,0.4); }
+
+    /* Expired state */
+    .preview-expired {
+      display: flex; align-items: center; justify-content: center;
+      height: 100vh; text-align: center; padding: 24px;
+    }
+    .preview-expired-icon { font-size: 4rem; margin-bottom: 16px; opacity: 0.5; }
+    .preview-expired h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+    .preview-expired p { color: var(--text-secondary); max-width: 400px; margin: 0 auto 24px; }
+
+    /* Loading */
+    .preview-loading { display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .preview-spinner {
+      width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: #10b981; border-radius: 50%; animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 768px) {
+      .preview-divider, .preview-for { display: none; }
+      .preview-tab { padding: 5px 10px; font-size: 0.7rem; }
+      .preview-cta { padding: 6px 14px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading -->
+<div class="preview-loading" id="loading">
+  <div class="preview-spinner"></div>
+</div>
+
+<!-- Expired -->
+<div class="preview-expired" id="expired" style="display:none;">
+  <div>
+    <div class="preview-expired-icon">⏰</div>
+    <h1>This preview has expired</h1>
+    <p>This link is no longer active. Want a fresh preview of your redesigned website?</p>
+    <a href="/consultation" class="btn btn-primary btn-lg">Request a New Preview →</a>
+  </div>
+</div>
+
+<!-- Main Preview -->
+<div id="preview-main" style="display:none;">
+  <div class="preview-banner">
+    <div class="preview-banner-left">
+      <a href="/" class="preview-logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="14" y1="50" x2="42" y2="22" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="42" cy="22" r="3" fill="#10b981"/>
+          <path d="M48 12 L50 8 L52 12 L56 14 L52 16 L50 20 L48 16 L44 14Z" fill="#10b981" opacity="0.6"/>
+          <circle cx="36" cy="14" r="1.5" fill="#10b981" opacity="0.4"/>
+        </svg>
+        <span>orchestraflow</span>
+      </a>
+      <div class="preview-divider"></div>
+      <div class="preview-for">Built for <strong id="biz-name">—</strong></div>
+    </div>
+    <div class="preview-banner-right">
+      <div class="preview-tab-bar">
+        <button class="preview-tab active" id="tab-new" onclick="switchView('new')">✨ New Design</button>
+        <button class="preview-tab" id="tab-old" onclick="switchView('old')">📦 Current Site</button>
+      </div>
+      <a href="/consultation" class="preview-cta">Get This Built →</a>
+    </div>
+  </div>
+
+  <div class="preview-content" id="preview-content"></div>
+
+  <div class="preview-bottom" id="bottom-cta">
+    <div class="preview-bottom-inner">
+      <p>Like what you see? <strong>We can have this live in 2 weeks.</strong></p>
+      <a href="/consultation" class="preview-bottom-cta">Book a Free Call →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let previewData = null;
+  let currentView = 'new';
+
+  async function init() {
+    // Get token from URL: /preview/TOKEN
+    const path = window.location.pathname;
+    const token = path.split('/').filter(Boolean).pop();
+
+    if (!token || token === 'index') {
+      showExpired(); return;
+    }
+
+    try {
+      const res = await fetch('/api/preview/' + token);
+      if (!res.ok) { showExpired(); return; }
+
+      previewData = await res.json();
+      document.getElementById('biz-name').textContent = previewData.business_name;
+      document.title = previewData.business_name + ' — Redesigned by OrchestraFlow';
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('preview-main').style.display = 'block';
+
+      switchView('new');
+
+      // Track the view
+      fetch('/api/preview/' + token + '/view', { method: 'POST' }).catch(() => {});
+    } catch (err) {
+      showExpired();
+    }
+  }
+
+  function switchView(view) {
+    currentView = view;
+    document.getElementById('tab-new').classList.toggle('active', view === 'new');
+    document.getElementById('tab-old').classList.toggle('active', view === 'old');
+
+    const content = document.getElementById('preview-content');
+
+    if (view === 'new') {
+      // Show the redesigned demo
+      content.innerHTML = '<iframe class="preview-iframe" src="/api/preview/' + getToken() + '/demo"></iframe>';
+    } else {
+      // Show screenshot of original
+      content.innerHTML = `
+        <div class="preview-screenshot">
+          <div class="preview-screenshot-label">📸 Current website — ${previewData.original_url}</div>
+          <img src="https://image.thum.io/get/width/1280/${previewData.original_url}" alt="Current website" />
+        </div>`;
+    }
+  }
+
+  function getToken() {
+    return window.location.pathname.split('/').filter(Boolean).pop();
+  }
+
+  function showExpired() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('expired').style.display = 'flex';
+  }
+
+  init();
+</script>
+</body>
+</html>
