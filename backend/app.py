@@ -19,7 +19,7 @@ STATIC_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file
 app = Flask(__name__, static_folder=None)  # disable built-in static; we handle it ourselves
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['SESSION_COOKIE_SECURE'] = os.getenv('RENDER_EXTERNAL_URL') is not None or os.getenv('HEROKU_APP_NAME') is not None
+app.config['SESSION_COOKIE_SECURE'] = not app.debug
 
 ALLOWED_ORIGINS = [
     'http://localhost:5000',
