@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://orchestraflow.ai/sitemap.xml
+
+# Disallow admin/portal paths
+Disallow: /portal/
+Disallow: /api/
+Disallow: /debug/

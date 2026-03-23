@@ -107,8 +107,10 @@ function injectFooter() {
         <h4>Company</h4>
         <a href="/company/about">About</a>
         <a href="/company/careers">Careers</a>
-        <a href="/platform">Platform</a>
+        <a href="/company/case-studies">Case Studies</a>
         <a href="/blog">Blog</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact">Contact</a>
         <a href="/consultation">Free Consultation</a>
       </div>
     </div>
@@ -129,9 +131,9 @@ function injectFooter() {
     <div class="footer-bottom">
       <span>&copy; ${new Date().getFullYear()} OrchestraFlow. All rights reserved.</span>
       <div class="footer-bottom-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Cookies</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
       </div>
     </div>
   </footer>`;

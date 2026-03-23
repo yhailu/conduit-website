@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — OrchestraFlow</title>
+  <meta name="description" content="Frequently asked questions about OrchestraFlow AI agents, web development, and automation services.">
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 0; background: none; border: none; cursor: pointer;
+      font-size: 1.05rem; font-weight: 600; color: var(--text); font-family: inherit;
+      text-align: left; line-height: 1.4; gap: 16px;
+    }
+    .faq-question:hover { color: var(--accent-light); }
+    .faq-arrow { font-size: 1.2rem; color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); color: var(--accent-light); }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 400px; padding-bottom: 24px; }
+    .faq-answer p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; }
+    .faq-category { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-light); margin: 40px 0 16px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .faq-category:first-child { border-top: none; margin-top: 0; }
+  </style>
+</head>
+<body>
+<nav id="site-nav"></nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-badge">❓ FAQ</div>
+    <h1>Frequently Asked <span class="accent">Questions</span></h1>
+    <p>Everything you need to know about OrchestraFlow. Can't find your answer? <a href="/contact" style="color:var(--accent-light);">Get in touch</a>.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="faq-list">
+      <div class="faq-category">General</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">What is OrchestraFlow?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>OrchestraFlow is an AI-powered business automation platform. We build and deploy intelligent AI agents that handle lead capture, appointment scheduling, customer support, and more — along with modern web development services to transform your digital presence.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">How is this different from a chatbot?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>Traditional chatbots follow rigid scripts and can only handle pre-programmed scenarios. Our AI agents understand context, learn from interactions, can take real actions (book appointments, update CRMs, send emails), and handle nuanced conversations just like a human team member would.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">What industries do you serve?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>We work with businesses across healthcare, real estate, legal, home services, SaaS, education, financial services, and more. Our solutions are customized to each industry's specific needs and compliance requirements.</p></div>
+      </div>
+
+      <div class="faq-category">Getting Started</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">How long does deployment take?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>Most AI agent deployments take 48 hours to 2 weeks, depending on complexity and integrations needed. Web development projects typically take 2-4 weeks. We'll give you a specific timeline during your free consultation.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Do I need technical knowledge?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>Not at all. We handle everything — setup, configuration, integration, and ongoing maintenance. You'll get a dashboard to monitor performance, but no coding or technical skills are required on your end.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">What's included in the free consultation?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>A 30-minute call where we analyze your current processes, identify automation opportunities, and outline a custom solution with expected ROI. No commitment, no sales pressure — just honest advice on whether we're a good fit.</p></div>
+      </div>
+
+      <div class="faq-category">Web Development</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Can I see a demo of my redesigned website before committing?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>Yes! We create a personalized demo of your redesigned website before you commit to anything. You'll get access to our client portal where you can preview the new design, compare it with your current site, and review performance improvements.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Will my website be mobile responsive?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>Absolutely. Every website we build is mobile-first and looks great on all devices — phones, tablets, laptops, and desktops. With 60%+ of web traffic coming from mobile, this is non-negotiable.</p></div>
+      </div>
+
+      <div class="faq-category">Data & Security</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Is my data secure?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>Yes. We use enterprise-grade encryption for data in transit and at rest. We don't sell or share your data with third parties. For healthcare clients, our solutions are designed to meet HIPAA compliance requirements.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Can the AI agent access my existing systems?<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>Yes — we integrate with 50+ platforms including Salesforce, HubSpot, Google Calendar, Calendly, Zendesk, and more. If you use a custom system, we can build a custom integration.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Still Have Questions?</h2>
+    <p>We're happy to chat. Book a free consultation or send us a message.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="/consultation" class="btn btn-primary btn-lg">Book Consultation →</a>
+      <a href="/contact" class="btn btn-ghost btn-lg">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<script src="js/shared.js"></script>
+<script>
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    item.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

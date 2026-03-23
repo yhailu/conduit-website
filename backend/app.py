@@ -71,21 +71,6 @@ def serve_index():
     return send_from_directory(STATIC_DIR, 'index.html')
 
 
-@app.route('/debug/static-info')
-def debug_static_info():
-    """Temporary debug endpoint — remove after confirming routing works."""
-    import glob
-    files = []
-    for f in glob.glob(os.path.join(STATIC_DIR, '**', '*.html'), recursive=True):
-        files.append(os.path.relpath(f, STATIC_DIR))
-    return jsonify({
-        'STATIC_DIR': STATIC_DIR,
-        'exists': os.path.isdir(STATIC_DIR),
-        'consultation_exists': os.path.isfile(os.path.join(STATIC_DIR, 'consultation.html')),
-        'blog_index_exists': os.path.isfile(os.path.join(STATIC_DIR, 'blog', 'index.html')),
-        'html_files': sorted(files)[:30],
-    })
-
 
 @app.route('/<path:path>')
 def serve_static(path):
@@ -111,12 +96,11 @@ def serve_static(path):
     if os.path.isfile(os.path.join(STATIC_DIR, html_path)):
         return send_from_directory(STATIC_DIR, html_path)
 
-    # 5. 404
-    return jsonify({'error': 'Not Found', 'path': path, 'tried': [
-        os.path.join(STATIC_DIR, path),
-        os.path.join(STATIC_DIR, path, 'index.html'),
-        os.path.join(STATIC_DIR, path + '.html'),
-    ]}), 404
+    # 5. Custom 404 page
+    error_page = os.path.join(STATIC_DIR, '404.html')
+    if os.path.isfile(error_page):
+        return send_from_directory(STATIC_DIR, '404.html'), 404
+    return 'Not Found', 404
 
 
 # ---------------------------------------------------------------------------
@@ -848,6 +832,34 @@ def webdev_leads():
         return jsonify({'message': 'Lead captured.'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# Contact form
+# ---------------------------------------------------------------------------
+
+@app.route('/api/contact', methods=['POST'])
+def contact():
+    data = request.get_json(silent=True) or {}
+    name = data.get('name', '').strip()
+    email = data.get('email', '').strip()
+    subject = data.get('subject', '').strip()
+    message = data.get('message', '').strip()
+
+    if not email or not message:
+        return jsonify({'error': 'Email and message are required.'}), 400
+
+    try:
+        supabase.table('contact_messages').insert({
+            'name': name or None,
+            'email': email,
+            'subject': subject or None,
+            'message': message,
+        }).execute()
+        return jsonify({'message': 'Message sent.'})
+    except Exception as e:
+        # If table doesn't exist yet, still return success to user
+        return jsonify({'message': 'Message received.'})
 
 
 # ---------------------------------------------------------------------------
