@@ -102,8 +102,8 @@ def serve_static(path):
         return send_from_directory(STATIC_DIR, path)
 
     # 3. Try path/index.html (e.g. /blog → blog/index.html)
-    index_path = os.path.join(path, 'index.html')
-    if os.path.isfile(os.path.join(STATIC_DIR, index_path)):
+    index_path = path + '/index.html'
+    if os.path.isfile(os.path.join(STATIC_DIR, path, 'index.html')):
         return send_from_directory(STATIC_DIR, index_path)
 
     # 4. Try path.html (e.g. /consultation → consultation.html)
