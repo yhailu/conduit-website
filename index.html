@@ -3590,26 +3590,27 @@
   <!-- Call Demo Script -->
   <script>
   (function() {
-    const callScript = [
-      { speaker: 'agent', text: "Thank you for calling Sterling Family Law. This is Olivia, how can I help you today?", delay: 0 },
-      { speaker: 'caller', text: "Hi, I need to speak with an attorney about a divorce.", delay: 3500 },
-      { speaker: 'agent', text: "Of course. I'm sorry you're going through this, and I'm here to help. I'll just need to ask a few quick questions to match you with the right attorney. Can I get your name?", delay: 6000 },
-      { speaker: 'caller', text: "Sarah Mitchell.", delay: 10500 },
-      { speaker: 'agent', text: "Thank you, Sarah. Is this a new matter, or do you have an existing case with us?", delay: 12000 },
-      { speaker: 'caller', text: "It's new. My husband and I just decided to separate.", delay: 15000 },
-      { speaker: 'agent', text: "I understand. Our family law team specializes in exactly this. Are there any children involved?", delay: 18000 },
-      { speaker: 'caller', text: "Yes, we have two kids, ages 8 and 11.", delay: 21500 },
-      { speaker: 'agent', text: "Thank you for sharing that, Sarah. That helps us prepare. I have availability this Thursday at 2pm or Friday at 10am for a free 30-minute consultation with Attorney Davis, who specializes in custody and divorce cases. Which works better?", delay: 24000 },
-      { speaker: 'caller', text: "Thursday at 2 works.", delay: 30000 },
-      { speaker: 'agent', text: "You're all set — Thursday at 2pm with Attorney Davis. I'll send a confirmation to your email along with a brief intake form. Is there anything else I can help with today?", delay: 32000 },
-      { speaker: 'caller', text: "No, that's great. Thank you.", delay: 37000 },
-      { speaker: 'agent', text: "You're welcome, Sarah. Take care, and we'll see you Thursday. Goodbye.", delay: 39500 },
+    const callLines = [
+      { speaker: 'agent', text: "Thank you for calling Sterling Family Law. This is Olivia, how can I help you today?", audio: "/audio/line_00_agent.mp3" },
+      { speaker: 'caller', text: "Hi, I need to speak with an attorney about a divorce.", audio: "/audio/line_01_caller.mp3" },
+      { speaker: 'agent', text: "Of course. I'm sorry you're going through this, and I'm here to help. I'll just need to ask a few quick questions to match you with the right attorney. Can I get your name?", audio: "/audio/line_02_agent.mp3" },
+      { speaker: 'caller', text: "Sarah Mitchell.", audio: "/audio/line_03_caller.mp3" },
+      { speaker: 'agent', text: "Thank you, Sarah. Is this a new matter, or do you have an existing case with us?", audio: "/audio/line_04_agent.mp3" },
+      { speaker: 'caller', text: "It's new. My husband and I just decided to separate.", audio: "/audio/line_05_caller.mp3" },
+      { speaker: 'agent', text: "I understand. Our family law team specializes in exactly this. Are there any children involved?", audio: "/audio/line_06_agent.mp3" },
+      { speaker: 'caller', text: "Yes, we have two kids, ages 8 and 11.", audio: "/audio/line_07_caller.mp3" },
+      { speaker: 'agent', text: "Thank you for sharing that, Sarah. That helps us prepare. I have availability this Thursday at 2pm or Friday at 10am for a free 30-minute consultation with Attorney Davis, who specializes in custody and divorce cases. Which works better?", audio: "/audio/line_08_agent.mp3" },
+      { speaker: 'caller', text: "Thursday at 2 works.", audio: "/audio/line_09_caller.mp3" },
+      { speaker: 'agent', text: "You're all set — Thursday at 2pm with Attorney Davis. I'll send a confirmation to your email along with a brief intake form. Is there anything else I can help with today?", audio: "/audio/line_10_agent.mp3" },
+      { speaker: 'caller', text: "No, that's great. Thank you.", audio: "/audio/line_11_caller.mp3" },
+      { speaker: 'agent', text: "You're welcome, Sarah. Take care, and we'll see you Thursday. Goodbye.", audio: "/audio/line_12_agent.mp3" },
     ];
 
     let callPlaying = false;
     let callTimerInterval = null;
     let callStartTime = 0;
-    let callTimeouts = [];
+    let currentLineIndex = 0;
+    let currentAudio = null;
 
     function toggleCall() {
       if (callPlaying) {
@@ -3621,6 +3622,7 @@
 
     function startCall() {
       callPlaying = true;
+      currentLineIndex = 0;
       const btn = document.getElementById('call-play-btn');
       const icon = document.getElementById('play-icon');
       const status = document.getElementById('call-status');
@@ -3637,32 +3639,49 @@
       callStartTime = Date.now();
       callTimerInterval = setInterval(updateTimer, 100);
 
-      // Play audio if available
-      const audio = document.getElementById('call-audio');
-      if (audio) { audio.currentTime = 0; audio.play().catch(() => {}); }
+      playNextLine();
+    }
 
-      // Schedule transcript messages
-      callScript.forEach((msg, i) => {
-        const t = setTimeout(() => {
-          if (!callPlaying) return;
-          const div = document.createElement('div');
-          div.className = 'call-msg ' + (msg.speaker === 'caller' ? 'call-msg-caller' : 'call-msg-agent');
-          div.innerHTML = '<div class="call-msg-label">' + (msg.speaker === 'caller' ? '👤 Caller' : '🤖 AI Agent') + '</div>' + msg.text;
-          transcript.appendChild(div);
-          transcript.scrollTop = transcript.scrollHeight;
-        }, msg.delay);
-        callTimeouts.push(t);
-      });
-
-      // End call after last message
-      const endTimeout = setTimeout(() => {
+    function playNextLine() {
+      if (!callPlaying || currentLineIndex >= callLines.length) {
         if (callPlaying) stopCall();
-      }, 42000);
-      callTimeouts.push(endTimeout);
+        return;
+      }
+
+      const line = callLines[currentLineIndex];
+      const transcript = document.getElementById('call-transcript');
+
+      // Add transcript message
+      const div = document.createElement('div');
+      div.className = 'call-msg ' + (line.speaker === 'caller' ? 'call-msg-caller' : 'call-msg-agent');
+      div.innerHTML = '<div class="call-msg-label">' + (line.speaker === 'caller' ? '👤 Caller' : '🤖 AI Agent') + '</div>' + line.text;
+      transcript.appendChild(div);
+      transcript.scrollTop = transcript.scrollHeight;
+
+      // Play audio
+      currentAudio = new Audio(line.audio);
+      currentAudio.onended = function() {
+        if (!callPlaying) return;
+        currentLineIndex++;
+        // Small pause between lines
+        setTimeout(playNextLine, 600);
+      };
+      currentAudio.onerror = function() {
+        // If audio fails, wait a bit and move on (fallback to text-only)
+        if (!callPlaying) return;
+        currentLineIndex++;
+        setTimeout(playNextLine, 2000);
+      };
+      currentAudio.play().catch(() => {
+        // Autoplay blocked - move on after delay
+        currentLineIndex++;
+        setTimeout(playNextLine, 2000);
+      });
     }
 
     function stopCall() {
       callPlaying = false;
+      if (currentAudio) { currentAudio.pause(); currentAudio = null; }
       const btn = document.getElementById('call-play-btn');
       const icon = document.getElementById('play-icon');
       const status = document.getElementById('call-status');
@@ -3673,11 +3692,6 @@
       status.textContent = 'Call ended • Tap to replay';
       waveform.classList.remove('active');
       clearInterval(callTimerInterval);
-      callTimeouts.forEach(t => clearTimeout(t));
-      callTimeouts = [];
-
-      const audio = document.getElementById('call-audio');
-      if (audio) { audio.pause(); }
     }
 
     function updateTimer() {
@@ -3687,10 +3701,8 @@
       document.getElementById('call-timer').textContent = mins + ':' + String(secs).padStart(2, '0');
     }
 
-    // Expose to global
     window.toggleCall = toggleCall;
   })();
   </script>
-  <!-- Optional: add <audio id="call-audio" src="/audio/call-demo.mp3" preload="auto"></audio> for real voices -->
 </body>
 </html>
