@@ -2,11 +2,11 @@
 
 _Learn about the person you're helping. Update this as you go._
 
-- **Name:**
-- **What to call them:**
-- **Pronouns:** _(optional)_
-- **Timezone:**
-- **Notes:**
+- **Name:** Yesu
+- **What to call them:** Yesu
+- **Pronouns:** _(tbd)_
+- **Timezone:** America/New_York (EDT)
+- **Notes:** Direct, moves fast, prefers action over deliberation. "Just roll with it" energy.
 
 ## Context
 

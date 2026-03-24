@@ -2183,6 +2183,109 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* ===== CALL DEMO ===== */
+    .call-demo-wrapper {
+      display: grid; grid-template-columns: 340px 1fr; gap: 48px;
+      align-items: center; max-width: 900px; margin: 0 auto;
+    }
+    .call-phone {
+      width: 320px; margin: 0 auto;
+      background: #000; border-radius: 40px; padding: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+      position: relative;
+    }
+    .call-phone-notch {
+      width: 120px; height: 28px; background: #000; border-radius: 0 0 16px 16px;
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 2;
+    }
+    .call-screen {
+      background: linear-gradient(180deg, #1a1f35 0%, #0f172a 100%);
+      border-radius: 30px; padding: 48px 20px 24px; min-height: 520px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .call-header { text-align: center; margin-bottom: 24px; }
+    .call-status { font-size: 0.7rem; color: #10b981; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .call-name { font-size: 1.2rem; font-weight: 800; color: #f0f0f5; margin-bottom: 2px; }
+    .call-number { font-size: 0.8rem; color: #64748b; margin-bottom: 8px; }
+    .call-timer { font-size: 1.5rem; font-weight: 300; color: #94a3b8; font-variant-numeric: tabular-nums; }
+
+    .call-waveform {
+      display: flex; align-items: center; justify-content: center; gap: 3px;
+      height: 40px; margin: 16px 0;
+    }
+    .wave-bar {
+      width: 3px; height: 8px; background: #10b981; border-radius: 2px;
+      transition: height 0.1s ease;
+    }
+    .call-waveform.active .wave-bar { animation: waveAnim 0.6s ease-in-out infinite alternate; }
+    .wave-bar:nth-child(1) { animation-delay: 0s; }
+    .wave-bar:nth-child(2) { animation-delay: 0.05s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.25s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(8) { animation-delay: 0.35s; }
+    .wave-bar:nth-child(9) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(10) { animation-delay: 0.45s; }
+    .wave-bar:nth-child(11) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(12) { animation-delay: 0.35s; }
+    .wave-bar:nth-child(13) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(14) { animation-delay: 0.25s; }
+    .wave-bar:nth-child(15) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(16) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(17) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(18) { animation-delay: 0.05s; }
+    .wave-bar:nth-child(19) { animation-delay: 0s; }
+    .wave-bar:nth-child(20) { animation-delay: 0.05s; }
+    @keyframes waveAnim {
+      0% { height: 6px; opacity: 0.4; }
+      100% { height: 28px; opacity: 1; }
+    }
+
+    .call-transcript {
+      flex: 1; width: 100%; overflow-y: auto; margin: 12px 0;
+      display: flex; flex-direction: column; gap: 8px;
+      max-height: 220px; scroll-behavior: smooth;
+    }
+    .call-msg {
+      padding: 8px 12px; border-radius: 12px; font-size: 0.78rem; line-height: 1.5;
+      max-width: 90%; opacity: 0; animation: callMsgIn 0.3s ease forwards;
+    }
+    .call-msg-caller {
+      background: #3b82f6; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px;
+    }
+    .call-msg-agent {
+      background: rgba(255,255,255,0.08); color: #e2e8f0; align-self: flex-start; border-bottom-left-radius: 4px;
+    }
+    .call-msg-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; margin-bottom: 2px; }
+    @keyframes callMsgIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .call-controls { margin-top: 16px; }
+    .call-btn-play {
+      width: 64px; height: 64px; border-radius: 50%; border: none;
+      background: #10b981; color: #fff; font-size: 1.4rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+    }
+    .call-btn-play:hover { background: #059669; transform: scale(1.1); }
+    .call-btn-play.playing { background: #ef4444; }
+    .call-btn-play.playing:hover { background: #dc2626; }
+
+    .call-info { display: flex; flex-direction: column; gap: 20px; }
+    .call-info-item { display: flex; align-items: flex-start; gap: 14px; }
+    .call-info-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .call-demo-wrapper { grid-template-columns: 1fr; gap: 32px; }
+      .call-phone { width: 280px; }
+      .call-screen { min-height: 460px; }
+      .call-info { order: 2; }
+    }
+
   </style>
 </head>
 <body>
@@ -2288,6 +2391,86 @@
             <button class="bot-tab bot-tab-active" onclick="showBot(0)">🎯 Sales</button>
             <button class="bot-tab" onclick="showBot(1)">📅 Scheduling</button>
             <button class="bot-tab" onclick="showBot(2)">💬 Support</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIVE CALL DEMO ===== -->
+  <section class="section" id="call-demo" style="background: linear-gradient(180deg, #0f172a 0%, #1a1f35 100%); padding: 80px 0;">
+    <div class="container">
+      <div class="section-header fade-in" style="margin-bottom: 40px;">
+        <div class="section-label" style="color: #10b981;">🎧 Hear It In Action</div>
+        <h2 class="section-heading" style="color: #f0f0f5;">Listen to Our AI Handle a <span class="gradient-text">Real Client Call</span></h2>
+        <p class="section-subtitle" style="color: #94a3b8;">A potential client calls a law firm after hours. Our AI agent handles intake, qualifies the lead, and books a consultation — all in under 2 minutes.</p>
+      </div>
+
+      <div class="call-demo-wrapper fade-in">
+        <!-- Phone UI -->
+        <div class="call-phone">
+          <div class="call-phone-notch"></div>
+          <div class="call-screen">
+            <!-- Call header -->
+            <div class="call-header">
+              <div class="call-status" id="call-status">Tap play to listen</div>
+              <div class="call-name">Sterling Family Law</div>
+              <div class="call-number">AI Receptionist</div>
+              <div class="call-timer" id="call-timer">0:00</div>
+            </div>
+
+            <!-- Waveform -->
+            <div class="call-waveform" id="call-waveform">
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              <div class="wave-bar"></div><div class="wave-bar"></div>
+            </div>
+
+            <!-- Transcript -->
+            <div class="call-transcript" id="call-transcript"></div>
+
+            <!-- Controls -->
+            <div class="call-controls">
+              <button class="call-btn-play" id="call-play-btn" onclick="toggleCall()">
+                <span id="play-icon">▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side info -->
+        <div class="call-info">
+          <div class="call-info-item">
+            <div class="call-info-icon" style="background: rgba(16,185,129,0.1); color: #10b981;">⚡</div>
+            <div>
+              <h4 style="color: #f0f0f5; font-weight: 700; margin-bottom: 4px;">Instant Pickup</h4>
+              <p style="color: #94a3b8; font-size: 0.85rem;">No hold music. No voicemail. Answered on the first ring, 24/7.</p>
+            </div>
+          </div>
+          <div class="call-info-item">
+            <div class="call-info-icon" style="background: rgba(59,130,246,0.1); color: #3b82f6;">🧠</div>
+            <div>
+              <h4 style="color: #f0f0f5; font-weight: 700; margin-bottom: 4px;">Smart Qualification</h4>
+              <p style="color: #94a3b8; font-size: 0.85rem;">Asks the right questions, captures details, and routes to the right team.</p>
+            </div>
+          </div>
+          <div class="call-info-item">
+            <div class="call-info-icon" style="background: rgba(168,85,247,0.1); color: #a855f7;">📅</div>
+            <div>
+              <h4 style="color: #f0f0f5; font-weight: 700; margin-bottom: 4px;">Books Appointments</h4>
+              <p style="color: #94a3b8; font-size: 0.85rem;">Checks real availability and confirms meetings — no back and forth.</p>
+            </div>
+          </div>
+          <div class="call-info-item">
+            <div class="call-info-icon" style="background: rgba(249,115,22,0.1); color: #f97316;">💬</div>
+            <div>
+              <h4 style="color: #f0f0f5; font-weight: 700; margin-bottom: 4px;">Natural Conversation</h4>
+              <p style="color: #94a3b8; font-size: 0.85rem;">Callers can't tell it's AI. Empathetic, professional, and context-aware.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -3403,5 +3586,111 @@
       navLinks.style.borderBottom = '1px solid var(--border)';
     });
   </script>
+
+  <!-- Call Demo Script -->
+  <script>
+  (function() {
+    const callScript = [
+      { speaker: 'agent', text: "Thank you for calling Sterling Family Law. This is Olivia, how can I help you today?", delay: 0 },
+      { speaker: 'caller', text: "Hi, I need to speak with an attorney about a divorce.", delay: 3500 },
+      { speaker: 'agent', text: "Of course. I'm sorry you're going through this, and I'm here to help. I'll just need to ask a few quick questions to match you with the right attorney. Can I get your name?", delay: 6000 },
+      { speaker: 'caller', text: "Sarah Mitchell.", delay: 10500 },
+      { speaker: 'agent', text: "Thank you, Sarah. Is this a new matter, or do you have an existing case with us?", delay: 12000 },
+      { speaker: 'caller', text: "It's new. My husband and I just decided to separate.", delay: 15000 },
+      { speaker: 'agent', text: "I understand. Our family law team specializes in exactly this. Are there any children involved?", delay: 18000 },
+      { speaker: 'caller', text: "Yes, we have two kids, ages 8 and 11.", delay: 21500 },
+      { speaker: 'agent', text: "Thank you for sharing that, Sarah. That helps us prepare. I have availability this Thursday at 2pm or Friday at 10am for a free 30-minute consultation with Attorney Davis, who specializes in custody and divorce cases. Which works better?", delay: 24000 },
+      { speaker: 'caller', text: "Thursday at 2 works.", delay: 30000 },
+      { speaker: 'agent', text: "You're all set — Thursday at 2pm with Attorney Davis. I'll send a confirmation to your email along with a brief intake form. Is there anything else I can help with today?", delay: 32000 },
+      { speaker: 'caller', text: "No, that's great. Thank you.", delay: 37000 },
+      { speaker: 'agent', text: "You're welcome, Sarah. Take care, and we'll see you Thursday. Goodbye.", delay: 39500 },
+    ];
+
+    let callPlaying = false;
+    let callTimerInterval = null;
+    let callStartTime = 0;
+    let callTimeouts = [];
+
+    function toggleCall() {
+      if (callPlaying) {
+        stopCall();
+      } else {
+        startCall();
+      }
+    }
+
+    function startCall() {
+      callPlaying = true;
+      const btn = document.getElementById('call-play-btn');
+      const icon = document.getElementById('play-icon');
+      const status = document.getElementById('call-status');
+      const waveform = document.getElementById('call-waveform');
+      const transcript = document.getElementById('call-transcript');
+
+      btn.classList.add('playing');
+      icon.textContent = '⏸';
+      status.textContent = 'Call in progress';
+      status.style.color = '#10b981';
+      waveform.classList.add('active');
+      transcript.innerHTML = '';
+
+      callStartTime = Date.now();
+      callTimerInterval = setInterval(updateTimer, 100);
+
+      // Play audio if available
+      const audio = document.getElementById('call-audio');
+      if (audio) { audio.currentTime = 0; audio.play().catch(() => {}); }
+
+      // Schedule transcript messages
+      callScript.forEach((msg, i) => {
+        const t = setTimeout(() => {
+          if (!callPlaying) return;
+          const div = document.createElement('div');
+          div.className = 'call-msg ' + (msg.speaker === 'caller' ? 'call-msg-caller' : 'call-msg-agent');
+          div.innerHTML = '<div class="call-msg-label">' + (msg.speaker === 'caller' ? '👤 Caller' : '🤖 AI Agent') + '</div>' + msg.text;
+          transcript.appendChild(div);
+          transcript.scrollTop = transcript.scrollHeight;
+        }, msg.delay);
+        callTimeouts.push(t);
+      });
+
+      // End call after last message
+      const endTimeout = setTimeout(() => {
+        if (callPlaying) stopCall();
+      }, 42000);
+      callTimeouts.push(endTimeout);
+    }
+
+    function stopCall() {
+      callPlaying = false;
+      const btn = document.getElementById('call-play-btn');
+      const icon = document.getElementById('play-icon');
+      const status = document.getElementById('call-status');
+      const waveform = document.getElementById('call-waveform');
+
+      btn.classList.remove('playing');
+      icon.textContent = '▶';
+      status.textContent = 'Call ended • Tap to replay';
+      waveform.classList.remove('active');
+      clearInterval(callTimerInterval);
+      callTimeouts.forEach(t => clearTimeout(t));
+      callTimeouts = [];
+
+      const audio = document.getElementById('call-audio');
+      if (audio) { audio.pause(); }
+    }
+
+    function updateTimer() {
+      const elapsed = Math.floor((Date.now() - callStartTime) / 1000);
+      const mins = Math.floor(elapsed / 60);
+      const secs = elapsed % 60;
+      document.getElementById('call-timer').textContent = mins + ':' + String(secs).padStart(2, '0');
+    }
+
+    // Expose to global
+    window.toggleCall = toggleCall;
+  })();
+  </script>
+  <!-- Optional: add <audio id="call-audio" src="/audio/call-demo.mp3" preload="auto"></audio> for real voices -->
 </body>
 </html>
