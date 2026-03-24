@@ -1265,6 +1265,20 @@
       gap: 4px;
     }
 
+    /* Dark industry section overrides */
+    #industries .section-label { color: #10b981; }
+    #industries .section-heading { color: #f0f0f5; }
+    #industries .section-subtitle { color: #94a3b8; }
+    #industries .industry-stat { color: #94a3b8; }
+    #industries .industry-stat strong { color: #f0f0f5; }
+    #industries .industry-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    #industries .industry-card:hover { border-color: rgba(16,185,129,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    #industries .industry-card h3 { color: #f0f0f5; }
+    #industries .industry-card p { color: #94a3b8; }
+    #industries .cta-highlight { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    #industries .cta-highlight h3 { color: #f0f0f5; }
+    #industries .cta-highlight p { color: #94a3b8; }
+
     /* ========================================
        MULTI-CHANNEL
        ======================================== */
@@ -2295,7 +2309,7 @@
     </div>
   </section>
 
-  <section class="section" id="industries">
+  <section class="section" id="industries" style="background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); padding: 80px 0;">
     <div class="container">
       <div class="section-header fade-in">
         <div class="section-label">Industry Solutions</div>
@@ -2548,115 +2562,6 @@
       </div>
     </div>
   </section>
-  <!-- ==========================================
-       AI SOLUTIONS
-       ========================================== -->
-  <section class="section" id="solutions" style="background: var(--bg-subtle);">
-    <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-label">AI Solutions</div>
-        <h2 class="section-heading">Solutions That Drive <span class="gradient-text">Real Business Results</span></h2>
-        <p class="section-subtitle">Purpose-built AI solutions for every business function. Each one deploys in days, not months.</p>
-      </div>
-
-      <div class="solutions-grid">
-        <div class="solution-card fade-in">
-          <div class="solution-popular">Most Popular</div>
-          <h3 style="margin-top: 12px;">Lead Capture &amp; Nurturing</h3>
-          <p>Intelligent conversational AI that engages website visitors, qualifies leads, and nurtures prospects through your sales funnel 24/7.</p>
-          <div class="solution-metric">↑ Increase conversions by 180%</div>
-        </div>
-        <div class="solution-card fade-in">
-          <h3>Appointment Manager</h3>
-          <p>Automated scheduling, reminders, and follow-ups. Integrates with all major calendar platforms to eliminate no-shows.</p>
-          <div class="solution-metric">↓ Reduce no-shows by 45%</div>
-        </div>
-        <div class="solution-card fade-in">
-          <h3>Bid &amp; Proposal Assistant</h3>
-          <p>AI-powered proposal generation that analyzes requirements, calculates estimates, and delivers professional proposals in minutes.</p>
-          <div class="solution-metric">⚡ 5x faster proposals</div>
-        </div>
-        <div class="solution-card fade-in">
-          <h3>Workforce Intelligence</h3>
-          <p>AI analytics that optimize team productivity, predict workforce needs, and automate routine HR processes.</p>
-          <div class="solution-metric">↑ 18% productivity gain</div>
-        </div>
-        <div class="solution-card fade-in">
-          <h3>Recruitment Intelligence</h3>
-          <p>Screen candidates, schedule interviews, and manage the entire recruitment pipeline with AI-driven precision.</p>
-          <div class="solution-metric">↓ 40% time-to-hire reduction</div>
-        </div>
-        <div class="solution-card fade-in">
-          <h3>Helpdesk</h3>
-          <p>Resolve support tickets instantly with AI that understands your products, follows your procedures, and escalates intelligently.</p>
-          <div class="solution-metric">↑ 85% first-contact resolution</div>
-        </div>
-        <div class="solution-card fade-in">
-          <h3>Knowledge Access</h3>
-          <p>Transform your knowledge base into an intelligent assistant. Employees and customers get instant, accurate answers.</p>
-          <div class="solution-metric">⚡ 92% query accuracy</div>
-        </div>
-        <div class="solution-card fade-in">
-          <h3>Transformation Services</h3>
-          <p>End-to-end AI strategy, implementation, and change management. Our experts guide your digital transformation journey.</p>
-          <div class="solution-metric">↑ 220% average ROI</div>
-        </div>
-      </div>
-
-      <!-- Pricing Tiers -->
-      <div class="section-header fade-in" style="margin-top: 40px;">
-        <h2 class="section-heading">Plans for Every <span class="gradient-text">Stage of Growth</span></h2>
-        <p class="section-subtitle">Start small, scale fast. Every plan includes our 2-week deployment guarantee.</p>
-      </div>
-
-      <div class="tiers-grid">
-        <div class="tier-card fade-in">
-          <div class="tier-name">Small Business</div>
-          <div class="tier-desc">Perfect for growing companies looking to automate key processes and reduce costs.</div>
-          <ul class="tier-features">
-            <li>Up to 3 AI agents</li>
-            <li>5,000 conversations/month</li>
-            <li>Email &amp; chat support</li>
-            <li>Basic analytics</li>
-            <li>Standard integrations</li>
-          </ul>
-          <a href="consultation" class="btn btn-ghost" style="width: 100%; justify-content: center;">Get Started</a>
-        </div>
-        <div class="tier-card featured fade-in">
-          <div class="tier-name">Mid-Market</div>
-          <div class="tier-desc">For established businesses ready to scale AI across multiple departments and channels.</div>
-          <ul class="tier-features">
-            <li>Up to 10 AI agents</li>
-            <li>25,000 conversations/month</li>
-            <li>Priority support &amp; dedicated CSM</li>
-            <li>Advanced analytics &amp; reporting</li>
-            <li>All integrations + custom</li>
-            <li>Multi-channel deployment</li>
-          </ul>
-          <a href="consultation" class="btn btn-primary" style="width: 100%; justify-content: center;">Request Consultation</a>
-        </div>
-        <div class="tier-card fade-in">
-          <div class="tier-name">Enterprise</div>
-          <div class="tier-desc">Custom solutions for large organizations with complex requirements and compliance needs.</div>
-          <ul class="tier-features">
-            <li>Unlimited AI agents</li>
-            <li>Unlimited conversations</li>
-            <li>24/7 dedicated support</li>
-            <li>Custom analytics &amp; BI</li>
-            <li>On-premise deployment option</li>
-            <li>SLA guarantees</li>
-            <li>Custom compliance</li>
-          </ul>
-          <a href="consultation" class="btn btn-ghost" style="width: 100%; justify-content: center;">Contact Sales</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       INDUSTRY SOLUTIONS
-       ========================================== -->
-  
   <!-- ==========================================
        TESTIMONIALS
        ========================================== -->
