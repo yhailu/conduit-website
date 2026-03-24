@@ -291,6 +291,7 @@
       min-height: auto;
       display: flex;
       align-items: center;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
     }
 
     .hero::before {
@@ -301,7 +302,7 @@
       transform: translateX(-50%);
       width: 800px;
       height: 800px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -312,7 +313,7 @@
       right: -100px;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -368,15 +369,16 @@
       line-height: 1.05;
       letter-spacing: -0.03em;
       margin-bottom: 24px;
+      color: #f0f0f5;
     }
 
     .hero-heading .muted {
-      color: var(--text-muted);
+      color: #64748b;
     }
 
     .hero-subtitle {
       font-size: 1.15rem;
-      color: var(--text-secondary);
+      color: #94a3b8;
       line-height: 1.7;
       margin-bottom: 20px;
       max-width: 500px;
@@ -387,10 +389,12 @@
       align-items: center;
       gap: 8px;
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: #64748b;
       margin-bottom: 32px;
       flex-wrap: wrap;
     }
+
+    .hero-trust .trust-dot { color: #10b981; }
 
     .hero-trust .trust-item {
       display: inline-flex;
@@ -1264,6 +1268,21 @@
       align-items: center;
       gap: 4px;
     }
+
+    /* Dark hero + demo section overrides */
+    #demo .section-label { color: #10b981; }
+    #demo .section-heading { color: #f0f0f5; }
+    #demo .section-subtitle { color: #94a3b8; }
+    #demo .bot-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    #demo .bot-card-header h4 { color: #f0f0f5; }
+    #demo .bot-msg-user { background: rgba(16,185,129,0.15); color: #f0f0f5; }
+    #demo .bot-msg-ai { background: rgba(255,255,255,0.06); color: #e2e8f0; }
+    #demo .bot-msg-ai strong { color: #10b981; }
+    #demo .bot-stat-num { color: #10b981; }
+    #demo .bot-stat-label { color: #64748b; }
+    #demo .bot-tab { background: rgba(255,255,255,0.05); color: #94a3b8; border-color: rgba(255,255,255,0.1); }
+    #demo .bot-tab-active, #demo .bot-tab:hover { background: rgba(16,185,129,0.15); color: #10b981; border-color: rgba(16,185,129,0.3); }
+    #demo .bot-stats-row { border-color: rgba(255,255,255,0.06); }
 
     /* Dark industry section overrides */
     #industries .section-label { color: #10b981; }
@@ -2309,7 +2328,7 @@
     </div>
   </section>
 
-  <section class="section" id="industries" style="background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); padding: 80px 0;">
+  <section class="section" id="industries">
     <div class="container">
       <div class="section-header fade-in">
         <div class="section-label">Industry Solutions</div>
@@ -2374,7 +2393,7 @@
   <!-- ==========================================
        LIVE DEMO
        ========================================== -->
-  <section class="section" id="demo">
+  <section class="section" id="demo" style="background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); padding: 80px 0;">
     <div class="container">
       <div class="section-header fade-in">
         <div class="section-label"><span>Live Demo</span></div>
