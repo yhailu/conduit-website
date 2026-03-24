@@ -1,9 +1,11 @@
-<svg viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Icon -->
-  <line x1="14" y1="50" x2="42" y2="22" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="42" cy="22" r="3" fill="#10b981"/>
-  <path d="M48 12 L50 8 L52 12 L56 14 L52 16 L50 20 L48 16 L44 14Z" fill="#10b981" opacity="0.6"/>
-  <circle cx="36" cy="14" r="1.5" fill="#10b981" opacity="0.4"/>
-  <!-- Text -->
-  <text x="72" y="40" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="24" letter-spacing="-0.5" fill="#0f172a">orchestraflow</text>
+<svg viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hc-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <polygon points="36,4 16,34 30,34 26,60 50,26 34,26" fill="url(#hc-grad)"/>
+  <text x="64" y="38" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="24" letter-spacing="-0.5" fill="#0f172a">Hero</text>
+  <text x="134" y="38" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="24" letter-spacing="-0.5" fill="#10b981">Call</text>
 </svg>

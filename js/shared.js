@@ -1,18 +1,12 @@
 /* ================================================
-   ORCHESTRAFLOW — Shared Components
+   HEROCALL — Shared Components
    Injects nav, footer, theme toggle into all pages
    ================================================ */
 
 // Use absolute paths for all nav/footer links (clean URLs)
 const P = '/';
 
-const LOGO_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <line x1="14" y1="50" x2="42" y2="22" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="42" cy="22" r="3" fill="#10b981"/>
-  <path d="M48 12 L50 8 L52 12 L56 14 L52 16 L50 20 L48 16 L44 14Z" fill="#10b981" opacity="0.6"/>
-  <path d="M54 26 L55 23 L56 26 L59 27 L56 28 L55 31 L54 28 L51 27Z" fill="#10b981" opacity="0.35" transform="scale(0.7) translate(22,10)"/>
-  <circle cx="36" cy="14" r="1.5" fill="#10b981" opacity="0.4"/>
-</svg>`;
+const LOGO_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hc-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs><polygon points="36,4 16,34 30,34 26,60 50,26 34,26" fill="url(#hc-grad)"/></svg>`;
 
 // ---- THEME (light only) ----
 document.documentElement.setAttribute('data-theme', 'light');
@@ -25,7 +19,7 @@ function injectNav() {
   <nav class="site-nav" id="site-nav">
     <a href="/" class="nav-logo">
       <div class="nav-logo-icon">${LOGO_SVG}</div>
-      <span class="nav-logo-text">orchestraflow</span>
+      <span class="nav-logo-text">HeroCall</span>
     </a>
     <ul class="nav-menu">
       <li class="nav-dropdown"><a href="/solutions">Solutions</a>
@@ -87,7 +81,7 @@ function injectFooter() {
       <div class="footer-brand">
         <a href="/" class="nav-logo">
           <div class="nav-logo-icon">${LOGO_SVG}</div>
-          <span class="nav-logo-text">orchestraflow</span>
+          <span class="nav-logo-text">HeroCall</span>
         </a>
         <p>Deploy your AI workforce in days. Enterprise-grade automation that actually works.</p>
       </div>
@@ -136,7 +130,7 @@ function injectFooter() {
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; ${new Date().getFullYear()} OrchestraFlow. All rights reserved.</span>
+      <span>&copy; ${new Date().getFullYear()} HeroCall. All rights reserved.</span>
       <div class="footer-bottom-links">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>

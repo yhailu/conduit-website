@@ -358,7 +358,7 @@ def admin_emails_export():
         return Response(
             output.getvalue(),
             mimetype='text/csv',
-            headers={'Content-Disposition': 'attachment; filename=orchestraflow-signups.csv'}
+            headers={'Content-Disposition': 'attachment; filename=HeroCall-signups.csv'}
         )
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -593,14 +593,14 @@ def newsletter_send():
                 html = f"""
                 <div style="max-width:600px; margin:0 auto; font-family:Arial,sans-serif; color:#333;">
                   <div style="padding:24px 0; border-bottom:2px solid #10b981; margin-bottom:24px;">
-                    <h1 style="font-size:1.3rem; margin:0; color:#0f172a;">orchestraflow</h1>
+                    <h1 style="font-size:1.3rem; margin:0; color:#0f172a;">HeroCall</h1>
                   </div>
                   <h2 style="font-size:1.4rem; color:#0f172a; margin-bottom:16px;">{subject}</h2>
                   <div style="font-size:1rem; line-height:1.7; color:#475569;">
                     {body.replace(chr(10), '<br>')}
                   </div>
                   <div style="margin-top:32px; padding-top:16px; border-top:1px solid #e2e8f0; font-size:0.8rem; color:#94a3b8;">
-                    <p>You received this because you subscribed to OrchestraFlow updates.</p>
+                    <p>You received this because you subscribed to HeroCall updates.</p>
                     <p><a href="#" style="color:#94a3b8;">Unsubscribe</a></p>
                   </div>
                 </div>
