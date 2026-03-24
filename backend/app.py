@@ -22,6 +22,8 @@ app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
 ALLOWED_ORIGINS = [
     'http://localhost:5000',
     'http://127.0.0.1:5000',
+    'https://herocall.io',
+    'https://www.herocall.io',
 ]
 # Add production origin from env (e.g. https://conduit-website.onrender.com)
 if os.getenv('RENDER_EXTERNAL_URL'):

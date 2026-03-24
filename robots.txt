@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://orchestraflow.ai/sitemap.xml
+Sitemap: https://herocall.io/sitemap.xml
 
 # Disallow admin/portal paths
 Disallow: /portal/
