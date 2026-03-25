@@ -391,6 +391,13 @@ def send_notification_email(consultation):
     </table>
     <br>
     <p style="color:#888; font-size:0.85em;">Reply to the customer within 2 hours as promised on the site.</p>
+    <hr style="border:none; border-top:1px solid #eee; margin:16px 0;">
+    <p style="font-size:0.8em; color:#aaa; text-align:center;">
+      <a href="https://x.com/herocallio" style="color:#aaa; margin:0 4px;">X/Twitter</a> · 
+      <a href="https://instagram.com/herocall.io" style="color:#aaa; margin:0 4px;">Instagram</a> · 
+      <a href="https://linkedin.com/company/herocall" style="color:#aaa; margin:0 4px;">LinkedIn</a> · 
+      <a href="https://tryherocall.io" style="color:#10b981;">tryherocall.io</a>
+    </p>
     """
 
     plain_body = (
@@ -601,9 +608,20 @@ def newsletter_send():
                   <div style="font-size:1rem; line-height:1.7; color:#475569;">
                     {body.replace(chr(10), '<br>')}
                   </div>
-                  <div style="margin-top:32px; padding-top:16px; border-top:1px solid #e2e8f0; font-size:0.8rem; color:#94a3b8;">
-                    <p>You received this because you subscribed to HeroCall updates.</p>
-                    <p><a href="#" style="color:#94a3b8;">Unsubscribe</a></p>
+                  <div style="margin-top:32px; padding-top:20px; border-top:1px solid #e2e8f0; text-align:center;">
+                    <p style="margin-bottom:12px;">
+                      <a href="https://x.com/herocallio" style="display:inline-block; margin:0 6px; text-decoration:none;">
+                        <img src="https://cdn-icons-png.flaticon.com/24/5968/5968958.png" width="20" height="20" alt="X" style="vertical-align:middle;">
+                      </a>
+                      <a href="https://instagram.com/herocall.io" style="display:inline-block; margin:0 6px; text-decoration:none;">
+                        <img src="https://cdn-icons-png.flaticon.com/24/174/174855.png" width="20" height="20" alt="Instagram" style="vertical-align:middle;">
+                      </a>
+                      <a href="https://linkedin.com/company/herocall" style="display:inline-block; margin:0 6px; text-decoration:none;">
+                        <img src="https://cdn-icons-png.flaticon.com/24/174/174857.png" width="20" height="20" alt="LinkedIn" style="vertical-align:middle;">
+                      </a>
+                    </p>
+                    <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:4px;">You received this because you subscribed to HeroCall updates.</p>
+                    <p style="font-size:0.75rem;"><a href="#" style="color:#94a3b8;">Unsubscribe</a> · <a href="https://tryherocall.io" style="color:#10b981;">tryherocall.io</a></p>
                   </div>
                 </div>
                 """
