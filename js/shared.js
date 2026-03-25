@@ -19,7 +19,7 @@ function injectNav() {
   <nav class="site-nav" id="site-nav">
     <a href="/" class="nav-logo">
       <div class="nav-logo-icon">${LOGO_SVG}</div>
-      <span class="nav-logo-text">HeroCall</span>
+      <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
     </a>
     <ul class="nav-menu">
       <li class="nav-dropdown"><a href="/solutions">Solutions</a>
@@ -81,7 +81,7 @@ function injectFooter() {
       <div class="footer-brand">
         <a href="/" class="nav-logo">
           <div class="nav-logo-icon">${LOGO_SVG}</div>
-          <span class="nav-logo-text">HeroCall</span>
+          <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
         </a>
         <p>Deploy your AI workforce in days. Enterprise-grade automation that actually works.</p>
       </div>
