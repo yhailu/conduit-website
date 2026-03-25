@@ -385,7 +385,7 @@ img { max-width: 100%; display: block; }
 
 /* Newsletter */
 .newsletter-section {
-  padding: 80px 0;
+  padding: 40px 0;
   background: var(--bg-subtle);
   border-top: 1px solid var(--border);
 }
