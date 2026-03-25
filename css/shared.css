@@ -150,9 +150,9 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .theme-toggle::before { content: '☀️'; }
 
 /* ---------- Sections ---------- */
-.section { padding: 48px 0; position: relative; }
+.section { padding: 32px 0; position: relative; }
 .section-alt { background: var(--bg-subtle); }
-.section-header { text-align: center; margin-bottom: 28px; }
+.section-header { text-align: center; margin-bottom: 20px; }
 .section-badge {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 5px 14px; border-radius: 50px;
@@ -173,7 +173,7 @@ img { max-width: 100%; display: block; }
 /* ---------- Cards ---------- */
 .card {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 28px;
+  border-radius: var(--radius-lg); padding: 22px;
   transition: all 0.3s;
 }
 .card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-md); }
@@ -197,7 +197,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Page Hero ---------- */
 .page-hero {
-  padding: 100px 0 40px; text-align: center;
+  padding: 88px 0 32px; text-align: center;
   background: linear-gradient(180deg, rgba(16,185,129,0.04) 0%, transparent 60%);
 }
 .page-hero .section-badge { margin-bottom: 20px; }
@@ -208,7 +208,7 @@ img { max-width: 100%; display: block; }
 .page-hero h1 .accent { color: var(--accent-light); }
 .page-hero p {
   font-size: 1.15rem; color: var(--text-secondary);
-  max-width: 600px; margin: 0 auto 28px; line-height: 1.7;
+  max-width: 600px; margin: 0 auto 20px; line-height: 1.6;
 }
 
 /* ---------- Stats Bar ---------- */
@@ -230,7 +230,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Footer ---------- */
 .site-footer {
-  border-top: 1px solid var(--border); padding: 48px 24px 24px; background: var(--bg);
+  border-top: 1px solid var(--border); padding: 32px 24px 20px; background: var(--bg);
 }
 .footer-grid {
   max-width: 1200px; margin: 0 auto;
@@ -300,14 +300,14 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 768px) {
-  .section { padding: 32px 0; }
+  .section { padding: 24px 0; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .nav-menu { display: none; }
   .nav-actions { display: none; }
   .nav-hamburger { display: flex; }
   .footer-grid { grid-template-columns: 1fr; }
   .stats-bar { gap: 20px; }
-  .page-hero { padding: 100px 0 40px; }
+  .page-hero { padding: 80px 0 24px; }
   .site-nav { padding: 0 16px; }
 }
 

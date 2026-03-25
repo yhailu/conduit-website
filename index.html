@@ -494,7 +494,7 @@
       background: var(--green);
       animation: pulse 2s infinite;
     }
-    .bot-chat { margin-bottom: 1rem; }
+    .bot-chat { margin-bottom: 1rem; min-height: 100px; }
     .bot-msg {
       padding: 0.6rem 0.8rem;
       border-radius: 12px;
@@ -502,6 +502,37 @@
       line-height: 1.5;
       margin-bottom: 0.5rem;
       max-width: 90%;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .bot-msg.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bot-typing {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      padding: 0.6rem 0.8rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      width: fit-content;
+      margin-bottom: 0.5rem;
+    }
+    .bot-typing.visible { display: flex; }
+    .bot-typing-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #64748b;
+      animation: typingBounce 1.4s infinite;
+    }
+    .bot-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .bot-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
     }
     .bot-msg-user {
       background: var(--accent);
@@ -2818,21 +2849,57 @@
     let currentBot = 0;
     let botInterval;
 
+    function animateChat(card) {
+      const msgs = card.querySelectorAll('.bot-msg');
+      const typing = card.querySelector('.bot-typing');
+      
+      // Reset all
+      msgs.forEach(m => m.classList.remove('visible'));
+      if (typing) typing.classList.remove('visible');
+      
+      // Sequence: user types → typing dots → AI responds
+      setTimeout(() => {
+        if (msgs[0]) msgs[0].classList.add('visible'); // user msg appears
+      }, 300);
+      
+      setTimeout(() => {
+        if (typing) typing.classList.add('visible'); // typing dots show
+      }, 1000);
+      
+      setTimeout(() => {
+        if (typing) typing.classList.remove('visible'); // typing dots hide
+        if (msgs[1]) msgs[1].classList.add('visible'); // AI response appears
+      }, 2200);
+    }
+
     function showBot(index) {
-      botCards.forEach(c => { c.classList.remove('bot-active'); c.style.animation = 'none'; });
+      botCards.forEach(c => { 
+        c.classList.remove('bot-active'); 
+        c.style.animation = 'none';
+        c.querySelectorAll('.bot-msg').forEach(m => m.classList.remove('visible'));
+        const t = c.querySelector('.bot-typing');
+        if (t) t.classList.remove('visible');
+      });
       botTabs.forEach(t => t.classList.remove('bot-tab-active'));
       currentBot = index;
-      botCards[index].offsetHeight; // force reflow
+      botCards[index].offsetHeight;
       botCards[index].style.animation = '';
       botCards[index].classList.add('bot-active');
       botTabs[index].classList.add('bot-tab-active');
-      // Reset auto-cycle timer
+      
+      // Animate the chat sequence
+      animateChat(botCards[index]);
+      
+      // Reset auto-cycle timer (longer to let animation play)
       clearInterval(botInterval);
-      botInterval = setInterval(() => showBot((currentBot + 1) % botCards.length), 5000);
+      botInterval = setInterval(() => showBot((currentBot + 1) % botCards.length), 6000);
     }
 
-    // Auto-cycle every 5 seconds
-    botInterval = setInterval(() => showBot((currentBot + 1) % botCards.length), 5000);
+    // Start first bot with animation
+    setTimeout(() => animateChat(botCards[0]), 500);
+    
+    // Auto-cycle every 6 seconds
+    botInterval = setInterval(() => showBot((currentBot + 1) % botCards.length), 6000);
 
     // ---- IntersectionObserver for fade-in animations ----
     const observer = new IntersectionObserver((entries) => {
