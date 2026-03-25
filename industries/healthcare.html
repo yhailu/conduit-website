@@ -20,30 +20,14 @@
     .hero-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
     .trust-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 20px; }
 
-    /* Photo hero */
-    .hero-photo {
-      width: 100%;
-      max-width: 900px;
-      margin: 2.5rem auto 0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-    }
-    .hero-photo img {
-      width: 100%;
-      height: 320px;
+    /* Card photos */
+    .card-photo {
+      width: calc(100% + 56px);
+      height: 160px;
       object-fit: cover;
       display: block;
-    }
-
-    /* Feature photos */
-    .feature-photo {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 12px 12px 0 0;
-      margin: -28px -28px 20px -28px;
-      width: calc(100% + 56px);
+      margin: -28px -28px 16px -28px;
+      border-radius: 18px 18px 0 0;
     }
   </style>
 </head>
@@ -63,10 +47,6 @@
         <a href="#features" class="btn btn-ghost btn-lg">See How It Works</a>
       </div>
       <p class="trust-note">🔒 HIPAA compliant · SOC2 certified · BAA available · PHI encrypted end-to-end</p>
-
-      <div class="hero-photo fade-in">
-        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&h=400&fit=crop&q=80" alt="Doctor using technology in modern healthcare setting" loading="lazy">
-      </div>
 
     <div class="agent-demo fade-in">
       <div class="agent-widget">
@@ -103,22 +83,22 @@
       </div>
       <div class="grid-2 fade-in">
         <div class="card">
-          <div class="card-icon" style="background: var(--green-bg);">📋</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=300&fit=crop&q=80" alt="Patient intake with tablet" loading="lazy">
           <div class="card-title">Smart Patient Intake</div>
           <div class="card-desc">AI-powered intake forms that pre-populate from patient history, verify insurance in real-time, and flag missing information before appointments. Reduce front-desk workload by 70%.</div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: var(--blue-bg);">📅</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=500&h=300&fit=crop&q=80" alt="Medical scheduling calendar" loading="lazy">
           <div class="card-title">Intelligent Scheduling</div>
           <div class="card-desc">Patients book, reschedule, and confirm appointments 24/7 via voice or chat. Smart conflict detection and automated waitlist management fill cancellation gaps instantly.</div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: var(--purple-bg);">💊</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=500&h=300&fit=crop&q=80" alt="Prescription medication management" loading="lazy">
           <div class="card-title">Prescription & Refill Management</div>
           <div class="card-desc">Automate refill requests, send medication reminders, and coordinate with pharmacies. Patients get faster service while your staff focuses on clinical care.</div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: var(--orange-bg);">🤝</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=500&h=300&fit=crop&q=80" alt="Healthcare team coordination" loading="lazy">
           <div class="card-title">Care Coordination</div>
           <div class="card-desc">Post-visit follow-ups, care plan reminders, specialist referral coordination, and chronic disease management — all automated with empathetic, personalized messaging.</div>
         </div>
