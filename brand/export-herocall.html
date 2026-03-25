@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HeroCall — Logo Export (PNG)</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Inter,-apple-system,sans-serif;background:#f8fafb;padding:2rem;color:#0f172a}
+  h1{text-align:center;margin-bottom:.3rem;font-size:1.8rem}
+  .sub{text-align:center;color:#64748b;margin-bottom:2rem}
+  .section{margin-bottom:3rem}
+  .section h2{font-size:1.2rem;margin-bottom:1rem}
+  .row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .item{text-align:center}
+  .item canvas{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px}
+  .item .label{font-size:.7rem;color:#64748b;margin-bottom:4px}
+  .item a{display:inline-block;padding:6px 14px;background:#10b981;color:#fff;border-radius:6px;font-size:.8rem;font-weight:600;text-decoration:none;cursor:pointer}
+  .item a:hover{background:#059669}
+  .note{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem;font-size:.85rem;color:#166534;margin-top:2rem}
+</style>
+</head>
+<body>
+
+<h1>⚡ HeroCall — Logo Export</h1>
+<p class="sub">Click "Download PNG" to save. Right-click canvas to copy.</p>
+
+<div class="section">
+<h2>⚡ Icon Only — Profile Pics & App Icons</h2>
+<div class="row">
+  <div class="item"><div class="label">512×512 Dark BG</div><canvas id="icon-dark-512" width="512" height="512"></canvas><br><a onclick="dl('icon-dark-512','herocall-icon-dark-512.png')">Download PNG</a></div>
+  <div class="item"><div class="label">512×512 White BG</div><canvas id="icon-light-512" width="512" height="512"></canvas><br><a onclick="dl('icon-light-512','herocall-icon-light-512.png')">Download PNG</a></div>
+  <div class="item"><div class="label">512×512 Green BG</div><canvas id="icon-green-512" width="512" height="512"></canvas><br><a onclick="dl('icon-green-512','herocall-icon-green-512.png')">Download PNG</a></div>
+  <div class="item"><div class="label">256×256 Dark</div><canvas id="icon-dark-256" width="256" height="256"></canvas><br><a onclick="dl('icon-dark-256','herocall-icon-dark-256.png')">Download PNG</a></div>
+  <div class="item"><div class="label">256×256 White</div><canvas id="icon-light-256" width="256" height="256"></canvas><br><a onclick="dl('icon-light-256','herocall-icon-light-256.png')">Download PNG</a></div>
+  <div class="item"><div class="label">128×128 Dark</div><canvas id="icon-dark-128" width="128" height="128"></canvas><br><a onclick="dl('icon-dark-128','herocall-icon-dark-128.png')">Download PNG</a></div>
+</div>
+</div>
+
+<div class="section">
+<h2>⚡ Icon + Wordmark — Headers & Banners</h2>
+<div class="row">
+  <div class="item"><div class="label">800×200 Dark BG</div><canvas id="full-dark-800" width="800" height="200"></canvas><br><a onclick="dl('full-dark-800','herocall-full-dark-800.png')">Download PNG</a></div>
+  <div class="item"><div class="label">800×200 White BG</div><canvas id="full-light-800" width="800" height="200"></canvas><br><a onclick="dl('full-light-800','herocall-full-light-800.png')">Download PNG</a></div>
+</div>
+<div class="row">
+  <div class="item"><div class="label">400×400 Dark (IG Post)</div><canvas id="ig-dark-400" width="400" height="400"></canvas><br><a onclick="dl('ig-dark-400','herocall-ig-dark-400.png')">Download PNG</a></div>
+  <div class="item"><div class="label">400×400 White (IG Post)</div><canvas id="ig-light-400" width="400" height="400"></canvas><br><a onclick="dl('ig-light-400','herocall-ig-light-400.png')">Download PNG</a></div>
+  <div class="item"><div class="label">1500×500 Dark (Twitter Banner)</div><canvas id="tw-dark" width="1500" height="500" style="max-width:400px;height:auto"></canvas><br><a onclick="dl('tw-dark','herocall-twitter-banner-dark.png')">Download PNG</a></div>
+  <div class="item"><div class="label">1500×500 White (Twitter Banner)</div><canvas id="tw-light" width="1500" height="500" style="max-width:400px;height:auto"></canvas><br><a onclick="dl('tw-light','herocall-twitter-banner-light.png')">Download PNG</a></div>
+</div>
+</div>
+
+<div class="note">
+<strong>Recommended:</strong> Use the <strong>dark background icon</strong> for Twitter/X and Instagram profile pictures — the green bolt pops hard against dark. Use the <strong>dark banner</strong> for Twitter header. For Instagram posts, use the 400×400 square versions.
+</div>
+
+<script>
+function drawBolt(ctx, x, y, s) {
+  // Gradient bolt
+  const grad = ctx.createLinearGradient(x + 36*s, y + 4*s, x + 36*s, y + 60*s);
+  grad.addColorStop(0, '#059669');
+  grad.addColorStop(1, '#34d399');
+  
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.moveTo(x + 36*s, y + 4*s);
+  ctx.lineTo(x + 16*s, y + 34*s);
+  ctx.lineTo(x + 30*s, y + 34*s);
+  ctx.lineTo(x + 26*s, y + 60*s);
+  ctx.lineTo(x + 50*s, y + 26*s);
+  ctx.lineTo(x + 34*s, y + 26*s);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawIcon(id, size, bgColor) {
+  const c = document.getElementById(id);
+  const ctx = c.getContext('2d');
+  const s = size / 64;
+  const r = size * 0.15;
+
+  // Rounded rect background
+  ctx.fillStyle = bgColor;
+  ctx.beginPath();
+  ctx.roundRect(0, 0, size, size, r);
+  ctx.fill();
+
+  drawBolt(ctx, 0, 0, s);
+}
+
+function drawFull(id, w, h, dark) {
+  const c = document.getElementById(id);
+  const ctx = c.getContext('2d');
+  const r = h * 0.1;
+
+  ctx.fillStyle = dark ? '#0f172a' : '#ffffff';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, w, h, r);
+  ctx.fill();
+
+  if (!dark) {
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Bolt
+  const iconSize = h * 0.65;
+  const s = iconSize / 64;
+  const iconX = h * 0.25;
+  const iconY = (h - iconSize) / 2;
+  
+  ctx.save();
+  ctx.translate(iconX, iconY);
+  drawBolt(ctx, 0, 0, s);
+  ctx.restore();
+
+  // Text
+  const fontSize = h * 0.28;
+  ctx.font = `800 ${fontSize}px Inter, -apple-system, sans-serif`;
+  ctx.textBaseline = 'middle';
+  
+  // "Hero"
+  ctx.fillStyle = dark ? '#f0f0f5' : '#0f172a';
+  const heroText = 'Hero';
+  ctx.fillText(heroText, iconX + iconSize + h * 0.12, h / 2 + 2);
+  const heroWidth = ctx.measureText(heroText).width;
+  
+  // "Call" in green
+  ctx.fillStyle = '#10b981';
+  ctx.fillText('Call', iconX + iconSize + h * 0.12 + heroWidth, h / 2 + 2);
+}
+
+function drawSquare(id, size, dark) {
+  const c = document.getElementById(id);
+  const ctx = c.getContext('2d');
+  const r = size * 0.08;
+
+  ctx.fillStyle = dark ? '#0f172a' : '#ffffff';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, size, size, r);
+  ctx.fill();
+
+  if (!dark) {
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Bolt centered top
+  const iconSize = size * 0.45;
+  const s = iconSize / 64;
+  const iconX = (size - iconSize) / 2;
+  const iconY = size * 0.15;
+  
+  ctx.save();
+  ctx.translate(iconX, iconY);
+  drawBolt(ctx, 0, 0, s);
+  ctx.restore();
+
+  // Text below bolt
+  const fontSize = size * 0.1;
+  ctx.font = `800 ${fontSize}px Inter, -apple-system, sans-serif`;
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
+  
+  ctx.fillStyle = dark ? '#f0f0f5' : '#0f172a';
+  ctx.fillText('Hero', size / 2 - fontSize * 0.9, size * 0.75);
+  
+  const heroW = ctx.measureText('Hero').width;
+  ctx.fillStyle = '#10b981';
+  ctx.fillText('Call', size / 2 + fontSize * 0.9, size * 0.75);
+
+  // Tagline
+  const tagSize = size * 0.045;
+  ctx.font = `500 ${tagSize}px Inter, -apple-system, sans-serif`;
+  ctx.fillStyle = dark ? '#64748b' : '#94a3b8';
+  ctx.fillText('Make the right call.', size / 2, size * 0.85);
+}
+
+function drawBanner(id, w, h, dark) {
+  const c = document.getElementById(id);
+  const ctx = c.getContext('2d');
+
+  ctx.fillStyle = dark ? '#0f172a' : '#ffffff';
+  ctx.fillRect(0, 0, w, h);
+
+  // Bolt centered
+  const iconSize = h * 0.5;
+  const s = iconSize / 64;
+  
+  ctx.save();
+  ctx.translate(w/2 - iconSize*0.8, h * 0.08);
+  drawBolt(ctx, 0, 0, s);
+  ctx.restore();
+
+  // Text
+  const fontSize = h * 0.18;
+  ctx.font = `800 ${fontSize}px Inter, -apple-system, sans-serif`;
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
+  
+  ctx.fillStyle = dark ? '#f0f0f5' : '#0f172a';
+  const heroW = ctx.measureText('Hero').width;
+  ctx.fillText('Hero', w/2 - heroW * 0.05, h * 0.58);
+  
+  ctx.fillStyle = '#10b981';
+  ctx.fillText('Call', w/2 + heroW * 0.95, h * 0.58);
+
+  // Tagline
+  const tagSize = h * 0.06;
+  ctx.font = `500 ${tagSize}px Inter, -apple-system, sans-serif`;
+  ctx.fillStyle = dark ? '#64748b' : '#94a3b8';
+  ctx.textAlign = 'center';
+  ctx.fillText('AI agents that make the right call. Every time.', w/2, h * 0.78);
+}
+
+// Render all
+drawIcon('icon-dark-512', 512, '#0f172a');
+drawIcon('icon-light-512', 512, '#ffffff');
+drawIcon('icon-green-512', 512, '#059669');
+drawIcon('icon-dark-256', 256, '#0f172a');
+drawIcon('icon-light-256', 256, '#ffffff');
+drawIcon('icon-dark-128', 128, '#0f172a');
+
+drawFull('full-dark-800', 800, 200, true);
+drawFull('full-light-800', 800, 200, false);
+
+drawSquare('ig-dark-400', 400, true);
+drawSquare('ig-light-400', 400, false);
+
+drawBanner('tw-dark', 1500, 500, true);
+drawBanner('tw-light', 1500, 500, false);
+
+function dl(id, filename) {
+  const c = document.getElementById(id);
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = c.toDataURL('image/png');
+  link.click();
+}
+</script>
+</body>
+</html>
