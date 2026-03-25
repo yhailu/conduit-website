@@ -1664,6 +1664,14 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .bot-showcase { max-width: 100%; }
+      .bot-card { padding: 0.8rem; }
+      .bot-msg { font-size: 0.75rem; max-width: 92%; }
+      .bot-tabs { gap: 0.3rem; }
+      .bot-tab { padding: 0.3rem 0.5rem; font-size: 0.65rem; }
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 0 16px;
@@ -2230,12 +2238,12 @@
           🚀 Now Serving 500+ Businesses
         </div>
         <h1 class="hero-heading">
-          Your Customers<br>
-          <span class="muted">Deserve Instant</span><br>
-          Answers
+          AI Agents That Handle<br>
+          Your Calls, Leads<br>
+          <span class="muted">&amp; Bookings — 24/7</span>
         </h1>
         <p class="hero-subtitle">
-          AI agents that handle leads, bookings, and support 24/7 — so you never miss a customer again. Live in 2 weeks. No engineering team required.
+          So your team can focus on closing deals, not answering phones. Deploy in 2 weeks.
         </p>
         <div class="hero-trust">
           <span class="trust-item"><span class="trust-dot">●</span> 50% cost reduction vs. human agents</span>
@@ -2579,6 +2587,80 @@
     </div>
   </section>
   <!-- ==========================================
+       FEATURES / PLATFORM OVERVIEW
+       ========================================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-label">Platform</div>
+        <h2 class="section-heading">Everything You Need to <span class="gradient-text">Automate Customer Interactions</span></h2>
+        <p class="section-subtitle">One platform. Every channel. Full visibility.</p>
+      </div>
+      <div class="features-grid fade-in">
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--green-bg);">🤖</div>
+          <h3>AI Voice & Chat Agents</h3>
+          <p>Natural-sounding voice and chat agents that handle inbound and outbound calls, messages, and inquiries 24/7.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--purple-bg);">📊</div>
+          <h3>Real-Time Analytics</h3>
+          <p>Live dashboards showing call volume, conversion rates, sentiment analysis, and agent performance metrics.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--orange-bg);">🔗</div>
+          <h3>CRM Integration</h3>
+          <p>Seamless sync with Salesforce, HubSpot, Zendesk, and 50+ other tools. Every interaction logged automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--accent-subtle);">🛡️</div>
+          <h3>Enterprise Security</h3>
+          <p>SOC 2 Type II, HIPAA compliant, end-to-end encryption. Your data stays yours.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--green-bg);">⚡</div>
+          <h3>Instant Deployment</h3>
+          <p>Go live in 2 weeks, not 6 months. Our team handles setup, training, and optimization.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--purple-bg);">🌐</div>
+          <h3>Multi-Channel</h3>
+          <p>Phone, WhatsApp, SMS, webchat, email — meet your customers wherever they are.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       HOW IT WORKS
+       ========================================== -->
+  <section class="section" style="background:var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-heading">Live in <span class="gradient-text">3 Simple Steps</span></h2>
+      </div>
+      <div class="fade-in" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; max-width:900px; margin:0 auto; text-align:center;">
+        <div>
+          <div style="width:48px; height:48px; border-radius:50%; background:var(--accent-subtle); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:1.2rem; font-weight:800; color:var(--accent);">1</div>
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Connect</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">Plug HeroCall into your existing tools — CRM, calendar, helpdesk. Takes 15 minutes.</p>
+        </div>
+        <div>
+          <div style="width:48px; height:48px; border-radius:50%; background:var(--accent-subtle); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:1.2rem; font-weight:800; color:var(--accent);">2</div>
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Configure</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">Train your AI agents on your business — scripts, FAQs, workflows. No code required.</p>
+        </div>
+        <div>
+          <div style="width:48px; height:48px; border-radius:50%; background:var(--accent-subtle); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:1.2rem; font-weight:800; color:var(--accent);">3</div>
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Go Live</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">Your AI agents start handling calls, leads, and bookings 24/7. You watch the dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
        TESTIMONIALS
        ========================================== -->
   <section id="testimonials" style="background:#0f172a; padding:4rem 0; margin-top:2rem;">
@@ -2684,6 +2766,22 @@
         </div>
 
       </div>
+
+      <div style="text-align:center; padding:2rem 0 0;">
+        <p style="color:#64748b; font-size:0.8rem; margin-bottom:12px; letter-spacing:0.05em; text-transform:uppercase; font-weight:600;">Integrates with your stack</p>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; max-width:700px; margin:0 auto;">
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Salesforce</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">HubSpot</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Slack</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Microsoft Teams</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Zendesk</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Intercom</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Calendly</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">WhatsApp</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Twilio</span>
+          <span style="padding:6px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.8rem; font-weight:600;">Zapier</span>
+        </div>
+      </div>
     </div>
   </section>
   <div style="height:40px; background:linear-gradient(180deg, #0f172a 0%, #ffffff 100%);"></div>
@@ -2708,6 +2806,20 @@
         <span style="font-size:1.5rem;">✅</span>
         <p style="font-weight:600; margin-top:8px;">You're subscribed!</p>
         <p style="color:var(--text-muted); font-size:0.85rem;">Check your inbox for a welcome email.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-highlight fade-in">
+        <h2 style="font-size:clamp(1.8rem, 4vw, 2.4rem); font-weight:800; margin-bottom:12px;">Ready to Stop Missing Leads?</h2>
+        <p style="color:var(--text-secondary); font-size:1.05rem; max-width:520px; margin:0 auto 24px;">Get a personalized demo and see how HeroCall can transform your customer operations in 2 weeks.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <a href="/demo" class="btn btn-primary" style="padding:14px 32px; font-size:1rem;">See It In Action →</a>
+          <a href="/consultation" class="btn btn-ghost" style="padding:14px 32px; font-size:1rem;">Request Consultation</a>
+        </div>
       </div>
     </div>
   </section>
