@@ -22,5 +22,16 @@
 
 ## Key Decisions
 - 2026-03-24: Human wants all agents to maintain memories of conversations
+- 2026-03-25: REBRANDED from OrchestraFlow → **HeroCall** (herocall.ai)
 - All agents share the same workspace (conduit-website)
 - All agents use Claude Opus
+
+## Marketing Setup (as of 2026-03-25)
+- Sending domain: tryorchestraflow.ai (may need update for HeroCall)
+- Email warming on Instantly.ai (started 2026-03-22, ready ~April 5)
+- Calendly: https://calendly.com/yesu-tryorchestraflow/30min
+- Twitter/X: auto-posting via cron (every 3 hrs)
+- Daily reports: trend reports (8AM, 9PM), marketing status (9AM), competitor intel (10AM)
+- Leads: 120 scraped for Bridgeport PA, 8 enriched dental leads
+- Demo page: demo.html (interactive chat simulator)
+- Blog: 30 articles
