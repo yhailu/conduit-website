@@ -22,7 +22,7 @@
 
 ## Key Decisions
 - 2026-03-24: Human wants all agents to maintain memories of conversations
-- 2026-03-25: REBRANDED from OrchestraFlow → **HeroCall** (herocall.ai)
+- 2026-03-25: REBRANDED from OrchestraFlow → **HeroCall** (herocall.io)
 - All agents share the same workspace (conduit-website)
 - All agents use Claude Opus
 

@@ -3,7 +3,7 @@
 Use this when replying to "drop your product" / "what are you shipping" threads on X.
 
 ## Text:
-We help small/medium business leverage AI agents. AI that answers your phone, qualifies leads, and books appointments. 24/7. Never misses a call. https://herocall.ai
+We help small/medium business leverage AI agents. AI that answers your phone, qualifies leads, and books appointments. 24/7. Never misses a call. https://herocall.io
 
 ## Image:
 Screenshot of the demo page (demo.html) showing the HVAC conversation in the phone mockup.
