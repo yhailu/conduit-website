@@ -27,11 +27,11 @@ function injectNav() {
         <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
       </a>
       <ul class="nav-menu">
-        <li><a href="/portal/dashboard" style="color:#0f172a;font-weight:600;">Dashboard</a></li>
-        <li><a href="/portal/dashboard#agents">My Agents</a></li>
-        <li><a href="/portal/dashboard#calls">Call History</a></li>
-        <li><a href="/portal/dashboard#analytics">Analytics</a></li>
-        <li><a href="/portal/dashboard#settings">Settings</a></li>
+        <li><a href="#" onclick="switchTab('dashboard');return false;" class="portal-tab active" data-tab="dashboard">Dashboard</a></li>
+        <li><a href="#" onclick="switchTab('agents');return false;" class="portal-tab" data-tab="agents">My Agents</a></li>
+        <li><a href="#" onclick="switchTab('calls');return false;" class="portal-tab" data-tab="calls">Call History</a></li>
+        <li><a href="#" onclick="switchTab('analytics');return false;" class="portal-tab" data-tab="analytics">Analytics</a></li>
+        <li><a href="#" onclick="switchTab('settings');return false;" class="portal-tab" data-tab="settings">Settings</a></li>
       </ul>
       <div class="nav-actions">
         <span id="nav-user-name" style="color:#6c7281;font-size:0.82rem;font-weight:500;"></span>

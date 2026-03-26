@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='100%25' stop-color='%2334d399'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='36,4 16,34 30,34 26,60 50,26 34,26' fill='url(%23g)'/%3E%3C/svg%3E">
-  <title>Your Demo — HeroCall Client Portal</title>
+  <title>Dashboard — HeroCall Client Portal</title>
   <link rel="stylesheet" href="../css/shared.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,189 +14,115 @@
     .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
     .dash-header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
     .dash-header h1 span { color: #10b981; }
-    .dash-actions { display: flex; gap: 12px; }
 
-    .dash-layout { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    /* Tab sections */
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
 
-    /* Preview Panel */
-    .preview-panel {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-    .preview-toolbar {
-      display: flex; align-items: center; gap: 8px; padding: 12px 16px;
-      background: var(--bg-elevated); border-bottom: 1px solid var(--border);
-    }
-    .preview-dots { display: flex; gap: 6px; }
-    .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .preview-url {
-      flex: 1; background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; color: var(--text-muted);
-      font-family: 'SF Mono', 'Fira Code', monospace;
-    }
-    .preview-iframe-wrap { width: 100%; height: 100vh; background: #fff; }
-    .preview-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
-    .preview-tabs { display: flex; gap: 4px; margin-left: 12px; }
-    .preview-tab {
-      padding: 5px 14px; border: 1px solid var(--border); border-radius: 6px;
-      font-size: 0.7rem; font-weight: 600; cursor: pointer; font-family: inherit;
-      background: transparent; color: var(--text-muted); transition: all 0.2s;
-    }
-    .preview-tab:hover { color: var(--text); border-color: var(--border-hover); }
-    .preview-tab.active { background: #10b981; color: #fff; border-color: #10b981; }
-    .preview-open-btn {
-      padding: 10px 22px; background: linear-gradient(135deg, #10b981, #06b6d4); color: #fff;
-      border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 800;
-      cursor: pointer; font-family: inherit; margin-left: auto;
-      animation: btnBounce 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite, btnPulseGlow 2s ease-in-out infinite;
-      position: relative; overflow: hidden;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .preview-open-btn:hover {
-      transform: scale(1.12) !important;
-      box-shadow: 0 6px 30px rgba(59,130,246,0.6), 0 0 60px rgba(6,182,212,0.3);
-    }
-    .preview-open-btn::after {
-      content: ''; position: absolute; top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: linear-gradient(45deg, transparent 35%, rgba(255,255,255,0.35) 50%, transparent 65%);
-      animation: btnShine 2s ease-in-out infinite;
-    }
-    @keyframes btnBounce {
-      0%, 100% { transform: translateY(0) scale(1); }
-      15% { transform: translateY(-8px) scale(1.08); }
-      30% { transform: translateY(2px) scale(0.97); }
-      45% { transform: translateY(-4px) scale(1.04); }
-      60% { transform: translateY(1px) scale(0.99); }
-      75% { transform: translateY(-2px) scale(1.02); }
-    }
-    @keyframes btnPulseGlow {
-      0%, 100% { box-shadow: 0 0 10px rgba(59,130,246,0.4), 0 0 20px rgba(6,182,212,0.1); }
-      50% { box-shadow: 0 0 25px rgba(59,130,246,0.7), 0 0 50px rgba(6,182,212,0.3), 0 0 80px rgba(59,130,246,0.1); }
-    }
-    @keyframes btnShine {
-      0% { transform: translateX(-100%) rotate(25deg); }
-      40%, 100% { transform: translateX(100%) rotate(25deg); }
-    }
-    .preview-tabs { display: flex; gap: 4px; margin-left: 12px; }
-    .preview-tab {
-      padding: 5px 14px; border: 1px solid var(--border); border-radius: 6px;
-      font-size: 0.7rem; font-weight: 600; cursor: pointer; font-family: inherit;
-      background: transparent; color: var(--text-muted); transition: all 0.2s;
-    }
-    .preview-tab:hover { color: var(--text); border-color: var(--border-hover); }
-    .preview-tab.active { background: #10b981; color: #fff; border-color: #10b981; }
-    .preview-open-btn {
-      padding: 10px 22px; background: linear-gradient(135deg, #10b981, #06b6d4); color: #fff;
-      border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 800;
-      cursor: pointer; font-family: inherit; margin-left: auto;
-      animation: btnBounce 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite, btnPulseGlow 2s ease-in-out infinite;
-      position: relative; overflow: hidden;
-      transition: transform 0.15s, box-shadow 0.15s;
-      letter-spacing: 0.02em;
-    }
-    .preview-open-btn:hover {
-      transform: scale(1.12) !important;
-      box-shadow: 0 6px 30px rgba(59,130,246,0.6), 0 0 60px rgba(6,182,212,0.3);
-    }
-    .preview-open-btn::after {
-      content: ''; position: absolute; top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: linear-gradient(45deg, transparent 35%, rgba(255,255,255,0.35) 50%, transparent 65%);
-      animation: btnShine 2s ease-in-out infinite;
-    }
-    @keyframes btnBounce {
-      0%, 100% { transform: translateY(0) scale(1); }
-      15% { transform: translateY(-8px) scale(1.08); }
-      30% { transform: translateY(2px) scale(0.97); }
-      45% { transform: translateY(-4px) scale(1.04); }
-      60% { transform: translateY(1px) scale(0.99); }
-      75% { transform: translateY(-2px) scale(1.02); }
-    }
-    @keyframes btnPulseGlow {
-      0%, 100% { box-shadow: 0 0 10px rgba(59,130,246,0.4), 0 0 20px rgba(6,182,212,0.1); }
-      50% { box-shadow: 0 0 25px rgba(59,130,246,0.7), 0 0 50px rgba(6,182,212,0.3), 0 0 80px rgba(59,130,246,0.1); }
-    }
-    @keyframes btnShine {
-      0% { transform: translateX(-100%) rotate(25deg); }
-      40%, 100% { transform: translateX(100%) rotate(25deg); }
-    }
-    .preview-placeholder {
-      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 12px; color: var(--text-muted);
-    }
-    .preview-placeholder-icon { font-size: 3rem; opacity: 0.5; }
+    /* Stat cards */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 24px; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+    .stat-card .label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+    .stat-card .value { font-size: 1.6rem; font-weight: 800; color: var(--text); }
+    .stat-card .trend { font-size: 0.7rem; color: #10b981; margin-top: 2px; }
 
-    /* Sidebar */
-    .dash-sidebar { display: flex; flex-direction: column; gap: 20px; }
-    .sidebar-card {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
-      padding: 24px; 
-    }
-    .sidebar-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    /* Agent cards */
+    .agents-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .agent-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; cursor: pointer; transition: all 0.2s; }
+    .agent-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .agent-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .agent-card-info { display: flex; align-items: center; gap: 8px; }
+    .agent-card-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .agent-card-name { font-weight: 700; font-size: 0.85rem; }
+    .agent-card-type { font-size: 0.7rem; color: var(--text-muted); }
+    .agent-card-stats { display: flex; gap: 12px; font-size: 0.75rem; color: var(--text-secondary); }
+    .agent-card-stats strong { color: var(--text); }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .status-dot.active { background: #10b981; }
+    .status-dot.paused { background: #f97316; }
 
-    /* Original Site */
-    .original-site-preview {
-      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px; margin-bottom: 16px; text-align: center;
-    }
-    .original-site-mock {
-      background: #e8e4dc; border-radius: 6px; height: 100px; display: flex;
-      align-items: center; justify-content: center; margin-bottom: 8px;
-      font-size: 0.7rem; color: #888; font-style: italic;
-    }
-    .original-url { font-size: 0.75rem; color: var(--text-muted); word-break: break-all; }
-    .original-url a { color: #10b981; }
+    /* Table styling */
+    .data-table-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .data-table thead tr { border-bottom: 1px solid var(--border); background: var(--bg-elevated); }
+    .data-table th { text-align: left; padding: 10px 14px; font-weight: 600; color: var(--text-muted); font-size: 0.75rem; cursor: pointer; user-select: none; white-space: nowrap; }
+    .data-table th:hover { color: var(--text); }
+    .data-table th .sort-icon { opacity: 0.4; margin-left: 4px; }
+    .data-table th.sorted .sort-icon { opacity: 1; }
+    .data-table td { padding: 10px 14px; }
+    .data-table tbody tr { border-bottom: 1px solid var(--border); }
+    .data-table tbody tr:last-child { border-bottom: none; }
 
-    /* Improvements List */
-    .improvements-list { list-style: none; }
-    .improvements-list li {
-      display: flex; align-items: flex-start; gap: 10px; padding: 10px 0;
-      border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--text-secondary);
-    }
-    .improvements-list li:last-child { border-bottom: none; }
-    .improvement-icon { color: #10b981; font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+    /* Status badges */
+    .badge { padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
+    .badge-qualified { background: rgba(16,185,129,0.1); color: #10b981; }
+    .badge-booked { background: rgba(59,130,246,0.1); color: #3b82f6; }
+    .badge-resolved { background: rgba(16,185,129,0.1); color: #10b981; }
+    .badge-missed { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .badge-followup { background: rgba(249,115,22,0.1); color: #f97316; }
+    .badge-active { background: rgba(16,185,129,0.1); color: #10b981; }
+    .badge-paused { background: rgba(249,115,22,0.1); color: #f97316; }
 
-    /* Metrics */
-    .metrics-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .metric-item {
-      background: var(--bg-elevated); border-radius: 10px; padding: 14px; text-align: center;
-    }
-    .metric-item .value { font-size: 1.3rem; font-weight: 800; color: #10b981; }
-    .metric-item .label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+    /* Filters bar */
+    .filters-bar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+    .filter-input { padding: 7px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.82rem; font-family: inherit; background: var(--bg-card); color: var(--text); outline: none; }
+    .filter-input:focus { border-color: #10b981; }
+    .filter-select { padding: 7px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.82rem; font-family: inherit; background: var(--bg-card); color: var(--text); outline: none; cursor: pointer; }
+    .filter-select:focus { border-color: #10b981; }
 
-    /* Request Build */
-    .request-build-form textarea {
-      width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 10px;
-      font-size: 0.85rem; font-family: inherit; background: var(--bg-elevated); color: var(--text);
-      resize: vertical; min-height: 80px; margin-bottom: 12px;
-    }
-    .request-build-form textarea:focus { outline: none; border-color: #10b981; }
-    .request-build-form textarea::placeholder { color: var(--text-muted); }
-    .request-build-btn {
-      width: 100%; padding: 12px; background: #10b981; color: #fff; border: none;
-      border-radius: 10px; font-weight: 600; font-family: inherit; cursor: pointer;
-      transition: all 0.2s; font-size: 0.9rem;
-    }
-    .request-build-btn:hover { background: #059669; }
+    /* Buttons */
+    .btn-sm { padding: 5px 12px; font-size: 0.78rem; border-radius: 6px; border: none; cursor: pointer; font-family: inherit; font-weight: 600; transition: all 0.15s; }
+    .btn-green { background: #10b981; color: #fff; }
+    .btn-green:hover { background: #059669; }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
+    .btn-outline:hover { border-color: var(--border-hover); color: var(--text); }
+    .btn-danger { background: transparent; border: 1px solid rgba(239,68,68,0.3); color: #ef4444; }
+    .btn-danger:hover { background: rgba(239,68,68,0.08); }
 
-    /* Loading */
-    .dash-loading { text-align: center; padding: 72px 24px; color: var(--text-muted); }
-    .dash-loading-spinner {
-      width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: #10b981;
-      border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Section headers */
+    .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+    .section-head h2 { font-size: 1.1rem; font-weight: 700; }
 
-    /* Success */
-    .request-success { text-align: center; padding: 16px; display: none; }
-    .request-success .icon { font-size: 1.5rem; margin-bottom: 8px; }
-    .request-success p { font-size: 0.85rem; color: var(--text-secondary); }
-
-    @media (max-width: 1024px) {
-      .dash-layout { grid-template-columns: 1fr; }
-      .preview-iframe-wrap { height: 60vh; }
+    /* Modal / Agent form */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 28px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
+    .modal h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px;
+      font-size: 0.85rem; font-family: inherit; background: var(--bg-card); color: var(--text); outline: none;
     }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #10b981; }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+
+    /* Settings form */
+    .settings-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; max-width: 600px; }
+    .settings-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); }
+    .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #10b981; cursor: pointer; }
+    .save-toast { position: fixed; bottom: 24px; right: 24px; background: #10b981; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; z-index: 3000; display: none; box-shadow: var(--shadow-md); }
+
+    /* Analytics placeholder */
+    .coming-soon { text-align: center; padding: 80px 24px; }
+    .coming-soon .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.5; }
+    .coming-soon h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .coming-soon p { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Toggle switch */
+    .toggle-btn { width: 36px; height: 20px; border-radius: 10px; border: none; cursor: pointer; position: relative; transition: background 0.2s; padding: 0; flex-shrink: 0; }
+    .toggle-btn.on { background: #10b981; }
+    .toggle-btn.off { background: var(--border-hover); }
+    .toggle-btn::after { content: ''; position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #fff; top: 2px; transition: left 0.2s; }
+    .toggle-btn.on::after { left: 18px; }
+    .toggle-btn.off::after { left: 2px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) { .stats-grid { grid-template-columns: repeat(2,1fr); } .agents-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } .agents-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -205,243 +131,633 @@
 
 <!-- Loading State -->
 <div class="dashboard container" id="dash-loading">
-  <div class="dash-loading">
-    <div class="dash-loading-spinner"></div>
-    <p>Loading your demo...</p>
+  <div style="text-align:center; padding:72px 24px; color:var(--text-muted);">
+    <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:#10b981;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;"></div>
+    <p>Loading your dashboard...</p>
   </div>
 </div>
+<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
 
-<!-- Dashboard Content (hidden until loaded) -->
+<!-- Dashboard Content -->
 <div class="dashboard container" id="dash-content" style="display:none;">
   <div class="dash-header">
     <h1>Welcome back, <span id="dash-business-name">—</span></h1>
-    <div class="dash-actions">
-      <a href="/portal/dashboard#agents" style="background:#10b981; color:#fff; padding:7px 16px; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">+ New Agent</a>
+    <div style="display:flex;gap:12px;">
+      <button class="btn-sm btn-green" onclick="switchTab('agents');openAgentModal();">+ New Agent</button>
     </div>
   </div>
 
-  <!-- Stats Cards -->
-  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; margin-bottom:24px;">
-    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
-      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Total Calls Today</div>
-      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">47</div>
-      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">↑ 12% vs yesterday</div>
+  <!-- ==================== DASHBOARD TAB ==================== -->
+  <div class="tab-section active" id="tab-dashboard">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Total Calls Today</div>
+        <div class="value">47</div>
+        <div class="trend">↑ 12% vs yesterday</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Active Agents</div>
+        <div class="value" id="stat-active-agents">3</div>
+        <div class="trend">All online</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Leads Captured</div>
+        <div class="value">18</div>
+        <div class="trend">↑ 8% this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Avg Response Time</div>
+        <div class="value">2.4s</div>
+        <div class="trend">Under 5s target</div>
+      </div>
     </div>
-    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
-      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Active Agents</div>
-      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">3</div>
-      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">All online</div>
-    </div>
-    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
-      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Leads Captured</div>
-      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">18</div>
-      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">↑ 8% this week</div>
-    </div>
-    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
-      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Avg Response Time</div>
-      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">2.4s</div>
-      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">Under 5s target</div>
-    </div>
-  </div>
 
-  <!-- My Agents Section -->
-  <div id="agents" style="margin-bottom:24px;">
-    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:14px;">My Agents</h2>
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;">
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div style="width:32px; height:32px; border-radius:8px; background:rgba(16,185,129,0.12); display:flex; align-items:center; justify-content:center; font-size:1rem;">🎯</div>
-            <div>
-              <div style="font-weight:700; font-size:0.85rem;">Sales Agent</div>
-              <div style="font-size:0.7rem; color:var(--text-muted);">Lead qualification</div>
-            </div>
-          </div>
-          <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block;"></span>
-        </div>
-        <div style="display:flex; gap:12px; font-size:0.75rem; color:var(--text-secondary);">
-          <span><strong style="color:var(--text);">24</strong> calls today</span>
-          <span><strong style="color:var(--text);">78%</strong> qualified</span>
-        </div>
+    <div class="section-head">
+      <h2>My Agents</h2>
+      <a href="#" onclick="switchTab('agents');return false;" style="font-size:0.82rem;color:#10b981;font-weight:600;">View all →</a>
+    </div>
+    <div class="agents-grid" id="dashboard-agents-grid">
+      <!-- Populated by JS -->
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="section-head">
+        <h2>Recent Calls</h2>
+        <a href="#" onclick="switchTab('calls');return false;" style="font-size:0.82rem;color:#10b981;font-weight:600;">View all →</a>
       </div>
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div style="width:32px; height:32px; border-radius:8px; background:rgba(59,130,246,0.12); display:flex; align-items:center; justify-content:center; font-size:1rem;">📅</div>
-            <div>
-              <div style="font-weight:700; font-size:0.85rem;">Booking Agent</div>
-              <div style="font-size:0.7rem; color:var(--text-muted);">Appointment scheduling</div>
-            </div>
-          </div>
-          <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block;"></span>
-        </div>
-        <div style="display:flex; gap:12px; font-size:0.75rem; color:var(--text-secondary);">
-          <span><strong style="color:var(--text);">15</strong> bookings</span>
-          <span><strong style="color:var(--text);">87%</strong> show rate</span>
-        </div>
-      </div>
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div style="width:32px; height:32px; border-radius:8px; background:rgba(168,85,247,0.12); display:flex; align-items:center; justify-content:center; font-size:1rem;">💬</div>
-            <div>
-              <div style="font-weight:700; font-size:0.85rem;">Support Agent</div>
-              <div style="font-size:0.7rem; color:var(--text-muted);">Customer helpdesk</div>
-            </div>
-          </div>
-          <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block;"></span>
-        </div>
-        <div style="display:flex; gap:12px; font-size:0.75rem; color:var(--text-secondary);">
-          <span><strong style="color:var(--text);">8</strong> tickets</span>
-          <span><strong style="color:var(--text);">91%</strong> resolved</span>
-        </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Caller</th>
+              <th>Agent</th>
+              <th>Duration</th>
+              <th>Outcome</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="dashboard-calls-tbody">
+            <!-- Populated by JS (first 5) -->
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <!-- Recent Calls -->
-  <div id="calls" style="margin-bottom:24px;">
-    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:14px;">Recent Calls</h2>
-    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; overflow:hidden;">
-      <table style="width:100%; border-collapse:collapse; font-size:0.82rem;">
+  <!-- ==================== MY AGENTS TAB ==================== -->
+  <div class="tab-section" id="tab-agents">
+    <div class="section-head">
+      <h2>My Agents</h2>
+      <button class="btn-sm btn-green" onclick="openAgentModal()">+ New Agent</button>
+    </div>
+    <div class="agents-grid" id="agents-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- ==================== CALL HISTORY TAB ==================== -->
+  <div class="tab-section" id="tab-calls">
+    <div class="section-head">
+      <h2>Call History</h2>
+    </div>
+    <div class="filters-bar">
+      <input type="text" class="filter-input" id="call-search" placeholder="Search by phone number..." oninput="renderCallHistory()">
+      <select class="filter-select" id="call-filter-agent" onchange="renderCallHistory()">
+        <option value="">All Agents</option>
+        <option value="Sales Agent">🎯 Sales Agent</option>
+        <option value="Booking Agent">📅 Booking Agent</option>
+        <option value="Support Agent">💬 Support Agent</option>
+      </select>
+      <select class="filter-select" id="call-filter-status" onchange="renderCallHistory()">
+        <option value="">All Statuses</option>
+        <option value="Qualified">Qualified</option>
+        <option value="Booked">Booked</option>
+        <option value="Resolved">Resolved</option>
+        <option value="Missed">Missed</option>
+        <option value="Follow-up">Follow-up</option>
+      </select>
+    </div>
+    <div class="data-table-wrap">
+      <table class="data-table" id="calls-table">
         <thead>
-          <tr style="border-bottom:1px solid var(--border); background:var(--bg-elevated);">
-            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Caller</th>
-            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Agent</th>
-            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Duration</th>
-            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Outcome</th>
-            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Time</th>
+          <tr>
+            <th onclick="sortCalls('caller')">Caller <span class="sort-icon">↕</span></th>
+            <th onclick="sortCalls('agent')">Agent <span class="sort-icon">↕</span></th>
+            <th onclick="sortCalls('duration')">Duration <span class="sort-icon">↕</span></th>
+            <th onclick="sortCalls('outcome')">Outcome <span class="sort-icon">↕</span></th>
+            <th onclick="sortCalls('time')">Time <span class="sort-icon">↕</span></th>
           </tr>
         </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:10px 14px;">+1 (215) 555-0142</td>
-            <td style="padding:10px 14px;">🎯 Sales Agent</td>
-            <td style="padding:10px 14px;">3:24</td>
-            <td style="padding:10px 14px;"><span style="background:rgba(16,185,129,0.1); color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Qualified</span></td>
-            <td style="padding:10px 14px; color:var(--text-muted);">2 min ago</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:10px 14px;">+1 (267) 555-0198</td>
-            <td style="padding:10px 14px;">📅 Booking Agent</td>
-            <td style="padding:10px 14px;">1:52</td>
-            <td style="padding:10px 14px;"><span style="background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Booked</span></td>
-            <td style="padding:10px 14px; color:var(--text-muted);">8 min ago</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:10px 14px;">+1 (484) 555-0076</td>
-            <td style="padding:10px 14px;">💬 Support Agent</td>
-            <td style="padding:10px 14px;">4:11</td>
-            <td style="padding:10px 14px;"><span style="background:rgba(16,185,129,0.1); color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Resolved</span></td>
-            <td style="padding:10px 14px; color:var(--text-muted);">15 min ago</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:10px 14px;">+1 (610) 555-0234</td>
-            <td style="padding:10px 14px;">🎯 Sales Agent</td>
-            <td style="padding:10px 14px;">2:08</td>
-            <td style="padding:10px 14px;"><span style="background:rgba(249,115,22,0.1); color:#f97316; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Follow-up</span></td>
-            <td style="padding:10px 14px; color:var(--text-muted);">22 min ago</td>
-          </tr>
-          <tr>
-            <td style="padding:10px 14px;">+1 (215) 555-0311</td>
-            <td style="padding:10px 14px;">📅 Booking Agent</td>
-            <td style="padding:10px 14px;">1:35</td>
-            <td style="padding:10px 14px;"><span style="background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Booked</span></td>
-            <td style="padding:10px 14px; color:var(--text-muted);">31 min ago</td>
-          </tr>
+        <tbody id="calls-tbody">
+          <!-- Populated by JS -->
         </tbody>
       </table>
     </div>
   </div>
+
+  <!-- ==================== ANALYTICS TAB ==================== -->
+  <div class="tab-section" id="tab-analytics">
+    <div class="coming-soon">
+      <div class="icon">📊</div>
+      <h2>Analytics Coming Soon</h2>
+      <p>We're building powerful analytics dashboards to help you track agent performance, call trends, and conversion metrics. Stay tuned!</p>
+    </div>
+  </div>
+
+  <!-- ==================== SETTINGS TAB ==================== -->
+  <div class="tab-section" id="tab-settings">
+    <div class="section-head">
+      <h2>Account Settings</h2>
+    </div>
+    <div class="settings-card">
+      <h3>Business Information</h3>
+      <div class="form-group">
+        <label>Business Name</label>
+        <input type="text" id="settings-business" placeholder="Your Business Name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="settings-email" placeholder="you@company.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="settings-phone" placeholder="+1 (555) 000-0000">
+      </div>
+      <h3 style="margin-top:24px;">Notification Preferences</h3>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" id="settings-notif-email" checked> Email notifications for new leads</label>
+        <label class="checkbox-item"><input type="checkbox" id="settings-notif-sms"> SMS notifications for missed calls</label>
+        <label class="checkbox-item"><input type="checkbox" id="settings-notif-daily" checked> Daily performance summary</label>
+        <label class="checkbox-item"><input type="checkbox" id="settings-notif-weekly" checked> Weekly analytics report</label>
+      </div>
+      <div style="margin-top:24px;">
+        <button class="btn-sm btn-green" onclick="saveSettings()" style="padding:10px 24px;">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Agent Modal -->
+<div class="modal-overlay" id="agent-modal">
+  <div class="modal">
+    <h2 id="agent-modal-title">New Agent</h2>
+    <input type="hidden" id="agent-edit-id" value="">
+    <div class="form-group">
+      <label>Agent Name</label>
+      <input type="text" id="agent-name" placeholder="e.g. Sales Agent">
+    </div>
+    <div class="form-group">
+      <label>Agent Type</label>
+      <select id="agent-type">
+        <option value="Lead Qualification">🎯 Lead Qualification</option>
+        <option value="Appointment Scheduling">📅 Appointment Scheduling</option>
+        <option value="Customer Support">💬 Customer Support</option>
+        <option value="General Assistant">🤖 General Assistant</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="agent-phone" placeholder="+1 (555) 000-0000">
+    </div>
+    <div class="form-group">
+      <label>Greeting Message</label>
+      <textarea id="agent-greeting" placeholder="Hi! Thanks for calling. How can I help you today?"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Instructions</label>
+      <textarea id="agent-instructions" placeholder="Describe what this agent should do, how it should respond, and any specific rules..."></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn-sm btn-outline" onclick="closeAgentModal()">Cancel</button>
+      <button class="btn-sm btn-green" onclick="saveAgent()" style="padding:8px 20px;">Save Agent</button>
+    </div>
   </div>
 </div>
 
-<!-- no footer on dashboard -->
+<!-- Agent Detail Modal -->
+<div class="modal-overlay" id="agent-detail-modal">
+  <div class="modal">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <h2 id="detail-agent-name" style="margin:0;">Agent Details</h2>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-sm btn-outline" id="detail-edit-btn">Edit</button>
+        <button class="btn-sm btn-danger" id="detail-delete-btn">Delete</button>
+      </div>
+    </div>
+    <div id="detail-agent-content"></div>
+    <div class="form-actions">
+      <button class="btn-sm btn-outline" onclick="closeDetailModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Save toast -->
+<div class="save-toast" id="save-toast">✓ Settings saved!</div>
 
 <script src="../js/shared.js"></script>
 <script>
-  // Check auth and load demo data
-  let currentView = 'new';
-  let originalUrl = '';
+  // =====================================================
+  // DATA
+  // =====================================================
 
-  function switchPreview(view) {
-    currentView = view;
-    document.getElementById('tab-new').classList.toggle('active', view === 'new');
-    document.getElementById('tab-old').classList.toggle('active', view === 'old');
+  const DEFAULT_AGENTS = [
+    { id: '1', name: 'Sales Agent', type: 'Lead Qualification', phone: '+1 (215) 555-0100', emoji: '🎯', color: 'rgba(16,185,129,0.12)', greeting: 'Hi! Thanks for calling. I\'d love to learn about your needs.', instructions: 'Qualify leads by asking about budget, timeline, and needs.', status: 'active', callsToday: 24, metric: '78% qualified' },
+    { id: '2', name: 'Booking Agent', type: 'Appointment Scheduling', phone: '+1 (215) 555-0101', emoji: '📅', color: 'rgba(59,130,246,0.12)', greeting: 'Hello! Let me help you schedule an appointment.', instructions: 'Check availability and book appointments. Confirm date and time.', status: 'active', callsToday: 15, metric: '87% show rate' },
+    { id: '3', name: 'Support Agent', type: 'Customer Support', phone: '+1 (215) 555-0102', emoji: '💬', color: 'rgba(168,85,247,0.12)', greeting: 'Welcome to support! How can I help you today?', instructions: 'Help resolve customer issues. Escalate complex cases.', status: 'active', callsToday: 8, metric: '91% resolved' }
+  ];
 
-    const wrap = document.getElementById('preview-wrap');
+  const SAMPLE_CALLS = [
+    { caller: '+1 (215) 555-0142', agent: 'Sales Agent', agentEmoji: '🎯', duration: '3:24', outcome: 'Qualified', time: '2 min ago', ts: 15 },
+    { caller: '+1 (267) 555-0198', agent: 'Booking Agent', agentEmoji: '📅', duration: '1:52', outcome: 'Booked', time: '8 min ago', ts: 14 },
+    { caller: '+1 (484) 555-0076', agent: 'Support Agent', agentEmoji: '💬', duration: '4:11', outcome: 'Resolved', time: '15 min ago', ts: 13 },
+    { caller: '+1 (610) 555-0234', agent: 'Sales Agent', agentEmoji: '🎯', duration: '2:08', outcome: 'Follow-up', time: '22 min ago', ts: 12 },
+    { caller: '+1 (215) 555-0311', agent: 'Booking Agent', agentEmoji: '📅', duration: '1:35', outcome: 'Booked', time: '31 min ago', ts: 11 },
+    { caller: '+1 (267) 555-0422', agent: 'Sales Agent', agentEmoji: '🎯', duration: '0:42', outcome: 'Missed', time: '45 min ago', ts: 10 },
+    { caller: '+1 (484) 555-0533', agent: 'Support Agent', agentEmoji: '💬', duration: '5:18', outcome: 'Resolved', time: '1 hr ago', ts: 9 },
+    { caller: '+1 (610) 555-0644', agent: 'Booking Agent', agentEmoji: '📅', duration: '2:41', outcome: 'Booked', time: '1 hr ago', ts: 8 },
+    { caller: '+1 (215) 555-0755', agent: 'Sales Agent', agentEmoji: '🎯', duration: '4:02', outcome: 'Qualified', time: '2 hr ago', ts: 7 },
+    { caller: '+1 (267) 555-0866', agent: 'Support Agent', agentEmoji: '💬', duration: '1:15', outcome: 'Resolved', time: '2 hr ago', ts: 6 },
+    { caller: '+1 (484) 555-0977', agent: 'Sales Agent', agentEmoji: '🎯', duration: '3:33', outcome: 'Follow-up', time: '3 hr ago', ts: 5 },
+    { caller: '+1 (610) 555-1088', agent: 'Booking Agent', agentEmoji: '📅', duration: '0:28', outcome: 'Missed', time: '3 hr ago', ts: 4 },
+    { caller: '+1 (215) 555-1199', agent: 'Sales Agent', agentEmoji: '🎯', duration: '2:55', outcome: 'Qualified', time: '4 hr ago', ts: 3 },
+    { caller: '+1 (267) 555-1200', agent: 'Support Agent', agentEmoji: '💬', duration: '6:07', outcome: 'Resolved', time: '5 hr ago', ts: 2 },
+    { caller: '+1 (484) 555-1311', agent: 'Booking Agent', agentEmoji: '📅', duration: '1:48', outcome: 'Booked', time: '6 hr ago', ts: 1 }
+  ];
 
-    if (view === 'new') {
-      // Show screenshot of redesigned site
-      wrap.innerHTML = `
-        <div style="width:100%;height:100%;overflow:auto;background:#f1f5f9;display:flex;flex-direction:column;align-items:center;padding:24px;">
-          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">✨ Redesigned Website — <a href="#" onclick="openFullScreen();return false;" style="color:#10b981;">Open interactive version →</a></div>
-          <img src="/api/portal/demo-screenshot" alt="Redesigned website preview"
-            style="max-width:100%;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;cursor:pointer;"
-            onclick="openFullScreen()" />
-        </div>`;
-    } else {
-      // Show screenshot of original site
-      wrap.innerHTML = `
-        <div style="width:100%;height:100%;overflow:auto;background:#f1f5f9;display:flex;flex-direction:column;align-items:center;padding:24px;">
-          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">📸 Original Website Screenshot — <a href="${originalUrl}" target="_blank" rel="noopener" style="color:#10b981;">${originalUrl.replace(/^https?:\/\//, '')}</a></div>
-          <img src="https://image.thum.io/get/width/1280/${originalUrl}" alt="Original website screenshot"
-            style="max-width:100%;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;" />
-        </div>`;
-    }
+  // =====================================================
+  // STATE
+  // =====================================================
+
+  function getAgents() {
+    const stored = localStorage.getItem('hc_agents');
+    if (stored) return JSON.parse(stored);
+    localStorage.setItem('hc_agents', JSON.stringify(DEFAULT_AGENTS));
+    return DEFAULT_AGENTS;
   }
 
-  function openFullScreen() {
-    if (currentView === 'new') {
-      window.open('/api/portal/demo-page', '_blank');
-    } else {
-      window.open(originalUrl, '_blank');
-    }
+  function saveAgents(agents) {
+    localStorage.setItem('hc_agents', JSON.stringify(agents));
   }
+
+  function getSettings() {
+    const stored = localStorage.getItem('hc_settings');
+    if (stored) return JSON.parse(stored);
+    return { business: '', email: '', phone: '', notifEmail: true, notifSms: false, notifDaily: true, notifWeekly: true };
+  }
+
+  function saveSettingsData(s) {
+    localStorage.setItem('hc_settings', JSON.stringify(s));
+  }
+
+  let callSortField = 'time';
+  let callSortAsc = false;
+
+  // =====================================================
+  // TAB SWITCHING
+  // =====================================================
+
+  function switchTab(tab) {
+    // Hide all sections
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+    // Show target
+    const el = document.getElementById('tab-' + tab);
+    if (el) el.classList.add('active');
+    // Update nav
+    document.querySelectorAll('.portal-tab').forEach(a => {
+      a.classList.toggle('active', a.dataset.tab === tab);
+    });
+    // Render content for the tab
+    if (tab === 'agents') renderAgents();
+    if (tab === 'calls') renderCallHistory();
+    if (tab === 'settings') loadSettings();
+    if (tab === 'dashboard') renderDashboard();
+  }
+
+  // Make switchTab global (called from nav onclick)
+  window.switchTab = switchTab;
+
+  // =====================================================
+  // DASHBOARD TAB
+  // =====================================================
+
+  function renderDashboard() {
+    const agents = getAgents();
+    const activeCount = agents.filter(a => a.status === 'active').length;
+    const el = document.getElementById('stat-active-agents');
+    if (el) el.textContent = activeCount;
+
+    // Render agent cards (max 3)
+    const grid = document.getElementById('dashboard-agents-grid');
+    grid.innerHTML = agents.slice(0, 3).map(a => agentCardHTML(a)).join('');
+
+    // Render recent calls (first 5)
+    const tbody = document.getElementById('dashboard-calls-tbody');
+    tbody.innerHTML = SAMPLE_CALLS.slice(0, 5).map(callRowHTML).join('');
+  }
+
+  // =====================================================
+  // AGENTS TAB
+  // =====================================================
+
+  function agentCardHTML(a) {
+    const statusClass = a.status === 'active' ? 'active' : 'paused';
+    const metricIcons = { 'Lead Qualification': '🎯', 'Appointment Scheduling': '📅', 'Customer Support': '💬', 'General Assistant': '🤖' };
+    const emoji = a.emoji || metricIcons[a.type] || '🤖';
+    const color = a.color || 'rgba(16,185,129,0.12)';
+    return `
+      <div class="agent-card" onclick="showAgentDetail('${a.id}')">
+        <div class="agent-card-header">
+          <div class="agent-card-info">
+            <div class="agent-card-icon" style="background:${color}">${emoji}</div>
+            <div>
+              <div class="agent-card-name">${a.name}</div>
+              <div class="agent-card-type">${a.type}</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button class="toggle-btn ${a.status === 'active' ? 'on' : 'off'}" onclick="event.stopPropagation();toggleAgent('${a.id}')" title="${a.status === 'active' ? 'Pause agent' : 'Start agent'}"></button>
+            <span class="status-dot ${statusClass}"></span>
+          </div>
+        </div>
+        <div class="agent-card-stats">
+          <span><strong>${a.callsToday || 0}</strong> calls today</span>
+          <span><strong>${a.metric || '—'}</strong></span>
+        </div>
+        <div style="margin-top:8px;">
+          <span class="badge badge-${statusClass}">${a.status === 'active' ? 'Active' : 'Paused'}</span>
+        </div>
+      </div>`;
+  }
+
+  function renderAgents() {
+    const agents = getAgents();
+    const grid = document.getElementById('agents-grid');
+    if (agents.length === 0) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">No agents yet. Click "+ New Agent" to create one.</div>';
+      return;
+    }
+    grid.innerHTML = agents.map(a => agentCardHTML(a)).join('');
+  }
+
+  function toggleAgent(id) {
+    const agents = getAgents();
+    const agent = agents.find(a => a.id === id);
+    if (!agent) return;
+    agent.status = agent.status === 'active' ? 'paused' : 'active';
+    saveAgents(agents);
+    // Re-render whichever tab is visible
+    renderAgents();
+    renderDashboard();
+  }
+
+  function openAgentModal(id) {
+    const modal = document.getElementById('agent-modal');
+    if (id) {
+      const agents = getAgents();
+      const a = agents.find(x => x.id === id);
+      if (!a) return;
+      document.getElementById('agent-modal-title').textContent = 'Edit Agent';
+      document.getElementById('agent-edit-id').value = id;
+      document.getElementById('agent-name').value = a.name;
+      document.getElementById('agent-type').value = a.type;
+      document.getElementById('agent-phone').value = a.phone || '';
+      document.getElementById('agent-greeting').value = a.greeting || '';
+      document.getElementById('agent-instructions').value = a.instructions || '';
+    } else {
+      document.getElementById('agent-modal-title').textContent = 'New Agent';
+      document.getElementById('agent-edit-id').value = '';
+      document.getElementById('agent-name').value = '';
+      document.getElementById('agent-type').value = 'Lead Qualification';
+      document.getElementById('agent-phone').value = '';
+      document.getElementById('agent-greeting').value = '';
+      document.getElementById('agent-instructions').value = '';
+    }
+    modal.classList.add('open');
+  }
+
+  function closeAgentModal() {
+    document.getElementById('agent-modal').classList.remove('open');
+  }
+
+  function saveAgent() {
+    const name = document.getElementById('agent-name').value.trim();
+    if (!name) { alert('Please enter an agent name.'); return; }
+    const agents = getAgents();
+    const editId = document.getElementById('agent-edit-id').value;
+    const typeEmojis = { 'Lead Qualification': '🎯', 'Appointment Scheduling': '📅', 'Customer Support': '💬', 'General Assistant': '🤖' };
+    const typeColors = { 'Lead Qualification': 'rgba(16,185,129,0.12)', 'Appointment Scheduling': 'rgba(59,130,246,0.12)', 'Customer Support': 'rgba(168,85,247,0.12)', 'General Assistant': 'rgba(6,182,212,0.12)' };
+    const type = document.getElementById('agent-type').value;
+
+    if (editId) {
+      const agent = agents.find(a => a.id === editId);
+      if (agent) {
+        agent.name = name;
+        agent.type = type;
+        agent.phone = document.getElementById('agent-phone').value;
+        agent.greeting = document.getElementById('agent-greeting').value;
+        agent.instructions = document.getElementById('agent-instructions').value;
+        agent.emoji = typeEmojis[type] || '🤖';
+        agent.color = typeColors[type] || 'rgba(16,185,129,0.12)';
+      }
+    } else {
+      agents.push({
+        id: Date.now().toString(),
+        name,
+        type,
+        phone: document.getElementById('agent-phone').value,
+        emoji: typeEmojis[type] || '🤖',
+        color: typeColors[type] || 'rgba(16,185,129,0.12)',
+        greeting: document.getElementById('agent-greeting').value,
+        instructions: document.getElementById('agent-instructions').value,
+        status: 'active',
+        callsToday: 0,
+        metric: '—'
+      });
+    }
+    saveAgents(agents);
+    closeAgentModal();
+    renderAgents();
+    renderDashboard();
+  }
+
+  function showAgentDetail(id) {
+    const agents = getAgents();
+    const a = agents.find(x => x.id === id);
+    if (!a) return;
+    document.getElementById('detail-agent-name').textContent = a.name;
+    document.getElementById('detail-agent-content').innerHTML = `
+      <div style="display:grid;gap:12px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:${a.color};display:flex;align-items:center;justify-content:center;font-size:1.5rem;">${a.emoji}</div>
+          <div>
+            <div style="font-weight:700;font-size:1rem;">${a.name}</div>
+            <span class="badge badge-${a.status === 'active' ? 'active' : 'paused'}">${a.status === 'active' ? 'Active' : 'Paused'}</span>
+          </div>
+        </div>
+        <div><strong style="font-size:0.78rem;color:var(--text-muted);">Type:</strong> <span style="font-size:0.85rem;">${a.type}</span></div>
+        <div><strong style="font-size:0.78rem;color:var(--text-muted);">Phone:</strong> <span style="font-size:0.85rem;">${a.phone || '—'}</span></div>
+        <div><strong style="font-size:0.78rem;color:var(--text-muted);">Greeting:</strong> <p style="font-size:0.85rem;margin-top:4px;color:var(--text-secondary);line-height:1.5;">${a.greeting || '—'}</p></div>
+        <div><strong style="font-size:0.78rem;color:var(--text-muted);">Instructions:</strong> <p style="font-size:0.85rem;margin-top:4px;color:var(--text-secondary);line-height:1.5;">${a.instructions || '—'}</p></div>
+        <div style="display:flex;gap:20px;margin-top:8px;">
+          <div><strong style="color:var(--text);">${a.callsToday || 0}</strong> <span style="font-size:0.78rem;color:var(--text-muted);">calls today</span></div>
+          <div><strong style="color:var(--text);">${a.metric || '—'}</strong></div>
+        </div>
+      </div>`;
+    document.getElementById('detail-edit-btn').onclick = () => { closeDetailModal(); openAgentModal(id); };
+    document.getElementById('detail-delete-btn').onclick = () => {
+      if (confirm('Delete ' + a.name + '? This cannot be undone.')) {
+        const updated = getAgents().filter(x => x.id !== id);
+        saveAgents(updated);
+        closeDetailModal();
+        renderAgents();
+        renderDashboard();
+      }
+    };
+    document.getElementById('agent-detail-modal').classList.add('open');
+  }
+
+  function closeDetailModal() {
+    document.getElementById('agent-detail-modal').classList.remove('open');
+  }
+
+  // =====================================================
+  // CALL HISTORY TAB
+  // =====================================================
+
+  function callRowHTML(c) {
+    const badgeClass = { 'Qualified': 'qualified', 'Booked': 'booked', 'Resolved': 'resolved', 'Missed': 'missed', 'Follow-up': 'followup' }[c.outcome] || 'qualified';
+    return `<tr>
+      <td>${c.caller}</td>
+      <td>${c.agentEmoji} ${c.agent}</td>
+      <td>${c.duration}</td>
+      <td><span class="badge badge-${badgeClass}">${c.outcome}</span></td>
+      <td style="color:var(--text-muted);">${c.time}</td>
+    </tr>`;
+  }
+
+  function renderCallHistory() {
+    const search = (document.getElementById('call-search')?.value || '').toLowerCase();
+    const agentFilter = document.getElementById('call-filter-agent')?.value || '';
+    const statusFilter = document.getElementById('call-filter-status')?.value || '';
+
+    let calls = [...SAMPLE_CALLS];
+
+    if (search) calls = calls.filter(c => c.caller.toLowerCase().includes(search));
+    if (agentFilter) calls = calls.filter(c => c.agent === agentFilter);
+    if (statusFilter) calls = calls.filter(c => c.outcome === statusFilter);
+
+    // Sort
+    calls.sort((a, b) => {
+      let va = a[callSortField], vb = b[callSortField];
+      if (callSortField === 'ts' || callSortField === 'time') { va = a.ts; vb = b.ts; }
+      if (callSortField === 'duration') { va = durationToSec(a.duration); vb = durationToSec(b.duration); }
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+      if (va < vb) return callSortAsc ? -1 : 1;
+      if (va > vb) return callSortAsc ? 1 : -1;
+      return 0;
+    });
+
+    document.getElementById('calls-tbody').innerHTML = calls.map(callRowHTML).join('');
+  }
+
+  function durationToSec(d) {
+    const parts = d.split(':');
+    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+  }
+
+  function sortCalls(field) {
+    if (field === 'time') field = 'ts';
+    if (callSortField === field) { callSortAsc = !callSortAsc; } else { callSortField = field; callSortAsc = true; }
+    renderCallHistory();
+  }
+
+  // =====================================================
+  // SETTINGS TAB
+  // =====================================================
+
+  function loadSettings() {
+    const s = getSettings();
+    document.getElementById('settings-business').value = s.business || '';
+    document.getElementById('settings-email').value = s.email || '';
+    document.getElementById('settings-phone').value = s.phone || '';
+    document.getElementById('settings-notif-email').checked = s.notifEmail !== false;
+    document.getElementById('settings-notif-sms').checked = s.notifSms === true;
+    document.getElementById('settings-notif-daily').checked = s.notifDaily !== false;
+    document.getElementById('settings-notif-weekly').checked = s.notifWeekly !== false;
+  }
+
+  function saveSettings() {
+    const s = {
+      business: document.getElementById('settings-business').value.trim(),
+      email: document.getElementById('settings-email').value.trim(),
+      phone: document.getElementById('settings-phone').value.trim(),
+      notifEmail: document.getElementById('settings-notif-email').checked,
+      notifSms: document.getElementById('settings-notif-sms').checked,
+      notifDaily: document.getElementById('settings-notif-daily').checked,
+      notifWeekly: document.getElementById('settings-notif-weekly').checked
+    };
+    saveSettingsData(s);
+    // Update business name if set
+    if (s.business) {
+      document.getElementById('dash-business-name').textContent = s.business;
+      const navName = document.getElementById('nav-user-name');
+      if (navName) navName.textContent = s.business;
+    }
+    // Show toast
+    const toast = document.getElementById('save-toast');
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 2500);
+  }
+
+  // =====================================================
+  // INIT
+  // =====================================================
+
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+  });
+
+  // Close modals on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+    }
+  });
 
   async function init() {
     try {
-      console.log('Dashboard: checking auth...');
-      console.log('Document cookies:', document.cookie);
       const meRes = await fetch('/api/portal/me', { credentials: 'include' });
-      console.log('Dashboard /me status:', meRes.status);
-      if (!meRes.ok) { console.log('Auth failed, redirecting to login'); window.location.href = '/portal/login'; return; }
+      if (!meRes.ok) { window.location.href = '/portal/login'; return; }
 
-      // Get user info
       const meData = await meRes.json();
       const businessName = (meData.client && meData.client.business_name) || 'Your Business';
-      
+
       document.getElementById('dash-business-name').textContent = businessName;
       const navName = document.getElementById('nav-user-name');
       if (navName) navName.textContent = businessName;
 
-      // Show content
-      document.getElementById('dash-loading').style.display = 'none';
-      document.getElementById('dash-content').style.display = 'block';
+      // Pre-fill settings if empty
+      const s = getSettings();
+      if (!s.business && businessName !== 'Your Business') {
+        s.business = businessName;
+        saveSettingsData(s);
+      }
 
     } catch (err) {
       console.error('Dashboard init error:', err);
-      // Still show the dashboard even if demo data fails
-      document.getElementById('dash-loading').style.display = 'none';
-      document.getElementById('dash-content').style.display = 'block';
       document.getElementById('dash-business-name').textContent = 'Your Business';
     }
-  }
 
-  async function requestBuild() {
-    const message = document.getElementById('build-message').value.trim();
-    try {
-      await fetch('/api/portal/request-build', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ message })
-      });
-      document.getElementById('request-form').style.display = 'none';
-      document.getElementById('request-success').style.display = 'block';
-    } catch (err) {
-      alert('Something went wrong. Please try again.');
-    }
+    // Show content
+    document.getElementById('dash-loading').style.display = 'none';
+    document.getElementById('dash-content').style.display = 'block';
+
+    // Render dashboard tab
+    renderDashboard();
   }
 
   async function handleLogout() {
