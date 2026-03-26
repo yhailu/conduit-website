@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Your AI Agent — HeroCall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shared.css">
+  <link rel="stylesheet" href="/platform/css/platform.css">
+</head>
+<body>
+  <nav id="site-nav"></nav>
+
+  <div class="platform-wrapper">
+    <main class="platform-main">
+      <div class="wizard-container">
+        <!-- Header -->
+        <div style="text-align:center;margin-bottom:12px;">
+          <h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;">Set Up Your AI Agent</h1>
+          <p style="color:var(--text-secondary);font-size:0.92rem;">Let's get your phone answered by AI in just a few minutes</p>
+        </div>
+
+        <!-- Progress -->
+        <div class="wizard-progress">
+          <div class="wizard-dot active" id="dot-1">1<span class="wizard-dot-label">Business</span></div>
+          <div class="wizard-line" id="line-1"></div>
+          <div class="wizard-dot" id="dot-2">2<span class="wizard-dot-label">Services</span></div>
+          <div class="wizard-line" id="line-2"></div>
+          <div class="wizard-dot" id="dot-3">3<span class="wizard-dot-label">Booking</span></div>
+          <div class="wizard-line" id="line-3"></div>
+          <div class="wizard-dot" id="dot-4">4<span class="wizard-dot-label">Launch</span></div>
+        </div>
+
+        <!-- Wizard Panel -->
+        <div class="wizard-panel">
+          <!-- Step 1: Business Info -->
+          <div class="wizard-step active" id="step-1">
+            <h2>Business Information</h2>
+            <p class="step-desc">Tell us about your business so your AI agent knows what to say.</p>
+
+            <div class="form-group">
+              <label class="form-label" for="biz-name">Business Name</label>
+              <input type="text" id="biz-name" class="form-input" placeholder="BrightSmile Dental" required>
+              <div class="form-error">Business name is required</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="biz-industry">Industry</label>
+                <select id="biz-industry" class="form-input" required>
+                  <option value="">Select industry...</option>
+                  <option value="HVAC">HVAC</option>
+                  <option value="Dental">Dental</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Real Estate">Real Estate</option>
+                  <option value="Insurance">Insurance</option>
+                  <option value="Salon">Salon</option>
+                  <option value="Auto Repair">Auto Repair</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div class="form-error">Please select an industry</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="biz-phone">Phone Number</label>
+                <input type="tel" id="biz-phone" class="form-input" placeholder="(555) 123-4567">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="biz-address">Business Address</label>
+              <input type="text" id="biz-address" class="form-input" placeholder="456 Oak Avenue, Suite 200, Anytown, USA">
+            </div>
+
+            <div class="wizard-actions">
+              <div></div>
+              <button class="btn btn-primary" onclick="nextStep(1)">Next: Services & Hours →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Services & Hours -->
+          <div class="wizard-step" id="step-2">
+            <h2>Services & Hours</h2>
+            <p class="step-desc">What services do you offer and when are you available?</p>
+
+            <div class="form-group">
+              <label class="form-label">Services Offered</label>
+              <div class="tag-input-wrap" id="services-input" onclick="this.querySelector('input').focus()">
+                <input type="text" placeholder="Type a service and press Enter" onkeydown="handleTagInput(event, 'services')">
+              </div>
+              <p class="form-hint">Press Enter to add each service</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Business Hours</label>
+              <div class="hours-grid" id="hours-grid"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="after-hours">After-Hours Handling</label>
+              <select id="after-hours" class="form-input">
+                <option value="voicemail">Take a message / voicemail</option>
+                <option value="emergency">Transfer to emergency line</option>
+                <option value="info">Provide business info only</option>
+                <option value="schedule">Allow scheduling for next business day</option>
+              </select>
+            </div>
+
+            <div class="wizard-actions">
+              <button class="btn btn-ghost" onclick="prevStep(2)">← Back</button>
+              <button class="btn btn-primary" onclick="nextStep(2)">Next: Booking Setup →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Booking Setup -->
+          <div class="wizard-step" id="step-3">
+            <h2>Booking Setup</h2>
+            <p class="step-desc">Connect your calendar and customize how bookings work.</p>
+
+            <div class="form-group">
+              <label class="form-label" for="calendar-url">Calendar Integration URL</label>
+              <input type="url" id="calendar-url" class="form-input" placeholder="https://calendly.com/your-business">
+              <p class="form-hint">Supports Calendly, Google Calendar, Cal.com, and more</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Appointment Types</label>
+              <div class="tag-input-wrap" id="appt-types-input" onclick="this.querySelector('input').focus()">
+                <input type="text" placeholder="e.g., Consultation - 30min" onkeydown="handleTagInput(event, 'appt-types')">
+              </div>
+              <p class="form-hint">Add appointment types with durations (e.g., "Cleaning - 60min")</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="greeting-msg">Custom Greeting Message</label>
+              <textarea id="greeting-msg" class="form-input" rows="3" placeholder="Hi, thank you for calling [Business Name]! I'm your AI assistant. How can I help you today?"></textarea>
+              <p class="form-hint">This is what callers hear first. Leave blank for a smart default.</p>
+            </div>
+
+            <div class="wizard-actions">
+              <button class="btn btn-ghost" onclick="prevStep(3)">← Back</button>
+              <button class="btn btn-primary" onclick="nextStep(3)">Next: Review & Launch →</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Review & Launch -->
+          <div class="wizard-step" id="step-4">
+            <div id="review-view">
+              <h2>Review & Launch</h2>
+              <p class="step-desc">Everything look good? Let's bring your AI agent to life!</p>
+
+              <div id="review-summary"></div>
+
+              <div style="margin-top:16px;">
+                <label class="form-label">AI Greeting Preview</label>
+                <div class="greeting-preview" id="greeting-preview"></div>
+              </div>
+
+              <div class="wizard-actions">
+                <button class="btn btn-ghost" onclick="prevStep(4)">← Back</button>
+                <button class="btn btn-primary btn-lg" onclick="launchAgent()" id="launch-btn">Launch My AI Agent 🦸</button>
+              </div>
+            </div>
+
+            <div id="success-view" class="success-screen" style="display:none;">
+              <div class="success-icon">🦸</div>
+              <h2>Your AI Agent is Live!</h2>
+              <p>Calls to your number will now be handled by your AI assistant.</p>
+              <div class="success-phone">(555) 847-2931</div>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:24px;">This is your dedicated AI phone number. Forward your business line here or use it directly.</p>
+              <a href="/platform/dashboard.html" class="btn btn-primary btn-lg">Go to Dashboard →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/shared.js"></script>
+  <script src="/platform/js/platform.js"></script>
+  <script>
+    if (!isLoggedIn()) setAuth(MOCK_USER);
+    injectSidebar('agents');
+
+    let currentStep = 1;
+    const wizardData = { services: [], apptTypes: [] };
+
+    // ---- Hours Grid ----
+    const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    const defaultHours = { Mon:'08:00-17:00', Tue:'08:00-17:00', Wed:'08:00-17:00', Thu:'08:00-17:00', Fri:'08:00-17:00', Sat:'09:00-13:00', Sun:'closed' };
+    const timeOptions = ['closed','06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00'];
+
+    function buildHoursGrid() {
+      const grid = document.getElementById('hours-grid');
+      days.forEach(day => {
+        const def = defaultHours[day];
+        const isClosed = def === 'closed';
+        const [open, close] = isClosed ? ['closed','closed'] : def.split('-');
+        grid.innerHTML += `
+          <div class="hours-row">
+            <span class="hours-day">${day}</span>
+            <select class="form-input" id="hours-${day}-open" onchange="hoursChanged('${day}')" style="padding:6px 8px;font-size:0.8rem;">
+              ${timeOptions.map(t => `<option value="${t}" ${t === open ? 'selected' : ''}>${t === 'closed' ? 'Closed' : t}</option>`).join('')}
+            </select>
+            <select class="form-input" id="hours-${day}-close" ${isClosed ? 'disabled' : ''} style="padding:6px 8px;font-size:0.8rem;">
+              ${timeOptions.filter(t => t !== 'closed').map(t => `<option value="${t}" ${t === close ? 'selected' : ''}>${t}</option>`).join('')}
+            </select>
+          </div>
+        `;
+      });
+    }
+
+    function hoursChanged(day) {
+      const openSel = document.getElementById(`hours-${day}-open`);
+      const closeSel = document.getElementById(`hours-${day}-close`);
+      closeSel.disabled = openSel.value === 'closed';
+    }
+
+    buildHoursGrid();
+
+    // ---- Tag Input ----
+    function handleTagInput(e, type) {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      const val = e.target.value.trim();
+      if (!val) return;
+
+      const list = type === 'services' ? wizardData.services : wizardData.apptTypes;
+      if (list.includes(val)) return;
+      list.push(val);
+      e.target.value = '';
+      renderTags(type);
+    }
+
+    function removeTag(type, idx) {
+      const list = type === 'services' ? wizardData.services : wizardData.apptTypes;
+      list.splice(idx, 1);
+      renderTags(type);
+    }
+
+    function renderTags(type) {
+      const list = type === 'services' ? wizardData.services : wizardData.apptTypes;
+      const containerId = type === 'services' ? 'services-input' : 'appt-types-input';
+      const wrap = document.getElementById(containerId);
+      const input = wrap.querySelector('input');
+      wrap.querySelectorAll('.tag').forEach(t => t.remove());
+      list.forEach((tag, i) => {
+        const el = document.createElement('span');
+        el.className = 'tag';
+        el.innerHTML = `${escapeHtml(tag)} <span class="tag-remove" onclick="removeTag('${type}', ${i})">&times;</span>`;
+        wrap.insertBefore(el, input);
+      });
+    }
+
+    // ---- Step Navigation ----
+    function validateStep(step) {
+      if (step === 1) {
+        const name = document.getElementById('biz-name').value.trim();
+        const industry = document.getElementById('biz-industry').value;
+        let valid = true;
+        if (!name) {
+          document.getElementById('biz-name').parentElement.classList.add('error');
+          valid = false;
+        } else {
+          document.getElementById('biz-name').parentElement.classList.remove('error');
+        }
+        if (!industry) {
+          document.getElementById('biz-industry').parentElement.classList.add('error');
+          valid = false;
+        } else {
+          document.getElementById('biz-industry').parentElement.classList.remove('error');
+        }
+        return valid;
+      }
+      return true;
+    }
+
+    function nextStep(from) {
+      if (!validateStep(from)) return;
+      if (from >= 4) return;
+      currentStep = from + 1;
+      updateWizardUI();
+      if (currentStep === 4) buildReview();
+    }
+
+    function prevStep(from) {
+      if (from <= 1) return;
+      currentStep = from - 1;
+      updateWizardUI();
+    }
+
+    function updateWizardUI() {
+      // Steps
+      document.querySelectorAll('.wizard-step').forEach((el, i) => {
+        el.classList.toggle('active', i + 1 === currentStep);
+      });
+      // Dots
+      for (let i = 1; i <= 4; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        dot.classList.remove('active', 'completed');
+        if (i === currentStep) dot.classList.add('active');
+        else if (i < currentStep) { dot.classList.add('completed'); dot.innerHTML = `✓<span class="wizard-dot-label">${dot.querySelector('.wizard-dot-label')?.textContent || ''}</span>`; }
+      }
+      // Lines
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById(`line-${i}`).classList.toggle('active', i < currentStep);
+      }
+    }
+
+    // ---- Review ----
+    function getWizardData() {
+      const bizName = document.getElementById('biz-name').value.trim();
+      const industry = document.getElementById('biz-industry').value;
+      const phone = document.getElementById('biz-phone').value.trim();
+      const address = document.getElementById('biz-address').value.trim();
+      const afterHours = document.getElementById('after-hours').value;
+      const calendarUrl = document.getElementById('calendar-url').value.trim();
+      let greeting = document.getElementById('greeting-msg').value.trim();
+      if (!greeting) greeting = `Hi, thank you for calling ${bizName}! I'm your AI assistant. How can I help you today?`;
+
+      const hours = {};
+      days.forEach(day => {
+        const open = document.getElementById(`hours-${day}-open`).value;
+        if (open === 'closed') { hours[day] = null; }
+        else { hours[day] = { open, close: document.getElementById(`hours-${day}-close`).value }; }
+      });
+
+      return { bizName, industry, phone, address, services: [...wizardData.services], hours, afterHours, calendarUrl, apptTypes: [...wizardData.apptTypes], greeting };
+    }
+
+    function buildReview() {
+      const data = getWizardData();
+      const summary = document.getElementById('review-summary');
+
+      const hoursStr = days.map(d => {
+        if (!data.hours[d]) return `<div class="summary-row"><span class="summary-label">${d}</span><span class="summary-value" style="color:var(--text-muted);">Closed</span></div>`;
+        return `<div class="summary-row"><span class="summary-label">${d}</span><span class="summary-value">${data.hours[d].open} – ${data.hours[d].close}</span></div>`;
+      }).join('');
+
+      summary.innerHTML = `
+        <div class="summary-section">
+          <h3>Business Info</h3>
+          <div class="summary-row"><span class="summary-label">Name</span><span class="summary-value">${escapeHtml(data.bizName)}</span></div>
+          <div class="summary-row"><span class="summary-label">Industry</span><span class="summary-value">${escapeHtml(data.industry)}</span></div>
+          ${data.phone ? `<div class="summary-row"><span class="summary-label">Phone</span><span class="summary-value">${escapeHtml(data.phone)}</span></div>` : ''}
+          ${data.address ? `<div class="summary-row"><span class="summary-label">Address</span><span class="summary-value">${escapeHtml(data.address)}</span></div>` : ''}
+        </div>
+        <div class="summary-section">
+          <h3>Services</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            ${data.services.length ? data.services.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('') : '<span style="color:var(--text-muted);font-size:0.85rem;">No services added</span>'}
+          </div>
+        </div>
+        <div class="summary-section">
+          <h3>Hours</h3>
+          ${hoursStr}
+        </div>
+        ${data.calendarUrl ? `<div class="summary-section"><h3>Booking</h3><div class="summary-row"><span class="summary-label">Calendar</span><span class="summary-value">${escapeHtml(data.calendarUrl)}</span></div></div>` : ''}
+        ${data.apptTypes.length ? `<div class="summary-section"><h3>Appointment Types</h3><div style="display:flex;flex-wrap:wrap;gap:6px;">${data.apptTypes.map(a => `<span class="tag">${escapeHtml(a)}</span>`).join('')}</div></div>` : ''}
+      `;
+
+      document.getElementById('greeting-preview').textContent = data.greeting;
+    }
+
+    // ---- Launch ----
+    async function launchAgent() {
+      const btn = document.getElementById('launch-btn');
+      btn.textContent = 'Launching...';
+      btn.disabled = true;
+
+      const data = getWizardData();
+
+      try {
+        await fetch('/api/agents', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('hc_token')}`
+          },
+          body: JSON.stringify(data)
+        });
+      } catch (e) {
+        // Expected to fail — backend not ready
+      }
+
+      // Show success
+      setTimeout(() => {
+        document.getElementById('review-view').style.display = 'none';
+        document.getElementById('success-view').style.display = 'block';
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — HeroCall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shared.css">
+  <link rel="stylesheet" href="/platform/css/platform.css">
+</head>
+<body>
+  <nav id="site-nav"></nav>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <a href="/" class="auth-logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hc-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs><polygon points="36,4 16,34 30,34 26,60 50,26 34,26" fill="url(#hc-grad)"/></svg>
+        <span>Hero<span style="color:#10b981">Call</span></span>
+      </a>
+      <h1 class="auth-title">Create your account</h1>
+      <p class="auth-subtitle">Start automating your calls in minutes</p>
+
+      <div id="alert" class="alert alert-error"></div>
+
+      <form id="signup-form" onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label class="form-label" for="name">Full Name</label>
+          <input type="text" id="name" class="form-input" placeholder="Sarah Johnson" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="sarah@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" class="form-input" placeholder="Min 8 characters" required minlength="8">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="company">Company Name</label>
+          <input type="text" id="company" class="form-input" placeholder="BrightSmile Dental" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-full" id="submit-btn">Create Account</button>
+      </form>
+
+      <p class="auth-footer">Already have an account? <a href="/platform/login.html">Log in</a></p>
+    </div>
+  </div>
+
+  <script src="/js/shared.js"></script>
+  <script src="/platform/js/platform.js"></script>
+  <script>
+    async function handleSignup(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const alert = document.getElementById('alert');
+      alert.classList.remove('show');
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const company = document.getElementById('company').value.trim();
+
+      if (!name || !email || !password || !company) {
+        alert.textContent = 'Please fill in all fields.';
+        alert.classList.add('show');
+        return;
+      }
+
+      if (password.length < 8) {
+        alert.textContent = 'Password must be at least 8 characters.';
+        alert.classList.add('show');
+        return;
+      }
+
+      btn.textContent = 'Creating account...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, company })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Signup failed');
+
+        setAuth(data.user || { ...MOCK_USER, name, email, company, token: data.token || MOCK_USER.token });
+        window.location.href = '/platform/setup-agent.html';
+      } catch (err) {
+        // Fallback: mock signup for demo
+        setAuth({ ...MOCK_USER, name, email, company });
+        window.location.href = '/platform/setup-agent.html';
+      }
+    }
+  </script>
+</body>
+</html>

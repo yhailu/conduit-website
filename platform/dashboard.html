@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — HeroCall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shared.css">
+  <link rel="stylesheet" href="/platform/css/platform.css">
+</head>
+<body>
+  <nav id="site-nav"></nav>
+
+  <div class="platform-wrapper">
+    <main class="platform-main">
+      <!-- Header -->
+      <div class="platform-header">
+        <h1 id="welcome-msg">Welcome back, Sarah 👋</h1>
+        <p id="company-msg">BrightSmile Dental</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Total Calls</span>
+            <div class="stat-card-icon" style="background:var(--blue-bg);color:var(--blue);">📞</div>
+          </div>
+          <div class="stat-card-value" id="stat-calls">156</div>
+          <span class="stat-card-change up">↑ 12% this week</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Appointments Booked</span>
+            <div class="stat-card-icon" style="background:var(--green-bg);color:var(--green);">📅</div>
+          </div>
+          <div class="stat-card-value" id="stat-appointments">64</div>
+          <span class="stat-card-change up">↑ 8% this week</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Avg Response Time</span>
+            <div class="stat-card-icon" style="background:var(--purple-bg);color:var(--purple);">⚡</div>
+          </div>
+          <div class="stat-card-value" id="stat-response">1.2s</div>
+          <span class="stat-card-change up">↓ 0.3s faster</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Active Agents</span>
+            <div class="stat-card-icon" style="background:var(--accent-subtle);color:var(--accent);">🤖</div>
+          </div>
+          <div class="stat-card-value" id="stat-agents">1</div>
+          <span class="stat-card-change" style="color:var(--text-muted);">All systems normal</span>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="dashboard-grid">
+        <!-- Recent Calls -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Recent Calls</span>
+            <a href="/platform/calls.html" class="btn btn-ghost" style="font-size:0.8rem;padding:6px 14px;">View All →</a>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Caller</th>
+                  <th>Duration</th>
+                  <th>Outcome</th>
+                </tr>
+              </thead>
+              <tbody id="recent-calls-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Sidebar Cards -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <!-- Quick Actions -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">Quick Actions</span>
+            </div>
+            <div class="panel-body">
+              <div class="quick-actions" style="flex-direction:column;">
+                <a href="/platform/setup-agent.html" class="btn btn-primary btn-full" style="justify-content:flex-start;">
+                  <span>➕</span> Create New Agent
+                </a>
+                <a href="/platform/calls.html" class="btn btn-ghost btn-full" style="justify-content:flex-start;">
+                  <span>📞</span> View All Calls
+                </a>
+                <a href="/platform/agent-detail.html" class="btn btn-ghost btn-full" style="justify-content:flex-start;">
+                  <span>⚙️</span> Manage Agent
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Agent Status -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">Agent Status</span>
+            </div>
+            <div id="agent-status-list"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/shared.js"></script>
+  <script src="/platform/js/platform.js"></script>
+  <script>
+    // Auth check
+    if (!isLoggedIn()) {
+      setAuth(MOCK_USER); // Auto-login with mock for demo
+    }
+
+    const user = getUser();
+    document.getElementById('welcome-msg').textContent = `Welcome back, ${user.name.split(' ')[0]} 👋`;
+    document.getElementById('company-msg').textContent = user.company;
+
+    // Inject sidebar
+    injectSidebar('dashboard');
+
+    // Stats
+    document.getElementById('stat-calls').textContent = MOCK_STATS.totalCalls;
+    document.getElementById('stat-appointments').textContent = MOCK_STATS.appointmentsBooked;
+    document.getElementById('stat-response').textContent = MOCK_STATS.avgResponseTime;
+    document.getElementById('stat-agents').textContent = MOCK_STATS.activeAgents;
+
+    // Recent Calls (top 5)
+    const tbody = document.getElementById('recent-calls-body');
+    MOCK_CALLS.slice(0, 5).forEach(call => {
+      const outcome = formatOutcome(call.outcome);
+      tbody.innerHTML += `
+        <tr>
+          <td>${formatDate(call.date)}</td>
+          <td><strong>${escapeHtml(call.caller)}</strong></td>
+          <td>${call.duration}</td>
+          <td><span class="badge ${outcome.class}">${outcome.label}</span></td>
+        </tr>
+      `;
+    });
+
+    // Agent Status
+    const agentList = document.getElementById('agent-status-list');
+    MOCK_AGENTS.forEach(agent => {
+      const statusClass = agent.status === 'active' ? 'badge-green' : agent.status === 'paused' ? 'badge-red' : 'badge-yellow';
+      const statusLabel = agent.status === 'active' ? 'Online' : agent.status === 'paused' ? 'Paused' : 'Setup';
+      agentList.innerHTML += `
+        <div class="agent-card">
+          <div class="agent-card-header">
+            <div class="agent-card-icon">🤖</div>
+            <div>
+              <div class="agent-card-name">${escapeHtml(agent.name)}</div>
+              <span class="badge ${statusClass}" style="margin-top:4px;">
+                <span class="pulse-dot" style="width:6px;height:6px;"></span>
+                ${statusLabel}
+              </span>
+            </div>
+          </div>
+          <div class="agent-card-meta">
+            <span>📞 ${agent.phone}</span>
+            <span>🏢 ${agent.industry}</span>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
