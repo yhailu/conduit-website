@@ -201,25 +201,7 @@
 </head>
 <body>
 
-<nav class="site-nav" id="portal-nav">
-  <div class="site-nav-inner">
-    <a href="/" class="nav-logo">
-      <div class="nav-logo-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hc-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs><polygon points="36,4 16,34 30,34 26,60 50,26 34,26" fill="url(#hc-grad)"/></svg></div>
-      <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
-    </a>
-    <ul class="nav-menu">
-      <li><a href="/portal/dashboard" style="color:var(--text); font-weight:600;">Dashboard</a></li>
-      <li><a href="/portal/dashboard#agents">My Agents</a></li>
-      <li><a href="/portal/dashboard#calls">Call History</a></li>
-      <li><a href="/portal/dashboard#analytics">Analytics</a></li>
-      <li><a href="/portal/dashboard#settings">Settings</a></li>
-    </ul>
-    <div class="nav-actions">
-      <span id="nav-user-name" style="color:#6c7281; font-size:0.82rem; font-weight:500;"></span>
-      <button onclick="handleLogout()" style="color:#6c7281; font-size:0.82rem; font-weight:500; background:none; border:none; cursor:pointer; padding:6px 10px; border-radius:6px; transition:all 0.2s;" onmouseover="this.style.color='#0f172a';this.style.background='rgba(0,0,0,0.04)'" onmouseout="this.style.color='#6c7281';this.style.background='transparent'">Sign Out</button>
-    </div>
-  </div>
-</nav>
+<nav id="site-nav"></nav>
 
 <!-- Loading State -->
 <div class="dashboard container" id="dash-loading">
@@ -311,14 +293,42 @@
 
 <!-- no footer on dashboard -->
 
-<!-- shared.js excluded on portal — using custom portal nav -->
+<script src="../js/shared.js"></script>
 <script>
-// Just the fade-in animation observer from shared.js
-document.documentElement.setAttribute('data-theme', 'light');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+// Override the marketing nav with portal dashboard nav
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    var inner = nav.querySelector('.site-nav-inner');
+    if (!inner) return;
+
+    // Replace nav menu links
+    var menu = inner.querySelector('.nav-menu');
+    if (menu) {
+      menu.innerHTML = '<li><a href="/portal/dashboard" style="color:#0f172a;font-weight:600;">Dashboard</a></li>' +
+        '<li><a href="/portal/dashboard#agents">My Agents</a></li>' +
+        '<li><a href="/portal/dashboard#calls">Call History</a></li>' +
+        '<li><a href="/portal/dashboard#analytics">Analytics</a></li>' +
+        '<li><a href="/portal/dashboard#settings">Settings</a></li>';
+    }
+
+    // Replace nav actions (remove login/consultation, add sign out)
+    var actions = inner.querySelector('.nav-actions');
+    if (actions) {
+      actions.innerHTML = '<span id="nav-user-name" style="color:#6c7281;font-size:0.82rem;font-weight:500;"></span>' +
+        '<button onclick="handleLogout()" style="color:#6c7281;font-size:0.82rem;font-weight:500;background:none;border:none;cursor:pointer;padding:6px 10px;border-radius:6px;">Sign Out</button>';
+    }
+
+    // Remove mobile menu if it exists
+    var mobile = document.getElementById('nav-mobile-menu');
+    if (mobile) mobile.remove();
+
+    // Remove hamburger
+    var hamburger = inner.querySelector('.nav-hamburger');
+    if (hamburger) hamburger.remove();
+  }, 50);
+});
 </script>
 <script>
   // Check auth and load demo data
