@@ -84,11 +84,15 @@ img { max-width: 100%; display: block; }
 /* ---------- Nav ---------- */
 .site-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 0 16px; height: 56px;
-  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
   background: #ffffff;
   border-bottom: 1px solid #e6e7e9;
   transition: background var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.site-nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: 1200px; padding: 0 24px;
 }
 [data-theme="light"] .site-nav { background: #ffffff; }
 .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); margin-right: 16px; }

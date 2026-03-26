@@ -17,6 +17,7 @@ function injectNav() {
   if (!el) return;
   el.outerHTML = `
   <nav class="site-nav" id="site-nav">
+   <div class="site-nav-inner">
     <a href="/" class="nav-logo">
       <div class="nav-logo-icon">${LOGO_SVG}</div>
       <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
@@ -61,6 +62,7 @@ function injectNav() {
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
+   </div>
   </nav>
   <div class="nav-mobile-menu" id="nav-mobile-menu">
     <a href="/solutions" onclick="closeMobileMenu()">Solutions</a>
