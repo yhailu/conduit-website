@@ -311,7 +311,15 @@
 
 <!-- no footer on dashboard -->
 
-<script src="../js/shared.js"></script>
+<!-- shared.js excluded on portal — using custom portal nav -->
+<script>
+// Just the fade-in animation observer from shared.js
+document.documentElement.setAttribute('data-theme', 'light');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
 <script>
   // Check auth and load demo data
   let currentView = 'new';
