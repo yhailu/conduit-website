@@ -327,8 +327,10 @@
       if (!meRes.ok) { console.log('Auth failed, redirecting to login'); window.location.href = '/portal/login'; return; }
 
       const demoRes = await fetch('/api/portal/demo', { credentials: 'include' });
-      if (!demoRes.ok) { window.location.href = '/portal/login'; return; }
-      const demo = await demoRes.json();
+      let demo = {};
+      if (demoRes.ok) {
+        demo = await demoRes.json();
+      }
 
       // Populate dashboard
       document.getElementById('dash-business-name').textContent = demo.business_name || 'Your Business';
@@ -371,9 +373,10 @@
 
     } catch (err) {
       console.error('Dashboard init error:', err);
-      if (err.message && err.message.includes('fetch')) {
-        window.location.href = '/portal/login';
-      }
+      // Still show the dashboard even if demo data fails
+      document.getElementById('dash-loading').style.display = 'none';
+      document.getElementById('dash-content').style.display = 'block';
+      document.getElementById('dash-business-name').textContent = 'Your Business';
     }
   }
 
