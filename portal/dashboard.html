@@ -16,7 +16,7 @@
     .dash-header h1 span { color: #10b981; }
     .dash-actions { display: flex; gap: 12px; }
 
-    .dash-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
+    .dash-layout { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
     /* Preview Panel */
     .preview-panel {
@@ -243,48 +243,32 @@
       </div>
     </div>
 
-    <!-- Sidebar -->
-    <div class="dash-sidebar">
-      <!-- Original Site -->
-      <div class="sidebar-card">
-        <h3>📸 Original Site</h3>
-        <div class="original-site-preview">
-          <div class="original-site-mock" id="original-mock">Original website preview</div>
-          <div class="original-url">
-            <a id="original-url-link" href="#" target="_blank" rel="noopener">View original →</a>
-          </div>
+    <!-- Sidebar content moved to cards below main content -->
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:20px;">
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px;">
+        <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:12px;">📊 Performance</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-load-time">—</div><div style="font-size:0.7rem; color:var(--text-muted);">Load Time</div></div>
+          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-mobile">—</div><div style="font-size:0.7rem; color:var(--text-muted);">Mobile</div></div>
+          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-seo">—</div><div style="font-size:0.7rem; color:var(--text-muted);">SEO</div></div>
+          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-accessibility">—</div><div style="font-size:0.7rem; color:var(--text-muted);">Accessibility</div></div>
         </div>
       </div>
-
-      <!-- Key Improvements -->
-      <div class="sidebar-card">
-        <h3>✨ Key Improvements</h3>
-        <ul class="improvements-list" id="improvements-list">
-          <li><span class="improvement-icon">✓</span> Loading improvements...</li>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px;">
+        <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:12px;">✨ Improvements</h3>
+        <ul id="improvements-list" style="list-style:none; padding:0; font-size:0.82rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:6px;">
+          <li>✓ Loading...</li>
         </ul>
       </div>
-
-      <!-- Performance Metrics -->
-      <div class="sidebar-card">
-        <h3>📊 Performance</h3>
-        <div class="metrics-list" id="metrics-list">
-          <div class="metric-item"><div class="value" id="metric-load-time">—</div><div class="label">Load Time</div></div>
-          <div class="metric-item"><div class="value" id="metric-mobile">—</div><div class="label">Mobile Score</div></div>
-          <div class="metric-item"><div class="value" id="metric-seo">—</div><div class="label">SEO Score</div></div>
-          <div class="metric-item"><div class="value" id="metric-accessibility">—</div><div class="label">Accessibility</div></div>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px;">
+        <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:12px;">🚀 Ready to Go Live?</h3>
+        <div id="request-form">
+          <textarea id="build-message" style="width:100%; padding:8px; border:1px solid var(--border); border-radius:8px; background:var(--bg-elevated); color:var(--text); font-family:inherit; font-size:0.82rem; min-height:60px; resize:vertical; margin-bottom:8px;" placeholder="Any requests?"></textarea>
+          <button onclick="requestBuild()" style="width:100%; padding:8px; background:#10b981; color:#fff; border:none; border-radius:6px; font-weight:600; font-size:0.82rem; cursor:pointer;">Request Full Build →</button>
         </div>
-      </div>
-
-      <!-- Request Full Build -->
-      <div class="sidebar-card">
-        <h3>🚀 Ready to Go Live?</h3>
-        <div class="request-build-form" id="request-form">
-          <textarea id="build-message" placeholder="Any specific requests or questions? (optional)"></textarea>
-          <button class="request-build-btn" onclick="requestBuild()">Request Full Build →</button>
-        </div>
-        <div class="request-success" id="request-success">
-          <div class="icon">🎉</div>
-          <p><strong>Request sent!</strong> Our team will reach out within 24 hours to discuss your project.</p>
+        <div id="request-success" style="display:none; text-align:center; padding:12px;">
+          <div style="font-size:1.5rem;">🎉</div>
+          <p style="font-size:0.82rem; color:var(--text-secondary);"><strong>Request sent!</strong> We'll reach out within 24 hours.</p>
         </div>
       </div>
     </div>
