@@ -279,42 +279,6 @@
 
 <script src="../js/shared.js"></script>
 <script>
-// Override the marketing nav with portal dashboard nav
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    var nav = document.querySelector('.site-nav');
-    if (!nav) return;
-    var inner = nav.querySelector('.site-nav-inner');
-    if (!inner) return;
-
-    // Replace nav menu links
-    var menu = inner.querySelector('.nav-menu');
-    if (menu) {
-      menu.innerHTML = '<li><a href="/portal/dashboard" style="color:#0f172a;font-weight:600;">Dashboard</a></li>' +
-        '<li><a href="/portal/dashboard#agents">My Agents</a></li>' +
-        '<li><a href="/portal/dashboard#calls">Call History</a></li>' +
-        '<li><a href="/portal/dashboard#analytics">Analytics</a></li>' +
-        '<li><a href="/portal/dashboard#settings">Settings</a></li>';
-    }
-
-    // Replace nav actions (remove login/consultation, add sign out)
-    var actions = inner.querySelector('.nav-actions');
-    if (actions) {
-      actions.innerHTML = '<span id="nav-user-name" style="color:#6c7281;font-size:0.82rem;font-weight:500;"></span>' +
-        '<button onclick="handleLogout()" style="color:#6c7281;font-size:0.82rem;font-weight:500;background:none;border:none;cursor:pointer;padding:6px 10px;border-radius:6px;">Sign Out</button>';
-    }
-
-    // Remove mobile menu if it exists
-    var mobile = document.getElementById('nav-mobile-menu');
-    if (mobile) mobile.remove();
-
-    // Remove hamburger
-    var hamburger = inner.querySelector('.nav-hamburger');
-    if (hamburger) hamburger.remove();
-  }, 50);
-});
-</script>
-<script>
   // Check auth and load demo data
   let currentView = 'new';
   let originalUrl = '';

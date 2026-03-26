@@ -12,9 +12,36 @@ const LOGO_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/
 document.documentElement.setAttribute('data-theme', 'light');
 
 // ---- NAV ----
+const isPortal = window.location.pathname.includes('/portal');
+
 function injectNav() {
   const el = document.getElementById('site-nav');
   if (!el) return;
+
+  if (isPortal) {
+    el.outerHTML = `
+    <nav class="site-nav" id="site-nav">
+     <div class="site-nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">${LOGO_SVG}</div>
+        <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/portal/dashboard" style="color:#0f172a;font-weight:600;">Dashboard</a></li>
+        <li><a href="/portal/dashboard#agents">My Agents</a></li>
+        <li><a href="/portal/dashboard#calls">Call History</a></li>
+        <li><a href="/portal/dashboard#analytics">Analytics</a></li>
+        <li><a href="/portal/dashboard#settings">Settings</a></li>
+      </ul>
+      <div class="nav-actions">
+        <span id="nav-user-name" style="color:#6c7281;font-size:0.82rem;font-weight:500;"></span>
+        <a href="#" onclick="if(typeof handleLogout==='function')handleLogout();return false;" style="color:#6c7281;font-size:0.82rem;font-weight:500;text-decoration:none;padding:6px 10px;border-radius:6px;">Sign Out</a>
+      </div>
+     </div>
+    </nav>`;
+    return;
+  }
+
   el.outerHTML = `
   <nav class="site-nav" id="site-nav">
    <div class="site-nav-inner">
@@ -77,7 +104,7 @@ function injectNav() {
 // ---- FOOTER ----
 function injectFooter() {
   const el = document.getElementById('site-footer');
-  if (!el) return;
+  if (!el || isPortal) return;
   el.outerHTML = `
   <footer class="site-footer" id="site-footer">
     <div class="footer-grid">
