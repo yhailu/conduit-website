@@ -56,8 +56,8 @@ function injectNav() {
       <li><a href="/blog">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="/platform/login" class="btn btn-ghost">Log In</a>
-      <a href="/consultation" class="btn btn-primary">Request Consultation</a>
+      <a href="/platform/login" style="color:#6c7281; font-size:0.82rem; font-weight:500; text-decoration:none; padding:6px 10px; border-radius:6px; transition:all 0.2s;" onmouseover="this.style.color='#0f172a';this.style.background='rgba(0,0,0,0.04)'" onmouseout="this.style.color='#6c7281';this.style.background='transparent'">Log in</a>
+      <a href="/consultation" style="background:#10b981; color:#fff; font-size:0.82rem; font-weight:600; padding:7px 16px; border-radius:6px; text-decoration:none; transition:all 0.15s;" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">Request Consultation</a>
     </div>
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
