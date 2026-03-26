@@ -11,10 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 24px 40px; position: relative; }
+    .login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 72px 24px 40px; position: relative; }
     .login-page::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(ellipse at top, rgba(59,130,246,0.06) 0%, transparent 50%);
+      background: radial-gradient(ellipse at top, rgba(16,185,129,0.06) 0%, transparent 50%);
       pointer-events: none;
     }
     .login-card {
@@ -38,15 +38,15 @@
       font-size: 0.95rem; font-family: inherit; background: var(--bg-elevated);
       color: var(--text); transition: all 0.2s;
     }
-    .form-input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59,130,246,0.1); }
+    .form-input:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 4px rgba(16,185,129,0.1); }
     .form-input::placeholder { color: var(--text-muted); }
 
     .login-btn {
-      padding: 14px; background: #3b82f6; color: #fff; border: none; border-radius: 10px;
+      padding: 14px; background: #10b981; color: #fff; border: none; border-radius: 10px;
       font-size: 0.95rem; font-weight: 600; font-family: inherit; cursor: pointer;
       transition: all 0.2s; margin-top: 4px;
     }
-    .login-btn:hover { background: #2563eb; box-shadow: 0 4px 20px rgba(59,130,246,0.3); }
+    .login-btn:hover { background: #059669; box-shadow: 0 4px 20px rgba(16,185,129,0.3); }
     .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .login-error {
@@ -57,8 +57,8 @@
 
     .login-footer { text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
     .login-footer p { font-size: 0.85rem; color: var(--text-muted); }
-    .login-footer a { color: #3b82f6; font-weight: 600; }
-    .login-footer a:hover { color: #2563eb; }
+    .login-footer a { color: #10b981; font-weight: 600; }
+    .login-footer a:hover { color: #059669; }
 
     .login-divider { display: flex; align-items: center; gap: 16px; margin: 8px 0; }
     .login-divider::before, .login-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }

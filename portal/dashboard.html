@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .dashboard { padding: 80px 24px 40px; min-height: 100vh; }
+    .dashboard { padding: 72px 24px 40px; min-height: 100vh; }
     .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
     .dash-header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
-    .dash-header h1 span { color: #3b82f6; }
+    .dash-header h1 span { color: #10b981; }
     .dash-actions { display: flex; gap: 12px; }
 
     .dash-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
@@ -43,9 +43,9 @@
       background: transparent; color: var(--text-muted); transition: all 0.2s;
     }
     .preview-tab:hover { color: var(--text); border-color: var(--border-hover); }
-    .preview-tab.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+    .preview-tab.active { background: #10b981; color: #fff; border-color: #10b981; }
     .preview-open-btn {
-      padding: 10px 22px; background: linear-gradient(135deg, #3b82f6, #06b6d4); color: #fff;
+      padding: 10px 22px; background: linear-gradient(135deg, #10b981, #06b6d4); color: #fff;
       border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 800;
       cursor: pointer; font-family: inherit; margin-left: auto;
       animation: btnBounce 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite, btnPulseGlow 2s ease-in-out infinite;
@@ -85,9 +85,9 @@
       background: transparent; color: var(--text-muted); transition: all 0.2s;
     }
     .preview-tab:hover { color: var(--text); border-color: var(--border-hover); }
-    .preview-tab.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+    .preview-tab.active { background: #10b981; color: #fff; border-color: #10b981; }
     .preview-open-btn {
-      padding: 10px 22px; background: linear-gradient(135deg, #3b82f6, #06b6d4); color: #fff;
+      padding: 10px 22px; background: linear-gradient(135deg, #10b981, #06b6d4); color: #fff;
       border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 800;
       cursor: pointer; font-family: inherit; margin-left: auto;
       animation: btnBounce 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite, btnPulseGlow 2s ease-in-out infinite;
@@ -146,7 +146,7 @@
       font-size: 0.7rem; color: #888; font-style: italic;
     }
     .original-url { font-size: 0.75rem; color: var(--text-muted); word-break: break-all; }
-    .original-url a { color: #3b82f6; }
+    .original-url a { color: #10b981; }
 
     /* Improvements List */
     .improvements-list { list-style: none; }
@@ -155,14 +155,14 @@
       border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--text-secondary);
     }
     .improvements-list li:last-child { border-bottom: none; }
-    .improvement-icon { color: #3b82f6; font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+    .improvement-icon { color: #10b981; font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
 
     /* Metrics */
     .metrics-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .metric-item {
       background: var(--bg-elevated); border-radius: 10px; padding: 14px; text-align: center;
     }
-    .metric-item .value { font-size: 1.3rem; font-weight: 800; color: #3b82f6; }
+    .metric-item .value { font-size: 1.3rem; font-weight: 800; color: #10b981; }
     .metric-item .label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
 
     /* Request Build */
@@ -171,19 +171,19 @@
       font-size: 0.85rem; font-family: inherit; background: var(--bg-elevated); color: var(--text);
       resize: vertical; min-height: 80px; margin-bottom: 12px;
     }
-    .request-build-form textarea:focus { outline: none; border-color: #3b82f6; }
+    .request-build-form textarea:focus { outline: none; border-color: #10b981; }
     .request-build-form textarea::placeholder { color: var(--text-muted); }
     .request-build-btn {
-      width: 100%; padding: 12px; background: #3b82f6; color: #fff; border: none;
+      width: 100%; padding: 12px; background: #10b981; color: #fff; border: none;
       border-radius: 10px; font-weight: 600; font-family: inherit; cursor: pointer;
       transition: all 0.2s; font-size: 0.9rem;
     }
-    .request-build-btn:hover { background: #2563eb; }
+    .request-build-btn:hover { background: #059669; }
 
     /* Loading */
-    .dash-loading { text-align: center; padding: 80px 24px; color: var(--text-muted); }
+    .dash-loading { text-align: center; padding: 72px 24px; color: var(--text-muted); }
     .dash-loading-spinner {
-      width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: #3b82f6;
+      width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: #10b981;
       border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -312,7 +312,7 @@
       // Show screenshot of redesigned site
       wrap.innerHTML = `
         <div style="width:100%;height:100%;overflow:auto;background:#f1f5f9;display:flex;flex-direction:column;align-items:center;padding:24px;">
-          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">✨ Redesigned Website — <a href="#" onclick="openFullScreen();return false;" style="color:#3b82f6;">Open interactive version →</a></div>
+          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">✨ Redesigned Website — <a href="#" onclick="openFullScreen();return false;" style="color:#10b981;">Open interactive version →</a></div>
           <img src="/api/portal/demo-screenshot" alt="Redesigned website preview"
             style="max-width:100%;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;cursor:pointer;"
             onclick="openFullScreen()" />
@@ -321,7 +321,7 @@
       // Show screenshot of original site
       wrap.innerHTML = `
         <div style="width:100%;height:100%;overflow:auto;background:#f1f5f9;display:flex;flex-direction:column;align-items:center;padding:24px;">
-          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">📸 Original Website Screenshot — <a href="${originalUrl}" target="_blank" rel="noopener" style="color:#3b82f6;">${originalUrl.replace(/^https?:\/\//, '')}</a></div>
+          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;font-weight:600;">📸 Original Website Screenshot — <a href="${originalUrl}" target="_blank" rel="noopener" style="color:#10b981;">${originalUrl.replace(/^https?:\/\//, '')}</a></div>
           <img src="https://image.thum.io/get/width/1280/${originalUrl}" alt="Original website screenshot"
             style="max-width:100%;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;" />
         </div>`;
