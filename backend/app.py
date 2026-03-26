@@ -19,6 +19,10 @@ STATIC_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file
 app = Flask(__name__, static_folder=None)  # disable built-in static; we handle it ourselves
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-change-me')
 
+# Register HeroCall platform blueprint (customer dashboard API)
+from platform_api import platform_bp
+app.register_blueprint(platform_bp)
+
 ALLOWED_ORIGINS = [
     'http://localhost:5000',
     'http://127.0.0.1:5000',
