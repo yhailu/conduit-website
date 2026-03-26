@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .dashboard { padding: 72px 24px 40px; min-height: 100vh; }
+    .dashboard { padding: 72px 24px 40px; min-height: 100vh; max-width: 1200px; margin: 0 auto; }
     .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
     .dash-header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
     .dash-header h1 span { color: #10b981; }
@@ -201,7 +201,25 @@
 </head>
 <body>
 
-<nav id="site-nav"></nav>
+<nav class="site-nav" id="portal-nav">
+  <div class="site-nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hc-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs><polygon points="36,4 16,34 30,34 26,60 50,26 34,26" fill="url(#hc-grad)"/></svg></div>
+      <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="/portal/dashboard" style="color:var(--text); font-weight:600;">Dashboard</a></li>
+      <li><a href="/portal/dashboard#agents">My Agents</a></li>
+      <li><a href="/portal/dashboard#calls">Call History</a></li>
+      <li><a href="/portal/dashboard#analytics">Analytics</a></li>
+      <li><a href="/portal/dashboard#settings">Settings</a></li>
+    </ul>
+    <div class="nav-actions">
+      <span id="nav-user-name" style="color:#6c7281; font-size:0.82rem; font-weight:500;"></span>
+      <button onclick="handleLogout()" style="color:#6c7281; font-size:0.82rem; font-weight:500; background:none; border:none; cursor:pointer; padding:6px 10px; border-radius:6px; transition:all 0.2s;" onmouseover="this.style.color='#0f172a';this.style.background='rgba(0,0,0,0.04)'" onmouseout="this.style.color='#6c7281';this.style.background='transparent'">Sign Out</button>
+    </div>
+  </div>
+</nav>
 
 <!-- Loading State -->
 <div class="dashboard container" id="dash-loading">
@@ -216,8 +234,6 @@
   <div class="dash-header">
     <h1>Welcome, <span id="dash-business-name">—</span></h1>
     <div class="dash-actions">
-      <a href="/solutions/web-development" class="btn btn-ghost">← Back</a>
-      <button class="btn btn-ghost" onclick="handleLogout()">Sign Out</button>
     </div>
   </div>
 
@@ -293,7 +309,7 @@
   </div>
 </div>
 
-<footer id="site-footer"></footer>
+<!-- no footer on dashboard -->
 
 <script src="../js/shared.js"></script>
 <script>
@@ -350,6 +366,8 @@
 
       // Populate dashboard
       document.getElementById('dash-business-name').textContent = demo.business_name || 'Your Business';
+      const navName = document.getElementById('nav-user-name');
+      if (navName) navName.textContent = demo.business_name || '';
 
       // Preview — show screenshot, Full Screen opens interactive version
       if (demo.demo_url) {
