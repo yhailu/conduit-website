@@ -56,7 +56,7 @@ function injectNav() {
       <li><a href="/blog">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="/platform/login" class="nav-login-link" style="color:var(--text-secondary);text-decoration:none;font-size:0.9rem;font-weight:600;margin-right:12px;transition:color 0.2s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color=''">Log In</a>
+      <a href="/platform/login" class="btn btn-ghost">Log In</a>
       <a href="/consultation" class="btn btn-primary">Request Consultation</a>
     </div>
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
