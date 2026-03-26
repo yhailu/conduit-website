@@ -12,7 +12,7 @@ const LOGO_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/
 document.documentElement.setAttribute('data-theme', 'light');
 
 // ---- NAV ----
-const isPortal = window.location.pathname.includes('/portal');
+const isPortal = window.location.pathname.includes('/portal/dashboard');
 
 function injectNav() {
   const el = document.getElementById('site-nav');
