@@ -214,64 +214,145 @@
 <!-- Dashboard Content (hidden until loaded) -->
 <div class="dashboard container" id="dash-content" style="display:none;">
   <div class="dash-header">
-    <h1>Welcome, <span id="dash-business-name">—</span></h1>
+    <h1>Welcome back, <span id="dash-business-name">—</span></h1>
     <div class="dash-actions">
+      <a href="/portal/dashboard#agents" style="background:#10b981; color:#fff; padding:7px 16px; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">+ New Agent</a>
     </div>
   </div>
 
-  <div class="dash-layout">
-    <!-- Main Preview -->
-    <div class="preview-panel">
-      <div class="preview-toolbar">
-        <div class="preview-dots">
-          <div class="preview-dot" style="background:#ef4444;"></div>
-          <div class="preview-dot" style="background:#f59e0b;"></div>
-          <div class="preview-dot" style="background:#22c55e;"></div>
-        </div>
-        <div class="preview-url" id="preview-url"></div>
-        <div class="preview-tabs">
-          <button class="preview-tab active" id="tab-new" onclick="switchPreview('new')">✨ New Design</button>
-          <button class="preview-tab" id="tab-old" onclick="switchPreview('old')">📦 Original Site</button>
-        </div>
-        <button class="preview-open-btn" id="open-demo-btn" onclick="openFullScreen()">🖥️ Open Full Screen ↗</button>
-      </div>
-      <div class="preview-iframe-wrap" id="preview-wrap">
-        <div class="preview-placeholder" id="preview-placeholder">
-          <div class="preview-placeholder-icon">🌐</div>
-          <p>Your redesigned website preview will appear here</p>
-        </div>
-      </div>
+  <!-- Stats Cards -->
+  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; margin-bottom:24px;">
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
+      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Total Calls Today</div>
+      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">47</div>
+      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">↑ 12% vs yesterday</div>
     </div>
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
+      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Active Agents</div>
+      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">3</div>
+      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">All online</div>
+    </div>
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
+      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Leads Captured</div>
+      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">18</div>
+      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">↑ 8% this week</div>
+    </div>
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
+      <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Avg Response Time</div>
+      <div style="font-size:1.6rem; font-weight:800; color:var(--text);">2.4s</div>
+      <div style="font-size:0.7rem; color:#10b981; margin-top:2px;">Under 5s target</div>
+    </div>
+  </div>
 
-    <!-- Sidebar content moved to cards below main content -->
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:20px;">
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px;">
-        <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:12px;">📊 Performance</h3>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-load-time">—</div><div style="font-size:0.7rem; color:var(--text-muted);">Load Time</div></div>
-          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-mobile">—</div><div style="font-size:0.7rem; color:var(--text-muted);">Mobile</div></div>
-          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-seo">—</div><div style="font-size:0.7rem; color:var(--text-muted);">SEO</div></div>
-          <div><div style="font-size:1.2rem; font-weight:800; color:#10b981;" id="metric-accessibility">—</div><div style="font-size:0.7rem; color:var(--text-muted);">Accessibility</div></div>
+  <!-- My Agents Section -->
+  <div id="agents" style="margin-bottom:24px;">
+    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:14px;">My Agents</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;">
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(16,185,129,0.12); display:flex; align-items:center; justify-content:center; font-size:1rem;">🎯</div>
+            <div>
+              <div style="font-weight:700; font-size:0.85rem;">Sales Agent</div>
+              <div style="font-size:0.7rem; color:var(--text-muted);">Lead qualification</div>
+            </div>
+          </div>
+          <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block;"></span>
+        </div>
+        <div style="display:flex; gap:12px; font-size:0.75rem; color:var(--text-secondary);">
+          <span><strong style="color:var(--text);">24</strong> calls today</span>
+          <span><strong style="color:var(--text);">78%</strong> qualified</span>
         </div>
       </div>
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px;">
-        <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:12px;">✨ Improvements</h3>
-        <ul id="improvements-list" style="list-style:none; padding:0; font-size:0.82rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:6px;">
-          <li>✓ Loading...</li>
-        </ul>
-      </div>
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px;">
-        <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:12px;">🚀 Ready to Go Live?</h3>
-        <div id="request-form">
-          <textarea id="build-message" style="width:100%; padding:8px; border:1px solid var(--border); border-radius:8px; background:var(--bg-elevated); color:var(--text); font-family:inherit; font-size:0.82rem; min-height:60px; resize:vertical; margin-bottom:8px;" placeholder="Any requests?"></textarea>
-          <button onclick="requestBuild()" style="width:100%; padding:8px; background:#10b981; color:#fff; border:none; border-radius:6px; font-weight:600; font-size:0.82rem; cursor:pointer;">Request Full Build →</button>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(59,130,246,0.12); display:flex; align-items:center; justify-content:center; font-size:1rem;">📅</div>
+            <div>
+              <div style="font-weight:700; font-size:0.85rem;">Booking Agent</div>
+              <div style="font-size:0.7rem; color:var(--text-muted);">Appointment scheduling</div>
+            </div>
+          </div>
+          <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block;"></span>
         </div>
-        <div id="request-success" style="display:none; text-align:center; padding:12px;">
-          <div style="font-size:1.5rem;">🎉</div>
-          <p style="font-size:0.82rem; color:var(--text-secondary);"><strong>Request sent!</strong> We'll reach out within 24 hours.</p>
+        <div style="display:flex; gap:12px; font-size:0.75rem; color:var(--text-secondary);">
+          <span><strong style="color:var(--text);">15</strong> bookings</span>
+          <span><strong style="color:var(--text);">87%</strong> show rate</span>
+        </div>
+      </div>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(168,85,247,0.12); display:flex; align-items:center; justify-content:center; font-size:1rem;">💬</div>
+            <div>
+              <div style="font-weight:700; font-size:0.85rem;">Support Agent</div>
+              <div style="font-size:0.7rem; color:var(--text-muted);">Customer helpdesk</div>
+            </div>
+          </div>
+          <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block;"></span>
+        </div>
+        <div style="display:flex; gap:12px; font-size:0.75rem; color:var(--text-secondary);">
+          <span><strong style="color:var(--text);">8</strong> tickets</span>
+          <span><strong style="color:var(--text);">91%</strong> resolved</span>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Recent Calls -->
+  <div id="calls" style="margin-bottom:24px;">
+    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:14px;">Recent Calls</h2>
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.82rem;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border); background:var(--bg-elevated);">
+            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Caller</th>
+            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Agent</th>
+            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Duration</th>
+            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Outcome</th>
+            <th style="text-align:left; padding:10px 14px; font-weight:600; color:var(--text-muted); font-size:0.75rem;">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;">+1 (215) 555-0142</td>
+            <td style="padding:10px 14px;">🎯 Sales Agent</td>
+            <td style="padding:10px 14px;">3:24</td>
+            <td style="padding:10px 14px;"><span style="background:rgba(16,185,129,0.1); color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Qualified</span></td>
+            <td style="padding:10px 14px; color:var(--text-muted);">2 min ago</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;">+1 (267) 555-0198</td>
+            <td style="padding:10px 14px;">📅 Booking Agent</td>
+            <td style="padding:10px 14px;">1:52</td>
+            <td style="padding:10px 14px;"><span style="background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Booked</span></td>
+            <td style="padding:10px 14px; color:var(--text-muted);">8 min ago</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;">+1 (484) 555-0076</td>
+            <td style="padding:10px 14px;">💬 Support Agent</td>
+            <td style="padding:10px 14px;">4:11</td>
+            <td style="padding:10px 14px;"><span style="background:rgba(16,185,129,0.1); color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Resolved</span></td>
+            <td style="padding:10px 14px; color:var(--text-muted);">15 min ago</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;">+1 (610) 555-0234</td>
+            <td style="padding:10px 14px;">🎯 Sales Agent</td>
+            <td style="padding:10px 14px;">2:08</td>
+            <td style="padding:10px 14px;"><span style="background:rgba(249,115,22,0.1); color:#f97316; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Follow-up</span></td>
+            <td style="padding:10px 14px; color:var(--text-muted);">22 min ago</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;">+1 (215) 555-0311</td>
+            <td style="padding:10px 14px;">📅 Booking Agent</td>
+            <td style="padding:10px 14px;">1:35</td>
+            <td style="padding:10px 14px;"><span style="background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Booked</span></td>
+            <td style="padding:10px 14px; color:var(--text-muted);">31 min ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   </div>
 </div>
 
@@ -326,46 +407,13 @@
       console.log('Dashboard /me status:', meRes.status);
       if (!meRes.ok) { console.log('Auth failed, redirecting to login'); window.location.href = '/portal/login'; return; }
 
-      const demoRes = await fetch('/api/portal/demo', { credentials: 'include' });
-      let demo = {};
-      if (demoRes.ok) {
-        demo = await demoRes.json();
-      }
-
-      // Populate dashboard
-      document.getElementById('dash-business-name').textContent = demo.business_name || 'Your Business';
+      // Get user info
+      const meData = await meRes.json();
+      const businessName = (meData.client && meData.client.business_name) || 'Your Business';
+      
+      document.getElementById('dash-business-name').textContent = businessName;
       const navName = document.getElementById('nav-user-name');
-      if (navName) navName.textContent = demo.business_name || '';
-
-      // Preview — show screenshot, Full Screen opens interactive version
-      if (demo.demo_url) {
-        document.getElementById('preview-url').textContent = demo.business_name + ' — Redesigned Preview';
-        const placeholder = document.getElementById('preview-placeholder');
-        if (placeholder) placeholder.remove();
-        switchPreview('new');
-      }
-
-      // Original site
-      if (demo.original_url) {
-        originalUrl = demo.original_url;
-        document.getElementById('original-url-link').href = demo.original_url;
-        document.getElementById('original-url-link').textContent = demo.original_url.replace(/^https?:\/\//, '');
-      }
-
-      // Improvements
-      const improvements = demo.improvements || [];
-      if (improvements.length > 0) {
-        document.getElementById('improvements-list').innerHTML = improvements
-          .map(imp => `<li><span class="improvement-icon">✓</span> ${imp}</li>`)
-          .join('');
-      }
-
-      // Metrics
-      const metrics = demo.metrics || {};
-      if (metrics.load_time) document.getElementById('metric-load-time').textContent = metrics.load_time;
-      if (metrics.mobile_score) document.getElementById('metric-mobile').textContent = metrics.mobile_score;
-      if (metrics.seo_score) document.getElementById('metric-seo').textContent = metrics.seo_score;
-      if (metrics.accessibility) document.getElementById('metric-accessibility').textContent = metrics.accessibility;
+      if (navName) navName.textContent = businessName;
 
       // Show content
       document.getElementById('dash-loading').style.display = 'none';
