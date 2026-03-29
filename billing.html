@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing — HeroCall</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cline x1='14' y1='50' x2='42' y2='22' stroke='%2310b981' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='22' r='3' fill='%2310b981'/%3E%3Cpath d='M48 12 L50 8 L52 12 L56 14 L52 16 L50 20 L48 16 L44 14Z' fill='%2310b981' opacity='0.6'/%3E%3Ccircle cx='36' cy='14' r='1.5' fill='%2310b981' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .billing-page { padding: 100px 24px 60px; min-height: 100vh; }
+    .billing-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .billing-header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+    .billing-layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+
+    /* Subscription Card */
+    .sub-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 24px; }
+    .sub-card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .sub-status { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+    .sub-status.active { background: rgba(16,185,129,0.1); color: #10b981; }
+    .sub-status.canceled { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .sub-status.past_due { background: rgba(249,115,22,0.1); color: #f97316; }
+    .sub-status.trialing { background: rgba(59,130,246,0.1); color: #3b82f6; }
+
+    .sub-plan { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; }
+    .sub-price { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px; }
+    .sub-detail { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .sub-detail:last-child { border-bottom: none; }
+    .sub-detail-label { color: var(--text-muted); }
+    .sub-detail-value { font-weight: 600; }
+    .sub-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+
+    /* Payment Method */
+    .pm-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg-elevated); border-radius: 12px; margin-bottom: 12px; }
+    .pm-icon { font-size: 1.8rem; }
+    .pm-info { flex: 1; }
+    .pm-info .pm-brand { font-weight: 700; font-size: 0.9rem; }
+    .pm-info .pm-last4 { font-size: 0.8rem; color: var(--text-muted); }
+    .pm-default { font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; background: var(--accent-subtle); color: var(--accent-light); font-weight: 700; }
+
+    /* Invoices */
+    .invoice-table { width: 100%; border-collapse: collapse; }
+    .invoice-table th { text-align: left; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .invoice-table td { padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .invoice-table tr:last-child td { border-bottom: none; }
+    .invoice-status { display: inline-flex; padding: 3px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; }
+    .invoice-status.paid { background: rgba(16,185,129,0.1); color: #10b981; }
+    .invoice-status.open { background: rgba(249,115,22,0.1); color: #f97316; }
+    .invoice-status.void { background: rgba(107,114,128,0.1); color: #6b7280; }
+    .invoice-link { color: var(--accent-light); font-weight: 600; font-size: 0.8rem; }
+
+    /* Loading & Empty */
+    .billing-loading { text-align: center; padding: 60px; color: var(--text-muted); }
+    .billing-spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .billing-empty { text-align: center; padding: 40px; color: var(--text-muted); }
+    .billing-empty-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.5; }
+
+    /* No subscription */
+    .no-sub { text-align: center; padding: 48px 24px; }
+    .no-sub h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .no-sub p { color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem; }
+
+    /* Cancel modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; max-width: 420px; width: 90%; }
+    .modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .modal p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+    .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+
+    @media (max-width: 1024px) { .billing-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav id="site-nav"></nav>
+
+<!-- Loading -->
+<div class="billing-page container" id="billing-loading">
+  <div class="billing-loading">
+    <div class="billing-spinner"></div>
+    <p>Loading billing info...</p>
+  </div>
+</div>
+
+<!-- Not logged in -->
+<div class="billing-page container" id="billing-noauth" style="display:none;">
+  <div class="no-sub">
+    <div class="billing-empty-icon">🔒</div>
+    <h3>Please log in</h3>
+    <p>You need to be logged in to view billing information.</p>
+    <a href="/login" class="btn btn-primary">Log In →</a>
+  </div>
+</div>
+
+<!-- Main billing content -->
+<div class="billing-page container" id="billing-content" style="display:none;">
+  <div class="billing-header">
+    <h1>Billing</h1>
+    <a href="/" class="btn btn-ghost">← Back to Home</a>
+  </div>
+
+  <div class="billing-layout">
+    <!-- Left column -->
+    <div>
+      <!-- Subscription -->
+      <div class="sub-card" id="sub-section">
+        <h2>💳 Subscription</h2>
+        <div id="sub-details">
+          <div class="no-sub" id="no-sub" style="display:none;">
+            <div class="billing-empty-icon">📋</div>
+            <h3>No active subscription</h3>
+            <p>You don't have a subscription yet. Contact us to get started.</p>
+            <a href="/consultation" class="btn btn-primary">Get Started →</a>
+          </div>
+          <div id="has-sub" style="display:none;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+              <div class="sub-plan" id="sub-plan-name">—</div>
+              <span class="sub-status active" id="sub-status">Active</span>
+            </div>
+            <div class="sub-price" id="sub-price">—</div>
+            <div class="sub-detail"><span class="sub-detail-label">Current period</span><span class="sub-detail-value" id="sub-period">—</span></div>
+            <div class="sub-detail"><span class="sub-detail-label">Next billing date</span><span class="sub-detail-value" id="sub-next-billing">—</span></div>
+            <div class="sub-detail"><span class="sub-detail-label">Started</span><span class="sub-detail-value" id="sub-started">—</span></div>
+            <div class="sub-actions">
+              <button class="btn btn-ghost" onclick="openPortal()">Manage Subscription →</button>
+              <button class="btn btn-ghost" style="color:#ef4444;border-color:rgba(239,68,68,0.3);" onclick="showCancelModal()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invoices -->
+      <div class="sub-card">
+        <h2>📄 Invoice History</h2>
+        <div id="invoices-loading" class="billing-loading" style="padding:24px;">
+          <div class="billing-spinner"></div>
+        </div>
+        <div id="invoices-empty" class="billing-empty" style="display:none;">
+          <div class="billing-empty-icon">📋</div>
+          <p>No invoices yet</p>
+        </div>
+        <table class="invoice-table" id="invoices-table" style="display:none;">
+          <thead>
+            <tr><th>Date</th><th>Amount</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody id="invoices-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div>
+      <!-- Payment Method -->
+      <div class="sub-card">
+        <h2>💳 Payment Method</h2>
+        <div id="pm-section">
+          <div id="pm-loading" class="billing-loading" style="padding:16px;"><div class="billing-spinner"></div></div>
+          <div id="pm-empty" class="billing-empty" style="display:none;">
+            <p>No payment method on file</p>
+          </div>
+          <div id="pm-card" style="display:none;">
+            <div class="pm-card">
+              <div class="pm-icon" id="pm-icon">💳</div>
+              <div class="pm-info">
+                <div class="pm-brand" id="pm-brand">—</div>
+                <div class="pm-last4" id="pm-last4">•••• ——</div>
+              </div>
+              <span class="pm-default">Default</span>
+            </div>
+            <div style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;" id="pm-exp">Expires —/——</div>
+          </div>
+        </div>
+        <button class="btn btn-ghost" style="width:100%;margin-top:16px;" onclick="openPortal()">Update Payment Method</button>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="sub-card">
+        <h2>⚡ Quick Actions</h2>
+        <a href="/consultation" class="btn btn-ghost" style="width:100%;margin-bottom:8px;">Upgrade Plan</a>
+        <a href="/contact" class="btn btn-ghost" style="width:100%;">Contact Billing Support</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Modal -->
+<div class="modal-overlay" id="cancel-modal">
+  <div class="modal">
+    <h3>Cancel Subscription?</h3>
+    <p>Your subscription will remain active until the end of the current billing period. After that, you'll lose access to all AI agents and services.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeCancelModal()">Keep Subscription</button>
+      <button class="btn btn-primary" style="background:#ef4444;" id="confirm-cancel-btn" onclick="confirmCancel()">Yes, Cancel</button>
+    </div>
+  </div>
+</div>
+
+<footer id="site-footer"></footer>
+<script src="js/shared.js"></script>
+<script>
+  const cardIcons = { visa: '💳', mastercard: '💳', amex: '💳', discover: '💳' };
+
+  async function init() {
+    try {
+      // Check auth
+      const meRes = await fetch('/api/auth/me', { credentials: 'include' });
+      const meData = await meRes.json();
+      if (!meData.user) {
+        document.getElementById('billing-loading').style.display = 'none';
+        document.getElementById('billing-noauth').style.display = 'block';
+        return;
+      }
+
+      // Load billing data
+      const billingRes = await fetch('/api/billing', { credentials: 'include' });
+      const billing = await billingRes.json();
+
+      document.getElementById('billing-loading').style.display = 'none';
+      document.getElementById('billing-content').style.display = 'block';
+
+      // Subscription
+      if (billing.subscription) {
+        const sub = billing.subscription;
+        document.getElementById('no-sub').style.display = 'none';
+        document.getElementById('has-sub').style.display = 'block';
+        document.getElementById('sub-plan-name').textContent = sub.plan_name || 'HeroCall Plan';
+        document.getElementById('sub-price').textContent = sub.price || '';
+
+        const statusEl = document.getElementById('sub-status');
+        statusEl.textContent = (sub.status || 'active').replace('_', ' ');
+        statusEl.className = 'sub-status ' + (sub.status || 'active');
+
+        document.getElementById('sub-period').textContent = sub.current_period || '—';
+        document.getElementById('sub-next-billing').textContent = sub.next_billing || '—';
+        document.getElementById('sub-started').textContent = sub.started || '—';
+      } else {
+        document.getElementById('no-sub').style.display = 'block';
+        document.getElementById('has-sub').style.display = 'none';
+      }
+
+      // Payment method
+      document.getElementById('pm-loading').style.display = 'none';
+      if (billing.payment_method) {
+        const pm = billing.payment_method;
+        document.getElementById('pm-card').style.display = 'block';
+        document.getElementById('pm-brand').textContent = pm.brand || 'Card';
+        document.getElementById('pm-last4').textContent = '•••• ' + (pm.last4 || '——');
+        document.getElementById('pm-exp').textContent = 'Expires ' + (pm.exp_month || '—') + '/' + (pm.exp_year || '——');
+      } else {
+        document.getElementById('pm-empty').style.display = 'block';
+      }
+
+      // Invoices
+      document.getElementById('invoices-loading').style.display = 'none';
+      if (billing.invoices && billing.invoices.length > 0) {
+        document.getElementById('invoices-table').style.display = 'table';
+        const tbody = document.getElementById('invoices-body');
+        tbody.innerHTML = billing.invoices.map(inv => `
+          <tr>
+            <td>${inv.date}</td>
+            <td>$${(inv.amount / 100).toFixed(2)}</td>
+            <td><span class="invoice-status ${inv.status}">${inv.status}</span></td>
+            <td>${inv.pdf ? '<a href="' + inv.pdf + '" target="_blank" class="invoice-link">Download</a>' : ''}</td>
+          </tr>
+        `).join('');
+      } else {
+        document.getElementById('invoices-empty').style.display = 'block';
+      }
+
+    } catch (err) {
+      console.error('Billing error:', err);
+      document.getElementById('billing-loading').style.display = 'none';
+      document.getElementById('billing-noauth').style.display = 'block';
+    }
+  }
+
+  async function openPortal() {
+    try {
+      const res = await fetch('/api/billing/portal', { method: 'POST', credentials: 'include' });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+      else alert('Could not open billing portal. Please try again.');
+    } catch (err) { alert('Error opening portal.'); }
+  }
+
+  function showCancelModal() { document.getElementById('cancel-modal').classList.add('open'); }
+  function closeCancelModal() { document.getElementById('cancel-modal').classList.remove('open'); }
+
+  async function confirmCancel() {
+    const btn = document.getElementById('confirm-cancel-btn');
+    btn.textContent = 'Canceling...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('/api/billing/cancel', { method: 'POST', credentials: 'include' });
+      const data = await res.json();
+      if (data.ok) {
+        closeCancelModal();
+        location.reload();
+      } else {
+        alert(data.error || 'Could not cancel. Please contact support.');
+      }
+    } catch (err) { alert('Error canceling. Please contact support.'); }
+    btn.textContent = 'Yes, Cancel';
+    btn.disabled = false;
+  }
+
+  init();
+</script>
+</body>
+</html>

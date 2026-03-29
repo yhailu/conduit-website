@@ -12,6 +12,8 @@ from flask import Flask, request, jsonify, redirect, session, send_from_director
 from flask_cors import CORS
 from supabase import create_client, Client
 from werkzeug.security import check_password_hash, generate_password_hash
+import stripe
+import hashlib, time
 
 load_dotenv()
 
@@ -49,6 +51,11 @@ SMTP_PASSWORD = os.getenv('SMTP_PASSWORD', '')
 NOTIFY_EMAIL = os.getenv('NOTIFY_EMAIL', '')
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+# Stripe
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '')
+stripe.api_key = STRIPE_SECRET_KEY
 
 
 # ---------------------------------------------------------------------------
@@ -937,6 +944,178 @@ def preview_track_view(token):
         return jsonify({'ok': True})
     except Exception:
         return jsonify({'ok': True})
+
+
+# ---------------------------------------------------------------------------
+# Billing (Stripe)
+# ---------------------------------------------------------------------------
+
+def _get_stripe_customer_id():
+    """Get the Stripe customer ID for the currently logged-in user."""
+    token = session.get('access_token')
+    if not token:
+        return None, None
+    try:
+        client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+        client.auth.set_session(token, session.get('refresh_token', ''))
+        user_resp = client.auth.get_user()
+        user = user_resp.user
+        if not user:
+            return None, None
+
+        # Check if user has a stripe_customer_id in metadata
+        meta = user.user_metadata or {}
+        stripe_id = meta.get('stripe_customer_id')
+
+        if not stripe_id:
+            # Search Stripe by email
+            customers = stripe.Customer.list(email=user.email, limit=1)
+            if customers.data:
+                stripe_id = customers.data[0].id
+            else:
+                return user, None
+
+        return user, stripe_id
+    except Exception:
+        return None, None
+
+
+@app.route('/api/billing', methods=['GET'])
+def billing_info():
+    """Return subscription, payment method, and invoice history."""
+    user, stripe_customer_id = _get_stripe_customer_id()
+    if not user:
+        return jsonify({'error': 'Not authenticated'}), 401
+
+    result = {
+        'subscription': None,
+        'payment_method': None,
+        'invoices': [],
+    }
+
+    if not stripe_customer_id or not STRIPE_SECRET_KEY:
+        return jsonify(result)
+
+    try:
+        # Get subscriptions
+        subs = stripe.Subscription.list(customer=stripe_customer_id, limit=1, status='all')
+        if subs.data:
+            sub = subs.data[0]
+            plan = sub['items']['data'][0]['plan'] if sub['items']['data'] else {}
+            amount = plan.get('amount', 0)
+            interval = plan.get('interval', 'month')
+
+            result['subscription'] = {
+                'id': sub.id,
+                'status': sub.status,
+                'plan_name': plan.get('nickname') or plan.get('product', ''),
+                'price': f"${amount / 100:.2f}/{interval}" if amount else '',
+                'current_period': f"{_ts_to_date(sub.current_period_start)} — {_ts_to_date(sub.current_period_end)}",
+                'next_billing': _ts_to_date(sub.current_period_end),
+                'started': _ts_to_date(sub.start_date) if sub.start_date else _ts_to_date(sub.created),
+                'cancel_at_period_end': sub.cancel_at_period_end,
+            }
+
+            # Try to resolve product name
+            try:
+                product = stripe.Product.retrieve(plan.get('product', ''))
+                result['subscription']['plan_name'] = product.name
+            except Exception:
+                pass
+
+        # Get payment methods
+        pms = stripe.PaymentMethod.list(customer=stripe_customer_id, type='card', limit=1)
+        if pms.data:
+            pm = pms.data[0]
+            card = pm.card
+            result['payment_method'] = {
+                'brand': card.brand.title() if card.brand else 'Card',
+                'last4': card.last4,
+                'exp_month': str(card.exp_month).zfill(2),
+                'exp_year': str(card.exp_year),
+            }
+
+        # Get invoices
+        invoices = stripe.Invoice.list(customer=stripe_customer_id, limit=24)
+        result['invoices'] = [{
+            'id': inv.id,
+            'date': _ts_to_date(inv.created),
+            'amount': inv.amount_paid or inv.total,
+            'status': inv.status,
+            'pdf': inv.invoice_pdf,
+        } for inv in invoices.data]
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    return jsonify(result)
+
+
+@app.route('/api/billing/portal', methods=['POST'])
+def billing_portal():
+    """Create a Stripe Customer Portal session for managing subscription/payment."""
+    user, stripe_customer_id = _get_stripe_customer_id()
+    if not user:
+        return jsonify({'error': 'Not authenticated'}), 401
+    if not stripe_customer_id:
+        return jsonify({'error': 'No billing account found'}), 404
+
+    try:
+        portal_session = stripe.billing_portal.Session.create(
+            customer=stripe_customer_id,
+            return_url=request.host_url.rstrip('/') + '/billing',
+        )
+        return jsonify({'url': portal_session.url})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/billing/cancel', methods=['POST'])
+def billing_cancel():
+    """Cancel subscription at end of billing period."""
+    user, stripe_customer_id = _get_stripe_customer_id()
+    if not user:
+        return jsonify({'error': 'Not authenticated'}), 401
+
+    try:
+        subs = stripe.Subscription.list(customer=stripe_customer_id, limit=1, status='active')
+        if not subs.data:
+            return jsonify({'error': 'No active subscription found'}), 404
+
+        stripe.Subscription.modify(subs.data[0].id, cancel_at_period_end=True)
+        return jsonify({'ok': True, 'message': 'Subscription will cancel at end of billing period.'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/stripe/webhook', methods=['POST'])
+def stripe_webhook():
+    """Handle Stripe webhooks for subscription events."""
+    payload = request.get_data()
+    sig_header = request.headers.get('Stripe-Signature', '')
+
+    if STRIPE_WEBHOOK_SECRET:
+        try:
+            event = stripe.Webhook.construct_event(payload, sig_header, STRIPE_WEBHOOK_SECRET)
+        except (ValueError, stripe.error.SignatureVerificationError):
+            return 'Invalid signature', 400
+    else:
+        event = stripe.Event.construct_from(request.get_json(), stripe.api_key)
+
+    # Handle events as needed
+    event_type = event['type']
+    # Log for now — extend as needed
+    print(f"[Stripe] {event_type}: {event['data']['object'].get('id', '')}")
+
+    return jsonify({'received': True})
+
+
+def _ts_to_date(ts):
+    """Convert Unix timestamp to readable date."""
+    if not ts:
+        return '—'
+    from datetime import datetime, timezone
+    return datetime.fromtimestamp(ts, tz=timezone.utc).strftime('%b %d, %Y')
 
 
 # ---------------------------------------------------------------------------
