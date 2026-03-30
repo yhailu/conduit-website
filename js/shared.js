@@ -97,6 +97,7 @@ function injectNav() {
     <a href="/platform" onclick="closeMobileMenu()">Platform</a>
     <a href="/company/about" onclick="closeMobileMenu()">Company</a>
     <a href="/blog" onclick="closeMobileMenu()">Blog</a>
+    <a href="/portal/login" class="mobile-login" onclick="closeMobileMenu()">Log in</a>
     <a href="/consultation" class="btn btn-primary mobile-cta" onclick="closeMobileMenu()">Request Consultation</a>
   </div>`;
 }

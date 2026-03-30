@@ -300,6 +300,10 @@ img { max-width: 100%; display: block; }
 }
 .nav-mobile-menu a:last-child { border-bottom: none; }
 .nav-mobile-menu a:hover { color: var(--text); }
+.nav-mobile-menu .mobile-login {
+  color: var(--text-secondary); font-weight: 500;
+}
+.nav-mobile-menu .mobile-login:hover { color: var(--text); }
 .nav-mobile-menu .mobile-cta {
   margin-top: 16px; display: block; text-align: center;
 }
