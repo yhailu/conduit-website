@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HVAC AI Solutions — HeroCall</title>
+  <meta name="description" content="AI voice agents for HVAC companies. Automate emergency dispatch, seasonal booking, maintenance reminders, and customer follow-ups 24/7.">
+  <link rel="canonical" href="https://herocall.io/industries/hvac">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='100%25' stop-color='%2334d399'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='36,4 16,34 30,34 26,60 50,26 34,26' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    .testimonial { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; max-width: 700px; margin: 0 auto; }
+    .testimonial blockquote { font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); font-style: italic; margin-bottom: 16px; }
+    .testimonial blockquote::before { content: "\201C"; font-size: 2.5rem; color: var(--accent-light); line-height: 0; vertical-align: -0.6rem; margin-right: 4px; }
+    .testimonial-author { font-weight: 700; font-size: 0.9rem; }
+    .testimonial-role { font-size: 0.8rem; color: var(--text-muted); }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+    .trust-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" id="site-nav">
+   <div class="site-nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hc-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs><polygon points="36,4 16,34 30,34 26,60 50,26 34,26" fill="url(#hc-grad)"/></svg></div>
+      <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
+    </a>
+    <ul class="nav-menu">
+      <li class="nav-dropdown"><a href="/solutions">Solutions</a>
+        <div class="nav-dropdown-menu">
+          <a href="/solutions/ai-lead-capture">AI Lead Capture</a>
+          <a href="/solutions/ai-appointment-manager">AI Appointment Manager</a>
+          <a href="/solutions/ai-helpdesk">AI Helpdesk</a>
+          <a href="/solutions/ai-knowledge-access">AI Knowledge Access</a>
+          <a href="/solutions/ai-recruitment">AI Recruitment</a>
+          <a href="/solutions/ai-workforce-intelligence">AI Workforce Intelligence</a>
+          <a href="/solutions/web-development">Web Development</a>
+        </div>
+      </li>
+      <li class="nav-dropdown"><a href="/industries">Industries</a>
+        <div class="nav-dropdown-menu">
+          <a href="/industries/healthcare">Healthcare</a>
+          <a href="/industries/real-estate">Real Estate</a>
+          <a href="/industries/financial-services">Financial Services</a>
+          <a href="/industries/saas-digital">SaaS &amp; Digital</a>
+          <a href="/industries/education">Education</a>
+          <a href="/industries/beauty-wellness">Beauty &amp; Wellness</a>
+          <a href="/industries/hvac">HVAC</a>
+        </div>
+      </li>
+      <li><a href="/platform">Platform</a></li>
+      <li class="nav-dropdown"><a href="/company/about">Company</a>
+        <div class="nav-dropdown-menu">
+          <a href="/company/about">About</a>
+          <a href="/company/case-studies">Case Studies</a>
+          <a href="/faq">FAQ</a>
+          <a href="/company/careers">Careers</a>
+        </div>
+      </li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="/portal/login" style="color:#6c7281; font-size:0.82rem; font-weight:500; text-decoration:none; padding:6px 10px; border-radius:6px; transition:all 0.2s;" onmouseover="this.style.color='#0f172a';this.style.background='rgba(0,0,0,0.04)'" onmouseout="this.style.color='#6c7281';this.style.background='transparent'">Log in</a>
+      <a href="/consultation" style="background:#10b981; color:#fff; font-size:0.82rem; font-weight:600; padding:7px 16px; border-radius:6px; text-decoration:none; transition:all 0.15s;" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">Request Consultation</a>
+    </div>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+   </div>
+  </nav>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="/solutions" onclick="closeMobileMenu()">Solutions</a>
+    <a href="/industries" onclick="closeMobileMenu()">Industries</a>
+    <a href="/platform" onclick="closeMobileMenu()">Platform</a>
+    <a href="/company/about" onclick="closeMobileMenu()">Company</a>
+    <a href="/blog" onclick="closeMobileMenu()">Blog</a>
+    <a href="/portal/login" class="mobile-login" onclick="closeMobileMenu()">Log in</a>
+    <a href="/consultation" class="btn btn-primary mobile-cta" onclick="closeMobileMenu()">Request Consultation</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-badge">❄️ HVAC Industry</div>
+      <h1>AI That Keeps Your <span class="accent">Customers Comfortable</span></h1>
+      <p>Automate emergency dispatch, seasonal bookings, maintenance reminders, and after-hours calls — so your techs focus on fixing, not fielding phones.</p>
+      <div class="hero-buttons">
+        <a href="/consultation" class="btn btn-primary btn-lg">Request Consultation →</a>
+        <a href="/solutions" class="btn btn-ghost btn-lg">View Solutions</a>
+      </div>
+      <p class="trust-note">Trusted by HVAC contractors, commercial refrigeration companies &amp; mechanical firms</p>
+    </div>
+  </section>
+
+  <!-- Agent Demo -->
+  <section class="section">
+    <div class="container">
+      <div class="agent-demo fade-in visible">
+        <div class="agent-widget">
+          <div class="agent-header">
+            <div class="agent-avatar">❄️</div>
+            <div class="agent-info"><h4>HVAC Dispatch Agent</h4><span class="agent-live"><span class="agent-dot"></span>Live</span></div>
+          </div>
+          <div class="agent-chat">
+            <div class="agent-msg agent-user msg-1">Our furnace just stopped and it's 12 degrees outside</div>
+            <div class="agent-msg agent-bot msg-2">That sounds urgent — I'm treating this as an emergency. I have a certified heating tech available <strong>within 90 minutes</strong>. He's 20 minutes from your area. Should I dispatch him now?</div>
+            <div class="agent-msg agent-user msg-3">Yes, please hurry</div>
+            <div class="agent-msg agent-bot msg-4">Done! ✅ Tech Carlos is on his way. You'll get a text with his live ETA. In the meantime, keep interior doors open to circulate any remaining heat. Stay warm!</div>
+          </div>
+          <div class="agent-metrics">
+            <div class="agent-metric"><span class="metric-num">42%</span><span class="metric-label">↑ Bookings</span></div>
+            <div class="agent-metric"><span class="metric-num">&lt;25s</span><span class="metric-label">Response</span></div>
+            <div class="agent-metric"><span class="metric-num">24/7</span><span class="metric-label">Available</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">⚡ Capabilities</div>
+        <h2 class="section-title">How AI Transforms <span class="muted">HVAC Operations</span></h2>
+        <p class="section-subtitle">From the first emergency call to the annual maintenance reminder, automate every customer interaction.</p>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card"><div class="card-icon" style="background:var(--green-bg); color:var(--green);">🚨</div><div class="card-title">Emergency Triage &amp; Dispatch</div><div class="card-desc">AI assesses urgency — no-heat in winter gets priority over a noisy fan. Automatically dispatches the nearest qualified tech with the right parts.</div></div>
+        <div class="card"><div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">📅</div><div class="card-title">Seasonal Booking Surge</div><div class="card-desc">When summer or winter hits and calls spike 300%, AI handles the overflow — booking tune-ups, installs, and service calls without hold times.</div></div>
+        <div class="card"><div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">🔔</div><div class="card-title">Maintenance Reminders</div><div class="card-desc">Automatically reach out to past customers before peak seasons. "Your last tune-up was 11 months ago — want to schedule before summer?"</div></div>
+        <div class="card"><div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">⭐</div><div class="card-title">Review &amp; Follow-Up</div><div class="card-desc">After every completed job, AI sends a satisfaction check. Happy customers get routed to Google Reviews. Concerns get flagged for your team.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-bar fade-in">
+        <div class="stat-item"><div class="stat-num">42%</div><div class="stat-label">More Bookings</div></div>
+        <div class="stat-item"><div class="stat-num">67%</div><div class="stat-label">Fewer Missed Calls</div></div>
+        <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Emergency Coverage</div></div>
+        <div class="stat-item"><div class="stat-num">3.2x</div><div class="stat-label">Seasonal ROI</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎯 Use Cases</div>
+        <h2 class="section-title">Built for <span class="muted">HVAC Professionals</span></h2>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card"><div class="card-title">🔥 No-Heat / No-Cool Emergencies</div><div class="card-desc">AI triages urgency based on weather, household factors (elderly, infants), and system type. Dispatches the right tech with the right skill set — boiler vs. heat pump vs. furnace.</div></div>
+        <div class="card"><div class="card-title">🛠️ Preventive Maintenance Programs</div><div class="card-desc">Automatically enroll customers in seasonal tune-up plans. AI schedules spring AC checks and fall furnace inspections — filling your calendar before the rush.</div></div>
+        <div class="card"><div class="card-title">💰 Estimate &amp; Replacement Follow-Up</div><div class="card-desc">Customer got a quote for a new system but hasn't decided? AI follows up with personalized reminders about rebates, financing options, and seasonal pricing.</div></div>
+        <div class="card"><div class="card-title">📞 After-Hours Emergency Line</div><div class="card-desc">No more answering service fees. AI handles overnight and weekend calls, dispatches on-call techs for true emergencies, and schedules non-urgent requests for the next business day.</div></div>
+        <div class="card"><div class="card-title">🏢 Commercial Contract Management</div><div class="card-desc">Track multi-unit service agreements, schedule recurring inspections, and send automated compliance reports to property managers and facility directors.</div></div>
+        <div class="card"><div class="card-title">📊 New System Consultations</div><div class="card-desc">AI qualifies leads for equipment replacements — gathering home size, current system age, fuel type, and budget — so your sales tech arrives prepared.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">What <span class="muted">HVAC Owners Say</span></h2>
+      </div>
+      <div class="testimonial fade-in">
+        <blockquote>Last winter we were losing 60% of after-hours calls to voicemail. Now every single call gets answered, triaged, and booked — even at 3am on a Saturday. We added $180K in revenue our first heating season with HeroCall.</blockquote>
+        <div class="testimonial-author">Marcus Rivera</div>
+        <div class="testimonial-role">Owner, Rivera Heating &amp; Cooling</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🔍 The HVAC Problem</div>
+        <h2 class="section-title">Sound <span class="muted">Familiar?</span></h2>
+      </div>
+      <div class="grid-2 fade-in">
+        <div class="card"><div class="card-title">📱 Phones Ring Off the Hook in Peak Season</div><div class="card-desc">First heat wave or cold snap hits and you're drowning in calls. Your office staff can't keep up and customers hang up and call a competitor.</div></div>
+        <div class="card"><div class="card-title">🌙 After-Hours Calls Go to Voicemail</div><div class="card-desc">Furnace dies at 11pm, customer calls you, gets voicemail, calls the next company on Google. You lost a $5,000 job while you were sleeping.</div></div>
+        <div class="card"><div class="card-title">🗓️ Maintenance Revenue Left on the Table</div><div class="card-desc">You know customers need annual tune-ups but nobody has time to call 2,000 past customers every spring and fall.</div></div>
+        <div class="card"><div class="card-title">💸 Expensive Answering Services</div><div class="card-desc">You're paying $500-$2,000/month for an answering service that takes messages but can't actually book jobs or dispatch techs.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Never Miss Another Call?</h2>
+      <p>See how AI can keep your phones answered, your techs dispatched, and your customers comfortable — all year round.</p>
+      <a href="/consultation" class="btn btn-primary btn-lg">Request Consultation →</a>
+      <div class="cta-guarantees">
+        <span class="cta-guarantee"><span class="check">✓</span> 2-week setup</span>
+        <span class="cta-guarantee"><span class="check">✓</span> Works with ServiceTitan, Housecall Pro &amp; more</span>
+        <span class="cta-guarantee"><span class="check">✓</span> No long-term contracts</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hc-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs><polygon points="36,4 16,34 30,34 26,60 50,26 34,26" fill="url(#hc-grad)"/></svg></div>
+          <span class="nav-logo-text">Hero<span style="color:#10b981">Call</span></span>
+        </a>
+        <p>Deploy your AI workforce in days. Enterprise-grade automation that actually works.</p>
+        <div style="display:flex; gap:12px; margin-top:16px;">
+          <a href="https://x.com/herocallio" target="_blank" rel="noopener" aria-label="X/Twitter" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:var(--bg-card); border:1px solid var(--border); transition:all 0.2s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text-muted);"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/herocall.io" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:var(--bg-card); border:1px solid var(--border); transition:all 0.2s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text-muted);"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/herocall" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:var(--bg-card); border:1px solid var(--border); transition:all 0.2s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text-muted);"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <a href="/solutions/ai-lead-capture">AI Lead Capture</a>
+        <a href="/solutions/ai-appointment-manager">Appointment Manager</a>
+        <a href="/solutions/ai-helpdesk">AI Helpdesk</a>
+        <a href="/solutions/ai-knowledge-access">Knowledge Access</a>
+        <a href="/solutions/ai-recruitment">AI Recruitment</a>
+        <a href="/solutions/ai-workforce-intelligence">Workforce Intelligence</a>
+        <a href="/solutions/web-development">Web Development</a>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <a href="/industries/healthcare">Healthcare</a>
+        <a href="/industries/real-estate">Real Estate</a>
+        <a href="/industries/financial-services">Financial Services</a>
+        <a href="/industries/saas-digital">SaaS &amp; Digital</a>
+        <a href="/industries/education">Education</a>
+        <a href="/industries/beauty-wellness">Beauty &amp; Wellness</a>
+        <a href="/industries/hvac">HVAC</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/company/about">About</a>
+        <a href="/company/careers">Careers</a>
+        <a href="/company/case-studies">Case Studies</a>
+        <a href="/blog">Blog</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact">Contact</a>
+        <a href="/consultation">Free Consultation</a>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:space-between; max-width:1200px; margin:0 auto 24px; padding-bottom:24px; border-bottom:1px solid var(--border);">
+        <div>
+          <h4 style="font-size:0.9rem; font-weight:700; margin-bottom:2px;">Subscribe to our newsletter</h4>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Weekly AI insights. No spam.</p>
+        </div>
+        <form class="newsletter-form" style="margin:0;" onsubmit="handleNewsletter(event)">
+          <div class="newsletter-input-wrap" style="padding:4px 4px 4px 12px;">
+            <input type="email" placeholder="your@email.com" required style="font-size:0.85rem;">
+            <button type="submit" class="btn btn-primary" style="padding:8px 16px; font-size:0.8rem;">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 HeroCall. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
+        <span style="color:var(--border);">|</span>
+        <a href="https://x.com/herocallio" target="_blank" rel="noopener">X/Twitter</a>
+        <a href="https://instagram.com/herocall.io" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linkedin.com/company/herocall" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/shared.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HVAC AI Answering Service — Never Miss a $3,000 Job Again | HeroCall</title>
+  <meta name="description" content="AI answers your HVAC calls 24/7. Books jobs, dispatches techs, follows up — while you're on a roof. $199/mo. Live in 48 hours. No contracts.">
+  <link rel="canonical" href="https://herocall.io/hvac">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='100%25' stop-color='%2334d399'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='36,4 16,34 30,34 26,60 50,26 34,26' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared.css">
+  <style>
+    /* ---- Hero stats row ---- */
+    .hero-stats { display:flex; gap:32px; justify-content:center; margin-top:32px; flex-wrap:wrap; }
+    .hero-stat { text-align:center; }
+    .hero-stat-num { font-size:1.5rem; font-weight:800; color:var(--accent); }
+    .hero-stat-label { font-size:0.78rem; color:var(--text-muted); margin-top:2px; }
+    .hero-buttons { display:flex; gap:12px; justify-content:center; margin-top:8px; flex-wrap:wrap; }
+
+    /* ---- Steps (How it Works) ---- */
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:900px; margin:0 auto; }
+    .step { text-align:center; position:relative; }
+    .step-num { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#059669,#34d399); color:#fff; font-size:1.3rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+    .step-title { font-weight:700; font-size:1rem; margin-bottom:6px; }
+    .step-desc { font-size:0.88rem; color:var(--text-secondary); line-height:1.6; }
+    .step-time { display:inline-block; margin-top:8px; font-size:0.75rem; font-weight:600; color:var(--accent); background:var(--green-bg); padding:3px 10px; border-radius:20px; }
+    @media(max-width:700px){ .steps { grid-template-columns:1fr; max-width:400px; } }
+
+    /* ---- ROI Calculator ---- */
+    .roi-calc { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; max-width:680px; margin:0 auto; }
+    .roi-slider-group { margin-bottom:24px; }
+    .roi-slider-label { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+    .roi-slider-label span:first-child { font-weight:600; font-size:0.9rem; }
+    .roi-slider-value { font-weight:800; color:var(--accent); font-size:1.05rem; min-width:60px; text-align:right; }
+    .roi-slider { width:100%; -webkit-appearance:none; appearance:none; height:6px; border-radius:3px; background:var(--border); outline:none; cursor:pointer; }
+    .roi-slider::-webkit-slider-thumb { -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--accent); cursor:pointer; border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+    .roi-slider::-moz-range-thumb { width:22px; height:22px; border-radius:50%; background:var(--accent); cursor:pointer; border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+    .roi-result { background:linear-gradient(135deg,#059669,#34d399); border-radius:var(--radius-lg); padding:28px; text-align:center; margin-top:28px; color:#fff; }
+    .roi-result-label { font-size:0.85rem; font-weight:500; opacity:0.9; margin-bottom:4px; }
+    .roi-result-num { font-size:2.8rem; font-weight:800; line-height:1.1; }
+    .roi-result-sub { font-size:0.8rem; opacity:0.85; margin-top:6px; }
+
+    /* ---- Testimonials ---- */
+    .testimonials-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .testimonial-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; }
+    .testimonial-card blockquote { font-size:0.92rem; line-height:1.7; color:var(--text-secondary); font-style:italic; margin-bottom:16px; }
+    .testimonial-card blockquote::before { content:"\201C"; font-size:2rem; color:var(--accent-light); line-height:0; vertical-align:-0.5rem; margin-right:2px; }
+    .testimonial-stars { color:#f59e0b; font-size:0.85rem; margin-bottom:8px; }
+    .testimonial-author { font-weight:700; font-size:0.85rem; }
+    .testimonial-role { font-size:0.78rem; color:var(--text-muted); }
+    @media(max-width:800px){ .testimonials-grid { grid-template-columns:1fr; max-width:500px; margin:0 auto; } }
+
+    /* ---- FAQ Accordion ---- */
+    .faq-list { max-width:720px; margin:0 auto; }
+    .faq-item { border:1px solid var(--border); border-radius:var(--radius-lg); margin-bottom:12px; overflow:hidden; background:var(--bg-card); }
+    .faq-item summary { padding:18px 24px; font-weight:600; font-size:0.95rem; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+    .faq-item summary:hover { background:rgba(16,185,129,0.04); }
+    .faq-item summary::after { content:"+"; font-size:1.3rem; font-weight:400; color:var(--text-muted); transition:transform 0.2s; }
+    .faq-item[open] summary::after { content:"\2212"; }
+    .faq-item .faq-answer { padding:0 24px 18px; font-size:0.9rem; line-height:1.7; color:var(--text-secondary); }
+    .faq-item summary::-webkit-details-marker { display:none; }
+
+    /* ---- Problem cards ---- */
+    .problem-icon { font-size:2rem; margin-bottom:12px; }
+    .problem-num { font-size:1.8rem; font-weight:800; color:#ef4444; margin-bottom:4px; }
+
+    /* ---- CTA guarantees ---- */
+    .final-cta-buttons { display:flex; gap:12px; justify-content:center; margin-top:8px; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" id="site-nav"></nav>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-badge">🔧 Built for HVAC, Plumbing &amp; Electrical</div>
+      <h1>Stop Losing <span class="accent">$3,000 Jobs</span> to Voicemail</h1>
+      <p style="max-width:620px; margin:0 auto;">You're on a roof. Phone rings. Goes to voicemail. That homeowner already called your competitor.<br>HeroCall's AI answers every call, books the job, and dispatches your crew — 24/7.</p>
+      <div class="hero-buttons">
+        <a href="#demo" class="btn btn-primary btn-lg">See It In Action ↓</a>
+        <a href="https://calendly.com/try-herocall/30min" target="_blank" class="btn btn-ghost btn-lg">Book a Free Demo</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">78%</div><div class="hero-stat-label">of customers hire<br>whoever answers first</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">$4,200</div><div class="hero-stat-label">avg revenue recovered<br>per month</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">&lt;30s</div><div class="hero-stat-label">average AI<br>response time</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. PROBLEM ============ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">📉 The Problem</div>
+        <h2 class="section-title">The Math Your <span class="muted">Competition Already Did</span></h2>
+        <p class="section-subtitle">Every missed call is a job your competitor books instead.</p>
+      </div>
+      <div class="grid-3 fade-in">
+        <div class="card" style="text-align:center;">
+          <div class="problem-icon">📵</div>
+          <div class="problem-num">62%</div>
+          <div class="card-title">Missed Calls = Missed Revenue</div>
+          <div class="card-desc">The average contractor misses 6-10 calls per week. At $350/job, that's <strong>$2,100-$3,500/month</strong> walking straight to your competitor.</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div class="problem-icon">🌙</div>
+          <div class="problem-num">$0/hr</div>
+          <div class="card-title">After-Hours = Zero Coverage</div>
+          <div class="card-desc">40% of service calls come after 5pm and on weekends. Furnace dies at midnight? That's a <strong>$5,000 emergency install</strong> you'll never know about.</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div class="problem-icon">🤯</div>
+          <div class="problem-num">1 person</div>
+          <div class="card-title">Receptionists Can't Scale</div>
+          <div class="card-desc">First cold snap hits and your phone rings 50 times. One person can handle maybe 15. The other <strong>35 callers hang up and call someone else</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. DEMO ============ -->
+  <section class="section" id="demo">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎧 Live Demo</div>
+        <h2 class="section-title">Watch It <span class="muted">Handle a Real Call</span></h2>
+        <p class="section-subtitle">This is exactly what your customers hear when they call — at 2pm or 2am.</p>
+      </div>
+      <div class="agent-demo fade-in">
+        <div class="agent-widget">
+          <div class="agent-header">
+            <div class="agent-avatar">❄️</div>
+            <div class="agent-info"><h4>HVAC Dispatch Agent</h4><span class="agent-live"><span class="agent-dot"></span>Live</span></div>
+          </div>
+          <div class="agent-chat">
+            <div class="agent-msg agent-user msg-1">Hi, my AC stopped blowing cold air and it's 95 degrees in here</div>
+            <div class="agent-msg agent-bot msg-2">I'm sorry you're dealing with that! Let me get you taken care of. I have a certified HVAC tech available <strong>today at 2:30pm</strong> — he's about 20 minutes from your area. Can I book that for you?</div>
+            <div class="agent-msg agent-user msg-3">Yes please, it's miserable in here</div>
+            <div class="agent-msg agent-bot msg-4">You're all set! ✅ Tech Mike is confirmed for 2:30pm. I'll text you his photo and a live ETA when he's on his way. Is there anything else I can help with?</div>
+          </div>
+          <div class="agent-metrics">
+            <div class="agent-metric"><span class="metric-num">35%</span><span class="metric-label">↑ Bookings</span></div>
+            <div class="agent-metric"><span class="metric-num">&lt;30s</span><span class="metric-label">Response</span></div>
+            <div class="agent-metric"><span class="metric-num">24/7</span><span class="metric-label">Available</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. HOW IT WORKS ============ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">⚡ How It Works</div>
+        <h2 class="section-title">Live in <span class="muted">48 Hours</span></h2>
+        <p class="section-subtitle">No IT department needed. No software to install. We handle everything.</p>
+      </div>
+      <div class="steps fade-in">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Connect Your Phone</div>
+          <div class="step-desc">Forward your overflow or after-hours calls to HeroCall. Keep your existing number — nothing changes for your customers.</div>
+          <div class="step-time">5 minutes</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Train Your AI</div>
+          <div class="step-desc">Tell us your services, service area, pricing, and scheduling rules. We build a custom AI agent that sounds like your best employee.</div>
+          <div class="step-time">24 hours</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Start Catching Revenue</div>
+          <div class="step-desc">AI answers calls, qualifies leads, books appointments, and dispatches techs. You get a text for every booked job.</div>
+          <div class="step-time">48 hours to live</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. FEATURES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🎯 Features</div>
+        <h2 class="section-title">Everything Your <span class="muted">Front Desk Can't Do</span></h2>
+      </div>
+      <div class="grid-3 fade-in">
+        <div class="card">
+          <div class="card-icon" style="background:var(--green-bg); color:var(--green);">📞</div>
+          <div class="card-title">24/7 Call Answering</div>
+          <div class="card-desc">Every call gets answered in under 30 seconds. Nights, weekends, holidays, peak season — doesn't matter. No hold music, no voicemail.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">🎯</div>
+          <div class="card-title">Lead Qualification</div>
+          <div class="card-desc">AI asks the right questions — what's broken, how urgent, what's the address. Filters out tire-kickers and spam. You only see real jobs.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:var(--purple-bg); color:var(--purple);">📅</div>
+          <div class="card-title">Instant Booking</div>
+          <div class="card-desc">Syncs with your calendar and books the next available slot. Customer gets a confirmation text immediately. No back-and-forth.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:var(--orange-bg); color:var(--orange);">🚛</div>
+          <div class="card-title">Smart Dispatch</div>
+          <div class="card-desc">Matches the right tech to the right job based on skill set, location, and availability. Emergency? It finds whoever's closest.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:var(--green-bg); color:var(--green);">💬</div>
+          <div class="card-title">Follow-Up Texts</div>
+          <div class="card-desc">Appointment reminders, ETA updates, "how did it go?" texts — all automated. Customers stay informed without you picking up the phone.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:var(--blue-bg); color:var(--blue);">⭐</div>
+          <div class="card-title">Google Review Boost</div>
+          <div class="card-desc">After every completed job, AI texts the customer a review link. Happy customers go to Google. Concerns get routed to you privately.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. ROI CALCULATOR ============ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">💰 ROI Calculator</div>
+        <h2 class="section-title">How Much Are You <span class="muted">Leaving on the Table?</span></h2>
+        <p class="section-subtitle">Drag the sliders. Try not to wince.</p>
+      </div>
+      <div class="roi-calc fade-in">
+        <div class="roi-slider-group">
+          <div class="roi-slider-label">
+            <span>Missed calls per week</span>
+            <span class="roi-slider-value" id="roi-calls-val">8</span>
+          </div>
+          <input type="range" class="roi-slider" id="roi-calls" min="1" max="30" value="8">
+        </div>
+        <div class="roi-slider-group">
+          <div class="roi-slider-label">
+            <span>Average job value</span>
+            <span class="roi-slider-value" id="roi-value-val">$350</span>
+          </div>
+          <input type="range" class="roi-slider" id="roi-value" min="100" max="2000" step="50" value="350">
+        </div>
+        <div class="roi-slider-group">
+          <div class="roi-slider-label">
+            <span>Close rate (if you answered)</span>
+            <span class="roi-slider-value" id="roi-rate-val">40%</span>
+          </div>
+          <input type="range" class="roi-slider" id="roi-rate" min="10" max="80" step="5" value="40">
+        </div>
+        <div class="roi-result">
+          <div class="roi-result-label">You're losing approximately</div>
+          <div class="roi-result-num" id="roi-result">$4,851</div>
+          <div class="roi-result-sub">every month in missed revenue</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. TESTIMONIALS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Contractors Who <span class="muted">Stopped Losing Jobs</span></h2>
+      </div>
+      <div class="testimonials-grid fade-in">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>We were missing 8-10 calls a week during summer. First month with HeroCall, we booked 23 extra jobs we would've lost. Paid for itself in 3 days.</blockquote>
+          <div class="testimonial-author">Mike R.</div>
+          <div class="testimonial-role">HVAC Contractor · Philadelphia, PA</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>I'm a one-truck operation. I can't answer the phone when I'm wrist-deep in a panel. HeroCall books jobs while I work. Added $3,800/month in revenue I was leaving on the table.</blockquote>
+          <div class="testimonial-author">Sarah K.</div>
+          <div class="testimonial-role">Electrician · Norristown, PA</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>Replaced our $1,200/month answering service. HeroCall actually books the jobs instead of just taking messages. Our after-hours bookings went from zero to 15 per month.</blockquote>
+          <div class="testimonial-author">David L.</div>
+          <div class="testimonial-role">Plumbing Company Owner · Delaware County, PA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FAQ ============ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">❓ FAQ</div>
+        <h2 class="section-title">Questions We Get <span class="muted">From Contractors</span></h2>
+      </div>
+      <div class="faq-list fade-in">
+        <details class="faq-item">
+          <summary>Will my customers know it's AI?</summary>
+          <div class="faq-answer">Most don't notice. The AI sounds natural, uses your company name, knows your services, and handles conversations the way a trained receptionist would. If a caller specifically asks, it identifies as a virtual assistant — but in 6 months of calls, less than 2% of callers have asked.</div>
+        </details>
+        <details class="faq-item">
+          <summary>I already have a receptionist. Why do I need this?</summary>
+          <div class="faq-answer">Your receptionist can't answer 3 calls at once. She doesn't work at 11pm on a Saturday. And she takes vacation. HeroCall handles overflow, after-hours, and peak season surges — the calls your receptionist physically can't get to. Think of it as backup that never calls in sick.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How fast is setup?</summary>
+          <div class="faq-answer">48 hours from sign-up to live. We'll hop on a 20-minute call to learn your services, service area, and scheduling preferences. We build your custom AI agent overnight, you test it the next day, and you're live.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What does it cost?</summary>
+          <div class="faq-answer">Plans start at <strong>$199/month</strong>. That's less than one missed job. No setup fees, no per-minute charges, no long-term contracts. Most contractors see ROI within the first week.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What about emergency calls?</summary>
+          <div class="faq-answer">AI triages urgency automatically. No heat in January? That gets flagged as emergency and your on-call tech gets an immediate text + call. Noisy ductwork? That gets scheduled for the next available slot. You set the rules for what counts as urgent.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it work with my current phone system?</summary>
+          <div class="faq-answer">Yes. HeroCall works with any phone system — landline, VoIP, cell phone, Google Voice, you name it. Just set up call forwarding (takes 5 minutes) and you're good. Works with ServiceTitan, Housecall Pro, Jobber, and most field service software too.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. FINAL CTA ============ -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Stop Losing Jobs<br>to Your Voicemail?</h2>
+      <p>Every day you wait is another $150+ in jobs going to your competitor.</p>
+      <div class="final-cta-buttons">
+        <a href="https://calendly.com/try-herocall/30min" target="_blank" class="btn btn-primary btn-lg">Book a Free Demo →</a>
+        <a href="/consultation" class="btn btn-ghost btn-lg" style="border-color:rgba(255,255,255,0.3); color:#fff;">Request Consultation</a>
+      </div>
+      <div class="cta-guarantees">
+        <span class="cta-guarantee"><span class="check">✓</span> 7-day free trial</span>
+        <span class="cta-guarantee"><span class="check">✓</span> No contracts</span>
+        <span class="cta-guarantee"><span class="check">✓</span> Live in 48 hours</span>
+        <span class="cta-guarantee"><span class="check">✓</span> Cancel anytime</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="../js/shared.js"></script>
+  <script>
+    /* ---- ROI Calculator ---- */
+    const callsSlider = document.getElementById('roi-calls');
+    const valueSlider = document.getElementById('roi-value');
+    const rateSlider  = document.getElementById('roi-rate');
+    const callsVal = document.getElementById('roi-calls-val');
+    const valueVal = document.getElementById('roi-value-val');
+    const rateVal  = document.getElementById('roi-rate-val');
+    const resultEl = document.getElementById('roi-result');
+
+    function calcROI() {
+      const calls = parseInt(callsSlider.value);
+      const value = parseInt(valueSlider.value);
+      const rate  = parseInt(rateSlider.value) / 100;
+      const monthly = Math.round(calls * value * rate * 4.33);
+      callsVal.textContent = calls;
+      valueVal.textContent = '$' + value.toLocaleString();
+      rateVal.textContent  = rateSlider.value + '%';
+      resultEl.textContent = '$' + monthly.toLocaleString();
+    }
+    callsSlider.addEventListener('input', calcROI);
+    valueSlider.addEventListener('input', calcROI);
+    rateSlider.addEventListener('input', calcROI);
+    calcROI();
+
+    /* ---- Smooth scroll for #demo anchor ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
